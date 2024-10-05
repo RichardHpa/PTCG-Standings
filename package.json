@@ -1,16 +1,29 @@
 {
   "name": "ptcg-standings.live",
   "type": "module",
+  "workspaces": [
+    "client"
+  ],
   "version": "2.0.0",
   "description": "Web app for following pokemon tcg tournament standings'",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev:server": "nodemon server.js"
+    "dev:server": "nodemon server.js",
+    "dev:frontend": "cd client && npm run dev",
+    "dev:frontend:build": "cd client && npm run build:dev",
+    "dev": "concurrently -n \"FRONTEND,BACKEND\" -c \"blue,red\" -p \"[{name}]\" \"npm run dev:frontend:build\" \"npm run dev:server\"",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install"
   },
   "scriptsComments": {
     "start": "Runs the server",
-    "dev:server": "Runs the server with nodemon"
+    "dev:server": "Runs the server with nodemon",
+    "dev:frontend": "Runs the client in development mode. This doesn't run the server, it only runs the client",
+    "dev:frontend:build": "Builds the client in development mode. This doesn't run the server, it only builds the client",
+    "dev": "Runs the client and server concurrently. This is mainly for development purposes",
+    "build": "Builds the client. This is mainly for production purposes, this is needed so heroku can build the client",
+    "install-client": "Installs the client dependencies. This is mainly for Heroku to install the client dependencies after the server has been built"
   },
   "keywords": [
     "Pokemon",
