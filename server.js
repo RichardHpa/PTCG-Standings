@@ -5,7 +5,9 @@ import { format } from 'date-fns';
 import cors from 'cors';
 import 'dotenv/config';
 
-console.log('testing eslint');
+import { createFolder } from './functions/createFolder/index.js';
+import { getTournamentsData } from './functions/getTournamentsData/index.js';
+import { checkRunningTournaments } from './functions/checkRunningTournaments/index.js';
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
@@ -15,6 +17,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+let tournamentsToTrack = [];
+
 app.use(express.static(path.join(__dirname, './client/dist')));
 app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, 'client/dist/index.html'));
@@ -22,6 +26,11 @@ app.get('*', (_req, res) => {
 
 const initialSetup = async () => {
   console.log('Initial Setup');
+  await createFolder();
+  const tournamentsData = await getTournamentsData();
+  const runningTournamentsData = await checkRunningTournaments(tournamentsData);
+  tournamentsToTrack = [...runningTournamentsData];
+  console.log(tournamentsToTrack);
 };
 
 initialSetup().then(() => {

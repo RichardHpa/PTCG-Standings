@@ -16,6 +16,11 @@ export default defineConfig({
       typescript: true,
     }),
   ],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./setupTests.ts'],
+  },
   resolve: {
     alias: {
       src: '/src',

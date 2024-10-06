@@ -23,14 +23,14 @@ export const LoadingPokeball = ({
   }, [loading, opened]);
 
   return (
-    <>
+    <div>
       <svg
         viewBox="0 0 100 100"
         width={size}
         height={size}
         className={clsx(ballState)}
         role="progress"
-        aria-label={ballState}
+        aria-label={alt}
       >
         <g transform="translate(50 50) scale(0.8)">
           <g transform="translate(0 50)">
@@ -105,6 +105,6 @@ export const LoadingPokeball = ({
         </g>
       </svg>
       {showAlt ? <p>{alt}</p> : <span className="sr-only">{alt}</span>}
-    </>
+    </div>
   );
 };
