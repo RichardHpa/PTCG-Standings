@@ -8,7 +8,7 @@
   "description": "Web app for following pokemon tcg tournament standings'",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js -- --scheduler",
     "dev:server": "nodemon server.js",
     "dev:frontend": "cd client && npm run dev",
     "dev:frontend:build": "cd client && npm run build:dev",
@@ -20,8 +20,8 @@
     "test:server": "vitest --config ./vitest.config.js"
   },
   "scriptsComments": {
-    "start": "Runs the server",
-    "dev:server": "Runs the server with nodemon",
+    "start": "Runs the server with the schedulers, Client must be built first. This is also the main script that will be used in production",
+    "dev:server": "Runs the server with nodemon without the scheduler, this is mainly for development purposes as we don't want the scheduler to always run in development. The Client must be built first",
     "dev:frontend": "Runs the client in development mode. This doesn't run the server, it only runs the client",
     "dev:frontend:build": "Builds the client in development mode. This doesn't run the server, it only builds the client",
     "dev": "Runs the client and server concurrently. This is mainly for development purposes",
