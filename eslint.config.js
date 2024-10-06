@@ -4,10 +4,10 @@ import nodePlugin from 'eslint-plugin-n';
 
 export default [
   {
+    languageOptions: { globals: globals.node },
     ignores: ['client/'],
-    plugins: { n: nodePlugin },
+    plugins: { nodePlugin },
     rules: { 'no-process-env': 'off' },
   },
-  { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
 ];
