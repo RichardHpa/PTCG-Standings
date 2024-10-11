@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import { BuyMeABoosterButton } from 'components/BuyMeABoosterButton';
+
 export const Navbar = () => {
   return (
     <nav className="border-gray-200 bg-white dark:bg-gray-900">
@@ -16,6 +18,14 @@ export const Navbar = () => {
             PTCG Standings
           </span>
         </Link>
+
+        <div className="flex gap-2">
+          <ul className="flex flex-col items-center gap-4">
+            <li>
+              <BuyMeABoosterButton />
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );

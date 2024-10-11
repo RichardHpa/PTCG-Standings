@@ -17,4 +17,10 @@ describe('Navbar', () => {
     const siteName = screen.getByRole('heading', { name: 'PTCG Standings' });
     expect(siteName).toBeInTheDocument();
   });
+
+  test('renders the Buy Me a Booster button', () => {
+    render(<Navbar />);
+    const button = screen.getByRole('link', { name: 'Buy me a booster pack' });
+    expect(button).toBeInTheDocument();
+  });
 });
