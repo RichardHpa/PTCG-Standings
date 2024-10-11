@@ -1,14 +1,26 @@
-import { StrictMode } from 'react';
+import { StrictMode, lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { worker } from 'mocks/browser';
 
-import App from './App.tsx';
 import './index.css';
+
 import { BaseLayout } from 'layouts/BaseLayout';
+
+import { Home } from 'pages/Home';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
 import { FallbackError } from 'errors/FallbackError';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 10, // 10 minutes
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -18,7 +30,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <App />,
+        element: <Home />,
       },
     ],
   },
@@ -33,8 +45,50 @@ const FallbackLoader = () => (
   </div>
 );
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <RouterProvider router={router} fallbackElement={<FallbackLoader />} />
-  </StrictMode>,
+const ReactQueryDevtoolsProduction = lazy(() =>
+  import('@tanstack/react-query-devtools/build/modern/production.js').then(
+    d => ({
+      default: d.ReactQueryDevtools,
+    }),
+  ),
 );
+
+const allowedPaths = [
+  '/sprites/',
+  '/logo192.png',
+  'src/images/',
+  '/localData/',
+];
+
+const deferRender = async () => {
+  if (import.meta.env.MODE === 'development') {
+    await worker.start({
+      onUnhandledRequest(request, print) {
+        if (process.env.NODE_ENV !== 'development') {
+          return;
+        }
+        if (allowedPaths.some(path => request.url.includes(path))) {
+          return;
+        }
+
+        // Otherwise, print an unhandled request warning.
+        print.warning();
+      },
+    });
+  }
+};
+
+deferRender().then(() => {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} fallbackElement={<FallbackLoader />} />
+        {import.meta.env.MODE === 'development' && (
+          <Suspense fallback={null}>
+            <ReactQueryDevtoolsProduction />
+          </Suspense>
+        )}
+      </QueryClientProvider>
+    </StrictMode>,
+  );
+});
