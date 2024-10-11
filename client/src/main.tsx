@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.tsx';
 import './index.css';
+import { BaseLayout } from 'layouts/BaseLayout';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -12,8 +13,14 @@ import { FallbackError } from 'errors/FallbackError';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <BaseLayout />,
     errorElement: <FallbackError />,
+    children: [
+      {
+        index: true,
+        element: <App />,
+      },
+    ],
   },
 ]);
 
@@ -28,8 +35,6 @@ const FallbackLoader = () => (
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <div className="flex min-h-screen flex-col bg-white text-black dark:bg-gray-900 dark:text-gray-200">
-      <RouterProvider router={router} fallbackElement={<FallbackLoader />} />
-    </div>
+    <RouterProvider router={router} fallbackElement={<FallbackLoader />} />
   </StrictMode>,
 );

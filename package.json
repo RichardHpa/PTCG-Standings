@@ -37,6 +37,10 @@
   ],
   "author": "Richard Hpa",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RichardHpa/PTCG-Standings"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "cronstrue": "^2.50.0",
