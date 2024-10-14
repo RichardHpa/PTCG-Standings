@@ -1,5 +1,92 @@
+import type { Tournament, TournamentsApiResponse } from 'types/tournament';
+
 // Only have the first 5 tournaments for testing purposes
-export const tournaments = {
+
+export const runningTournament: Tournament = {
+  id: '0000005',
+  name: '2022 Pokémon TCG European International Championships',
+  date: {
+    start: '2022-04-22',
+    end: '2022-04-24',
+  },
+  tournamentStatus: 'running',
+  decklists: 0,
+  players: {
+    juniors: '46',
+    seniors: '72',
+    masters: '618',
+  },
+  winners: {
+    juniors: null,
+    seniors: null,
+    masters: null,
+  },
+  roundNumbers: {
+    juniors: 9,
+    seniors: 10,
+    masters: 17,
+  },
+  lastUpdated: '2023-03-30 02:08:35.000000',
+  rk9link: 'euic-2022-tcg',
+};
+
+export const checkInTournament: Tournament = {
+  id: '0000004',
+  name: 'São Paulo TCG Regional Championship 2022',
+  date: {
+    start: '2022-04-02',
+    end: '2022-04-03',
+  },
+  tournamentStatus: 'check-in',
+  decklists: 0,
+  players: {
+    juniors: '21',
+    seniors: '30',
+    masters: '301',
+  },
+  winners: {
+    juniors: null,
+    seniors: null,
+    masters: null,
+  },
+  roundNumbers: {
+    juniors: 8,
+    seniors: 8,
+    masters: 17,
+  },
+  lastUpdated: '2023-03-30 02:06:59.000000',
+  rk9link: 'rQVmywqbkFfR1y09R6rZ',
+};
+
+export const notStartedTournament: Tournament = {
+  id: '0000003',
+  name: 'Liverpool TCG Regional Championship 2022',
+  date: {
+    start: '2022-03-26',
+    end: '2022-03-27',
+  },
+  tournamentStatus: 'not-started',
+  decklists: 1,
+  players: {
+    juniors: '23',
+    seniors: '36',
+    masters: '373',
+  },
+  winners: {
+    juniors: null,
+    seniors: null,
+    masters: null,
+  },
+  roundNumbers: {
+    juniors: 8,
+    seniors: 9,
+    masters: 17,
+  },
+  lastUpdated: '2023-03-30 02:06:11.000000',
+  rk9link: 'KTh3p4c9jkGnNGUq1hic',
+};
+
+export const tournaments: TournamentsApiResponse = {
   dataLastUpdated: '10/11/2024, 2:57 PM',
   tcg: {
     type: 'tcg',
@@ -58,87 +145,9 @@ export const tournaments = {
         lastUpdated: '2023-03-30 02:05:04.000000',
         rk9link: 'dqpquZcM3mh7WRw8KvDe',
       },
-      {
-        id: '0000003',
-        name: 'Liverpool TCG Regional Championship 2022',
-        date: {
-          start: '2022-03-26',
-          end: '2022-03-27',
-        },
-        tournamentStatus: 'finished',
-        decklists: 1,
-        players: {
-          juniors: '23',
-          seniors: '36',
-          masters: '373',
-        },
-        winners: {
-          juniors: 'Leo G.',
-          seniors: 'Rune H.',
-          masters: 'Robin S.',
-        },
-        roundNumbers: {
-          juniors: 8,
-          seniors: 9,
-          masters: 17,
-        },
-        lastUpdated: '2023-03-30 02:06:11.000000',
-        rk9link: 'KTh3p4c9jkGnNGUq1hic',
-      },
-      {
-        id: '0000004',
-        name: 'São Paulo TCG Regional Championship 2022',
-        date: {
-          start: '2022-04-02',
-          end: '2022-04-03',
-        },
-        tournamentStatus: 'finished',
-        decklists: 0,
-        players: {
-          juniors: '21',
-          seniors: '30',
-          masters: '301',
-        },
-        winners: {
-          juniors: 'Henrique G.',
-          seniors: 'Lucas J.',
-          masters: 'Bruno S.',
-        },
-        roundNumbers: {
-          juniors: 8,
-          seniors: 8,
-          masters: 17,
-        },
-        lastUpdated: '2023-03-30 02:06:59.000000',
-        rk9link: 'rQVmywqbkFfR1y09R6rZ',
-      },
-      {
-        id: '0000005',
-        name: '2022 Pokémon TCG European International Championships',
-        date: {
-          start: '2022-04-22',
-          end: '2022-04-24',
-        },
-        tournamentStatus: 'finished',
-        decklists: 0,
-        players: {
-          juniors: '46',
-          seniors: '72',
-          masters: '618',
-        },
-        winners: {
-          juniors: 'Nathan O. [US]',
-          seniors: 'Caleb R. [US]',
-          masters: 'gustavo w. [BR]',
-        },
-        roundNumbers: {
-          juniors: 9,
-          seniors: 10,
-          masters: 17,
-        },
-        lastUpdated: '2023-03-30 02:08:35.000000',
-        rk9link: 'euic-2022-tcg',
-      },
+      { ...notStartedTournament },
+      { ...checkInTournament },
+      { ...runningTournament },
     ],
   },
 };
