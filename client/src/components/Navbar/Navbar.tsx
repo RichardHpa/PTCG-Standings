@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 
+import { Button, IconButton } from 'components/Button';
 import { BuyMeABoosterButton } from 'components/BuyMeABoosterButton';
 import { ThemeToggle } from 'components/ThemeToggle';
+import { NavLink } from 'components/NavLink';
+
+import { PinIcon } from 'icons/PinIcon';
 
 export const Navbar = () => {
   return (
@@ -21,12 +25,29 @@ export const Navbar = () => {
         </Link>
 
         <div className="flex gap-2">
-          <ul className="flex items-center gap-4">
+          <ul className="flex items-center gap-2">
+            <li>
+              <Button>Worlds 2024</Button>
+            </li>
+            <li>
+              <NavLink to="about">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="tournaments">Tournaments</NavLink>
+            </li>
             <li>
               <BuyMeABoosterButton />
             </li>
             <li>
               <ThemeToggle />
+            </li>
+            <li>
+              <IconButton
+                icon={<PinIcon />}
+                alt="View pinned players"
+                variant="ghost"
+                color="alternative"
+              />
             </li>
           </ul>
         </div>
