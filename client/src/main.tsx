@@ -6,6 +6,8 @@ import { worker } from 'mocks/browser';
 
 import './index.css';
 
+import { ColorModeProvider } from 'providers/ColorModeProvider';
+
 import { BaseLayout } from 'layouts/BaseLayout';
 
 import { Home } from 'pages/Home';
@@ -81,14 +83,19 @@ const deferRender = async () => {
 deferRender().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} fallbackElement={<FallbackLoader />} />
-        {import.meta.env.MODE === 'development' && (
-          <Suspense fallback={null}>
-            <ReactQueryDevtoolsProduction />
-          </Suspense>
-        )}
-      </QueryClientProvider>
+      <ColorModeProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider
+            router={router}
+            fallbackElement={<FallbackLoader />}
+          />
+          {import.meta.env.MODE === 'development' && (
+            <Suspense fallback={null}>
+              <ReactQueryDevtoolsProduction />
+            </Suspense>
+          )}
+        </QueryClientProvider>
+      </ColorModeProvider>
     </StrictMode>,
   );
 });

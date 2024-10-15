@@ -30,7 +30,7 @@ exports[`IconButton > renders IconButton with variant contained 1`] = `
 exports[`IconButton > renders IconButton with variant ghost 1`] = `
 <div>
   <button
-    class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2.5 text-center text-sm font-medium hover:bg-primary-hoverLight text-primary hover:text-primary dark:text-primary-dark dark:hover:bg-primary-hover dark:hover:bg-primary-hoverDark dark:hover:text-white"
+    class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2.5 text-center text-sm font-medium text-primary hover:bg-primary-hoverLight hover:text-primary dark:text-primary-dark dark:hover:bg-primary-hover dark:hover:bg-primary-hoverDark dark:hover:text-white"
     type="button"
   >
     <svg

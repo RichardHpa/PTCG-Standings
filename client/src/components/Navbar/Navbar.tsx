@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { BuyMeABoosterButton } from 'components/BuyMeABoosterButton';
+import { ThemeToggle } from 'components/ThemeToggle';
 
 export const Navbar = () => {
   return (
@@ -20,9 +21,12 @@ export const Navbar = () => {
         </Link>
 
         <div className="flex gap-2">
-          <ul className="flex flex-col items-center gap-4">
+          <ul className="flex items-center gap-4">
             <li>
               <BuyMeABoosterButton />
+            </li>
+            <li>
+              <ThemeToggle />
             </li>
           </ul>
         </div>
