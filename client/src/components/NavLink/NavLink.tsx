@@ -16,7 +16,6 @@ export const NavLink: FC<NavLinkProps> = ({
     <RouterNavLink
       to={to}
       onClick={onClick}
-      // className={clsx(navLinkClasses.base, navLinkClasses.colors[color])}
       className={({ isActive, isPending }) =>
         clsx(
           navLinkClasses.base,
