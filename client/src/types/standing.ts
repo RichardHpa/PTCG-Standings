@@ -6,7 +6,7 @@ export type RecordProps = {
 
 export interface Round {
   name: string;
-  result: string;
+  result: string | null;
   table: number;
 }
 
@@ -36,7 +36,7 @@ export interface Standing {
     opp: number;
     oppopp: number;
   };
-  decklist: DeckList;
+  decklist: DeckList | string;
   drop: number;
   rounds: Rounds;
 }

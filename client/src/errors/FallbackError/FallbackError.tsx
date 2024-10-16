@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { RawBaseLayout } from 'layouts/BaseLayout';
 
 import { Heading } from 'components/Heading';
+import { Button } from 'components/Button';
 
 export const FallbackError = () => {
   return (
@@ -20,11 +21,8 @@ export const FallbackError = () => {
               Sorry, we can't find that page. You'll find lots to explore on the
               home page.{' '}
             </p>
-            <Link
-              to="/"
-              className="bg-primary-600 hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 my-4 inline-flex rounded-lg px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4"
-            >
-              Back to Homepage
+            <Link to="/">
+              <Button> Back to Homepage</Button>
             </Link>
           </div>
         </div>

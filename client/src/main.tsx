@@ -11,6 +11,7 @@ import { ColorModeProvider } from 'providers/ColorModeProvider';
 import { BaseLayout } from 'layouts/BaseLayout';
 
 import { Home } from 'pages/Home';
+import { About } from 'pages/About';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -34,7 +35,15 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+      {
+        path: 'about',
+        element: <About />,
+      },
     ],
+  },
+  {
+    path: '*',
+    element: <FallbackError />,
   },
 ]);
 
@@ -63,12 +72,10 @@ const allowedPaths = [
 ];
 
 const deferRender = async () => {
-  if (import.meta.env.MODE === 'development') {
+  // we only want MSW to start if we are only running the client
+  if (import.meta.env.VITE_MSW === 'true') {
     await worker.start({
       onUnhandledRequest(request, print) {
-        if (process.env.NODE_ENV !== 'development') {
-          return;
-        }
         if (allowedPaths.some(path => request.url.includes(path))) {
           return;
         }

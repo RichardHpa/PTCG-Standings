@@ -21,6 +21,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./setupTests.ts'],
   },
+  assetsInclude: ['**/*.md'],
   server: {
     proxy: {
       '/api': {

@@ -1,6 +1,6 @@
 import type { Standing } from './standing';
+import type { Division } from './divisions';
 
-export type Division = 'juniors' | 'seniors' | 'masters' | 'juniorsseniors';
 export type TournamentStatus =
   | 'finished'
   | 'running'
