@@ -9,7 +9,7 @@ import { PinIcon } from 'icons/PinIcon';
 
 export const Navbar = () => {
   return (
-    <nav className="border-gray-200 bg-white dark:bg-gray-900">
+    <nav className="border-gray-200">
       <div className="container mx-auto flex flex-wrap items-center justify-between p-4 md:justify-center lg:justify-between">
         <Link
           to="/"
