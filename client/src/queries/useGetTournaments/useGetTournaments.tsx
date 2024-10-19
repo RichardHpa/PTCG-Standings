@@ -1,25 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { tournamentsMap } from 'constants/tournaments';
-
 import { getTournaments } from 'api/getTournaments';
+
+import type { useGetTournamentsProps } from './types';
+import type { TournamentsApiResponse } from 'types/tournament';
 
 export const useGetTournamentsKey = () => ['tournaments'];
 
-export const useGetTournaments = () => {
+export function useGetTournaments<TData = TournamentsApiResponse>({
+  select,
+}: useGetTournamentsProps<TData>) {
   return useQuery({
     queryKey: useGetTournamentsKey(),
     queryFn: getTournaments,
-    select: data => {
-      const tournaments = data.tcg.data.map(tournament => {
-        const localData = tournamentsMap[tournament.id] || {};
-        return {
-          ...tournament,
-          ...localData,
-        };
-      });
-
-      return { tournaments: tournaments, apiUpdatedAt: data.dataLastUpdated };
-    },
+    select: select,
   });
-};
+}

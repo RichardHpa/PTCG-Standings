@@ -1,12 +1,42 @@
 import { Heading } from 'components/Heading';
 import { LoadingPokeball } from 'components/LoadingPokeball';
-
 import { TournamentsCard } from 'components/TournamentsCard';
 
 import { useGetTournaments } from 'queries/useGetTournaments';
 
+import { RUNNING, NOT_STARTED, CHECK_IN } from 'constants/tournamentStatus';
+
 export const Home = () => {
-  const { isLoading, data, isError } = useGetTournaments();
+  const { isLoading, data, isError } = useGetTournaments({
+    select: data => {
+      const tournaments = data.tcg.data;
+
+      const runningTournaments = tournaments.filter(
+        tournament => tournament.tournamentStatus === RUNNING,
+      );
+
+      const upcomingTournaments = tournaments.filter(
+        tournament =>
+          tournament.tournamentStatus === NOT_STARTED ||
+          tournament.tournamentStatus === CHECK_IN,
+      );
+
+      const latestTournaments = tournaments
+        .filter(
+          tournament =>
+            tournament.tournamentStatus !== RUNNING &&
+            tournament.tournamentStatus !== NOT_STARTED &&
+            tournament.tournamentStatus !== CHECK_IN,
+        )
+        .slice(0, 6);
+
+      return {
+        upcomingTournaments,
+        runningTournaments,
+        latestTournaments,
+      };
+    },
+  });
 
   if (isError) {
     // TODO: make error message more user friendly
@@ -27,8 +57,22 @@ export const Home = () => {
         Keep up to date with the latest Pokemon TCG tournaments
       </Heading>
 
+      {data.runningTournaments.length > 0 && (
+        <TournamentsCard
+          tournaments={data.runningTournaments}
+          title="Running Tournaments"
+        />
+      )}
+
+      {data.upcomingTournaments.length > 0 && (
+        <TournamentsCard
+          tournaments={data.upcomingTournaments}
+          title="Upcoming Tournaments"
+        />
+      )}
+
       <TournamentsCard
-        tournaments={data.tournaments}
+        tournaments={data.latestTournaments}
         title="Latest Tournaments"
       />
     </div>

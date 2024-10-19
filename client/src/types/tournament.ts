@@ -29,11 +29,19 @@ export interface RawTournament {
   rk9link: string;
 }
 
-export interface TournamentsApiResponse {
+export interface RawTournamentsApiResponse {
   dataLastUpdated?: string;
   tcg: {
     type: 'tcg';
     data: RawTournament[];
+  };
+}
+
+export interface TournamentsApiResponse {
+  dataLastUpdated?: string;
+  tcg: {
+    type: 'tcg';
+    data: Tournament[];
   };
 }
 
