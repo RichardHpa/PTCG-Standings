@@ -4,3 +4,7 @@ export interface TournamentsCardProps {
   title: string;
   tournaments: Tournament[];
 }
+
+export interface TournamentRowProps {
+  tournament: Tournament;
+}

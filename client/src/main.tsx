@@ -12,6 +12,7 @@ import { BaseLayout } from 'layouts/BaseLayout';
 
 import { Home } from 'pages/Home';
 import { About } from 'pages/About';
+import { Tournaments } from 'pages/Tournaments';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <About />,
+      },
+      {
+        path: 'tournaments',
+        element: <Tournaments />,
       },
     ],
   },

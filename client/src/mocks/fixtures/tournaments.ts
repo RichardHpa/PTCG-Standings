@@ -1,7 +1,5 @@
 import type { Tournament, TournamentsApiResponse } from 'types/tournament';
 
-// Only have the first 5 tournaments for testing purposes
-
 export const runningTournament: Tournament = {
   id: '0000005',
   name: '2022 Pokémon TCG European International Championships',
@@ -50,9 +48,9 @@ export const checkInTournament: Tournament = {
     masters: null,
   },
   roundNumbers: {
-    juniors: 8,
-    seniors: 8,
-    masters: 17,
+    juniors: 0,
+    seniors: 0,
+    masters: 0,
   },
   lastUpdated: '2023-03-30 02:06:59.000000',
   rk9link: 'rQVmywqbkFfR1y09R6rZ',
@@ -68,9 +66,9 @@ export const notStartedTournament: Tournament = {
   tournamentStatus: 'not-started',
   decklists: 1,
   players: {
-    juniors: '23',
-    seniors: '36',
-    masters: '373',
+    juniors: 0,
+    seniors: 0,
+    masters: 0,
   },
   winners: {
     juniors: null,
@@ -78,9 +76,9 @@ export const notStartedTournament: Tournament = {
     masters: null,
   },
   roundNumbers: {
-    juniors: 8,
-    seniors: 9,
-    masters: 17,
+    juniors: 0,
+    seniors: 0,
+    masters: 0,
   },
   lastUpdated: '2023-03-30 02:06:11.000000',
   rk9link: 'KTh3p4c9jkGnNGUq1hic',
@@ -148,6 +146,141 @@ export const tournaments: TournamentsApiResponse = {
       { ...notStartedTournament },
       { ...checkInTournament },
       { ...runningTournament },
+      {
+        id: '0000006',
+        name: 'Indianapolis TCG Regional Championship 2022',
+        date: {
+          start: '2022-05-06',
+          end: '2022-05-08',
+        },
+        tournamentStatus: 'finished',
+        decklists: 1,
+        players: {
+          juniors: 0,
+          seniors: '63',
+          masters: '1025',
+        },
+        winners: {
+          juniors: null,
+          seniors: 'Regan R.',
+          masters: 'Ian R.',
+        },
+        roundNumbers: {
+          juniors: null,
+          seniors: 9,
+          masters: 18,
+        },
+        lastUpdated: '2023-03-30 02:11:48.000000',
+        rk9link: 'QRGsiZCkM3F314P9Th1b',
+      },
+      {
+        id: '0000007',
+        name: 'Bilbao TCG Special Championship',
+        date: {
+          start: '2022-05-07',
+          end: '2022-05-08',
+        },
+        tournamentStatus: 'finished',
+        decklists: 1,
+        players: {
+          juniors: '15',
+          seniors: '29',
+          masters: '276',
+        },
+        winners: {
+          juniors: 'Nino L.',
+          seniors: 'Nicholas C.',
+          masters: 'Alessandro C.',
+        },
+        roundNumbers: {
+          juniors: 7,
+          seniors: 8,
+          masters: 17,
+        },
+        lastUpdated: '2023-03-30 02:12:44.000000',
+        rk9link: 'KHSJGQuJP8saUNljIrQy',
+      },
+      {
+        id: '0000008',
+        name: 'Joinville TCG Regional Championship 2022',
+        date: {
+          start: '2022-05-07',
+          end: '2022-05-08',
+        },
+        tournamentStatus: 'finished',
+        decklists: 1,
+        players: {
+          juniors: '16',
+          seniors: '23',
+          masters: '222',
+        },
+        winners: {
+          juniors: 'Marcelo R.',
+          seniors: 'Pedro Augusto C.',
+          masters: 'Pedro P.',
+        },
+        roundNumbers: {
+          juniors: 7,
+          seniors: 8,
+          masters: 11,
+        },
+        lastUpdated: '2023-03-30 02:13:24.000000',
+        rk9link: 'nAxYfNLQZkoZqTTxWsYF',
+      },
+      {
+        id: '0000009',
+        name: 'Secaucus TCG Regional Championship 2022',
+        date: {
+          start: '2022-05-20',
+          end: '2022-05-22',
+        },
+        tournamentStatus: 'finished',
+        decklists: 1,
+        players: {
+          juniors: '37',
+          seniors: '69',
+          masters: '497',
+        },
+        winners: {
+          juniors: 'Bruce B.',
+          seniors: 'None',
+          masters: 'Luke Smith',
+        },
+        roundNumbers: {
+          juniors: 9,
+          seniors: 10,
+          masters: 17,
+        },
+        lastUpdated: '2023-03-30 02:15:05.000000',
+        rk9link: '7zSI7SYvZb3gQCjXeJCS',
+      },
+      {
+        id: '0000010',
+        name: 'Pokémon Oceania TCG Regional Championship – Perth',
+        date: {
+          start: '2022-05-21',
+          end: '2022-05-22',
+        },
+        tournamentStatus: 'finished',
+        decklists: 0,
+        players: {
+          juniors: '11',
+          seniors: '15',
+          masters: '85',
+        },
+        winners: {
+          juniors: 'Yuichi M.',
+          seniors: 'Alex B.',
+          masters: 'Matthew Burris',
+        },
+        roundNumbers: {
+          juniors: 6,
+          seniors: 7,
+          masters: 10,
+        },
+        lastUpdated: '2023-03-30 02:15:23.000000',
+        rk9link: 'feDsO6DZWBMC1SKbE9ew',
+      },
     ],
   },
 };
