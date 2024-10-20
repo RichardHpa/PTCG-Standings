@@ -3,7 +3,7 @@ import { Card } from 'components/Card';
 
 import { useWindowVirtualizer } from '@tanstack/react-virtual';
 
-import { TournamentRow } from './TournamentRow';
+import { TournamentRow } from './components/TournamentRow';
 
 import type { FC } from 'react';
 import type { TournamentsCardProps } from './types';

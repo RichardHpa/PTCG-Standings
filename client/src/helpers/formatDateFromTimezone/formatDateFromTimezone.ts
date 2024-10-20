@@ -6,7 +6,8 @@ const apiTimezone = 'Europe/Amsterdam';
 export const formatDateFromTimezone = (
   date: string | number | Date,
   formatType: string,
+  timezone: string = apiTimezone,
 ) => {
   const formattedDate = new Date(date);
-  return format(fromZonedTime(formattedDate, apiTimezone), formatType);
+  return format(fromZonedTime(formattedDate, timezone), formatType);
 };

@@ -84,6 +84,34 @@ export const notStartedTournament: Tournament = {
   rk9link: 'KTh3p4c9jkGnNGUq1hic',
 };
 
+export const finishedTournament: Tournament = {
+  id: '0000006',
+  name: 'Indianapolis TCG Regional Championship 2022',
+  date: {
+    start: '2022-05-06',
+    end: '2022-05-08',
+  },
+  tournamentStatus: 'finished',
+  decklists: 1,
+  players: {
+    juniors: 0,
+    seniors: '63',
+    masters: '1025',
+  },
+  winners: {
+    juniors: null,
+    seniors: 'Regan R.',
+    masters: 'Ian R.',
+  },
+  roundNumbers: {
+    juniors: null,
+    seniors: 9,
+    masters: 18,
+  },
+  lastUpdated: '2023-03-30 02:11:48.000000',
+  rk9link: 'QRGsiZCkM3F314P9Th1b',
+};
+
 export const tournaments: TournamentsApiResponse = {
   dataLastUpdated: '10/11/2024, 2:57 PM',
   tcg: {
@@ -146,33 +174,7 @@ export const tournaments: TournamentsApiResponse = {
       { ...notStartedTournament },
       { ...checkInTournament },
       { ...runningTournament },
-      {
-        id: '0000006',
-        name: 'Indianapolis TCG Regional Championship 2022',
-        date: {
-          start: '2022-05-06',
-          end: '2022-05-08',
-        },
-        tournamentStatus: 'finished',
-        decklists: 1,
-        players: {
-          juniors: 0,
-          seniors: '63',
-          masters: '1025',
-        },
-        winners: {
-          juniors: null,
-          seniors: 'Regan R.',
-          masters: 'Ian R.',
-        },
-        roundNumbers: {
-          juniors: null,
-          seniors: 9,
-          masters: 18,
-        },
-        lastUpdated: '2023-03-30 02:11:48.000000',
-        rk9link: 'QRGsiZCkM3F314P9Th1b',
-      },
+      { ...finishedTournament },
       {
         id: '0000007',
         name: 'Bilbao TCG Special Championship',
