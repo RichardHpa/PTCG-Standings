@@ -13,6 +13,11 @@ import { BaseLayout } from 'layouts/BaseLayout';
 import { Home } from 'pages/Home';
 import { About } from 'pages/About';
 import { Tournaments } from 'pages/Tournaments';
+import {
+  Tournament,
+  tournamentLoader,
+  TournamentOutlet,
+} from 'pages/Tournament';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -42,7 +47,23 @@ const router = createBrowserRouter([
       },
       {
         path: 'tournaments',
-        element: <Tournaments />,
+        children: [
+          {
+            index: true,
+            element: <Tournaments />,
+          },
+          {
+            path: ':tournamentId',
+            element: <TournamentOutlet />,
+            loader: tournamentLoader,
+            children: [
+              {
+                index: true,
+                element: <Tournament />,
+              },
+            ],
+          },
+        ],
       },
     ],
   },

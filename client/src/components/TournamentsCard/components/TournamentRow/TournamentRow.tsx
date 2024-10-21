@@ -1,3 +1,6 @@
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Indicator } from 'components/Indicator';
 
 import { RUNNING, CHECK_IN, NOT_STARTED } from 'constants/tournamentStatus';
@@ -12,8 +15,18 @@ import type { TournamentRowProps } from 'components/TournamentsCard/types';
 const notRunningTournaments = [CHECK_IN, NOT_STARTED];
 
 export const TournamentRow: FC<TournamentRowProps> = ({ tournament }) => {
+  const navigate = useNavigate();
+
+  const handleOnClick = useCallback(() => {
+    navigate(`/tournaments/${tournament.id}`);
+  }, [navigate, tournament.id]);
+
   return (
-    <div className="w-full cursor-pointer items-center border-b border-gray-100 pl-3 pr-6 text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:text-gray-400 dark:hover:bg-gray-800">
+    <div
+      role="link"
+      onClick={handleOnClick}
+      className="w-full cursor-pointer items-center border-b border-gray-100 pl-3 pr-6 text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:text-gray-400 dark:hover:bg-gray-800"
+    >
       <div className="flex justify-between gap-8 py-6">
         <div className="flex gap-4">
           {tournament.logo && (
