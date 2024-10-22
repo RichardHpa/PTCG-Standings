@@ -12,6 +12,8 @@ export const IconButton: FC<IconButtonProps> = ({
   variant = 'contained',
   alt,
   icon,
+  noPadding,
+  size = 'base',
   ...props
 }) => {
   const RenderedIcon = cloneElement(icon, {
@@ -29,6 +31,8 @@ export const IconButton: FC<IconButtonProps> = ({
         buttonClasses.variant[variant]['base'],
         buttonClasses.variant[variant][color].light,
         buttonClasses.variant[variant][color].dark,
+        iconButtonClasses.icon.size[size],
+        noPadding && iconButtonClasses.noPadding,
       )}
     >
       {RenderedIcon}

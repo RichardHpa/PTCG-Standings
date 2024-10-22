@@ -23,7 +23,7 @@ export const LoadingPokeball = ({
   }, [loading, opened]);
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-4 text-center">
       <svg
         viewBox="0 0 100 100"
         width={size}

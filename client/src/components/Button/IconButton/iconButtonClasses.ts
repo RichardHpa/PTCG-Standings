@@ -2,6 +2,7 @@ import { tw } from 'utils/tailwindClassName';
 
 export const iconButtonClasses = {
   base: tw`inline-flex h-10 w-10 items-center justify-center rounded-lg p-2.5 text-center text-sm font-medium`,
+  noPadding: tw`!p-0`,
   icon: {
     base: tw`inline-flex`,
     size: {
