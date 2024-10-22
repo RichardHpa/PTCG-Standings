@@ -448,7 +448,13 @@ export const tournamentsMap: LocalTournamentsMap = {
     logo: RegionalLogo,
   },
   '0000005': {
+    name: '2022 Pokémon TCG European International Championships',
     logo: InternationalsLogo,
+    streams: {
+      day1: 'https://www.youtube.com/watch?v=GohFWugguKs',
+      day2: 'https://www.youtube.com/watch?v=pGMFKZooeT4',
+      day3: 'https://www.youtube.com/watch?v=KaVpD6qY0C0',
+    },
   },
   '0000004': {
     logo: RegionalLogo,

@@ -70,6 +70,5 @@ export interface LocalTournamentData {
   streams?: StreamsMap;
   notes?: ReactNode;
 }
-// export interface Tournament extends RawTournament {}
 
 export type Tournament = RawTournament & LocalTournamentData;

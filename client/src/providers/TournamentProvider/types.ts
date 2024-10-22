@@ -1,6 +1,6 @@
-import type { TournamentApiResponse } from 'types/tournament';
+import type { TournamentApiResponse, Tournament } from 'types/tournament';
 
 export interface TournamentContextProps {
-  tournament: TournamentApiResponse['tournament'];
+  tournament: Tournament;
   divisions: TournamentApiResponse['tournament_data'];
 }

@@ -2,21 +2,22 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getTournament } from 'api/getTournament';
 
+import type { useGetTournamentProps } from './types';
+import { TournamentApiResponse } from 'types/tournament';
+
 export const useGetTournamentKey = (tournamentId: string) => [
   'tournaments',
   tournamentId,
 ];
 
-export const useGetTournament = (tournamentId: string | number) => {
+export function useGetTournament<TData = TournamentApiResponse>({
+  tournamentId,
+  select,
+}: useGetTournamentProps<TData>) {
   const parsedTournamentId = tournamentId.toString();
   return useQuery({
     queryKey: useGetTournamentKey(parsedTournamentId),
     queryFn: () => getTournament(parsedTournamentId),
-    select: data => {
-      return {
-        tournament: data.tournament,
-        divisions: data.tournament_data,
-      };
-    },
+    select: select,
   });
-};
+}

@@ -36,7 +36,15 @@ export const TournamentContextProvider = ({
   children: ReactNode;
   tournamentId: string | number;
 }) => {
-  const tournamentQuery = useGetTournament(tournamentId);
+  const tournamentQuery = useGetTournament({
+    tournamentId,
+    select: data => {
+      return {
+        tournament: data.tournament,
+        divisions: data.tournament_data,
+      };
+    },
+  });
 
   if (tournamentQuery.isPending) {
     return (
@@ -58,6 +66,7 @@ export const TournamentContextProvider = ({
     );
   }
 
+  console.log(tournamentQuery.data);
   return (
     <TournamentContext.Provider value={tournamentQuery.data}>
       {children}

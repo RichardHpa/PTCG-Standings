@@ -1,5 +1,5 @@
 export const headingClasses = {
-  base: 'font-bold tracking-tight text-gray-900 dark:text-white mb-2',
+  base: 'font-bold tracking-tight text-gray-900 dark:text-white',
   level: {
     1: 'text-5xl font-extrabold',
     2: 'text-4xl',
