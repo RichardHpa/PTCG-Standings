@@ -10,6 +10,7 @@ export const Button: FC<ButtonProps> = ({
   color = 'primary',
   variant = 'contained',
   size = 'base',
+  full = false,
   ...props
 }) => {
   return (
@@ -22,6 +23,7 @@ export const Button: FC<ButtonProps> = ({
         buttonClasses.variant[variant]['base'],
         buttonClasses.variant[variant][color].light,
         buttonClasses.variant[variant][color].dark,
+        full && buttonClasses.full,
       )}
     >
       {children}

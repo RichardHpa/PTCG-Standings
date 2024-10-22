@@ -56,4 +56,5 @@ export const buttonClasses = {
     lg: tw`px-5 py-3 text-base`,
     xl: tw`px-6 py-3.5 text-base`,
   },
+  full: tw`w-full`,
 };

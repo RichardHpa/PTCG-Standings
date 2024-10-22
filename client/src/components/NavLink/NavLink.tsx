@@ -6,22 +6,19 @@ import { navLinkClasses } from './navLinkClasses';
 import type { FC } from 'react';
 import type { NavLinkProps } from './types';
 
-export const NavLink: FC<NavLinkProps> = ({
-  to,
-  children,
-  onClick,
-  color = 'primary',
-}) => {
+export const NavLink: FC<NavLinkProps> = ({ to, children, onClick }) => {
   return (
     <RouterNavLink
       to={to}
+      end
       onClick={onClick}
       className={({ isActive, isPending }) =>
         clsx(
           navLinkClasses.base,
-          navLinkClasses.colors[color],
-          isActive && 'underline',
-          isPending && 'opacity-50',
+
+          isActive && navLinkClasses.isActive,
+          !isActive && navLinkClasses.isInactive,
+          isPending && navLinkClasses.isPending,
         )
       }
     >

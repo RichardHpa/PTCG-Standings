@@ -6,4 +6,5 @@ export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   color?: Colors;
   variant?: 'contained' | 'outlined' | 'ghost';
   size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl';
+  full?: boolean;
 }
