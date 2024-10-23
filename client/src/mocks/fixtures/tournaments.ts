@@ -1,4 +1,19 @@
-import type { Tournament, TournamentsApiResponse } from 'types/tournament';
+// Indianapolis Pokémon TCG Regional Championship 2024 (0000121)
+import duplicatePlayerNamesTournament from './specialTournaments/duplicatePlayerNames.json';
+// 2023 Bogotá TCG Special Event (0000082)
+import juniorsSeniorsTournament from './specialTournaments/juniorsSeniors.json';
+
+import type {
+  Tournament,
+  TournamentsApiResponse,
+  TournamentApiResponse,
+} from 'types/tournament';
+
+const typedDuplicatePlayerNamesTournament =
+  duplicatePlayerNamesTournament as TournamentApiResponse;
+
+const typedJuniorsSeniorsTournament =
+  juniorsSeniorsTournament as TournamentApiResponse;
 
 export const runningTournament: Tournament = {
   id: '0000005',
@@ -110,6 +125,14 @@ export const finishedTournament: Tournament = {
   },
   lastUpdated: '2023-03-30 02:11:48.000000',
   rk9link: 'QRGsiZCkM3F314P9Th1b',
+};
+
+const tournamentWithDuplicatePlayerNames: Tournament = {
+  ...typedDuplicatePlayerNamesTournament.tournament,
+};
+
+const tournamentWithJuniorsSeniors: Tournament = {
+  ...typedJuniorsSeniorsTournament.tournament,
 };
 
 export const tournaments: TournamentsApiResponse = {
@@ -283,6 +306,8 @@ export const tournaments: TournamentsApiResponse = {
         lastUpdated: '2023-03-30 02:15:23.000000',
         rk9link: 'feDsO6DZWBMC1SKbE9ew',
       },
+      { ...tournamentWithDuplicatePlayerNames },
+      { ...tournamentWithJuniorsSeniors },
     ],
   },
 };
