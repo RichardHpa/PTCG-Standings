@@ -3,29 +3,15 @@ import RegionalLogo from 'images/eventLogos/tcgRegional.png';
 import CupLogo from 'images/eventLogos/tcgCup.png';
 import ChallengeLogo from 'images/eventLogos/tcgChallenge.png';
 import PlayPokemonLogo from 'images/eventLogos/playPokemon.png';
-
 import RegionalLogo2024 from 'images/eventLogos/tcgRegionals2024.png';
-
 import WorldsLogo from 'images/eventLogos/tcgWorlds.png';
 import Worlds2024Logo from 'images/eventLogos/wc24-key-art-2x.webp';
 import Worlds2023Logo from 'images/eventLogos/tcgWorlds2023.png';
 
-import type { TournamentStatus } from 'types/tournament';
-import type { ReactNode } from 'react';
+import type { LocalTournamentData } from 'types/tournament';
 
-interface StreamsMap {
-  day1?: string;
-  day2?: string;
-  day3?: string;
-}
 interface LocalTournamentsMap {
-  [key: string]: {
-    name?: string;
-    logo?: string;
-    tournamentStatus?: TournamentStatus;
-    streams?: StreamsMap;
-    notes?: ReactNode;
-  };
+  [key: string]: LocalTournamentData;
 }
 
 export const tournamentsMap: LocalTournamentsMap = {
@@ -35,6 +21,12 @@ export const tournamentsMap: LocalTournamentsMap = {
     streams: {
       day1: 'https://www.youtube.com/live/LVKNtCr6ZOU?si=lUbzSx9WRKsazNeK',
       day2: 'https://www.youtube.com/live/K185AJ27dWU?si=7fU_p7imqoLzwUEQ',
+    },
+    deckAnalysis: {
+      day1: 'day1.jpeg',
+      day1BestOfTheRest: 'day1-2.jpeg',
+      day2: 'day2.jpeg',
+      day2BestOfTheRest: 'day2-2.jpeg',
     },
   },
   '0000133': {

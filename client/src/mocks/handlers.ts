@@ -11,7 +11,22 @@ import juniorsSeniorsTournament from 'mocks/fixtures/specialTournaments/juniorsS
 
 export const handlers = [
   http.get('/api/tournaments', () => {
-    return HttpResponse.json(tournaments);
+    // need to sort the tournaments by tournament.date.start
+    const sortedTournaments = tournaments.tcg.data.sort((a, b) => {
+      return (
+        new Date(a.date.start).getTime() - new Date(b.date.start).getTime()
+      );
+    });
+
+    const res = {
+      dataLastUpdated: tournaments.dataLastUpdated,
+      tcg: {
+        type: 'tcg',
+        data: sortedTournaments,
+      },
+    };
+
+    return HttpResponse.json(res);
   }),
 
   http.get('/api/tournaments/:tournamentId', req => {

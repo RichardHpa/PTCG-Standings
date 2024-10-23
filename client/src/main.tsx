@@ -18,6 +18,8 @@ import {
   tournamentLoader,
   TournamentOutlet,
 } from 'pages/Tournament';
+import { Streams } from 'pages/Tournament/Streams';
+import { Stats } from 'pages/Tournament/Stats';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -60,6 +62,14 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <Tournament />,
+              },
+              {
+                path: 'streams',
+                element: <Streams />,
+              },
+              {
+                path: 'stats',
+                element: <Stats />,
               },
             ],
           },

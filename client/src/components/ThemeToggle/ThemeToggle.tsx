@@ -16,6 +16,7 @@ export const ThemeToggle = () => {
     <IconButton
       color="alternative"
       variant="ghost"
+      size="base"
       onClick={handleToggleTheme}
       icon={mode === Theme.DARK ? <MoonIcon /> : <SunIcon />}
       alt={mode === Theme.DARK ? 'Switch to light mode' : 'Switch to dark mode'}

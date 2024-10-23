@@ -4,13 +4,10 @@ import Markdown from 'markdown-to-jsx';
 import { BuyMeABoosterButton } from 'components/BuyMeABoosterButton';
 
 import { Heading } from 'components/Heading';
+import { Link } from 'components/Link';
+import { Paragraph } from 'components/Paragraph';
 
 import type { ReactNode } from 'react';
-
-// TODO: migrate all of these to be in their own components. Since this is going to be the only place it is used initially, I am keeping them here
-const Paragraph = ({ children }: { children: ReactNode }) => (
-  <p className="mb-3 text-gray-500 dark:text-gray-400">{children}</p>
-);
 
 const UlList = ({ children }: { children: ReactNode }) => (
   <ul className="mb-3 list-inside list-disc space-y-1 text-gray-500 dark:text-gray-400">
@@ -22,16 +19,6 @@ const OlList = ({ children }: { children: ReactNode }) => (
   <ol className="mb-3 list-inside list-disc space-y-1 text-gray-500 dark:text-gray-400">
     {children}
   </ol>
-);
-
-const Link = ({ children, ...props }: { children: ReactNode }) => (
-  <a
-    {...props}
-    className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-    target="_blank"
-  >
-    {children}
-  </a>
 );
 
 const HR = () => (

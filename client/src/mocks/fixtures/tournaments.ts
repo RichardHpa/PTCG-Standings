@@ -308,6 +308,33 @@ export const tournaments: TournamentsApiResponse = {
       },
       { ...tournamentWithDuplicatePlayerNames },
       { ...tournamentWithJuniorsSeniors },
+      {
+        id: '0000134',
+        name: 'Lille Pokémon TCG Regional Championship 2025',
+        date: {
+          start: '2024-10-19',
+          end: '2024-10-20',
+        },
+        decklists: 0,
+        players: {
+          juniors: 135,
+          seniors: 145,
+          masters: 1311,
+        },
+        winners: {
+          juniors: 'Franciszek R. [PL]',
+          seniors: 'Luka L. [FR]',
+          masters: 'James Cox [NL]',
+        },
+        tournamentStatus: 'finished',
+        roundNumbers: {
+          juniors: 13,
+          seniors: 13,
+          masters: 16,
+        },
+        lastUpdated: '2024-10-22 20:12:12.265418',
+        rk9link: 'LI01majszra4hnrtxJST',
+      },
     ],
   },
 };

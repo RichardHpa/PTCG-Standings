@@ -57,10 +57,17 @@ export interface TournamentApiResponse {
   tournament_data: TournamentData[];
 }
 
-interface StreamsMap {
+export interface StreamsMap {
   day1?: string;
   day2?: string;
   day3?: string;
+}
+
+export interface TournamentDeckAnalysis {
+  day1?: string;
+  day1BestOfTheRest?: string;
+  day2?: string;
+  day2BestOfTheRest?: string;
 }
 
 export interface LocalTournamentData {
@@ -69,6 +76,7 @@ export interface LocalTournamentData {
   tournamentStatus?: TournamentStatus;
   streams?: StreamsMap;
   notes?: ReactNode;
+  deckAnalysis?: TournamentDeckAnalysis;
 }
 
 export type Tournament = RawTournament & LocalTournamentData;
