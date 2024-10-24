@@ -33,7 +33,12 @@ export const Streams = () => {
           return (
             <Card key={index} title={formatDay(day)}>
               <div className="youtube-container">
-                <ReactPlayer className="yt-video" url={streamUrl} />
+                <ReactPlayer
+                  className="yt-video"
+                  url={streamUrl}
+                  width="100%"
+                  height="100%"
+                />
               </div>
             </Card>
           );

@@ -22,15 +22,15 @@ export default defineConfig({
     setupFiles: ['./setupTests.ts'],
   },
   assetsInclude: ['**/*.md'],
-  server: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5001/api',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ''),
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:5001/api',
+  //       changeOrigin: true,
+  //       rewrite: path => path.replace(/^\/api/, ''),
+  //     },
+  //   },
+  // },
   resolve: {
     alias: {
       src: '/src',

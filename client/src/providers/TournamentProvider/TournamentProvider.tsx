@@ -66,7 +66,6 @@ export const TournamentContextProvider = ({
     );
   }
 
-  console.log(tournamentQuery.data);
   return (
     <TournamentContext.Provider value={tournamentQuery.data}>
       {children}

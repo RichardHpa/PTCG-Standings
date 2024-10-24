@@ -20,6 +20,11 @@ import {
 } from 'pages/Tournament';
 import { Streams } from 'pages/Tournament/Streams';
 import { Stats } from 'pages/Tournament/Stats';
+import { Standings } from 'pages/Tournament/Standings';
+import { Rounds } from 'pages/Tournament/Rounds';
+import { Parings } from 'pages/Tournament/Parings';
+import { TopCut } from 'pages/Tournament/TopCut';
+import { DivisionOutlet, divisionLoader } from 'pages/Tournament/Division';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -70,6 +75,66 @@ const router = createBrowserRouter([
               {
                 path: 'stats',
                 element: <Stats />,
+              },
+              {
+                path: 'rounds',
+                element: <DivisionOutlet />,
+                children: [
+                  {
+                    index: true,
+                    element: <Rounds />,
+                  },
+                  {
+                    path: ':division',
+                    loader: divisionLoader,
+                    element: <Rounds />,
+                  },
+                ],
+              },
+              {
+                path: 'standings',
+                element: <DivisionOutlet />,
+                children: [
+                  {
+                    index: true,
+                    element: <Standings />,
+                  },
+                  {
+                    path: ':division',
+                    loader: divisionLoader,
+                    element: <Standings />,
+                  },
+                ],
+              },
+              {
+                path: 'top_cut',
+                element: <DivisionOutlet />,
+                children: [
+                  {
+                    index: true,
+                    element: <TopCut />,
+                  },
+                  {
+                    path: ':division',
+                    loader: divisionLoader,
+                    element: <TopCut />,
+                  },
+                ],
+              },
+              {
+                path: 'live',
+                element: <DivisionOutlet />,
+                children: [
+                  {
+                    index: true,
+                    element: <Parings />,
+                  },
+                  {
+                    path: ':division',
+                    loader: divisionLoader,
+                    element: <Parings />,
+                  },
+                ],
               },
             ],
           },

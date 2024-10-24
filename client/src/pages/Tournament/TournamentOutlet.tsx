@@ -108,36 +108,6 @@ const RawTournamentOutlet = () => {
             </Tabs>
           </div>
 
-          {/* <div>
-            <ul className="hidden rounded-lg text-center text-sm font-medium text-gray-500 shadow dark:divide-gray-700 dark:text-gray-400 sm:flex">
-              <li className="w-full focus-within:z-10">
-                <a
-                  href="#"
-                  className="active inline-block w-full rounded-s-lg border-r border-gray-200 bg-gray-100 p-4 text-gray-900 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-                  aria-current="page"
-                >
-                  Masters
-                </a>
-              </li>
-              <li className="w-full focus-within:z-10">
-                <a
-                  href="#"
-                  className="inline-block w-full border-r border-gray-200 bg-white p-4 hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Seniors
-                </a>
-              </li>
-              <li className="w-full focus-within:z-10">
-                <a
-                  href="#"
-                  className="inline-block w-full rounded-e-lg border-s-0 border-gray-200 bg-white p-4 hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
-                >
-                  Juniors
-                </a>
-              </li>
-            </ul>
-          </div> */}
-
           <div>
             <Outlet />
           </div>

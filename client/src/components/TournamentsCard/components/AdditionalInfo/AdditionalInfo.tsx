@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { firstLetterToUppercase } from 'helpers/firstLetterToUppercase';
+import { formatDivisionName } from 'helpers/formatDivisionName';
 
 import type { FC } from 'react';
 import type { AdditionalInfoProps, AdditionInfoRowProps } from './types';
@@ -40,7 +40,7 @@ export const AdditionalInfo: FC<AdditionalInfoProps> = ({
         winners[division] === 'None' ? null : winners[division];
 
       return {
-        division: firstLetterToUppercase(division),
+        division: formatDivisionName(division),
         winner: parsedWinner,
         roundNumber: roundNumbers[division],
       };

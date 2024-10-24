@@ -3,7 +3,7 @@
 exports[`IconButton > renders IconButton with variant contained 1`] = `
 <div>
   <button
-    class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2.5 text-center text-sm font-medium bg-primary text-white hover:bg-primary-hover text-white dark:bg-primary-dark dark:hover:bg-primary-hoverDark"
+    class="inline-flex items-center justify-center rounded-lg p-2.5 text-center text-sm font-medium bg-primary text-white hover:bg-primary-hover text-white dark:bg-primary-dark dark:hover:bg-primary-hoverDark h-10 w-10"
     type="button"
   >
     <svg
@@ -30,7 +30,7 @@ exports[`IconButton > renders IconButton with variant contained 1`] = `
 exports[`IconButton > renders IconButton with variant ghost 1`] = `
 <div>
   <button
-    class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2.5 text-center text-sm font-medium text-primary hover:bg-primary-hoverLight hover:text-primary dark:text-primary-dark dark:hover:bg-primary-hover dark:hover:bg-primary-hoverDark dark:hover:text-white"
+    class="inline-flex items-center justify-center rounded-lg p-2.5 text-center text-sm font-medium text-primary hover:bg-primary-hoverLight hover:text-primary dark:text-primary-dark dark:hover:bg-primary-hover dark:hover:bg-primary-hoverDark dark:hover:text-white h-10 w-10"
     type="button"
   >
     <svg
@@ -57,7 +57,7 @@ exports[`IconButton > renders IconButton with variant ghost 1`] = `
 exports[`IconButton > renders IconButton with variant outlined 1`] = `
 <div>
   <button
-    class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2.5 text-center text-sm font-medium outline outline-1 hover:text-white text-primary outline-primary hover:bg-primary hover:outline-primary dark:text-primary-dark dark:outline-primary-dark hover:dark:bg-primary-dark"
+    class="inline-flex items-center justify-center rounded-lg p-2.5 text-center text-sm font-medium outline outline-1 hover:text-white text-primary outline-primary hover:bg-primary hover:outline-primary dark:text-primary-dark dark:outline-primary-dark hover:dark:bg-primary-dark h-10 w-10"
     type="button"
   >
     <svg
