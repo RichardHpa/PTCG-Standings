@@ -12,7 +12,11 @@ export const NavTab: FC<NavTabProps> = ({ to, children, active }) => {
       <NavLink
         to={to}
         className={({ isActive }) =>
-          clsx(navTabClasses.base, (isActive || active) && navTabClasses.active)
+          clsx(
+            navTabClasses.base,
+            (isActive || active) && navTabClasses.active,
+            !isActive && navTabClasses.inactive,
+          )
         }
       >
         {children}

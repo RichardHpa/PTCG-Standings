@@ -15,7 +15,6 @@ export const NavLink: FC<NavLinkProps> = ({ to, children, onClick }) => {
       className={({ isActive, isPending }) =>
         clsx(
           navLinkClasses.base,
-
           isActive && navLinkClasses.isActive,
           !isActive && navLinkClasses.isInactive,
           isPending && navLinkClasses.isPending,

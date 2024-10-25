@@ -32,7 +32,7 @@ export const Navbar = () => {
 
   return (
     <header className="fixed top-0 z-50 w-full">
-      <nav className="border-b border-gray-200 bg-gray-50 py-2.5 dark:border-gray-600 dark:bg-gray-800">
+      <nav className="border-b border-gray-200 bg-white py-2.5 dark:border-gray-600 dark:bg-gray-800">
         <div className="container mx-auto flex flex-wrap items-center px-4 lg:gap-4">
           <Link to="/" className="flex flex-1 items-center hover:underline">
             <img
