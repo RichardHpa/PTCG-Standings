@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { Outlet, useLoaderData, Link } from 'react-router-dom';
 
 import { Heading } from 'components/Heading';
@@ -51,7 +52,7 @@ const RawTournamentOutlet = () => {
                 {Object.entries(tournament.streams).map(([day, url], index) => {
                   const streamKeys = Object.keys(tournament.streams || {});
                   return (
-                    <>
+                    <Fragment key={index}>
                       <a
                         key={`${tournament.id}-${day}`}
                         href={url}
@@ -66,7 +67,7 @@ const RawTournamentOutlet = () => {
                           |
                         </span>
                       )}
-                    </>
+                    </Fragment>
                   );
                 })}
               </div>

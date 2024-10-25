@@ -69,7 +69,7 @@ export const handlers = [
           data: seniorsStandings,
         },
         {
-          divisions: 'juniors',
+          division: 'juniors',
           data: juniorsStandings,
         },
       ],

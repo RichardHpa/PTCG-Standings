@@ -1,0 +1,1 @@
+export { recordColorMap } from './recordColorMap';

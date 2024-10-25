@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import { formatDivisionName } from 'helpers/formatDivisionName';
+import { formatPlayerName } from 'helpers/formatPlayerName';
 
 import type { FC } from 'react';
 import type { AdditionalInfoProps, AdditionInfoRowProps } from './types';
@@ -14,7 +15,7 @@ const AdditionInfoRow: FC<AdditionInfoRowProps> = ({
   if (winner) {
     return (
       <div>
-        {division} winner {winner}
+        {division} winner: {formatPlayerName(winner)}
       </div>
     );
   }

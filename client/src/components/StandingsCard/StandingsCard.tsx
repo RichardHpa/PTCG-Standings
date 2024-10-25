@@ -2,29 +2,28 @@ import { useRef } from 'react';
 
 import { Card } from 'components/Card';
 
+import { StandingsRow } from './StandingsRow';
+
 import { useWindowVirtualizer } from '@tanstack/react-virtual';
 
-import { TournamentRow } from './components/TournamentRow';
-
 import type { FC } from 'react';
-import type { TournamentsCardProps } from './types';
+import type { StandingsCardProps } from './types';
 
-export const TournamentsCard: FC<TournamentsCardProps> = ({
-  title,
-  tournaments,
+export const StandingsCard: FC<StandingsCardProps> = ({
+  division,
+  standings,
 }) => {
   const listRef = useRef<HTMLDivElement | null>(null);
 
   const virtualizer = useWindowVirtualizer({
-    count: tournaments.length,
-    // TODO: need to figure out the way to use variable sizing within a window scroller
-    estimateSize: () => 156,
+    count: standings.length,
+    estimateSize: () => 77,
     overscan: 5,
     scrollMargin: listRef.current?.offsetTop ?? 0,
   });
 
   return (
-    <Card title={title} growHeight>
+    <Card title={`Current ${division} standings`}>
       <div ref={listRef} className="List">
         <div
           style={{
@@ -34,7 +33,7 @@ export const TournamentsCard: FC<TournamentsCardProps> = ({
           }}
         >
           {virtualizer.getVirtualItems().map(item => {
-            const tournament = tournaments[item.index];
+            const standing = standings[item.index];
             return (
               <div
                 key={item.key}
@@ -49,7 +48,7 @@ export const TournamentsCard: FC<TournamentsCardProps> = ({
                   }px)`,
                 }}
               >
-                <TournamentRow tournament={tournament} />
+                <StandingsRow player={standing} />
               </div>
             );
           })}

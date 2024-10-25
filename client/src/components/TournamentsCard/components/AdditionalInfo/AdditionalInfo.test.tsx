@@ -57,8 +57,8 @@ describe('TournamentsCard/AdditionalInfo', () => {
         roundNumbers={finishedTournament.roundNumbers}
       />,
     );
-    expect(screen.getByText('Masters winner Ian R.')).toBeInTheDocument();
-    expect(screen.getByText('Seniors winner Regan R.')).toBeInTheDocument();
+    expect(screen.getByText('Masters winner: Ian R')).toBeInTheDocument();
+    expect(screen.getByText('Seniors winner: Regan R')).toBeInTheDocument();
     // This tournament is fixed to not have a juniors division
     expect(screen.queryByText('Juniors winner:')).not.toBeInTheDocument();
   });
