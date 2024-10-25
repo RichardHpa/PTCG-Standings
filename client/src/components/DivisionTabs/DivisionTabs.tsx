@@ -47,7 +47,7 @@ export const DivisionTabs: FC<DivisionTabsProps> = ({ divisions }) => {
   }
 
   return (
-    <div>
+    <div className="flex">
       <ul className="flex rounded-lg text-center text-sm font-medium text-gray-500 shadow dark:divide-gray-700 dark:text-gray-400">
         {validTabs.map((tab, index) => {
           return (
