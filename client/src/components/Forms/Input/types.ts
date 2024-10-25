@@ -8,4 +8,5 @@ export interface InputProps {
   hideLabel?: boolean;
   required?: boolean;
   icon?: ReactElement;
+  value?: string;
 }

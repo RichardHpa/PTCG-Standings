@@ -20,6 +20,7 @@ export const Input: FC<InputProps> = ({
   required = false,
   onChange,
   icon,
+  value,
 }) => {
   return (
     <div>
@@ -49,6 +50,7 @@ export const Input: FC<InputProps> = ({
           placeholder={placeholder}
           required={required}
           onChange={onChange}
+          value={value}
         />
       </div>
     </div>
