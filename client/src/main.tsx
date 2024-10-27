@@ -25,6 +25,11 @@ import { Rounds } from 'pages/Tournament/Rounds';
 import { Parings } from 'pages/Tournament/Parings';
 import { TopCut } from 'pages/Tournament/TopCut';
 import { DivisionOutlet, divisionLoader } from 'pages/Tournament/Division';
+import {
+  Player,
+  playerLoader,
+  PlayerOutlet,
+} from 'pages/Tournament/Division/Player';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -133,6 +138,22 @@ const router = createBrowserRouter([
                     path: ':division',
                     loader: divisionLoader,
                     element: <Parings />,
+                  },
+                ],
+              },
+              {
+                path: ':division/:playerName',
+                loader: playerLoader,
+                element: <PlayerOutlet />,
+                children: [
+                  {
+                    index: true,
+                    loader: playerLoader,
+                    element: <Player />,
+                  },
+                  {
+                    path: 'decklist',
+                    element: <div>Decklist</div>,
                   },
                 ],
               },

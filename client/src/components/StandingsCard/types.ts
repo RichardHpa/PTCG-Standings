@@ -8,4 +8,5 @@ export interface StandingsCardProps {
 
 export interface StandingsRowProps {
   player: Standing;
+  division: Division;
 }

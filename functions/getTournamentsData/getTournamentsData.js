@@ -20,6 +20,11 @@ export const getTournamentsData = async () => {
     }
     const date = format(new Date(), 'Pp');
 
+    const tournament = data.tcg.data.find(tournament => tournament.id === '0000132');
+    if (tournament) {
+      tournament.tournamentStatus = 'finished';
+    }
+
     const newData = {
       dataLastUpdated: date,
       ...data,

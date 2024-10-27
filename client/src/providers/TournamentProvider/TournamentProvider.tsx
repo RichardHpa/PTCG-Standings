@@ -11,12 +11,12 @@ import { TournamentContextProps } from './types';
 const TournamentContext = createContext<TournamentContextProps | null>(null);
 
 export const useTournamentContext = () => {
-  const currentUser = useContext(TournamentContext);
-  if (!currentUser) {
+  const currentTournament = useContext(TournamentContext);
+  if (!currentTournament) {
     throw new Error('TournamentContext: No value provided');
   }
 
-  return currentUser;
+  return currentTournament;
 };
 
 const quirkyErrorMessage = [

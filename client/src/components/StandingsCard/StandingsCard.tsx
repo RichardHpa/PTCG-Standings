@@ -48,7 +48,7 @@ export const StandingsCard: FC<StandingsCardProps> = ({
                   }px)`,
                 }}
               >
-                <StandingsRow player={standing} />
+                <StandingsRow player={standing} division={division} />
               </div>
             );
           })}
