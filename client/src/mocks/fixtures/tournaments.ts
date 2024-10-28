@@ -259,7 +259,8 @@ export const tournaments: TournamentsApiResponse = {
           start: '2022-05-20',
           end: '2022-05-22',
         },
-        tournamentStatus: 'finished',
+        // tournamentStatus: 'finished',
+        tournamentStatus: 'running',
         decklists: 1,
         players: {
           juniors: '37',

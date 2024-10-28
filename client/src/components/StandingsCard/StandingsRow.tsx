@@ -2,26 +2,39 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useTournamentContext } from 'providers/TournamentProvider';
+import { usePinnedPlayersContext } from 'providers/PinnedPlayersProvider';
 
 import { Heading } from 'components/Heading';
 import { Paragraph } from 'components/Paragraph';
+import { IconButton } from 'components/Button';
+
+import { PinIcon } from 'icons/PinIcon';
 
 import { formatPlayerName } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
 import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 
-import type { FC } from 'react';
+import type { FC, MouseEvent } from 'react';
 import type { StandingsRowProps } from './types';
 
 export const StandingsRow: FC<StandingsRowProps> = ({ player, division }) => {
   const navigate = useNavigate();
   const { tournament } = useTournamentContext();
+  const { togglePlayer, isPlayerPinned } = usePinnedPlayersContext();
 
   const handleRowClick = useCallback(() => {
     navigate(
       `/tournaments/${tournament.id}/${division}/${formatPlayerNameToUrl(player.name)}`,
     );
   }, [division, navigate, player.name, tournament.id]);
+
+  const handlePinPlayer = useCallback(
+    (event: MouseEvent) => {
+      event.stopPropagation();
+      togglePlayer(tournament.id, division, player.name);
+    },
+    [division, togglePlayer, player.name, tournament.id],
+  );
 
   const formattedRecord = formatRecord(player.record);
   return (
@@ -40,6 +53,17 @@ export const StandingsRow: FC<StandingsRowProps> = ({ player, division }) => {
           )}
         </div>
       </div>
+      <IconButton
+        icon={<PinIcon />}
+        alt={`Pin ${player.name}`}
+        variant="ghost"
+        color={
+          isPlayerPinned(tournament.id, division, player.name)
+            ? 'primary'
+            : 'alternative'
+        }
+        onClick={handlePinPlayer}
+      />
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { worker } from 'mocks/browser';
 import './index.css';
 
 import { ColorModeProvider } from 'providers/ColorModeProvider';
+import { PinnedPlayersProvider } from 'providers/PinnedPlayersProvider';
 
 import { BaseLayout } from 'layouts/BaseLayout';
 
@@ -191,6 +192,8 @@ const allowedPaths = [
   '/logo192.png',
   'src/images/',
   '/localData/',
+  '/node_modules/',
+  'chrome-extension://',
 ];
 
 const deferRender = async () => {
@@ -214,15 +217,17 @@ deferRender().then(() => {
     <StrictMode>
       <ColorModeProvider>
         <QueryClientProvider client={queryClient}>
-          <RouterProvider
-            router={router}
-            fallbackElement={<FallbackLoader />}
-          />
-          {import.meta.env.MODE === 'development' && (
-            <Suspense fallback={null}>
-              <ReactQueryDevtoolsProduction />
-            </Suspense>
-          )}
+          <PinnedPlayersProvider>
+            <RouterProvider
+              router={router}
+              fallbackElement={<FallbackLoader />}
+            />
+            {import.meta.env.MODE === 'development' && (
+              <Suspense fallback={null}>
+                <ReactQueryDevtoolsProduction />
+              </Suspense>
+            )}
+          </PinnedPlayersProvider>
         </QueryClientProvider>
       </ColorModeProvider>
     </StrictMode>,
