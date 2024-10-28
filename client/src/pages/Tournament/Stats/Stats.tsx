@@ -40,7 +40,6 @@ export const Stats = () => {
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
       {deckAnalysisKeys.map((day, index) => {
         const imageUrl = tournament?.deckAnalysis?.[day];
-        console.log(imageUrl);
         if (!imageUrl) return null; // If the URL is not available, return null
         return (
           <Card key={index} title={breakCamelCase(day)}>
