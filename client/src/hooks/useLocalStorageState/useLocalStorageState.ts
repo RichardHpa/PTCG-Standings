@@ -1,12 +1,17 @@
-import { useState, useEffect, SetStateAction } from 'react';
+import { useState, useEffect } from 'react';
+
+import { BASE_KEY } from 'constants/localStorageKeys';
+
+import type { SetStateAction } from 'react';
 
 export function useLocalStorageState<T>(
   key: string,
   initialValue: T,
 ): [T, React.Dispatch<SetStateAction<T>>] {
+  const envKey = `${BASE_KEY}:${key}:${import.meta.env.MODE}`;
   const [state, setState] = useState<T>(() => {
     try {
-      const item = window.localStorage.getItem(key);
+      const item = window.localStorage.getItem(envKey);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       console.error(error);
@@ -16,11 +21,11 @@ export function useLocalStorageState<T>(
 
   useEffect(() => {
     try {
-      window.localStorage.setItem(key, JSON.stringify(state));
+      window.localStorage.setItem(envKey, JSON.stringify(state));
     } catch (error) {
       console.error(error);
     }
-  }, [key, state]);
+  }, [envKey, state]);
 
   return [state, setState];
 }

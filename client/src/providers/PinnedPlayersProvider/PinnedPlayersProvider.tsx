@@ -66,14 +66,14 @@ export const PinnedPlayersProvider = ({
             // If divisionData is defined, merge it
             if (divisionData) {
               mergedData[tournamentId] = {
-                ...mergedData[tournamentId],
+                // ...mergedData[tournamentId],
                 ...divisionData,
               };
             }
           }
         }
 
-        return mergedData; // TypeScript should now correctly infer this as TournamentData
+        return mergedData;
       });
     },
     [setTournamentData],
