@@ -215,6 +215,7 @@ export const PinnedPlayersProvider = ({
       localStorageValue: tournamentData,
       isPlayerPinned,
       combinedPinnedPlayerDetails,
+      hasPinnedPlayers: combinedPinnedPlayerDetails.length > 0,
     };
   }, [
     combinedPinnedPlayerDetails,

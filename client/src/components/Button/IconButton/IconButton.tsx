@@ -14,6 +14,7 @@ export const IconButton: FC<IconButtonProps> = ({
   icon,
   noPadding,
   size = 'base',
+  disabled = false,
   ...props
 }) => {
   const RenderedIcon = cloneElement(icon, {
@@ -33,6 +34,7 @@ export const IconButton: FC<IconButtonProps> = ({
         buttonClasses.variant[variant][color].dark,
         iconButtonClasses.icon.size[size],
         noPadding && iconButtonClasses.noPadding,
+        disabled && buttonClasses.disabled,
       )}
     >
       {RenderedIcon}

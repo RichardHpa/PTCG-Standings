@@ -2,12 +2,11 @@ import { useCallback, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
-import { Button, IconButton } from 'components/Button';
+import { Button } from 'components/Button';
 import { BuyMeABoosterButton } from 'components/BuyMeABoosterButton';
 import { ThemeToggle } from 'components/ThemeToggle';
 import { NavLink } from 'components/NavLink';
-
-import { PinIcon } from 'icons/PinIcon';
+import { PinnedPlayerDrawer } from 'components/PinnedPlayerDrawer';
 
 export const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -49,12 +48,7 @@ export const Navbar = () => {
           </Link>
 
           <div className="flex items-center lg:order-2">
-            <IconButton
-              icon={<PinIcon />}
-              alt="View pinned players"
-              variant="ghost"
-              color="alternative"
-            />
+            <PinnedPlayerDrawer />
 
             <button
               data-collapse-toggle="mobile-menu-2"

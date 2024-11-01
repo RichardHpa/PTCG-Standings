@@ -45,4 +45,5 @@ export interface PinnedPlayersProviderProps {
   ) => boolean;
   localStorageValue: TournamentData;
   combinedPinnedPlayerDetails: CombinedInfo[];
+  hasPinnedPlayers: boolean;
 }

@@ -57,4 +57,5 @@ export const buttonClasses = {
     xl: tw`px-6 py-3.5 text-base`,
   },
   full: tw`w-full`,
+  disabled: tw`pointer-events-none cursor-not-allowed opacity-50`,
 };
