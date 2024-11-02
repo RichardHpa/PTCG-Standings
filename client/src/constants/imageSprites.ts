@@ -9,7 +9,7 @@ export interface PokemonInfo {
 
 export type PokemonList = Record<string, PokemonInfo>;
 
-export const pokemonList: PokemonList = {
+export const pokemonImageList: PokemonList = {
   bulbasaur: { image: '1.png' },
   ivysaur: { image: '2.png' },
   venusaur: {
