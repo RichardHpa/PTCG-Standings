@@ -36,6 +36,8 @@ import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
 import { FallbackError } from 'errors/FallbackError';
 
+import { Test } from 'pages/Test';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -53,6 +55,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: 'test',
+        element: <Test />,
       },
       {
         path: 'about',
