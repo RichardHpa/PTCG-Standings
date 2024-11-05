@@ -7,11 +7,34 @@ import { StandingsCard } from 'components/StandingsCard';
 import { Input } from 'components/Forms/Input';
 import { Card } from 'components/Card';
 
+import { VirtualizedTable } from 'components/VirtualizedTable';
+
 import { useTournamentContext } from 'providers/TournamentProvider';
 
 import type { ChangeEvent } from 'react';
 import type { Division } from 'types/divisions';
 import type { Standing } from 'types/standing';
+
+import type { ColumnDef } from 'components/VirtualizedTable/types';
+
+const columns: ColumnDef<Standing>[] = [
+  {
+    accessorKey: 'placing',
+    header: 'Placing',
+  },
+  {
+    accessorKey: 'name',
+    header: 'Name',
+  },
+  {
+    accessorKey: 'resistances.opp',
+    header: 'Opponent Resistances',
+  },
+  {
+    accessorKey: 'resistances.oppopp',
+    header: "Opponent's Opponent Resistances",
+  },
+];
 
 export const Standings = () => {
   const { division = 'masters' } = useParams() as { division: Division };
@@ -78,9 +101,9 @@ export const Standings = () => {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </div>
@@ -95,7 +118,9 @@ export const Standings = () => {
             </div>
           </div>
 
-          <StandingsCard division={division} standings={searchData} />
+          {/* <StandingsCard division={division} standings={searchData} /> */}
+
+          <VirtualizedTable<Standing> columns={columns} data={searchData} />
         </div>
       </section>
       {/* <Card>
