@@ -82,4 +82,129 @@ export const archetypes: Archetypes = {
       },
     ],
   },
+  mewVmax: {
+    name: 'Mew VMAX',
+    coreCards: [
+      {
+        card: 'Mew VMAX',
+        pokemon: 'Mew',
+        sprite: pokemonImageList.mew.image,
+      },
+      {
+        card: 'Genesect V',
+        pokemon: 'Genesect',
+        sprite: pokemonImageList.genesect.image,
+      },
+    ],
+  },
+  arceus: {
+    name: 'Arceus',
+    coreCards: [
+      {
+        card: 'Arceus VSTAR',
+        pokemon: 'Arceus',
+        sprite: pokemonImageList.arceus.image,
+      },
+    ],
+  },
+  charizardBibarel: {
+    name: 'Charizard Bibarel',
+    coreCards: [
+      {
+        card: 'Charizard ex',
+        pokemon: 'Charizard',
+        sprite: pokemonImageList.charizard.image,
+      },
+      {
+        card: 'Bibarel',
+        pokemon: 'Bibarel',
+        sprite: pokemonImageList.bibarel.image,
+      },
+    ],
+  },
+  roaringMoon: {
+    name: 'Roaring Moon',
+    coreCards: [
+      {
+        card: 'Roaring Moon ex',
+        pokemon: 'Roaring moon',
+        sprite: pokemonImageList['roaring-moon'].image,
+      },
+    ],
+  },
+  inteleonUrshifu: {
+    name: 'Inteleon Urshifu',
+    coreCards: [
+      {
+        card: 'Inteleon VMAX',
+        pokemon: 'Inteleon',
+        sprite: pokemonImageList.inteleon.forms!['gmax'].image,
+      },
+      {
+        card: 'Rapid Strike Urshifu VMAX',
+        pokemon: 'Urshifu',
+        sprite: pokemonImageList.urshifu.forms!['rapid-gmax'].image,
+      },
+    ],
+  },
+  gholdengo: {
+    name: 'Gholdengo',
+    coreCards: [
+      {
+        card: 'Gholdengo ex',
+        pokemon: 'Gholdengo',
+        sprite: pokemonImageList.gholdengo.image,
+      },
+    ],
+  },
+  snorlaxStall: {
+    name: 'Snorlax Stall',
+    coreCards: [
+      {
+        card: 'Snorlax',
+        pokemon: 'Snorlax',
+        sprite: pokemonImageList.snorlax.image,
+      },
+    ],
+  },
+  klawf: {
+    name: 'Klawf',
+    coreCards: [
+      {
+        card: 'Klawf',
+        pokemon: 'Klawf',
+        sprite: pokemonImageList.klawf.image,
+      },
+    ],
+  },
+  IceRiderPalkia: {
+    name: 'Ice Rider Palkia',
+    coreCards: [
+      {
+        card: 'Origin Forme Palkia VSTAR',
+        pokemon: 'Palkia',
+        sprite: pokemonImageList.palkia.forms!['origin'].image,
+      },
+      {
+        card: 'Ice Rider Calyrex VMAX',
+        pokemon: 'Ice Rider Calyrex',
+        sprite: pokemonImageList.calyrex.forms!['ice'].image,
+      },
+    ],
+  },
+  miraidonFlaafy: {
+    name: 'miraidon Flaafy',
+    coreCards: [
+      {
+        card: 'Miraidon ex',
+        pokemon: 'Miraidon',
+        sprite: pokemonImageList.miraidon.image,
+      },
+      {
+        card: 'Flaaffy',
+        pokemon: 'flaaffy',
+        sprite: pokemonImageList.flaaffy.image,
+      },
+    ],
+  },
 };

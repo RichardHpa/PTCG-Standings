@@ -58,14 +58,18 @@ const PokemonSprite = ({
   );
 };
 
-export const Archetypes: FC<ArchetypesProps> = ({ decklist, onClick }) => {
+export const Archetypes: FC<ArchetypesProps> = ({
+  decklist,
+  onClick,
+  size = 'large',
+}) => {
   const sprites = getArchetypes(decklist);
   if (!sprites.length) return null;
 
   return (
     <div className="flex" onClick={onClick}>
       {sprites.map((sprite, index) => (
-        <PokemonSprite key={index} image={sprite} />
+        <PokemonSprite key={index} image={sprite} size={size} />
       ))}
     </div>
   );

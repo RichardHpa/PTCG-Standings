@@ -12,7 +12,7 @@ export const Card: FC<CardProps> = ({
   return (
     <div
       className={clsx(
-        'flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400',
+        'flex flex-col rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:rounded-lg',
         { 'h-full': growHeight },
       )}
     >

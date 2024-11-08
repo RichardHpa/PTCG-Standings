@@ -1,0 +1,1 @@
+export { hasDecklist } from './hasDecklist';

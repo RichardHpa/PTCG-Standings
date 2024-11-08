@@ -23,7 +23,7 @@ export const Input: FC<InputProps> = ({
   value,
 }) => {
   return (
-    <div>
+    <div className="w-full">
       {!hideLabel && (
         <label
           htmlFor={name}
@@ -35,7 +35,7 @@ export const Input: FC<InputProps> = ({
 
       <div className="relative">
         {icon && (
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500 dark:text-gray-400">
             <RenderIcon icon={icon} />
           </div>
         )}
@@ -44,7 +44,7 @@ export const Input: FC<InputProps> = ({
           type="text"
           id={name}
           className={clsx(
-            'block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500',
+            'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400',
             icon && 'pl-10',
           )}
           placeholder={placeholder}

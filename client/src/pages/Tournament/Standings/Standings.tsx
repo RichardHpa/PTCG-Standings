@@ -1,13 +1,22 @@
-import { useMemo, useCallback, useState, useEffect } from 'react';
+import { useMemo, useCallback, useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import clsx from 'clsx';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
+import { useWindowVirtualizer } from '@tanstack/react-virtual';
 
-import { StandingsCard } from 'components/StandingsCard';
+import { tw } from 'utils/tailwindClassName';
+import { PinIcon } from 'icons/PinIcon';
+import { Archetypes } from 'components/Archetypes';
 import { Input } from 'components/Forms/Input';
 import { Card } from 'components/Card';
 
-import { VirtualizedTable } from 'components/VirtualizedTable';
+import { formatPlayerName } from 'helpers/formatPlayerName';
+import { formatRecord } from 'helpers/formatRecord';
+import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
+import { calculatePoints } from 'helpers/calculatePoints';
+import { hasDecklist } from 'helpers/hasDecklist';
 
 import { useTournamentContext } from 'providers/TournamentProvider';
 
@@ -15,30 +24,76 @@ import type { ChangeEvent } from 'react';
 import type { Division } from 'types/divisions';
 import type { Standing } from 'types/standing';
 
-import type { ColumnDef } from 'components/VirtualizedTable/types';
+interface Accessor {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this actually needs to be any
+  (path: string, object: Record<string, any>): any;
+}
 
-const columns: ColumnDef<Standing>[] = [
-  {
-    accessorKey: 'placing',
-    header: 'Placing',
-  },
+const access: Accessor = (path, object) => {
+  return path.split('.').reduce((o, i) => o[i], object);
+};
+
+const formatToPercentage = (value: number) => {
+  return `${(value * 100).toFixed(2)}%`;
+};
+
+const columns = [
   {
     accessorKey: 'name',
-    header: 'Name',
+    header: 'Player',
+    render: (row: Standing) => (
+      <div className="flex items-center gap-4">
+        <span className="font-extrabold">{row.placing}</span>
+        <span className="font-medium">{formatPlayerName(row.name)}</span>
+      </div>
+    ),
+  },
+  {
+    accessorKey: 'record',
+    header: 'Record',
+    size: 'small',
+    render: (row: Standing) => <span>{formatRecord(row.record)}</span>,
+  },
+  {
+    accessorKey: 'points',
+    header: 'Points',
+    size: 'small',
+    render: (row: Standing) => <span>{calculatePoints(row.record)}</span>,
   },
   {
     accessorKey: 'resistances.opp',
     header: 'Opponent Resistances',
+    render: (row: Standing) => (
+      <span>{formatToPercentage(row.resistances.opp)}</span>
+    ),
   },
   {
     accessorKey: 'resistances.oppopp',
     header: "Opponent's Opponent Resistances",
+    render: (row: Standing) => (
+      <span>{formatToPercentage(row.resistances.oppopp)}</span>
+    ),
+  },
+  {
+    accessorKey: 'action',
+    header: '',
+    size: 'medium',
+    align: 'right',
+    render: (row: Standing) => (
+      <div className="flex items-center justify-end gap-4">
+        {hasDecklist(row.decklist) && (
+          <Archetypes decklist={row.decklist} size="small" />
+        )}
+        <PinIcon className="h-4 w-4" />
+      </div>
+    ),
   },
 ];
 
 export const Standings = () => {
+  const navigate = useNavigate();
   const { division = 'masters' } = useParams() as { division: Division };
-  const { divisions } = useTournamentContext();
+  const { divisions, tournament } = useTournamentContext();
   const [searchData, setSearchData] = useState<Standing[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -81,47 +136,125 @@ export const Standings = () => {
     [standings],
   );
 
+  const listRef = useRef<HTMLDivElement | null>(null);
+
+  const virtualizer = useWindowVirtualizer({
+    count: searchData.length,
+    estimateSize: () => 48.5,
+    overscan: 5,
+    scrollMargin: listRef.current?.offsetTop ?? 0,
+    measureElement:
+      typeof window !== 'undefined' &&
+      navigator.userAgent.indexOf('Firefox') === -1
+        ? element => element?.getBoundingClientRect().height
+        : undefined,
+  });
+
+  const handleRowClick = useCallback(
+    (player: string) => {
+      navigate(
+        `/tournaments/${tournament.id}/${division}/${formatPlayerNameToUrl(player)}`,
+      );
+    },
+    [division, navigate, tournament.id],
+  );
+
   return (
     <div className="flex flex-col gap-4">
-      <section className="bg-gray-50 dark:bg-gray-900">
-        <div className="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
+      <section className="bg-gray-50 dark:bg-gray-900" ref={listRef}>
+        <Card>
           <div className="flex flex-col items-center justify-between space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
             <div className="w-full md:w-1/2">
-              <form className="flex items-center">
-                <label htmlFor="simple-search" className="sr-only">
-                  Search
-                </label>
-                <div className="relative w-full">
-                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <svg
-                      aria-hidden="true"
-                      className="h-5 w-5 text-gray-500 dark:text-gray-400"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <input
-                    type="text"
-                    id="simple-search"
-                    className="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-                    placeholder="Search players"
-                  />
-                </div>
-              </form>
+              <Input
+                name="search"
+                label="Search players"
+                placeholder="Search players"
+                hideLabel
+                onChange={handleSearch}
+                icon={<MagnifyingGlassIcon />}
+                value={searchQuery}
+              />
             </div>
           </div>
 
           {/* <StandingsCard division={division} standings={searchData} /> */}
 
-          <VirtualizedTable<Standing> columns={columns} data={searchData} />
-        </div>
+          <div className="">
+            <div
+              className={tw`sticky top-14 z-10 w-full text-left text-sm text-gray-500 dark:text-gray-400 rtl:text-right`}
+            >
+              <div
+                className={tw`flex bg-gray-50 text-xs font-bold uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400`}
+              >
+                {columns.map(column => (
+                  <div
+                    key={column.accessorKey}
+                    className={clsx(
+                      'flex-1 border-gray-600 px-4 py-3',
+                      column.size === 'small' && 'max-w-24',
+                      column.size === 'medium' && 'max-w-32',
+                      column.align === 'right' && 'justify-end',
+                    )}
+                  >
+                    {column.header}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {searchData.length === 0 ? (
+              <div className="p-4 text-center text-gray-500 dark:text-gray-400">
+                No players found with the name <strong>{searchQuery}</strong>
+              </div>
+            ) : (
+              <div
+                style={{
+                  height: `${virtualizer.getTotalSize()}px`,
+                  width: '100%',
+                  position: 'relative',
+                }}
+              >
+                {virtualizer.getVirtualItems().map(item => {
+                  const row = searchData[item.index];
+                  return (
+                    <div
+                      data-index={item.index} //needed for dynamic row height measurement
+                      ref={node => virtualizer.measureElement(node)}
+                      onClick={() => handleRowClick(row.name)}
+                      key={item.key}
+                      className="flex cursor-pointer border-b hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700"
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        transform: `translateY(${
+                          item.start - virtualizer.options.scrollMargin
+                        }px)`,
+                      }}
+                    >
+                      {columns.map(column => (
+                        <div
+                          key={column.accessorKey}
+                          className={clsx(
+                            'flex flex-1 items-center px-4 py-3',
+                            column.size === 'small' && 'max-w-24',
+                            column.size === 'medium' && 'max-w-32',
+                            column.align === 'right' && 'justify-end',
+                          )}
+                        >
+                          {column.render
+                            ? column.render(row)
+                            : access(column.accessorKey, row)}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </Card>
       </section>
       {/* <Card>
         <div className="flex gap-4 p-4">
