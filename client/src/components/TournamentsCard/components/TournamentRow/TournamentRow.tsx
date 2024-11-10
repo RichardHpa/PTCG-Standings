@@ -25,7 +25,7 @@ export const TournamentRow: FC<TournamentRowProps> = ({ tournament }) => {
     <div
       role="link"
       onClick={handleOnClick}
-      className="w-full cursor-pointer items-center border-b border-gray-100 pl-3 pr-6 text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:text-gray-400 dark:hover:bg-gray-800"
+      className="w-full cursor-pointer items-center border-b border-gray-100 pl-3 pr-6 text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
     >
       <div className="flex justify-between gap-8 py-6">
         <div className="flex gap-4">

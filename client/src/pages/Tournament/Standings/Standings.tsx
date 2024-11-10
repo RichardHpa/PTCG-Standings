@@ -177,8 +177,6 @@ export const Standings = () => {
             </div>
           </div>
 
-          {/* <StandingsCard division={division} standings={searchData} /> */}
-
           <div className="">
             <div
               className={tw`sticky top-14 z-10 w-full text-left text-sm text-gray-500 dark:text-gray-400 rtl:text-right`}

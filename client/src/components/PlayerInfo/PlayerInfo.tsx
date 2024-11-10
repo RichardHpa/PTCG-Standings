@@ -6,6 +6,8 @@ import { Heading } from 'components/Heading';
 import { Paragraph } from 'components/Paragraph';
 import { IconButton } from 'components/Button';
 import { Archetypes } from 'components/Archetypes';
+import { Card } from 'components/Card';
+import { RoundsTable } from 'components/RoundsTable';
 
 import { formatPlayerName } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
@@ -44,7 +46,10 @@ export const PlayerInfo: FC<PlayerInfoProps> = ({ player, division }) => {
         </div>
 
         {player.decklist && (
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center justify-center gap-2">
+            {typeof player.decklist !== 'string' && (
+              <Archetypes decklist={player.decklist} />
+            )}
             <IconButton
               icon={<ListBulletIcon />}
               alt="deck list"
@@ -52,46 +57,55 @@ export const PlayerInfo: FC<PlayerInfoProps> = ({ player, division }) => {
               color="alternative"
               onClick={handleViewDecklist}
             />
-            {typeof player.decklist !== 'string' && (
-              <Archetypes decklist={player.decklist} />
-            )}
           </div>
         )}
       </div>
 
       <div>
-        <Heading level="6">
-          Current Standing{' '}
-          <span className="block text-sm text-gray-500 dark:text-gray-400">
-            {player.placing}
-          </span>
-        </Heading>
+        <Heading level="6">Current Standing </Heading>
+        <Paragraph size="sm">{player.placing}</Paragraph>
       </div>
 
       <div className="flex gap-4">
-        <p className="font-medium">
-          Self Resistance{' '}
-          <span className="block text-sm text-gray-500 dark:text-gray-400">
+        <div>
+          <Paragraph weight="medium" color="white">
+            Self Resistance
+          </Paragraph>
+          <Paragraph size="sm">
             {player.resistances.self} |{' '}
             {formatToPercentage(player.resistances.self)}
-          </span>
-        </p>
+          </Paragraph>
+        </div>
 
-        <p className="font-medium">
-          Opponents Resistance{' '}
-          <span className="block text-sm text-gray-500 dark:text-gray-400">
+        <div>
+          <Paragraph weight="medium" color="white">
+            Opponents Resistance
+          </Paragraph>
+          <Paragraph size="sm">
             {player.resistances.opp} |{' '}
             {formatToPercentage(player.resistances.opp)}
-          </span>
-        </p>
+          </Paragraph>
+        </div>
 
-        <p className="font-medium">
-          Opponents Opponents Resistance{' '}
-          <span className="block text-sm text-gray-500 dark:text-gray-400">
+        <div>
+          <Paragraph weight="medium" color="white">
+            Opponents Opponents Resistance
+          </Paragraph>
+          <Paragraph size="sm">
             {player.resistances.oppopp} |{' '}
             {formatToPercentage(player.resistances.oppopp)}
-          </span>
-        </p>
+          </Paragraph>
+        </div>
+      </div>
+
+      <div className="mb-4 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <Card title="Rounds">
+          <RoundsTable player={player} division={division} />
+        </Card>
+        <Card title="Players with same points">Points</Card>
+        <div className="col-span-1 sm:col-span-2 lg:col-span-1">
+          <Card title="Current placing">Standings</Card>
+        </div>
       </div>
     </div>
   );

@@ -19,8 +19,8 @@ const breakCamelCase = (camelCase: string) => {
 };
 
 export const Stats = () => {
-  const { tournament } = useTournamentContext();
-
+  const { tournament, divisions } = useTournamentContext();
+  console.log(divisions);
   if (!tournament.deckAnalysis) {
     return (
       <Notice>
@@ -36,6 +36,7 @@ export const Stats = () => {
   const deckAnalysisKeys = Object.keys(tournament.deckAnalysis) as Array<
     keyof TournamentDeckAnalysis
   >;
+
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
       {deckAnalysisKeys.map((day, index) => {
