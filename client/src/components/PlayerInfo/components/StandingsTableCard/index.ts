@@ -1,0 +1,1 @@
+export { StandingsTableCard } from './StandingsTableCard';

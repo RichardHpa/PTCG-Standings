@@ -105,7 +105,6 @@ export const PinnedPlayerDrawer = () => {
         data-drawer-show={id}
         data-drawer-placement="right"
         aria-controls={id}
-        // disabled={!hasPinnedPlayers}
       />
 
       <Drawer
@@ -156,26 +155,6 @@ export const PinnedPlayerDrawer = () => {
               </div>
             </div>
           </div>
-
-          {/* {combinedPinnedPlayerDetails.map(
-            ({ tournamentId, name, divisions }) => (
-              <Card key={tournamentId} title={name}>
-                <div className="p-2">
-                  {divisions.map(({ division, players }) => (
-                    <div key={division} className="flex flex-col gap-2">
-                      <h6 className="text-base font-semibold">{division}</h6>
-
-                      <ul className="flex flex-col gap-1">
-                        {players.map(player => (
-                          <li key={player.name}>{player.name}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-            ),
-          )} */}
         </div>
       </Drawer>
     </>

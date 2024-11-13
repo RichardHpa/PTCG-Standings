@@ -6,7 +6,7 @@ import { Button } from 'components/Button';
 import { BuyMeABoosterButton } from 'components/BuyMeABoosterButton';
 import { ThemeToggle } from 'components/ThemeToggle';
 import { NavLink } from 'components/NavLink';
-import { PinnedPlayerDrawer } from 'components/PinnedPlayerDrawer';
+import { PinnedPlayerDrawer } from 'components/PinPlayer/PinnedPlayerDrawer';
 
 export const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -57,7 +57,6 @@ export const Navbar = () => {
               aria-controls="mobile-menu-2"
               aria-expanded="false"
               onClick={e => {
-                // remove focus from the button
                 e.currentTarget.blur();
                 toggleExpanded();
               }}

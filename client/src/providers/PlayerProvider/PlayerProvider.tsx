@@ -49,6 +49,7 @@ export const PlayerContextProvider = ({
         const foundPlayers = foundDivision.data.filter(
           player => player.name === playerName,
         );
+        // TODO: I need to get the index from here rather than rely on the placings
 
         if (!foundPlayers.length) {
           throw new Error('PlayerContextProvider: Player not found');

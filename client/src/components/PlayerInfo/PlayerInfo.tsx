@@ -9,10 +9,10 @@ import { Archetypes } from 'components/Archetypes';
 import { Card } from 'components/Card';
 import { RoundsTable } from 'components/RoundsTable';
 
-import { formatPlayerName } from 'helpers/formatPlayerName';
+import { StandingsTableCard } from './components/StandingsTableCard';
+
 import { formatRecord } from 'helpers/formatRecord';
 import { calculatePoints } from 'helpers/calculatePoints';
-import { firstLetterToUppercase } from 'helpers/firstLetterToUppercase';
 
 import type { FC } from 'react';
 import type { PlayerInfoProps } from './types';
@@ -21,7 +21,11 @@ const formatToPercentage = (value: number) => {
   return `${(value * 100).toFixed(2)}%`;
 };
 
-export const PlayerInfo: FC<PlayerInfoProps> = ({ player, division }) => {
+export const PlayerInfo: FC<PlayerInfoProps> = ({
+  player,
+  division,
+  // playerIndex,
+}) => {
   const navigate = useNavigate();
 
   const handleViewDecklist = useCallback(() => {
@@ -30,19 +34,17 @@ export const PlayerInfo: FC<PlayerInfoProps> = ({ player, division }) => {
 
   return (
     <div className="flex flex-col gap-4">
+      <div>
+        <Paragraph>
+          {formatRecord(player.record)}{' '}
+          <b>({calculatePoints(player.record)})</b>
+        </Paragraph>
+      </div>
+
       <div className="flex justify-between">
         <div>
-          <div className="flex items-center gap-2">
-            <Heading level="2">{formatPlayerName(player.name)}</Heading>
-            <span className="me-2 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
-              {firstLetterToUppercase(division)}
-            </span>
-          </div>
-
-          <Paragraph>
-            {formatRecord(player.record)}{' '}
-            <b>({calculatePoints(player.record)})</b>
-          </Paragraph>
+          <Heading level="6">Current Standing </Heading>
+          <Paragraph size="sm">{player.placing}</Paragraph>
         </div>
 
         {player.decklist && (
@@ -59,11 +61,6 @@ export const PlayerInfo: FC<PlayerInfoProps> = ({ player, division }) => {
             />
           </div>
         )}
-      </div>
-
-      <div>
-        <Heading level="6">Current Standing </Heading>
-        <Paragraph size="sm">{player.placing}</Paragraph>
       </div>
 
       <div className="flex gap-4">
@@ -102,9 +99,16 @@ export const PlayerInfo: FC<PlayerInfoProps> = ({ player, division }) => {
         <Card title="Rounds">
           <RoundsTable player={player} division={division} />
         </Card>
+
         <Card title="Players with same points">Points</Card>
-        <div className="col-span-1 sm:col-span-2 lg:col-span-1">
-          <Card title="Current placing">Standings</Card>
+
+        <div className="col-span-1 h-screen min-h-screen sm:col-span-2 sm:min-h-[600px] md:h-auto lg:col-span-1">
+          <StandingsTableCard
+            player={player}
+            division={division}
+            // NOTE: This is a hacky way to get the player index, we should get this from the provider
+            playerIndex={player.placing - 1}
+          />
         </div>
       </div>
     </div>
