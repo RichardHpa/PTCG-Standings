@@ -8,6 +8,8 @@ import cronstrue from 'cronstrue';
 
 import 'dotenv/config';
 
+import { tournamentsFolder, roundsFolder } from './constants/folders.js';
+
 import { createFolder } from './functions/createFolder/index.js';
 import { getTournamentsData } from './functions/getTournamentsData/index.js';
 import { getTournamentData } from './functions/getTournamentData/index.js';
@@ -123,7 +125,8 @@ const tournamentsSchedule = cron.schedule(
 
 const initialSetup = async () => {
   console.log('Initial Setup');
-  await createFolder();
+  await createFolder(tournamentsFolder);
+  await createFolder(roundsFolder);
   const tournamentsData = await getTournamentsData();
   const runningTournamentsData = await checkRunningTournaments(tournamentsData);
   tournamentsToTrack = [...runningTournamentsData];

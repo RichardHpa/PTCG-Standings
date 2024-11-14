@@ -3,7 +3,7 @@ import { useQuery, queryOptions } from '@tanstack/react-query';
 import { getTournament } from 'api/getTournament';
 
 import type { useGetTournamentProps } from './types';
-import { TournamentApiResponse } from 'types/tournament';
+import type { TournamentApiResponse } from 'types/tournament';
 
 export const getTournamentKey = (tournamentId: string) => [
   'tournaments',

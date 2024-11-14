@@ -2,6 +2,7 @@ import { useMemo, useState, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
+import { useGetRound } from 'queries/useGetRound/useGetRound';
 import { useTournamentContext } from 'providers/TournamentProvider';
 
 import type { Division } from 'types/divisions';
@@ -10,6 +11,14 @@ export const Rounds = () => {
   const [selectedRound, setSelectedRound] = useState(1);
   const { tournament } = useTournamentContext();
   const { division = 'masters' } = useParams() as { division: Division };
+
+  const { data: round } = useGetRound({
+    tournamentId: tournament.id,
+    roundNumber: selectedRound,
+    division,
+  });
+
+  console.log(round);
 
   useEffect(() => {
     setSelectedRound(1);

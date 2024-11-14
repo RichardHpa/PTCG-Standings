@@ -1,11 +1,8 @@
 import fs from 'fs';
-import { tournamentsFolder } from '../../constants/folders.js';
 
-export const createFolder = async () => {
-  if (!fs.existsSync(tournamentsFolder)) {
-    console.log('Creating tournaments folder');
-    fs.mkdirSync(tournamentsFolder, { recursive: true });
-  } else {
-    console.log('Tournaments folder already exists');
+export const createFolder = async folder => {
+  if (!fs.existsSync(folder)) {
+    console.log(`Creating ${folder}`);
+    fs.mkdirSync(folder, { recursive: true });
   }
 };
