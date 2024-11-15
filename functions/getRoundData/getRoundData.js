@@ -21,7 +21,6 @@ export const getRoundData = async ({ tournamentId, division, round }) => {
 
     const checkRound = parseInt(data.tournament_data[0].data.round);
     const parsedRound = parseInt(round);
-    console.log(parsedRound, checkRound);
     if (parsedRound > checkRound) {
       throw new Error(
         `Round ${round} is less than the current round ${checkRound} for tournament ${tournamentId}`

@@ -5,4 +5,5 @@ export interface ColumnProps {
   size?: 'small' | 'medium';
   align?: 'left' | 'center' | 'right';
   children: ReactNode;
+  classes?: string;
 }

@@ -1,0 +1,5043 @@
+{
+    "type": "tcg",
+    "tournament": {
+        "id": "0000109",
+        "name": "Melbourne Pokémon TCG Regional Championship 2024",
+        "date": {
+            "start": "2024-02-03",
+            "end": "2024-02-04"
+        },
+        "decklists": 0,
+        "players": {
+            "juniors": 54,
+            "seniors": 40,
+            "masters": 531
+        },
+        "winners": {
+            "juniors": "Drake Z. [NZ]",
+            "seniors": "Polaris A. [US]",
+            "masters": "Brent Tonisson [AU]"
+        },
+        "tournamentStatus": "finished",
+        "roundNumbers": {
+            "juniors": 9,
+            "seniors": 9,
+            "masters": 17
+        },
+        "lastUpdated": "2024-02-05 19:47:53.197712",
+        "rk9link": "MEL1wZZevcQrmn7DW01Y"
+    },
+    "tournament_data": [
+        {
+            "division": "masters",
+            "data": {
+                "round": "10",
+                "data": [
+                    {
+                        "name": "Brent Tonisson [AU]",
+                        "record": {
+                            "wins": 9,
+                            "losses": 1,
+                            "ties": 0
+                        },
+                        "round_data": {
+                            "table": 3,
+                            "vs": "Tim Franklin [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Haru Nishikawa [JP]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 14,
+                            "vs": "YiFei Ruan [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Natalie Millar [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 21,
+                            "vs": "Nigel Tan [NZ]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Christian Viti [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 23,
+                            "vs": "Stephen Iskandar [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Tim Franklin [AU]",
+                        "record": {
+                            "wins": 8,
+                            "losses": 1,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 3,
+                            "vs": "Brent Tonisson [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Jettano Posani [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 1,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 12,
+                            "vs": "Edin Visca [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Nigel Tan [NZ]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 21,
+                            "vs": "Natalie Millar [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Siu Chun Lee [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 1,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 5,
+                            "vs": "Kaiwen Cabbabe [AU]",
+                            "result": "T"
+                        }
+                    },
+                    {
+                        "name": "Angus Johnson [AU]",
+                        "record": {
+                            "wins": 8,
+                            "losses": 1,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 7,
+                            "vs": "[Table 2]Nissa Kew [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Keito Arai [JP]",
+                        "record": {
+                            "wins": 8,
+                            "losses": 1,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 4,
+                            "vs": "Gabriel Smart [US]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Gabriel Smart [US]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 1,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 4,
+                            "vs": "Keito Arai [JP]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Jose de la garma [AU]",
+                        "record": {
+                            "wins": 8,
+                            "losses": 2,
+                            "ties": 0
+                        },
+                        "round_data": {
+                            "table": 8,
+                            "vs": "Christopher Mathers [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Kaiwen Cabbabe [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 1,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 5,
+                            "vs": "Siu Chun Lee [AU]",
+                            "result": "T"
+                        }
+                    },
+                    {
+                        "name": "James Williams [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 25,
+                            "vs": "Takuma Tominaga [JP]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Shaun Sewell [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 16,
+                            "vs": "Paul Ashton [AU]",
+                            "result": "T"
+                        }
+                    },
+                    {
+                        "name": "Aaron-Lee Cole [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 17,
+                            "vs": "Will Harris [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Manuel Jorach [AT]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 1,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 11,
+                            "vs": "Tibor Baranyay [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Harry Shallcrass [NZ]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 1,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 6,
+                            "vs": "[Table 1]Sam Hendle [AU]",
+                            "result": "T"
+                        }
+                    },
+                    {
+                        "name": "Thomas McCawley [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 27,
+                            "vs": "Simon Williams [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "xinzhe hou [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 0,
+                            "ties": 4
+                        },
+                        "round_data": {
+                            "table": 22,
+                            "vs": "Blake Lobina [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "James Goreing [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 1,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 10,
+                            "vs": "CHEE WAI LIEW [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "[Table 1]Sam Hendle [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 1,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 6,
+                            "vs": "Harry Shallcrass [NZ]",
+                            "result": "T"
+                        }
+                    },
+                    {
+                        "name": "[Table 2]Nissa Kew [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 7,
+                            "vs": "Angus Johnson [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Lucas Hamilton-Foster [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 28,
+                            "vs": "Skye Godfrey [NZ]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Blake Lobina [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 22,
+                            "vs": "xinzhe hou [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Christopher Cheung [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": {
+                            "table": 18,
+                            "vs": "Christian Hasbani [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Jordan Palmer [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 24,
+                            "vs": "Jorge Soria [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Christopher Mathers [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": {
+                            "table": 8,
+                            "vs": "Jose de la garma [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Kenny Potter [NZ]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 15,
+                            "vs": "Lochie McKeefry [NZ]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Christian Hasbani [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 18,
+                            "vs": "Christopher Cheung [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Aiden Harrison [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 30,
+                            "vs": "Alyssa Lock [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Lochie McKeefry [NZ]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 15,
+                            "vs": "Kenny Potter [NZ]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "CHEE WAI LIEW [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 10,
+                            "vs": "James Goreing [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Daniel Ross-Brown [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 26,
+                            "vs": "Cassie Joison [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Christian Delloiaco [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 19,
+                            "vs": "Der Cherng Lee [NZ]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Will Harris [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 17,
+                            "vs": "Aaron-Lee Cole [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Takuma Tominaga [JP]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 25,
+                            "vs": "James Williams [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Alyssa Lock [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": {
+                            "table": 30,
+                            "vs": "Aiden Harrison [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Thomas Thoonen [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 9,
+                            "vs": "Xinfang Wang [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Edin Visca [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 12,
+                            "vs": "Jettano Posani [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Simon Williams [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 27,
+                            "vs": "Thomas McCawley [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Noah Lin [CN]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 29,
+                            "vs": "Anton Piccio [AU]",
+                            "result": "T"
+                        }
+                    },
+                    {
+                        "name": "Jorge Soria [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 24,
+                            "vs": "Jordan Palmer [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Skye Godfrey [NZ]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 28,
+                            "vs": "Lucas Hamilton-Foster [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Tibor Baranyay [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 11,
+                            "vs": "Manuel Jorach [AT]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "YiFei Ruan [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 14,
+                            "vs": "Haru Nishikawa [JP]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Xinfang Wang [AU]",
+                        "record": {
+                            "wins": 7,
+                            "losses": 1,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 9,
+                            "vs": "Thomas Thoonen [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Der Cherng Lee [NZ]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 19,
+                            "vs": "Christian Delloiaco [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Anton Piccio [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 29,
+                            "vs": "Noah Lin [CN]",
+                            "result": "T"
+                        }
+                    },
+                    {
+                        "name": "Max Prescott [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 13,
+                            "vs": "Jimmy Nguyen [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Ryan Tan [UK]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 0,
+                            "ties": 5
+                        },
+                        "round_data": {
+                            "table": 20,
+                            "vs": "Jake Dunstan [AU]",
+                            "result": "T"
+                        }
+                    },
+                    {
+                        "name": "Jimmy Nguyen [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 0,
+                            "ties": 4
+                        },
+                        "round_data": {
+                            "table": 13,
+                            "vs": "Max Prescott [AU]",
+                            "result": "W"
+                        }
+                    },
+                    {
+                        "name": "Stephen Iskandar [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 23,
+                            "vs": "Christian Viti [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Jake Dunstan [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 20,
+                            "vs": "Ryan Tan [UK]",
+                            "result": "T"
+                        }
+                    },
+                    {
+                        "name": "Cassie Joison [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": {
+                            "table": 26,
+                            "vs": "Daniel Ross-Brown [AU]",
+                            "result": "L"
+                        }
+                    },
+                    {
+                        "name": "Paul Ashton [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": {
+                            "table": 16,
+                            "vs": "Shaun Sewell [AU]",
+                            "result": "T"
+                        }
+                    },
+                    {
+                        "name": "Darrin Sin [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Benjamin Hall [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Gakuto Shiina [JP]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Mia Fountain [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Shang Jun Chua [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Zherui Li [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 1,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jeremy Lim [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Robbie Caldwell [AU]",
+                        "record": {
+                            "wins": 6,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Brendan Cliffe [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 1,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Bailey Craig [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Justin Teh [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Rostin Luo [NZ]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "David Frans Daritan [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Blake Davies [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "David Stevens [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hakim Moussaoui [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "James Xu [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Arnouluck Sirisay [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Louis Chi [NZ]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alfie Delgado [MX]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Saxon Wright [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "DI ZHU [CN]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kye Edmondston [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sam Hughes [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Stefan Cocks [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Henry Brand [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Manuel Cresdee [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jake Cruwys [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Callum Pinnegar [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "fayyadh salleh [SG]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Thomas Slater [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kazuo Nakamura [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Joel Suryadi [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Shane Quinn [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nick Bell [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Michael Wilson [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sineth Akmeemana [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Robert Seymour [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jeremy Evans [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ash Nassiri [NZ]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Cameron Shenoy [US]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Darcy Ryan [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Vincent Sutinah [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Stephen Todorovic [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Vincent Ma [NZ]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Courtney Fox [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nick Alvarez [US]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Johnathan Heng [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ayane Matsumoto [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Xaria-Sofia Sachse [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Keegan Burt [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ben Anderson [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Robin Sangwan [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Mitch Knuckey [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jacob McSpadden [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "charles limbrick [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Chris Currenti [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Satoya Takagi [JP]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Josh Geltch [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Vie Seminiano [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "troy fisher [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nigel Yam [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Callum Walker [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sameer Sangwan [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kevin Min [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jay Tyrrell [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "TE-AWHI TE ANGINA [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Corey O’Leary [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hao Lu [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jimmy Farrugia [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Todd Williams [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ryan Bews [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Edward Mouanoutoua [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 2,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Andrew Teoh [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Bing Jun Chan [SG]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Dylan Graefe [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Huy Nguyen [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Andi Cheung [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Rory Sharpe [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tom Bourke [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Cody Matthewe [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Anthony Tsang [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jesse Becker [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Joshua Courtney [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Scott Langford [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Lewis Gall [NZ]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kelvin Duong [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jackson Doyle [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hannah Paterson [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Samuel Gianakis [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "WaiLok Tse [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Will Ladner [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nathan Woodcock [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Noah Midgley [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kirryn Hatch [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jordan Ung [AU]",
+                        "record": {
+                            "wins": 5,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ramzey Fayad [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Louis Pozzacchio [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ida Nero [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Max Kennedy [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ehren Roebuck [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 1,
+                            "ties": 5
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Corey Munro [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "玄 王 [CN]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Raymond Wong [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hayden Matthews [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Harrison Pirotta [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Charles Li [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Andre Pollacchi [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ferdi Mak [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Aaron Woodrow [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 1,
+                            "ties": 5
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Vignesh Krishnan [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sam Clayfield [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nathan Spry [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Markus Janssen [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Samantha Turner [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jamison Bulloch [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sebastian Trisch [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sebastian Rutter [NZ]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sylas Golding [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alan Quach [NZ]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kadir Batuk [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "James Volis [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Montana Drew [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Yasuyuki Handa [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hayden Barker [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sean Takemoto [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Wern Wong [NZ]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Lily Huynh [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Yongxiang Liu [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sinan Gunaydin Okatan [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Lewis Stevens [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Marcus Raj [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Adam Crust [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Winston Chui [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jiahe Liang [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Josephine Nucifora [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Aydan Barrett [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Benjamin Kouzas [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Matthew Anderson [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tait Tran [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tan Loc Thuan Nguyen [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Luke Schmitt [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "James Faulkner [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jess Owers [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Thomas Quilliam [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Andy Truong [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Chung-Yin Johnny Chan [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "TJ Dixon [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tristan Young [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Deacan Page [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Dante Sun [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Michael Taylor [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Daniel Mielnik [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "David Boyd [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Brittany Mitchell [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "KODY TRAN [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ancel Franklin [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Corey Brown [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Rogan Gilbertson [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "thomas lackington [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ryan Burt [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Eric Sanson [NZ]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Charlie Queen [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Justin Hoy [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Scott Minnekeer [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "xingyu huang [AT]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jake Lazzari [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Fletcher Konynenburg [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Benjamin Rolfe [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "John Morris [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Gareth Murphy [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alex Wu [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sam Chen [US]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Zachary Vella [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Fangrao Feng [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Timothy Uyeda [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Raymond Chan [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jordan Stamatopoulos [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alicia Keizer [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jake Herden [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Bayley Janssen [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Joshua Martin [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Mohd Taufiq Mohd Alwi [SG]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jack underwood [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Lawrence Lam [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Khristian Embog [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Matthew Chong [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ben Sinclair [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ashton Grant [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Samuel Shepherd [NZ]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Roman Carfi [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 1,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Rhys Theodoropoulos [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Zak Hamilton [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tessa Isberg [FI]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Harry West [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Joshua Bradley [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Bradley Cannan-cole [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ashton Bradley [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Brayden S [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Roman Addamo [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "David Younan [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Zhiyuan Liang [CN]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Holly Wang [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tuan Ho [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Rory Beniuk [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tim Haffmanns [DE]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Zachary Bishop [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "jeremy blackney [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jason Slifka [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jack Eeles [AU]",
+                        "record": {
+                            "wins": 4,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Brendon Leehane [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Reginald Ng [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jack Leong [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Michael Hammond [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Yin Jiang [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Archie de Vries [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Julian Luvara [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 2,
+                            "ties": 5
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sam Hynes [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "David Edebohls [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 2,
+                            "ties": 5
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "YUTIAN SHOU [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Michael Gennaccaro [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jorja Doenau [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tom Sautelle [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jeb Collins [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Anthony Smith [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 2,
+                            "ties": 5
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ethan Stoeckert [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Dom Fleming [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nathan Johnson [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tommy Williams [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alexander Cannavo [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Huy Doan [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Shaun Coupe [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hoong Yoong Ngiam [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jacob Sparks [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alexander Jemison [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Fernando Monsalve [CL]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kayla Stockwell [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Mason Mitchell [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Julia Bridle [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Mathew masefield [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "ユキ OKA [JP]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Aaron van der Kolk [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Fabrice Rivalland [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kelvin Nguyen [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Diego Gatica [CL]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sky Mathieson [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Michael Hicks [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jason Zhe [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Paul Coletta [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "asger balle [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Calum Thatcher [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jee Ong [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Stuart Flynn [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "James Futcher [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jack Burmeister [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Benjamin Small [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "William Rue [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Christofer Gozali [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Oliver Karmel-Shann [CA]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jer-Shyan Hwa [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "James Breene [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Chloe Appleby [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "James Boynton [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Michael Jiang [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Qihan Zhang [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Denham Smith [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Su Fu [NZ]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Brandon Wilson [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Connor Tobin-Underwood [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Mike Kan [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Stefan Djordjevic [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Morgan Squire [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jim Gow [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Melinda Li [NZ]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Stella Gabler [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Isabelle Lohrey [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sammy Madafiglio [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ayumi Tamai [JP]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jack Riley [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Yuhao Xia [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "brian truong [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Matt Annable [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Christopher Ganal [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Daniel Schwan [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sam Connor [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 1,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Beau McElroy [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Justin Truong [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Scott Leung [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hadyn Joyce [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kaiden Allan [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hugh Batten [NZ]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Benjamin Woodward [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Peter Fay [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Matthew Caton [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kurt Spiteri [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Matthew Anderson [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nam Ho [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jonathan Tjahjono [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ryan Maullin [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Carmen Harris [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Calvin Prosser [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "James Grkinic [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Soon Keat Chia [MY]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Andrew Lam [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Joshua Grob [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Calum McSpadden [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Aaron Kleinhenz [US]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ellie Crouch [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ruby Culley [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alexander Roderick [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Cameron Peak [AU]",
+                        "record": {
+                            "wins": 3,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Michael Gleeson [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Riley Pattison [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tyler Adamson [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sophia Crunkhorn [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Thomas Lamprey [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tyler Bishop [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jackson Mcdonald [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Destyn Weir [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jake Holmes [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sami MacKenzie [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Bee Blackwell [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Cameron Dimond [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kerwin Lee [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jarrad Paxton [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Antonio Sanabria [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "william wang [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alex Hatzidakis [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jesse Brewer [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Lily Ly [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hugo Pearce [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Daal Jaffers [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Stanley Chaplin [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Matthew Bennett [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 1,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Edmund Khoo [SG]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Guysen Lang [NZ]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Justin Cutajar [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alvin Hall [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ben Connor [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Liam Flood [NZ]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Harley Collins [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Dylan Seery [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "David Burness [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 1,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jack Fone [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alfred Yang [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Georgia Trimble [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Joshua Crisp [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Yao Ly [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nicholas Choong [NZ]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Mark Smit [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Joshua Sparks [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kylie Flynn [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Henry Bradnam [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Adam Knoblauch [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tyler Gilbey [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Paige Chamberlain [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Marcus Dwyer [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Benjamin McMahon [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Angela Lewis [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Donna Pedder [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nathan Belcher [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "James Kostoulias [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Paul Aguilar [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Steven Hector [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Quentin Pepe [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Robin Law [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ciaran Bradley [NZ]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ashley Coulthard [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jacques Gouws [NZ]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Dillon Zhou-Sarno [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alex Crockford [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Victor Su [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "DONGXU LI [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 1,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jessica Karim [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jessamine Davis [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Chen Ching Lee [TW]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 1,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alex Gordon [NZ]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 7,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Emma Baker [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ryan Edwards [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Katelin Altieri [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Max McInnis [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Morris Arnold [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Franklyn Hudson [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Aditi Kutty [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Michael Duong [AU]",
+                        "record": {
+                            "wins": 2,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Natasha Kelly [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jordyn Demeo [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Keller Huang [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alexander Bray [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tian Li [NZ]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Connor Jackson [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kylara Paulo [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Peter Lo [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Henry Brereton [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ryan Mcculloch [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Luca Serianni [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Rui Crocitta [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Josh Ng [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Christian Makiling [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "James Neilson [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "cody thorne [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Lance Griggs [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 6,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nina Junaidi [SG]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Daniel Bush [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 6,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Chris Hughes [NZ]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 2
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jake Thomas [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Malik Hisyam Zaihan [IE]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Alistair Menzies [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Zhaolong Zhu [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Corey Matthews [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Chee How Liew [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Aura Ye [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nicholas Apostolou [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 2,
+                            "ties": 4
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Carl Orbista [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Simon Higgins [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kristopher Ryan-Clout [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sable Wang-Wills [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Damien Commadeur [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Daniel Pollard [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Christopher Fragiotta [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nick Shortt [NZ]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Peter Rennie [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 6,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Peter Colosimo [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 7,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ho Kit Chan [HK]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Brandon Lee [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Marcus Yap [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Tayla-Jane Lovett [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Peter Ghionis [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "CHENG-HSIN YANG [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Vincent Yan [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 1,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kosta Spanoudakis [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Celine Pearse [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "James Higgins [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kenneth Peake [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ethan Cooper [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 1,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Jacob Mccall [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 3,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Connor Lee Dow [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Marco Giovannini [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Harrison Hodges [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 2,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Harry Driscoll [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Samuel Williams [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Carmela Nucifora [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 6,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Darren Caboche [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 6,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Christopher Chan [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "glenn hope [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Anh Vuong Quoc Vo [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 1,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hudson Moore [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Christopher Turner [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 3,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Shaun Camilleri [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 6,
+                            "ties": 3
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Dylan van der Riet [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Stuart McKinnis [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sandra Flood [NZ]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sam Lao [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 1,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Millie Hay [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Taylor Thomas [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 3,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Toby Frost [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 5,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "SzuYun Hsiao [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 2,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Sarah McEvoy [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 4,
+                            "ties": 1
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Nathan Ng [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 1,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Shaun VanRavenstein [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 1,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Chih hao Lin [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 1,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Shanan Kan [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 1,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Aaron Matcham [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 1,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Firdaus Purba Bin Sairidi [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 1,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "George Kourouklis [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 2,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Dan Reichelt [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "declan bradley [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ben McPeake [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 2,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Kavanagh ODowd [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 2,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Andrew Egan [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "David Valderrama [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Hoi Hang Ho [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 4,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Ryan Brook [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 5,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Shaun Kerr-Talbot [AU]",
+                        "record": {
+                            "wins": 0,
+                            "losses": 7,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    },
+                    {
+                        "name": "Joshua Glen [AU]",
+                        "record": {
+                            "wins": 1,
+                            "losses": 2,
+                            "ties": 0
+                        },
+                        "round_data": []
+                    }
+                ]
+            }
+        }
+    ]
+}

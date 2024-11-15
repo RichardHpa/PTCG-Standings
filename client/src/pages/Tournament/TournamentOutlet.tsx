@@ -5,6 +5,7 @@ import { Heading } from 'components/Heading';
 import { Indicator } from 'components/Indicator';
 import { Paragraph } from 'components/Paragraph';
 import { Tabs, NavTab } from 'components/Tabs';
+import { TournamentLogo } from 'components/TournamentLogo';
 
 import { RUNNING, CHECK_IN, NOT_STARTED } from 'constants/tournamentStatus';
 
@@ -24,15 +25,7 @@ const RawTournamentOutlet = () => {
     <div className="flex flex-col gap-4">
       <div className="mb-4 flex justify-between">
         <div className="grid place-content-start gap-4 sm:grid-cols-[auto_auto]">
-          {tournament?.logo && (
-            <div className="hidden sm:block">
-              <img
-                src={tournament.logo}
-                alt={tournament.name}
-                className="h-0 min-h-full object-contain"
-              />
-            </div>
-          )}
+          <TournamentLogo tournamentName={tournament.name} />
 
           <div>
             <Link to={`/tournaments/${tournament.id}`}>

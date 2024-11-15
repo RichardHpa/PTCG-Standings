@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Indicator } from 'components/Indicator';
+import { TournamentLogo } from 'components/TournamentLogo';
 
 import { RUNNING, CHECK_IN, NOT_STARTED } from 'constants/tournamentStatus';
 
@@ -29,13 +30,8 @@ export const TournamentRow: FC<TournamentRowProps> = ({ tournament }) => {
     >
       <div className="flex justify-between gap-8 py-6">
         <div className="flex gap-4">
-          {tournament.logo && (
-            <img
-              src={tournament.logo}
-              alt={tournament.name}
-              className="h-fit w-16"
-            />
-          )}
+          <TournamentLogo tournamentName={tournament.name} />
+
           <div className="flex flex-col gap-2">
             <div className="text-base font-semibold text-gray-900 dark:text-white">
               {tournament.name}

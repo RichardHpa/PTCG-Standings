@@ -66,7 +66,11 @@ const WindowVirtualizer = <T,>({
             ref={node => virtualizer.measureElement(node)}
             onClick={() => onRowClick && onRowClick(row)}
             key={item.key}
-            className="flex cursor-pointer border-b hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700"
+            className={clsx(
+              'flex border-b dark:border-gray-700',
+              onRowClick &&
+                'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700',
+            )}
             style={{
               position: 'absolute',
               top: 0,
@@ -78,7 +82,12 @@ const WindowVirtualizer = <T,>({
             }}
           >
             {columns.map(column => (
-              <Column key={column.key} size={column.size} align={column.align}>
+              <Column
+                key={column.key}
+                size={column.size}
+                align={column.align}
+                classes={column.classes && column.classes(row)}
+              >
                 {column.render ? column.render(row) : access(column.key, row)}
               </Column>
             ))}
@@ -130,7 +139,11 @@ const ContainerVirtualizer = <T,>({
             key={virtualItem.key}
             ref={node => virtualizer.measureElement(node)}
             onClick={() => onRowClick && onRowClick(row)}
-            className="flex cursor-pointer border-b hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700"
+            className={clsx(
+              'flex border-b dark:border-gray-700',
+              onRowClick &&
+                'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700',
+            )}
             style={{
               position: 'absolute',
               top: 0,
@@ -141,7 +154,13 @@ const ContainerVirtualizer = <T,>({
             }}
           >
             {columns.map(column => (
-              <Column key={column.key} size={column.size} align={column.align}>
+              <Column
+                key={column.key}
+                size={column.size}
+                align={column.align}
+                // classes={column.columnsClasses && column.columnsClasses(row)}
+                classes="!text-red"
+              >
                 {column.render ? column.render(row) : access(column.key, row)}
               </Column>
             ))}

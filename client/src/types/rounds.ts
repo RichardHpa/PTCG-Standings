@@ -1,16 +1,17 @@
 import type { RawTournament } from './tournament';
-import type { RecordProps, Results } from './standing';
+import type { RecordProps } from './standing';
 import type { Division } from './divisions';
 
-interface SingleRoundData {
+export interface SingleRoundData {
   table: number;
   vs: string;
-  result: Results;
+  result: 'W' | 'L' | 'T' | 'BYE' | 'LATE';
 }
-export interface RoundApi {
+export interface RoundApi<T = SingleRoundData | []> {
   name: string;
   record: RecordProps;
-  round_data: SingleRoundData;
+  // for some reason if there is no round_data it is an empty array
+  round_data: T;
 }
 
 interface RoundData {
@@ -18,7 +19,7 @@ interface RoundData {
   data: {
     round: number;
     data: RoundApi[];
-  }[];
+  };
 }
 
 export interface FullRoundApiResponse {

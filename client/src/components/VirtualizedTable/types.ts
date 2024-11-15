@@ -2,9 +2,11 @@ import { ColumnProps as RawColumnProps } from './Column/types';
 
 import type { ReactNode, RefObject } from 'react';
 
-export interface ColumnProps<T> extends Omit<RawColumnProps, 'children'> {
+export interface ColumnProps<T>
+  extends Omit<RawColumnProps, 'children' | 'classes'> {
   header: string;
   render: (row: T) => JSX.Element;
+  classes?: (row: T) => string;
 }
 
 export interface VirtualizedTableProps<T> {
