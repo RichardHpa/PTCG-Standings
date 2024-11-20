@@ -1,12 +1,12 @@
 // This function is responsible for fetching the round data
 import { basePokeDataApiUrl } from '../../constants/folders.js';
 
-export const getRoundData = async ({ tournamentId, division, round }) => {
-  console.log(
-    `Request for round ${round} data for tournament ${tournamentId} and division ${division}`
-  );
+import { getHighestRound } from '../getHighestRound/index.js';
 
-  const url = `${basePokeDataApiUrl}/id/${tournamentId}/division/${division}/round/${round}`;
+export const getRoundData = async ({ tournamentId, round }) => {
+  console.log(`Request for round ${round} data for tournament ${tournamentId}`);
+
+  const url = `${basePokeDataApiUrl}/id/${tournamentId}/division/masters+seniors+juniors+juniorsseniors/round/${round}`;
   let options = {};
   options.redirect = 'follow';
   options.follow = 20;
@@ -19,11 +19,15 @@ export const getRoundData = async ({ tournamentId, division, round }) => {
       return;
     }
 
-    const checkRound = parseInt(data.tournament_data[0].data.round);
-    const parsedRound = parseInt(round);
-    if (parsedRound > checkRound) {
+    const latestRounds = data.tournament.roundNumbers;
+    const highestRound = getHighestRound(latestRounds);
+
+    console.log(round, highestRound);
+
+    if (parseInt(round) > parseInt(highestRound)) {
+      console.log('requesting a tournament that seems to be finished');
       throw new Error(
-        `Round ${round} is less than the current round ${checkRound} for tournament ${tournamentId}`
+        `Round requested is higher than the highest round for tournament ${tournamentId}`
       );
     }
 

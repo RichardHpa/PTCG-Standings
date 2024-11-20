@@ -6,5 +6,6 @@ export const createFile = async (data, location) => {
     console.log(`Data saved at ${location}`);
   } catch (err) {
     console.error(err);
+    throw new Error(`Error saving data at ${location}`);
   }
 };

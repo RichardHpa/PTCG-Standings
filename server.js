@@ -6,6 +6,8 @@ import cors from 'cors';
 import cron from 'node-cron';
 import cronstrue from 'cronstrue';
 
+// import { server } from './mocks/node.js';
+
 import 'dotenv/config';
 
 import { tournamentsFolder, roundsFolder } from './constants/folders.js';
@@ -14,6 +16,9 @@ import { createFolder } from './functions/createFolder/index.js';
 import { getTournamentsData } from './functions/getTournamentsData/index.js';
 import { getTournamentData } from './functions/getTournamentData/index.js';
 import { checkRunningTournaments } from './functions/checkRunningTournaments/index.js';
+import { getRoundData } from './functions/getRoundData/index.js';
+import { createFile } from './functions/createFile/index.js';
+import { getHighestRound } from './functions/getHighestRound/index.js';
 
 import tournamentsRoutes from './routes/api/tournaments.js';
 
@@ -53,10 +58,22 @@ const singleTournamentSchedule = cron.schedule(
     let updateTournaments = false;
     for (const tournament of tournamentsToTrack) {
       const updatedData = await getTournamentData(tournament.id);
-      if (updatedData.tournamentStatus === 'finished') {
+      const updatedTournamentStatus = updatedData.tournament.tournamentStatus;
+      if (updatedTournamentStatus === 'finished') {
         console.log(`Tournament ${tournament.id} has ended, removing from tracking`);
         updateTournaments = true;
         tournamentsToTrack = tournamentsToTrack.filter(t => t.id !== tournament.id);
+      }
+
+      if (updatedTournamentStatus === 'running') {
+        const division = 'masters';
+        const currentRound = updatedData.tournament.roundNumbers[division];
+        const tournamentId = tournament.id;
+        const roundData = await getRoundData({ tournamentId, division, round: currentRound });
+        const file = `${roundsFolder}/${tournamentId}/${division}/${currentRound}.json`;
+        await createFolder(`${roundsFolder}/${tournamentId}/${division}`);
+        await createFile(roundData, file);
+        console.log(`Round ${currentRound} data for tournament ${tournamentId} saved`);
       }
     }
 
@@ -124,11 +141,17 @@ const tournamentsSchedule = cron.schedule(
 );
 
 const initialSetup = async () => {
+  // server.listen();
   console.log('Initial Setup');
+  // create the folders if they don't exist
   await createFolder(tournamentsFolder);
   await createFolder(roundsFolder);
+
+  // get the tournaments data
   const tournamentsData = await getTournamentsData();
+  // check for running tournaments
   const runningTournamentsData = await checkRunningTournaments(tournamentsData);
+  // set the tournaments to track
   tournamentsToTrack = [...runningTournamentsData];
 
   // log the id of the running tournaments
@@ -139,6 +162,17 @@ const initialSetup = async () => {
 
   for (const tournament of tournamentsToTrack) {
     await getTournamentData(tournament.id);
+    if (tournament.tournamentStatus === 'running') {
+      const rounds = tournament.roundNumbers;
+
+      const highestRound = getHighestRound(rounds);
+      const tournamentId = tournament.id;
+      const roundData = await getRoundData({ tournamentId, round: highestRound });
+      const file = `${roundsFolder}/${tournamentId}/${highestRound}.json`;
+      await createFolder(`${roundsFolder}/${tournamentId}`);
+      await createFile(roundData, file);
+      console.log(`Round ${highestRound} data for tournament ${tournamentId} saved`);
+    }
   }
 
   if (process.argv.includes('--scheduler')) {
@@ -154,9 +188,7 @@ const initialSetup = async () => {
 
 initialSetup().then(() => {
   app.listen(port, () => {
-    console.log(`Server started at ${format(new Date(), 'Pp')}`);
     console.log(`Listening on PORT: ${port}`);
-
     if (process.env.NODE_ENV === 'development') {
       console.log(`Open http://localhost:${port} to see the app`);
     }
