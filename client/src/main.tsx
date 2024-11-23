@@ -1,6 +1,10 @@
 import { StrictMode, lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { worker } from 'mocks/browser';
 
@@ -15,7 +19,7 @@ import { Home } from 'pages/Home';
 import { About } from 'pages/About';
 import { Tournaments } from 'pages/Tournaments';
 import {
-  Tournament,
+  // Tournament,
   tournamentLoader,
   TournamentOutlet,
 } from 'pages/Tournament';
@@ -72,7 +76,8 @@ const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <Tournament />,
+                // element: <Tournament />,
+                element: <Navigate to="standings" replace />,
               },
               {
                 path: 'streams',

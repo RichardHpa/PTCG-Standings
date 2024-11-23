@@ -51,6 +51,7 @@ export const Input: FC<InputProps> = ({
           required={required}
           onChange={onChange}
           value={value}
+          autoComplete="off"
         />
       </div>
     </div>

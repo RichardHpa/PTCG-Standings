@@ -18,4 +18,5 @@ export interface VirtualizedTableProps<T> {
   containerRef: RefObject<HTMLElement>;
   onRowClick?: (row: T) => void;
   scrollToIndex?: number;
+  estimateSize: number;
 }

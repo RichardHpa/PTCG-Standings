@@ -9,6 +9,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js -- --scheduler",
+    "dev:start": "node server.js",
     "dev:server": "nodemon server.js",
     "dev:frontend": "cd client && npm run dev",
     "dev:frontend:build": "cd client && npm run build:dev",
@@ -17,7 +18,8 @@
     "install-client": "cd client && npm install",
     "lint:server": "eslint . --ignore-pattern client/",
     "prepare": "husky",
-    "test:server": "vitest --config ./vitest.config.js"
+    "test:server": "vitest --config ./vitest.config.js",
+    "tournament:pull": "node dev.js"
   },
   "scriptsComments": {
     "start": "Runs the server with the schedulers, Client must be built first. This is also the main script that will be used in production",
@@ -29,7 +31,8 @@
     "install-client": "Installs the client dependencies. This is mainly for Heroku to install the client dependencies after the server has been built",
     "lint:server": "Lints the server code. This ignores the client folder",
     "prepare": "Installs husky hooks",
-    "test:server": "Runs the server tests"
+    "test:server": "Runs the server tests",
+    "tournament:pull": "Pulls all the tournament data from the pokemon api. This is mainly for development purposes"
   },
   "keywords": [
     "Pokemon",

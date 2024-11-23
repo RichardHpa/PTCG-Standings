@@ -20,7 +20,12 @@ const access: Accessor = (path, object) => {
 
 type VirtualizerProps<T> = Pick<
   VirtualizedTableProps<T>,
-  'data' | 'columns' | 'containerRef' | 'onRowClick' | 'scrollToIndex'
+  | 'data'
+  | 'columns'
+  | 'containerRef'
+  | 'onRowClick'
+  | 'scrollToIndex'
+  | 'estimateSize'
 >;
 
 const WindowVirtualizer = <T,>({
@@ -29,10 +34,11 @@ const WindowVirtualizer = <T,>({
   containerRef,
   onRowClick,
   scrollToIndex,
+  estimateSize,
 }: VirtualizerProps<T>) => {
   const virtualizer = useWindowVirtualizer({
     count: data.length,
-    estimateSize: () => 48.5,
+    estimateSize: () => estimateSize,
     overscan: 5,
     scrollMargin: containerRef.current?.offsetTop ?? 0,
     measureElement:
@@ -104,11 +110,12 @@ const ContainerVirtualizer = <T,>({
   containerRef,
   onRowClick,
   scrollToIndex,
+  estimateSize,
 }: VirtualizerProps<T>) => {
   const virtualizer = useVirtualizer({
     count: data.length,
     getScrollElement: () => containerRef.current,
-    estimateSize: () => 48.5,
+    estimateSize: () => estimateSize,
     measureElement:
       typeof window !== 'undefined' &&
       navigator.userAgent.indexOf('Firefox') === -1
@@ -180,6 +187,7 @@ export const VirtualizedTable = <T,>({
   containerRef,
   onRowClick,
   scrollToIndex,
+  estimateSize,
 }: VirtualizedTableProps<T>) => {
   return (
     <div>
@@ -214,6 +222,7 @@ export const VirtualizedTable = <T,>({
               columns={columns}
               onRowClick={onRowClick}
               containerRef={containerRef}
+              estimateSize={estimateSize}
             />
           ) : (
             <ContainerVirtualizer<T>
@@ -222,6 +231,7 @@ export const VirtualizedTable = <T,>({
               onRowClick={onRowClick}
               containerRef={containerRef}
               scrollToIndex={scrollToIndex}
+              estimateSize={estimateSize}
             />
           )}
         </>

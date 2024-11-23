@@ -1,1 +1,0 @@
-export { TournamentRow } from './TournamentRow';

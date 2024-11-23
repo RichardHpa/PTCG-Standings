@@ -15,6 +15,16 @@ interface LocalTournamentsMap {
 }
 
 export const tournamentsMap: LocalTournamentsMap = {
+  '0000140': {
+    name: 'Sacramento Pokémon TCG Regional Championship 2025',
+    logo: RegionalLogo2024,
+    streams: {
+      day1: 'https://www.youtube.com/live/Mju3aEWWFT4?si=dWu7XdZe8itR9S52',
+    },
+    deckAnalysis: {
+      day1: 'sacramento2025Day1.png',
+    },
+  },
   '0000134': {
     name: 'Lille Pokémon TCG Regional Championship 2025',
     logo: RegionalLogo2024,

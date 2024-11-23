@@ -91,12 +91,12 @@ const RawTournamentOutlet = () => {
         <>
           <div>
             <Tabs>
-              {tournament.tournamentStatus === RUNNING && (
+              {/* {tournament.tournamentStatus === RUNNING && (
                 <NavTab to="live">Current Pairings</NavTab>
-              )}
-              <NavTab to="top_cut">Top cut</NavTab>
+              )} */}
+              {/* <NavTab to="top_cut">Top cut</NavTab> */}
               <NavTab to="standings">Standings</NavTab>
-              <NavTab to="rounds">Rounds</NavTab>
+              {/* <NavTab to="rounds">Rounds</NavTab> */}
               <NavTab to="stats">Stats</NavTab>
               {tournament.streams && <NavTab to="streams">Streams</NavTab>}
             </Tabs>

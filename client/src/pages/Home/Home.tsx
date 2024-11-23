@@ -7,7 +7,7 @@ import { useGetTournaments } from 'queries/useGetTournaments';
 import { RUNNING, NOT_STARTED, CHECK_IN } from 'constants/tournamentStatus';
 
 export const Home = () => {
-  const { isLoading, data, isError } = useGetTournaments({
+  const { isPending, data, isError } = useGetTournaments({
     select: data => {
       const tournaments = data.tcg.data;
 
@@ -43,7 +43,7 @@ export const Home = () => {
     return <p>There was an error fetching the tournaments</p>;
   }
 
-  if (isLoading || !data) {
+  if (isPending) {
     return (
       <div className="flex flex-col items-center justify-center">
         <LoadingPokeball size="100" alt="Loading tournament info...</p>" />
@@ -52,7 +52,7 @@ export const Home = () => {
   }
 
   return (
-    <div className="flex flex-grow flex-col gap-4">
+    <div className="flex flex-grow flex-col gap-8">
       <Heading level="3">
         Keep up to date with the latest Pokemon TCG tournaments
       </Heading>

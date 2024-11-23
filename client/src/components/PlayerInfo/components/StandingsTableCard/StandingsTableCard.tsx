@@ -74,6 +74,7 @@ export const StandingsTableCard = ({
             header="none"
             onRowClick={handleOnRowClick}
             scrollToIndex={playerIndex}
+            estimateSize={50}
           />
         </div>
       </div>

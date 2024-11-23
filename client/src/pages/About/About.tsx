@@ -22,7 +22,11 @@ const OlList = ({ children }: { children: ReactNode }) => (
 );
 
 const HR = () => (
-  <hr className="my-8 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+  <hr className="my-2 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+);
+
+const Wrapper = ({ children }: { children: ReactNode }) => (
+  <div className="flex flex-col gap-4">{children}</div>
 );
 
 export const About = () => {
@@ -44,6 +48,7 @@ export const About = () => {
     <div>
       <Markdown
         options={{
+          wrapper: Wrapper,
           overrides: {
             h1: {
               component: Heading,

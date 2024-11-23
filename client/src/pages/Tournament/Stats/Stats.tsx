@@ -4,23 +4,14 @@ import { Notice } from 'components/Notice';
 import { Link } from 'components/Link';
 import { Card } from 'components/Card';
 
+import { breakCamelCase } from 'utils/breakCamelCase';
+
 import { useTournamentContext } from 'providers/TournamentProvider';
 
 import type { TournamentDeckAnalysis } from 'types/tournament';
 
-const breakCamelCase = (camelCase: string) => {
-  // break the camelCase into words and then uppercase the first letter of the sentence
-  const words = camelCase.match(/([A-Z]?[^A-Z]*)/g) || [];
-  return words
-    .map(word => {
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    })
-    .join(' ');
-};
-
 export const Stats = () => {
-  const { tournament, divisions } = useTournamentContext();
-  console.log(divisions);
+  const { tournament } = useTournamentContext();
   if (!tournament.deckAnalysis) {
     return (
       <Notice>

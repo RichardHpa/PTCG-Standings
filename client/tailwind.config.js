@@ -1,4 +1,5 @@
 const colors = require('tailwindcss/colors');
+const forms = require('@tailwindcss/forms');
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -24,5 +25,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [forms],
 };

@@ -8,7 +8,6 @@ import { Archetypes } from 'components/Archetypes';
 import { Input } from 'components/Forms/Input';
 import { Card } from 'components/Card';
 import { PinPlayerButton } from 'components/PinPlayer/PinPlayerButton';
-
 import { VirtualizedTable } from 'components/VirtualizedTable';
 
 import { formatPlayerName } from 'helpers/formatPlayerName';
@@ -22,7 +21,6 @@ import { useTournamentContext } from 'providers/TournamentProvider';
 import type { ChangeEvent } from 'react';
 import type { Division } from 'types/divisions';
 import type { Standing } from 'types/standing';
-
 import type { ColumnProps } from 'components/VirtualizedTable/types';
 
 const formatToPercentage = (value: number) => {
@@ -166,6 +164,7 @@ export const Standings = () => {
             columns={columns}
             containerRef={listRef}
             onRowClick={handleRowClick}
+            estimateSize={48.5}
             noDataMessage={
               <>
                 No players found with the name <strong>{searchQuery}</strong>

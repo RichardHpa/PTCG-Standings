@@ -8,12 +8,9 @@ import { Paragraph } from 'components/Paragraph';
 import { Card } from 'components/Card';
 import { Link } from 'components/Link';
 
-import type { StreamsMap } from 'types/tournament';
+import { breakCamelCase } from 'utils/breakCamelCase';
 
-const formatDay = (day: string) => {
-  const dayNumber = day.match(/\d+/)?.[0] || '';
-  return `Day ${dayNumber}`;
-};
+import type { StreamsMap } from 'types/tournament';
 
 export const Streams = () => {
   const { tournament } = useTournamentContext();
@@ -31,7 +28,7 @@ export const Streams = () => {
           const streamUrl = tournament?.streams?.[day];
           if (!streamUrl) return null; // If the URL is not available, return null
           return (
-            <Card key={index} title={formatDay(day)}>
+            <Card key={index} title={breakCamelCase(day)}>
               <div className="youtube-container">
                 <ReactPlayer
                   className="yt-video"
