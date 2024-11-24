@@ -10,6 +10,7 @@ import { Card } from 'components/Card';
 import { RoundsTable } from 'components/RoundsTable';
 
 import { StandingsTableCard } from './components/StandingsTableCard';
+import { SimilarPointsCard } from './components/SimilarPointsCard';
 
 import { formatRecord } from 'helpers/formatRecord';
 import { calculatePoints } from 'helpers/calculatePoints';
@@ -21,11 +22,7 @@ const formatToPercentage = (value: number) => {
   return `${(value * 100).toFixed(2)}%`;
 };
 
-export const PlayerInfo: FC<PlayerInfoProps> = ({
-  player,
-  division,
-  // playerIndex,
-}) => {
+export const PlayerInfo: FC<PlayerInfoProps> = ({ player, division }) => {
   const navigate = useNavigate();
 
   const handleViewDecklist = useCallback(() => {
@@ -100,7 +97,11 @@ export const PlayerInfo: FC<PlayerInfoProps> = ({
           <RoundsTable player={player} division={division} />
         </Card>
 
-        <Card title="Players with same points">Points</Card>
+        <SimilarPointsCard
+          player={player}
+          division={division}
+          playerIndex={player.placing - 1}
+        />
 
         <div className="col-span-1 h-screen min-h-screen sm:col-span-2 sm:min-h-[600px] md:h-auto lg:col-span-1">
           <StandingsTableCard

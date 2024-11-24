@@ -1,0 +1,1 @@
+export { SimilarPointsCard } from './SimilarPointsCard';
