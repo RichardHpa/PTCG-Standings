@@ -147,6 +147,7 @@ export const Rounds = () => {
             columns={columns}
             containerRef={listRef}
             header="none"
+            estimateSize={48.5}
           />
         </div>
       )}

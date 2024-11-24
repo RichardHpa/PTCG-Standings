@@ -143,6 +143,7 @@ const ContainerVirtualizer = <T,>({
         const row = data[virtualItem.index];
         return (
           <div
+            data-index={virtualItem.index}
             key={virtualItem.key}
             ref={node => virtualizer.measureElement(node)}
             onClick={() => onRowClick && onRowClick(row)}
@@ -156,7 +157,7 @@ const ContainerVirtualizer = <T,>({
               top: 0,
               left: 0,
               width: '100%',
-              height: `${virtualItem.size}px`,
+              // height: `${virtualItem.size}px`,
               transform: `translateY(${virtualItem.start}px)`,
             }}
           >

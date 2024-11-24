@@ -76,8 +76,8 @@ export const TournamentsCard: FC<TournamentsCardProps> = ({
   );
 
   return (
-    <Card title={title} growHeight>
-      <div ref={listRef}>
+    <div ref={listRef}>
+      <Card title={title} growHeight>
         <VirtualizedTable
           header="none"
           data={tournaments}
@@ -86,7 +86,7 @@ export const TournamentsCard: FC<TournamentsCardProps> = ({
           estimateSize={130}
           onRowClick={handleRowClick}
         />
-      </div>
-    </Card>
+      </Card>
+    </div>
   );
 };
