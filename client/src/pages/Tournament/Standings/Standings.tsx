@@ -97,7 +97,10 @@ export const Standings = () => {
   }, [division, divisions]);
 
   const standings = useMemo(() => {
-    const divisionData = divisions.find(d => d.division === division)!;
+    const divisionData = divisions.find(d => d.division === division);
+    if (!divisionData) {
+      throw new Error(`Division data for ${division} was not found`);
+    }
     setSearchData(divisionData.data);
     return divisionData.data;
   }, [division, divisions]);

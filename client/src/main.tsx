@@ -25,7 +25,7 @@ import {
 } from 'pages/Tournament';
 import { Streams } from 'pages/Tournament/Streams';
 import { Stats } from 'pages/Tournament/Stats';
-import { Standings } from 'pages/Tournament/Standings';
+import { Standings, StandingsError } from 'pages/Tournament/Standings';
 import { Rounds } from 'pages/Tournament/Rounds';
 import { Parings } from 'pages/Tournament/Parings';
 import { TopCut } from 'pages/Tournament/TopCut';
@@ -73,6 +73,7 @@ const router = createBrowserRouter([
             path: ':tournamentId',
             element: <TournamentOutlet />,
             loader: tournamentLoader,
+
             children: [
               {
                 index: true,
@@ -104,6 +105,7 @@ const router = createBrowserRouter([
               },
               {
                 path: 'standings',
+                errorElement: <StandingsError />,
                 element: <DivisionOutlet />,
                 children: [
                   {

@@ -79,14 +79,12 @@ const RawTournamentOutlet = () => {
           information.
         </Paragraph>
       )}
-
       {tournament.tournamentStatus === NOT_STARTED && (
         <Paragraph>
           Tournament has not started yet. Once the tournament starts, we will be
           able to show the standings, pairings, and other information.
         </Paragraph>
       )}
-
       {!notStartedTournamentStatus.includes(tournament.tournamentStatus) && (
         <>
           <div>
