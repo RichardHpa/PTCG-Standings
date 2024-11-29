@@ -1,1 +1,1 @@
-export { formatPlayerName } from './formatPlayerName';
+export { formatPlayerName, getCountryCode } from './formatPlayerName';

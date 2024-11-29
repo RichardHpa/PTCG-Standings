@@ -9,12 +9,14 @@ import { Input } from 'components/Forms/Input';
 import { Card } from 'components/Card';
 import { PinPlayerButton } from 'components/PinPlayer/PinPlayerButton';
 import { VirtualizedTable } from 'components/VirtualizedTable';
+import { Select } from 'components/Forms/Select';
 
-import { formatPlayerName } from 'helpers/formatPlayerName';
+import { formatPlayerName, getCountryCode } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
 import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 import { calculatePoints } from 'helpers/calculatePoints';
 import { hasDecklist } from 'helpers/hasDecklist';
+import { getCountryFromCode } from 'helpers/getCountryFromCode';
 
 import { useTournamentContext } from 'providers/TournamentProvider';
 
@@ -27,13 +29,15 @@ const formatToPercentage = (value: number) => {
   return `${(value * 100).toFixed(2)}%`;
 };
 
+const firstOption = { value: 'all', label: 'All countries' };
+
 export const Standings = () => {
   const navigate = useNavigate();
   const { division = 'masters' } = useParams() as { division: Division };
   const { divisions, tournament } = useTournamentContext();
-  const [searchData, setSearchData] = useState<Standing[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const listRef = useRef<HTMLDivElement | null>(null);
+  const [selectedCountry, setSelectedCountry] = useState(firstOption.value);
 
   const columns: ColumnProps<Standing>[] = useMemo(() => {
     return [
@@ -101,38 +105,31 @@ export const Standings = () => {
     if (!divisionData) {
       throw new Error(`Division data for ${division} was not found`);
     }
-    setSearchData(divisionData.data);
     return divisionData.data;
   }, [division, divisions]);
 
-  const handleSearch = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const query = e.target.value;
-      setSearchQuery(query);
-      if (!query) {
-        setSearchData(standings);
-        return;
+  const countryOptions = useMemo(() => {
+    const countries = new Set<string>();
+    standings.forEach(player => {
+      const countryCode = getCountryCode(player.name);
+      if (countryCode) {
+        countries.add(countryCode);
       }
-      const fuse = new Fuse(standings, {
-        shouldSort: true,
-        threshold: 0.1,
-        location: 0,
-        distance: 100,
-        keys: ['name'],
+    });
+    const options = [firstOption];
+    countries.forEach(country => {
+      options.push({
+        label: getCountryFromCode(country.toUpperCase()),
+        value: country,
       });
-      const result = fuse.search(query);
-      const finalResult: Standing[] = [];
-      if (result.length) {
-        result.forEach(item => {
-          finalResult.push(item.item);
-        });
-        setSearchData(finalResult);
-      } else {
-        setSearchData([]);
-      }
-    },
-    [standings],
-  );
+    });
+    return options;
+  }, [standings]);
+
+  const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+  }, []);
 
   const handleRowClick = useCallback(
     (player: Standing) => {
@@ -143,12 +140,54 @@ export const Standings = () => {
     [division, navigate, tournament.id],
   );
 
+  const filteredTournaments = useMemo(() => {
+    if (!searchQuery && selectedCountry === firstOption.value) return standings;
+
+    const filteredByType =
+      selectedCountry === firstOption.value
+        ? standings
+        : standings.filter(player =>
+            player.name.includes(`[${selectedCountry}]`),
+          );
+
+    if (!searchQuery) return filteredByType;
+
+    const fuse = new Fuse(filteredByType, {
+      shouldSort: true,
+      threshold: 0.1,
+      location: 0,
+      distance: 100,
+      keys: ['name'],
+      isCaseSensitive: false,
+    });
+
+    const result = fuse.search(searchQuery);
+    const finalResult: Standing[] = [];
+    if (result.length) {
+      result.forEach(item => {
+        finalResult.push(item.item);
+      });
+      return finalResult;
+    }
+
+    return [];
+  }, [searchQuery, selectedCountry, standings]);
+
+  const handleOnCountryChange = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      e.target.blur();
+      const value = e.target.value;
+      setSelectedCountry(value);
+    },
+    [],
+  );
+
   return (
     <div className="flex flex-col gap-4">
       <section className="bg-gray-50 dark:bg-gray-900" ref={listRef}>
         <Card>
-          <div className="flex flex-col items-center justify-between space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
-            <div className="w-full md:w-1/2">
+          <div className="flex flex-col items-center space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
+            <div className="w-full md:w-1/3">
               <Input
                 name="search"
                 label="Search players"
@@ -159,20 +198,26 @@ export const Standings = () => {
                 value={searchQuery}
               />
             </div>
+            <div className="w-full md:w-1/4">
+              <Select
+                name="country"
+                label="Country"
+                hideLabel
+                options={countryOptions}
+                onChange={handleOnCountryChange}
+                value={selectedCountry}
+              />
+            </div>
           </div>
 
           <VirtualizedTable<Standing>
             type="window"
-            data={searchData}
+            data={filteredTournaments}
             columns={columns}
             containerRef={listRef}
             onRowClick={handleRowClick}
             estimateSize={48.5}
-            noDataMessage={
-              <>
-                No players found with the name <strong>{searchQuery}</strong>
-              </>
-            }
+            noDataMessage={<>No players found that match this criteria</>}
           />
         </Card>
       </section>
