@@ -4,6 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   Navigate,
+  Outlet,
 } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { worker } from 'mocks/browser';
@@ -35,6 +36,7 @@ import {
   playerLoader,
   PlayerOutlet,
 } from 'pages/Tournament/Division/Player';
+import { Worlds2024, Worlds2024Outlet } from 'pages/Worlds/Worlds2024';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -61,6 +63,17 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <About />,
+      },
+      {
+        path: 'worlds',
+        element: <Outlet />,
+        children: [
+          {
+            path: '2024',
+            element: <Worlds2024Outlet />,
+            children: [{ index: true, element: <Worlds2024 /> }],
+          },
+        ],
       },
       {
         path: 'tournaments',

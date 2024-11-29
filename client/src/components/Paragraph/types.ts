@@ -5,4 +5,5 @@ export interface ParagraphProps {
   size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | 'xxl';
   weight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
   color?: 'white' | 'default';
+  align?: 'left' | 'center' | 'right';
 }

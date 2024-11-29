@@ -103,7 +103,9 @@ export const Navbar = () => {
                 </NavLink>
               </li>
               <li className="order-4 lg:order-1">
-                <Button color="secondary">Worlds 2024</Button>
+                <Link to="worlds/2024">
+                  <Button color="secondary">Worlds 2024</Button>
+                </Link>
               </li>
               <li className="order-2 lg:order-2">
                 <NavLink to="about" onClick={onNavItemClick}>

@@ -8,6 +8,7 @@ import {
 } from './fixtures/standings';
 import duplicatePlayerNamesTournament from 'mocks/fixtures/specialTournaments/duplicatePlayerNames.json';
 import juniorsSeniorsTournament from 'mocks/fixtures/specialTournaments/juniorsSeniors.json';
+import worlds2024 from 'mocks/fixtures/specialTournaments/worlds2024.json';
 
 // NOTE: there must be a better way to to this but for some reason dynamic imports are not working
 import round1 from 'mocks/fixtures/rounds/0000109/masters/1.json';
@@ -59,6 +60,11 @@ export const handlers = [
     // This is a special case for the tournament with a combined juniors and seniors divisions so we have a full json object to test against
     if (tournamentId === '0000082') {
       return HttpResponse.json(juniorsSeniorsTournament);
+    }
+
+    // This is a special case for the 2024 World Championships so we have a full json object to test against
+    if (tournamentId === '0000128') {
+      return HttpResponse.json(worlds2024);
     }
 
     const foundTournament = tournaments.tcg.data.find(

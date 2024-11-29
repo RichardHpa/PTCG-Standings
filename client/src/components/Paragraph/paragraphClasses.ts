@@ -21,4 +21,9 @@ export const paragraphClasses = {
     white: tw``,
     default: tw`text-gray-500 dark:text-gray-400`,
   },
+  align: {
+    left: tw`text-left`,
+    center: tw`text-center`,
+    right: tw`text-right`,
+  },
 };

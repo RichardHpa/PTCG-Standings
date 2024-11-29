@@ -10,6 +10,7 @@ export const Paragraph: FC<ParagraphProps> = ({
   size = 'base',
   weight = 'normal',
   color = 'default',
+  align = 'left',
 }) => {
   return (
     <p
@@ -18,6 +19,7 @@ export const Paragraph: FC<ParagraphProps> = ({
         paragraphClasses.size[size],
         paragraphClasses.weight[weight],
         paragraphClasses.color[color],
+        paragraphClasses.align[align],
       )}
     >
       {children}
