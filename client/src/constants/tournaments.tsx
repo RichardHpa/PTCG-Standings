@@ -5,7 +5,7 @@ import ChallengeLogo from 'images/eventLogos/tcgChallenge.png';
 import PlayPokemonLogo from 'images/eventLogos/playPokemon.png';
 import RegionalLogo2024 from 'images/eventLogos/tcgRegionals2024.png';
 import WorldsLogo from 'images/eventLogos/tcgWorlds.png';
-import Worlds2024Logo from 'images/eventLogos/wc24-key-art-2x.webp';
+import Worlds2024Logo from 'images/eventLogos/tcgWorlds2024.webp';
 import Worlds2023Logo from 'images/eventLogos/tcgWorlds2023.png';
 
 import type { LocalTournamentData } from 'types/tournament';

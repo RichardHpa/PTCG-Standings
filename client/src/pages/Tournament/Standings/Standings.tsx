@@ -9,7 +9,7 @@ import { Input } from 'components/Forms/Input';
 import { Card } from 'components/Card';
 import { PinPlayerButton } from 'components/PinPlayer/PinPlayerButton';
 import { VirtualizedTable } from 'components/VirtualizedTable';
-import { Select } from 'components/Forms/Select';
+import { StyledSelect } from 'components/Forms/Select';
 
 import { formatPlayerName, getCountryCode } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
@@ -17,6 +17,7 @@ import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 import { calculatePoints } from 'helpers/calculatePoints';
 import { hasDecklist } from 'helpers/hasDecklist';
 import { getCountryFromCode } from 'helpers/getCountryFromCode';
+import { getCountryFlag } from 'helpers/getCountryFlag';
 
 import { useTournamentContext } from 'providers/TournamentProvider';
 
@@ -24,12 +25,17 @@ import type { ChangeEvent } from 'react';
 import type { Division } from 'types/divisions';
 import type { Standing } from 'types/standing';
 import type { ColumnProps } from 'components/VirtualizedTable/types';
+import type { StyledOptionProps } from 'components/Forms/Select/types';
 
 const formatToPercentage = (value: number) => {
   return `${(value * 100).toFixed(2)}%`;
 };
 
-const firstOption = { value: 'all', label: 'All countries' };
+const firstOption: StyledOptionProps = {
+  value: 'all',
+  label: 'All countries',
+  render: <>All countries</>,
+};
 
 export const Standings = () => {
   const navigate = useNavigate();
@@ -98,6 +104,7 @@ export const Standings = () => {
 
   useEffect(() => {
     setSearchQuery('');
+    setSelectedCountry(firstOption.value);
   }, [division, divisions]);
 
   const standings = useMemo(() => {
@@ -108,7 +115,7 @@ export const Standings = () => {
     return divisionData.data;
   }, [division, divisions]);
 
-  const countryOptions = useMemo(() => {
+  const styledOptions: StyledOptionProps[] = useMemo(() => {
     const countries = new Set<string>();
     standings.forEach(player => {
       const countryCode = getCountryCode(player.name);
@@ -116,11 +123,19 @@ export const Standings = () => {
         countries.add(countryCode);
       }
     });
-    const options = [firstOption];
+    const options: StyledOptionProps[] = [firstOption];
     countries.forEach(country => {
       options.push({
         label: getCountryFromCode(country.toUpperCase()),
         value: country,
+        render: (
+          <>
+            <div className="flex items-center gap-2">
+              <span>{getCountryFlag(country.toUpperCase())}</span>
+              <span>{getCountryFromCode(country.toUpperCase())}</span>
+            </div>
+          </>
+        ),
       });
     });
     return options;
@@ -173,14 +188,10 @@ export const Standings = () => {
     return [];
   }, [searchQuery, selectedCountry, standings]);
 
-  const handleOnCountryChange = useCallback(
-    (e: ChangeEvent<HTMLSelectElement>) => {
-      e.target.blur();
-      const value = e.target.value;
-      setSelectedCountry(value);
-    },
-    [],
-  );
+  const handleOnStyledCountryChange = useCallback((e: StyledOptionProps) => {
+    const value = e.value;
+    setSelectedCountry(value);
+  }, []);
 
   return (
     <div className="flex flex-col gap-4">
@@ -199,12 +210,12 @@ export const Standings = () => {
               />
             </div>
             <div className="w-full md:w-1/4">
-              <Select
+              <StyledSelect
                 name="country"
                 label="Country"
                 hideLabel
-                options={countryOptions}
-                onChange={handleOnCountryChange}
+                options={styledOptions}
+                onChange={handleOnStyledCountryChange}
                 value={selectedCountry}
               />
             </div>

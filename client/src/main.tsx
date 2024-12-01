@@ -36,7 +36,10 @@ import {
   playerLoader,
   PlayerOutlet,
 } from 'pages/Tournament/Division/Player';
-import { Worlds2024, Worlds2024Outlet } from 'pages/Worlds/Worlds2024';
+import {
+  // Worlds2024,
+  Worlds2024Outlet,
+} from 'pages/Worlds/Worlds2024';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -71,7 +74,30 @@ const router = createBrowserRouter([
           {
             path: '2024',
             element: <Worlds2024Outlet />,
-            children: [{ index: true, element: <Worlds2024 /> }],
+            children: [
+              {
+                index: true,
+                element: <Navigate to="standings" replace />,
+              },
+              {
+                path: 'standings',
+                element: <DivisionOutlet />,
+                children: [
+                  {
+                    index: true,
+                    element: <Standings />,
+                  },
+                  {
+                    path: ':division',
+                    element: <Standings />,
+                  },
+                ],
+              },
+              {
+                path: 'qualified',
+                element: <div>Qualified</div>,
+              },
+            ],
           },
         ],
       },
