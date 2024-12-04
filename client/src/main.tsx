@@ -39,6 +39,7 @@ import {
 import {
   // Worlds2024,
   Worlds2024Outlet,
+  Qualified,
 } from 'pages/Worlds/Worlds2024';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
@@ -95,7 +96,7 @@ const router = createBrowserRouter([
               },
               {
                 path: 'qualified',
-                element: <div>Qualified</div>,
+                element: <Qualified />,
               },
             ],
           },

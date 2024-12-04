@@ -18,8 +18,10 @@ export const FallbackError = () => {
               404
             </Heading>
             <div className="flex flex-col gap-2">
-              <Paragraph size="xxl">Something's missing.</Paragraph>
-              <Paragraph size="lg">
+              <Paragraph size="xxl" align="center">
+                Something's missing.
+              </Paragraph>
+              <Paragraph size="lg" align="center">
                 {
                   errorMessages[
                     Math.floor(Math.random() * errorMessages.length)

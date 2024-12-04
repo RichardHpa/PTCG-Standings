@@ -4,7 +4,6 @@ import { archetypes } from 'constants/archetypes';
 
 import type { ArchetypesProps } from './types';
 import type { DeckList } from 'types/standing';
-import type { CoreCard } from 'constants/archetypes';
 import type { FC } from 'react';
 
 const getArchetypes = (decklist: DeckList) => {
@@ -17,25 +16,18 @@ const getArchetypes = (decklist: DeckList) => {
   if (!archetype) {
     return [
       {
-        card: null,
         pokemon: 'Unknown',
-        image: 'substitute.png',
+        sprite: 'substitute.png',
       },
     ];
   }
 
-  return archetype[1].coreCards.map((card: CoreCard) => {
-    return {
-      pokemon: card.pokemon,
-      card: card.card,
-      image: card.sprite,
-    };
-  });
+  return archetype[1].sprites;
 };
 
 interface ImageProp {
   pokemon: string;
-  image?: string;
+  sprite: string;
 }
 
 const PokemonSprite = ({
@@ -52,7 +44,7 @@ const PokemonSprite = ({
         'h-full w-8': size === 'small',
         'h-full w-12': size === 'large',
       })}
-      src={`/sprites/pokemon/${image.image}`}
+      src={`/sprites/pokemon/${image.sprite}`}
       alt={image.pokemon}
     />
   );
@@ -68,9 +60,9 @@ export const Archetypes: FC<ArchetypesProps> = ({
 
   return (
     <div className="flex" onClick={onClick}>
-      {sprites.map((sprite, index) => (
-        <PokemonSprite key={index} image={sprite} size={size} />
-      ))}
+      {sprites.map((sprite, index) => {
+        return <PokemonSprite key={index} image={sprite} size={size} />;
+      })}
     </div>
   );
 };
