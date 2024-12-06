@@ -1,10 +1,21 @@
+import { useMemo } from 'react';
+
 import { usePlayerContext } from 'providers/PlayerProvider';
 
 import { PlayerInfo } from 'components/PlayerInfo';
 import { Notice } from 'components/Notice';
 
+import { Accordion } from 'components/Accordion';
+
 export const Player = () => {
   const { players, division } = usePlayerContext();
+
+  const items = useMemo(() => {
+    return players.map(player => ({
+      title: `${player.name} - currently at ${player.placing} place`,
+      content: <PlayerInfo player={player} division={division} />,
+    }));
+  }, [division, players]);
 
   if (players.length === 0) {
     return <div>Player not found</div>;
@@ -21,9 +32,8 @@ export const Player = () => {
           this. Hopefully they will add something in the future but for now we
           have to live with it.
         </Notice>
-        {players.map(player => (
-          <PlayerInfo key={player.name} player={player} division={division} />
-        ))}
+
+        <Accordion items={items} />
       </div>
     );
   }
