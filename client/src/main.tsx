@@ -35,6 +35,7 @@ import {
   Player,
   playerLoader,
   PlayerOutlet,
+  Decklist,
 } from 'pages/Tournament/Division/Player';
 import {
   // Worlds2024,
@@ -201,7 +202,7 @@ const router = createBrowserRouter([
                   },
                   {
                     path: 'decklist',
-                    element: <div>Decklist</div>,
+                    element: <Decklist />,
                   },
                 ],
               },

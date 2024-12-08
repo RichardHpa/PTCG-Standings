@@ -2,6 +2,7 @@ import { Outlet, useLoaderData } from 'react-router-dom';
 
 import { Heading } from 'components/Heading';
 import { PinPlayerButton } from 'components/PinPlayer';
+import { Notice } from 'components/Notice';
 
 import { RUNNING } from 'constants/tournamentStatus';
 
@@ -22,7 +23,7 @@ const RawPlayerOutlet = () => {
   const player = players[0];
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-8">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Heading level="2">{formatPlayerName(player.name)}</Heading>
@@ -41,6 +42,19 @@ const RawPlayerOutlet = () => {
           </div>
         )}
       </div>
+
+      {players.length > 1 && (
+        <div>
+          <Notice status="warning">
+            We have found multiple players with the same name and from the same
+            country. Since we cannot determine which player you are looking for,
+            some of the data may be incorrect. This is a known issue and since
+            RK9 Labs doesn't provide unique identifiers for players, we cannot
+            fix this. Hopefully they will add something in the future but for
+            now we have to live with it.
+          </Notice>
+        </div>
+      )}
 
       <div>
         <Outlet />
