@@ -12,9 +12,9 @@ export type SetCodes =
   | 'PAL' // Paldea Evolved
   | 'SVI' // Scarlet & Violet
   | 'SVE' // Scarlet & Violet Energies
+  | 'PR-SV' // Scarlet & Violet Black Star Promos
   // Sword & Shield
   | 'CRZ' // Crown Zenith
-  | 'PR-SV' // Scarlet & Violet Black Star Promos
   | 'SIT' // Silver Tempest
   | 'SIT' // Silver Tempest Trainer Gallery
   | 'LOR' // Lost Origin Trainer Gallery
@@ -299,7 +299,7 @@ export const sets: Set[] = [
   {
     name: 'Scarlet & Violet Black Star Promos',
     ptcgoCode: 'PR-SV',
-    setCode: 'svp',
+    setCode: 'SVP',
     images: {
       symbol: 'https://images.pokemontcg.io/svp/symbol.png',
       logo: 'https://images.pokemontcg.io/svp/logo.png',
@@ -1530,7 +1530,7 @@ export const sets: Set[] = [
 ];
 
 type SetCodeMap = {
-  [type in SetCodes]: string;
+  [type in string]: string;
 };
 
 export const setMap: SetCodeMap = {

@@ -1,4 +1,4 @@
-import type { SetCodes } from 'constants/sets';
+// import type { SetCodes } from 'constants/sets';
 
 export type Results = 'wins' | 'losses' | 'ties';
 
@@ -20,7 +20,7 @@ export interface PokemonCard {
   count: number;
   name: string;
   number: string;
-  set: SetCodes;
+  set: string;
 }
 
 export interface DeckList {
