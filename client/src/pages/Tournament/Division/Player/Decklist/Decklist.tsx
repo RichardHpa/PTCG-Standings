@@ -3,33 +3,43 @@ import { useMemo } from 'react';
 import { usePlayerContext } from 'providers/PlayerProvider';
 
 import { DecklistGrid } from 'components/DecklistGrid';
+import { Archetypes } from 'components/Archetypes';
 
 import { Accordion } from 'components/Accordion';
 
-import type { DeckList } from 'types/standing';
+import type { DeckList as DecklistType, Standing } from 'types/standing';
 import type { FC } from 'react';
 
-const DecklistInner: FC<{ decklist: DeckList }> = ({ decklist }) => {
+const hasDecklist = (player: Standing) => {
+  return Boolean(player.decklist && typeof player.decklist === 'object');
+};
+
+const DecklistInner: FC<{ decklist: DecklistType }> = ({ decklist }) => {
   return <DecklistGrid decklist={decklist} />;
 };
 
 export const Decklist = () => {
   const { players } = usePlayerContext();
-
+  // Archetypes
   const items = useMemo(() => {
-    const playersWithDecklist = players.filter(player => {
-      return player.decklist && typeof player.decklist === 'object';
+    return players.map(player => {
+      const playerHasDecklist = hasDecklist(player);
+      return {
+        title: playerHasDecklist
+          ? `${player.name} - currently at ${player.placing} place`
+          : `${player.name} - Decklist not found`,
+        action: playerHasDecklist ? (
+          <Archetypes decklist={player.decklist as DecklistType} size="small" />
+        ) : undefined,
+        content: playerHasDecklist ? (
+          <DecklistInner decklist={player.decklist as DecklistType} />
+        ) : (
+          <div>Decklist not found</div>
+        ),
+        disabled: !playerHasDecklist,
+      };
     });
-    console.log(playersWithDecklist);
-    return playersWithDecklist.map(player => ({
-      title: `${player.name} - currently at ${player.placing} place`,
-      content: <DecklistInner decklist={player.decklist} />,
-    }));
   }, [players]);
-
-  if (players.length === 0) {
-    return <div>Player not found</div>;
-  }
 
   if (players.length > 1) {
     return (
@@ -39,5 +49,10 @@ export const Decklist = () => {
     );
   }
   const player = players[0];
-  return <DecklistInner decklist={player.decklist} />;
+
+  if (!hasDecklist(player)) {
+    return <div>Decklist not found</div>;
+  }
+
+  return <DecklistInner decklist={player.decklist as DecklistType} />;
 };

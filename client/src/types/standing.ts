@@ -29,7 +29,7 @@ export interface DeckList {
   energy: PokemonCard[];
 }
 
-export interface Standing {
+export interface Standing<D = DeckList | string> {
   name: string;
   placing: number;
   record: RecordProps;
@@ -38,7 +38,7 @@ export interface Standing {
     opp: number;
     oppopp: number;
   };
-  decklist: DeckList | string;
+  decklist: D;
   drop: number;
   rounds: Rounds;
 }

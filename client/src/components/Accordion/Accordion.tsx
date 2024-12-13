@@ -31,7 +31,9 @@ export const Accordion: FC<AccordionProps> = ({ items }) => {
             <h2>
               <button
                 type="button"
+                disabled={item.disabled}
                 onClick={event => {
+                  if (item.disabled) return;
                   event.currentTarget.blur();
                   handleItemClick(index);
                 }}
@@ -40,29 +42,36 @@ export const Accordion: FC<AccordionProps> = ({ items }) => {
                   isFirst && accordionClasses.firstItem,
                   isLast && !isOpen && accordionClasses.lastItem,
                   isOpen && accordionClasses.isActive,
+                  !item.disabled && accordionClasses.hover,
+                  item.disabled && accordionClasses.disabled,
                 )}
                 aria-expanded={expanded === index}
               >
                 <span>{item.title}</span>
-                <svg
-                  data-accordion-icon
-                  className={clsx(
-                    'h-3 w-3 shrink-0',
-                    expanded !== index && 'rotate-180',
+                <div className="flex items-center gap-2">
+                  {item.action && <span>{item.action}</span>}
+                  {!item.disabled && (
+                    <svg
+                      data-accordion-icon
+                      className={clsx(
+                        'h-3 w-3 shrink-0',
+                        expanded !== index && 'rotate-180',
+                      )}
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 10 6"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 5 5 1 1 5"
+                      />
+                    </svg>
                   )}
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 10 6"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 5 5 1 1 5"
-                  />
-                </svg>
+                </div>
               </button>
             </h2>
             <div className={clsx(expanded !== index && 'hidden')}>
