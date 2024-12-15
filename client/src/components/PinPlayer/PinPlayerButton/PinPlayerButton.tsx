@@ -1,9 +1,40 @@
+import { useCallback } from 'react';
 import { PinIcon } from 'icons/PinIcon';
+import { IconButton } from 'components/Button';
+
+import { usePinnedPlayersContext } from 'providers/PinnedPlayersProvider';
 
 import type { PinPlayerButtonProps } from './types';
-import type { FC } from 'react';
+import type { FC, MouseEvent } from 'react';
 
-// TODO: Though I think we need to refactor the IconButton abit as the sizing isnt working
-export const PinPlayerButton: FC<PinPlayerButtonProps> = () => {
-  return <PinIcon className="h-4 w-4" />;
+export const PinPlayerButton: FC<PinPlayerButtonProps> = ({
+  tournamentId,
+  player,
+  division,
+}) => {
+  const { togglePlayer, isPlayerPinned } = usePinnedPlayersContext();
+
+  const handleOnClick = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+      const playerName = player.name;
+      togglePlayer(tournamentId, division, playerName);
+    },
+    [division, player, togglePlayer, tournamentId],
+  );
+
+  return (
+    <IconButton
+      alt={`pin ${player.name}`}
+      icon={<PinIcon />}
+      color={
+        isPlayerPinned(tournamentId, division, player.name)
+          ? 'primary'
+          : 'alternative'
+      }
+      variant="ghost"
+      size="sm"
+      onClick={handleOnClick}
+    />
+  );
 };

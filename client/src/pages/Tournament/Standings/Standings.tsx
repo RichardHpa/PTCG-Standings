@@ -91,16 +91,18 @@ export const Standings = () => {
             {hasDecklist(row.decklist) && (
               <Archetypes decklist={row.decklist} size="small" />
             )}
-            <PinPlayerButton
-              player={row}
-              division={division}
-              tournamentId={tournament.id}
-            />
+            {tournament.tournamentStatus === 'running' && (
+              <PinPlayerButton
+                player={row}
+                division={division}
+                tournamentId={tournament.id}
+              />
+            )}
           </div>
         ),
       },
     ];
-  }, [division, tournament.id]);
+  }, [division, tournament.id, tournament.tournamentStatus]);
 
   useEffect(() => {
     setSearchQuery('');

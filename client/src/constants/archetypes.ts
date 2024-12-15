@@ -396,7 +396,7 @@ export const archetypes: Archetypes = {
     ],
     coreCards: [
       { card: 'Raging Bolt ex', pokemon: 'raging bolt' },
-      { card: 'Sandy Shocks ex', pokemon: 'Sandy Shocks' },
+      // { card: 'Sandy Shocks ex', pokemon: 'Sandy Shocks' },
     ],
   },
   ancientBox: {
@@ -406,11 +406,54 @@ export const archetypes: Archetypes = {
         pokemon: 'Roaring Moon',
         sprite: pokemonImageList['roaring-moon'].image,
       },
-      { pokemon: 'Koraidon', sprite: pokemonImageList['koraidon'].image },
+      {
+        pokemon: 'Flutter Mane',
+        sprite: pokemonImageList['flutter-mane'].image,
+      },
     ],
     coreCards: [
       { card: 'Roaring Moon', pokemon: 'roaring moon' },
-      { card: 'Koraidon', pokemon: 'koraidon' },
+      { card: 'Flutter Mane', pokemon: 'flutter mane' },
     ],
+  },
+  quadThrones: {
+    name: 'Quad Thorns',
+    sprites: [
+      {
+        pokemon: 'Quad Thorns',
+        sprite: pokemonImageList['iron-thorns'].image,
+      },
+    ],
+    coreCards: [{ card: 'Iron Thorns ex', pokemon: 'iron thorns ex' }],
+  },
+  miraidonEx: {
+    name: 'miraidon EX',
+    sprites: [
+      {
+        pokemon: 'Miraidon',
+        sprite: pokemonImageList.miraidon.image,
+      },
+    ],
+    coreCards: [{ card: 'Miraidon ex', pokemon: 'Miraidon' }],
+  },
+  pidgeotEx: {
+    name: 'Pidgeot EX',
+    sprites: [
+      {
+        pokemon: 'Pidgeot',
+        sprite: pokemonImageList.pidgeot.image,
+      },
+    ],
+    coreCards: [{ card: 'Pidgeot ex', pokemon: 'Pidgeot' }],
+  },
+  dragapultEx: {
+    name: 'Dragapult EX',
+    sprites: [
+      {
+        pokemon: 'Dragapult',
+        sprite: pokemonImageList.dragapult.image,
+      },
+    ],
+    coreCards: [{ card: 'Dragapult ex', pokemon: 'Dragapult' }],
   },
 };

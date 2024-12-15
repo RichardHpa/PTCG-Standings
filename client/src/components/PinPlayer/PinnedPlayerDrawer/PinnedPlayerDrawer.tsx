@@ -76,6 +76,7 @@ export const PinnedPlayerDrawer = () => {
   const parentRef = useRef<HTMLDivElement>(null);
   const { hasPinnedPlayers, combinedPinnedPlayerDetails } =
     usePinnedPlayersContext();
+  console.log(hasPinnedPlayers);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggleDrawer = useCallback(() => {
@@ -105,6 +106,7 @@ export const PinnedPlayerDrawer = () => {
         data-drawer-show={id}
         data-drawer-placement="right"
         aria-controls={id}
+        disabled={!hasPinnedPlayers}
       />
 
       <Drawer
