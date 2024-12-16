@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import clsx from 'clsx';
-import { useWindowVirtualizer, useVirtualizer } from '@tanstack/react-virtual';
+import {
+  useWindowVirtualizer,
+  useVirtualizer,
+  observeWindowOffset,
+} from '@tanstack/react-virtual';
 
 import { tw } from 'utils/tailwindClassName';
 
@@ -46,6 +50,26 @@ const WindowVirtualizer = <T,>({
       navigator.userAgent.indexOf('Firefox') === -1
         ? element => element?.getBoundingClientRect().height
         : undefined,
+    initialOffset: () => {
+      const scrollOffset = Number(
+        sessionStorage.getItem('virtualizer_scrollOffset'),
+      );
+
+      return scrollOffset;
+    },
+    observeElementOffset: (instance, cb) => {
+      return observeWindowOffset(instance, offset => {
+        if (typeof sessionStorage !== 'undefined') {
+          sessionStorage.setItem(
+            'virtualizer_scrollOffset',
+            // @ts-expect-error -- this is actually fine here
+            offset,
+          );
+        }
+        // @ts-expect-error -- this is actually fine here
+        cb(offset);
+      });
+    },
   });
 
   useEffect(() => {
