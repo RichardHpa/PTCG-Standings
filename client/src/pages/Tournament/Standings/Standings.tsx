@@ -1,6 +1,5 @@
 import { useMemo, useCallback, useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
 
@@ -157,7 +156,7 @@ export const Standings = () => {
     [division, navigate, tournament.id],
   );
 
-  const filteredTournaments = useMemo(() => {
+  const filteredPlayers = useMemo(() => {
     if (!searchQuery && selectedCountry === firstOption.value) return standings;
 
     const filteredByType =
@@ -225,7 +224,7 @@ export const Standings = () => {
 
           <VirtualizedTable<Standing>
             type="window"
-            data={filteredTournaments}
+            data={filteredPlayers}
             columns={columns}
             containerRef={listRef}
             onRowClick={handleRowClick}

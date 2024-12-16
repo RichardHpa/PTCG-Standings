@@ -50,13 +50,15 @@ const WindowVirtualizer = <T,>({
       navigator.userAgent.indexOf('Firefox') === -1
         ? element => element?.getBoundingClientRect().height
         : undefined,
-    initialOffset: () => {
-      const scrollOffset = Number(
-        sessionStorage.getItem('virtualizer_scrollOffset'),
-      );
-
-      return scrollOffset;
-    },
+    initialOffset: (() => {
+      if (typeof sessionStorage !== 'undefined') {
+        return (
+          // @ts-expect-error -- this is actually fine here
+          parseInt(sessionStorage.getItem('virtualizer_scrollOffset'), 10) || 0
+        );
+      }
+      return 0;
+    })(),
     observeElementOffset: (instance, cb) => {
       return observeWindowOffset(instance, offset => {
         if (typeof sessionStorage !== 'undefined') {

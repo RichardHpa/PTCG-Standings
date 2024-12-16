@@ -1,4 +1,5 @@
 import { pokemonImageList } from 'constants/imageSprites';
+import { DeckList } from 'types/standing';
 
 export interface CoreCard {
   card: string;
@@ -14,6 +15,8 @@ interface Archetype {
   name: string;
   sprites: Sprites[];
   coreCards: CoreCard[];
+  // TODO: convert coreCards to use a function to check if the decklist matches the archetype rather than strings
+  fn?: (decklist: DeckList) => boolean;
 }
 
 export interface Archetypes {
@@ -425,6 +428,16 @@ export const archetypes: Archetypes = {
       },
     ],
     coreCards: [{ card: 'Iron Thorns ex', pokemon: 'iron thorns ex' }],
+    fn: (decklist: DeckList) => {
+      if (
+        decklist.pokemon.length === 1 &&
+        decklist.pokemon[0].name === 'Iron Thorns ex' &&
+        decklist.pokemon[0].count === 4
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
   miraidonEx: {
     name: 'miraidon EX',

@@ -97,7 +97,17 @@ const router = createBrowserRouter([
               },
               {
                 path: 'qualified',
-                element: <Qualified />,
+                element: <DivisionOutlet />,
+                children: [
+                  {
+                    index: true,
+                    element: <Qualified />,
+                  },
+                  {
+                    path: ':division',
+                    element: <Qualified />,
+                  },
+                ],
               },
             ],
           },

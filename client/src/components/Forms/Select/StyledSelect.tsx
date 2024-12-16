@@ -90,7 +90,7 @@ export const StyledSelect: FC<StyledSelectProps> = ({
           )}
         >
           <ul
-            className="py-2 text-sm text-gray-700 dark:text-gray-200"
+            className="max-h-60 overflow-y-auto py-2 text-sm text-gray-700 dark:text-gray-200"
             aria-labelledby="states-button"
           >
             {options.map(option => {
