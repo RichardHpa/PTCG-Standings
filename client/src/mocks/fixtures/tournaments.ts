@@ -2,6 +2,8 @@
 import duplicatePlayerNamesTournament from './specialTournaments/duplicatePlayerNames.json';
 // 2023 Bogotá TCG Special Event (0000082)
 import juniorsSeniorsTournament from './specialTournaments/juniorsSeniors.json';
+// Worlds 2024
+import worlds2024 from './specialTournaments/worlds2024.json';
 
 import type {
   Tournament,
@@ -14,6 +16,8 @@ const typedDuplicatePlayerNamesTournament =
 
 const typedJuniorsSeniorsTournament =
   juniorsSeniorsTournament as TournamentApiResponse;
+
+const typedWorlds2024 = worlds2024 as TournamentApiResponse;
 
 export const runningTournament: Tournament = {
   id: '0000005',
@@ -135,6 +139,10 @@ const tournamentWithJuniorsSeniors: Tournament = {
   ...typedJuniorsSeniorsTournament.tournament,
 };
 
+const tournamentWorlds2024: Tournament = {
+  ...typedWorlds2024.tournament,
+};
+
 export const tournaments: TournamentsApiResponse = {
   dataLastUpdated: '10/11/2024, 2:57 PM',
   tcg: {
@@ -198,6 +206,7 @@ export const tournaments: TournamentsApiResponse = {
       { ...checkInTournament },
       { ...runningTournament },
       { ...finishedTournament },
+      { ...tournamentWorlds2024 },
       {
         id: '0000007',
         name: 'Bilbao TCG Special Championship',

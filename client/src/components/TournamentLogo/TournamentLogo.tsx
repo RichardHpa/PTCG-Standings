@@ -7,6 +7,8 @@ import RegionalLogo from 'images/eventLogos/tcgRegional.png';
 import CupLogo from 'images/eventLogos/tcgCup.png';
 import ChallengeLogo from 'images/eventLogos/tcgChallenge.png';
 import PlayPokemonLogo from 'images/eventLogos/playPokemon.png';
+import Worlds2024Logo from 'images/eventLogos/tcgWorlds2024.webp';
+import Worlds2023Logo from 'images/eventLogos/tcgWorlds2023.png';
 
 import RegionalLogo2024 from 'images/eventLogos/tcgRegionals2024.png';
 import InternationalsLogo2024 from 'images/eventLogos/tcgInternationals2024.png';
@@ -26,6 +28,8 @@ const tournamentLogoMap = {
   Cup: CupLogo,
   Challenge: ChallengeLogo,
   PlayPokemon: PlayPokemonLogo,
+  '2024Worlds': Worlds2024Logo,
+  '2023Worlds': Worlds2023Logo,
 };
 
 const ifStringContains = (str: string, substr: string) =>
@@ -36,6 +40,16 @@ export const TournamentLogo: FC<TournamentLogoProps> = ({ tournamentName }) => {
     if (tournamentsMap[tournamentName]?.logo) {
       return tournamentsMap[tournamentName].logo;
     }
+
+    if (ifStringContains(tournamentName, 'World')) {
+      if (ifStringContains(tournamentName, '2024')) {
+        return tournamentLogoMap['2024Worlds'];
+      }
+      if (ifStringContains(tournamentName, '2023')) {
+        return tournamentLogoMap['2023Worlds'];
+      }
+    }
+
     if (ifStringContains(tournamentName, '2025')) {
       if (ifStringContains(tournamentName, 'International')) {
         return tournamentLogoMap['2025'].Internationals;
