@@ -1,5 +1,5 @@
 export const noticeClasses = {
-  base: 'flex p-4 text-sm border rounded-lg gap-2  justify-between w-full',
+  base: 'flex p-4 text-sm border rounded-lg gap-2  justify-between w-full items-start',
   status: {
     info: 'text-blue-800 border-blue-300 bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800',
     success:

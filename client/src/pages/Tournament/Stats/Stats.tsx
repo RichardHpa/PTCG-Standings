@@ -14,7 +14,7 @@ export const Stats = () => {
   const { tournament } = useTournamentContext();
   if (!tournament.deckAnalysis) {
     return (
-      <Notice>
+      <Notice dismissible>
         we currently don't have any of the deck analysis for the{' '}
         {tournament.name}. If you know of, or can get the offical deck analysis,
         then please get in touch with us via our{' '}
