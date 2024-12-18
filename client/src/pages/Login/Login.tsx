@@ -1,26 +1,39 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
 import { Button } from 'components/Button';
 import { Input } from 'components/Forms/Input';
 
-import type { FormEvent } from 'react';
+const validationSchema = yup.object({
+  email: yup
+    .string()
+    .email('Enter a valid email')
+    .required('Email is required'),
+  password: yup
+    .string()
+    .min(8, 'Password should be of minimum 8 characters length')
+    .required('Password is required'),
+});
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [_email, setEmail] = useState('');
-  const [_password, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // const payload = {
-    //   email,
-    //   password,
-    //   remember,
-    // };
-    navigate('/admin/dashboard', { replace: true });
-  };
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      remember: false,
+    },
+    validationSchema: validationSchema,
+    validateOnBlur: false,
+    validateOnChange: false,
+    onSubmit: values => {
+      console.log(values);
+
+      navigate('/admin/dashboard', { replace: true });
+    },
+  });
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -40,16 +53,19 @@ export const Login = () => {
             <form
               className="space-y-4 md:space-y-6"
               autoComplete="off"
-              onSubmit={handleSubmit}
+              onSubmit={formik.handleSubmit}
             >
               <div>
                 <Input
                   label="Your email"
                   type="email"
                   name="email"
-                  onChange={e => setEmail(e.target.value)}
                   placeholder="ash@pokemon.com"
-                  required
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.errors.email}
                 />
               </div>
               <div>
@@ -57,9 +73,14 @@ export const Login = () => {
                   label="Password"
                   type="password"
                   name="password"
-                  onChange={e => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  required
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={
+                    formik.touched.password && Boolean(formik.errors.password)
+                  }
+                  helperText={formik.errors.password}
                 />
               </div>
 
@@ -71,8 +92,8 @@ export const Login = () => {
                       aria-describedby="remember"
                       type="checkbox"
                       className="focus:ring-3 focus:ring-primary-300 dark:focus:ring-primary-600 h-4 w-4 rounded border border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800"
-                      checked={remember}
-                      onChange={e => setRemember(e.target.checked)}
+                      onChange={formik.handleChange}
+                      value={formik.values.remember as unknown as string}
                     />
                   </div>
                   <div className="ml-3 text-sm">

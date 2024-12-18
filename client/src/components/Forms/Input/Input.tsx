@@ -1,6 +1,8 @@
 import { cloneElement } from 'react';
 import clsx from 'clsx';
 
+import { inputClasses } from './inputClasses';
+
 import type { FC, ReactElement } from 'react';
 import type { InputProps } from './types';
 
@@ -21,6 +23,8 @@ export const Input: FC<InputProps> = ({
   onChange,
   icon,
   value,
+  error = false,
+  helperText,
   // the rest of the input props
   ...inputProps
 }) => {
@@ -29,7 +33,10 @@ export const Input: FC<InputProps> = ({
       {!hideLabel && (
         <label
           htmlFor={name}
-          className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          className={clsx(
+            'mb-2 block text-sm font-medium text-gray-900 dark:text-white',
+            error && inputClasses.errorText,
+          )}
         >
           {label}
         </label>
@@ -37,7 +44,12 @@ export const Input: FC<InputProps> = ({
 
       <div className="relative">
         {icon && (
-          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500 dark:text-gray-400">
+          <div
+            className={clsx(
+              'pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500 dark:text-gray-400',
+              error && inputClasses.errorText,
+            )}
+          >
             <RenderIcon icon={icon} />
           </div>
         )}
@@ -49,6 +61,7 @@ export const Input: FC<InputProps> = ({
           className={clsx(
             'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400',
             icon && 'pl-10',
+            error && inputClasses.error,
           )}
           placeholder={placeholder}
           required={required}
@@ -57,6 +70,11 @@ export const Input: FC<InputProps> = ({
           autoComplete="off"
           {...inputProps}
         />
+        {helperText && (
+          <p className={clsx('mt-2 text-sm', error && inputClasses.errorText)}>
+            {helperText}
+          </p>
+        )}
       </div>
     </div>
   );

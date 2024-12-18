@@ -13,4 +13,6 @@ export interface InputProps extends ComponentPropsWithoutRef<'input'> {
   required?: boolean;
   icon?: ReactElement;
   value?: string;
+  error?: boolean;
+  helperText?: string;
 }
