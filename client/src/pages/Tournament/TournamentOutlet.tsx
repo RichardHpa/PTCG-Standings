@@ -16,9 +16,11 @@ import {
   useTournamentContext,
 } from 'providers/TournamentProvider';
 
+import type { FC, ReactNode } from 'react';
+
 const notStartedTournamentStatus = [CHECK_IN, NOT_STARTED];
 
-const RawTournamentOutlet = () => {
+export const RawTournamentOutlet = () => {
   const { tournament } = useTournamentContext();
 
   return (
@@ -109,11 +111,11 @@ const RawTournamentOutlet = () => {
   );
 };
 
-export const TournamentOutlet = () => {
+export const TournamentOutlet: FC<{ children: ReactNode }> = ({ children }) => {
   const { tournamentId } = useLoaderData() as { tournamentId: string };
   return (
     <TournamentContextProvider tournamentId={tournamentId}>
-      <RawTournamentOutlet />
+      {children}
     </TournamentContextProvider>
   );
 };

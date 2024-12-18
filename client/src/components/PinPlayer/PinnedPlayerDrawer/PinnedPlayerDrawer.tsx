@@ -76,7 +76,7 @@ export const PinnedPlayerDrawer = () => {
   const parentRef = useRef<HTMLDivElement>(null);
   const { hasPinnedPlayers, combinedPinnedPlayerDetails } =
     usePinnedPlayersContext();
-  console.log(hasPinnedPlayers);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggleDrawer = useCallback(() => {

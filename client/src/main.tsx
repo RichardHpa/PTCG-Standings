@@ -20,9 +20,9 @@ import { Home } from 'pages/Home';
 import { About } from 'pages/About';
 import { Tournaments } from 'pages/Tournaments';
 import {
-  // Tournament,
   tournamentLoader,
   TournamentOutlet,
+  RawTournamentOutlet,
 } from 'pages/Tournament';
 import { Streams } from 'pages/Tournament/Streams';
 import { Stats } from 'pages/Tournament/Stats';
@@ -42,10 +42,15 @@ import {
   Worlds2024Outlet,
   Qualified,
 } from 'pages/Worlds/Worlds2024';
+import { Login } from 'pages/Login';
+import { Dashboard } from 'pages/Admin/Dashboard';
+import { Tournament as AdminTournament } from 'pages/Admin/Dashboard/Tournament';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
 import { FallbackError } from 'errors/FallbackError';
+
+import { AuthProvider } from 'providers/AuthProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -64,6 +69,46 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: 'login',
+        element: <Login />,
+      },
+      {
+        path: 'admin',
+        element: (
+          <AuthProvider>
+            <Outlet />
+          </AuthProvider>
+        ),
+        children: [
+          {
+            index: true,
+            element: <Navigate to="dashboard" replace />,
+          },
+          {
+            path: 'dashboard',
+            element: <Outlet />,
+            children: [
+              {
+                index: true,
+                element: <Dashboard />,
+              },
+              {
+                path: 'tournaments',
+                loader: tournamentLoader,
+                element: (
+                  <TournamentOutlet>
+                    <Outlet />
+                  </TournamentOutlet>
+                ),
+                children: [
+                  { path: ':tournamentId', element: <AdminTournament /> },
+                ],
+              },
+            ],
+          },
+        ],
       },
       {
         path: 'about',
@@ -122,13 +167,15 @@ const router = createBrowserRouter([
           },
           {
             path: ':tournamentId',
-            element: <TournamentOutlet />,
+            element: (
+              <TournamentOutlet>
+                <RawTournamentOutlet />
+              </TournamentOutlet>
+            ),
             loader: tournamentLoader,
-
             children: [
               {
                 index: true,
-                // element: <Tournament />,
                 element: <Navigate to="standings" replace />,
               },
               {

@@ -21,6 +21,8 @@ export const Input: FC<InputProps> = ({
   onChange,
   icon,
   value,
+  // the rest of the input props
+  ...inputProps
 }) => {
   return (
     <div className="w-full">
@@ -43,8 +45,9 @@ export const Input: FC<InputProps> = ({
         <input
           type="text"
           id={name}
+          name={name}
           className={clsx(
-            'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400',
+            'focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400',
             icon && 'pl-10',
           )}
           placeholder={placeholder}
@@ -52,6 +55,7 @@ export const Input: FC<InputProps> = ({
           onChange={onChange}
           value={value}
           autoComplete="off"
+          {...inputProps}
         />
       </div>
     </div>

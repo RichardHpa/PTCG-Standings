@@ -1,3 +1,3 @@
 export { Tournament } from './Tournament';
 export { tournamentLoader } from './tournamentLoader';
-export { TournamentOutlet } from './TournamentOutlet';
+export { TournamentOutlet, RawTournamentOutlet } from './TournamentOutlet';
