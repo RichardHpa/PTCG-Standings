@@ -5,8 +5,14 @@ import { archetypes } from 'constants/archetypes';
 import type { ArchetypesProps } from './types';
 import type { DeckList } from 'types/standing';
 import type { FC } from 'react';
+import type { Archetype } from 'constants/archetypes';
 
-const getArchetypes = (decklist: DeckList) => {
+interface ImageProp {
+  pokemon: string;
+  sprite: string;
+}
+
+export const getArchetypes = (decklist: DeckList) => {
   const pokemonCards = decklist.pokemon.map(card => card.name);
   const archetypesArray = Object.entries(archetypes);
   const archetype = archetypesArray.find(([_key, value]) => {
@@ -15,20 +21,21 @@ const getArchetypes = (decklist: DeckList) => {
 
   if (!archetype) {
     return [
+      'unknown',
       {
-        pokemon: 'Unknown',
-        sprite: 'substitute.png',
+        name: 'unknown',
+        sprites: [
+          {
+            pokemon: 'unknown',
+            sprite: 'substitute.png',
+          },
+        ],
       },
-    ];
+    ] as [string, Archetype];
   }
 
-  return archetype[1].sprites;
+  return archetype as [string, Archetype];
 };
-
-interface ImageProp {
-  pokemon: string;
-  sprite: string;
-}
 
 const PokemonSprite = ({
   image,
@@ -55,12 +62,12 @@ export const Archetypes: FC<ArchetypesProps> = ({
   onClick,
   size = 'large',
 }) => {
-  const sprites = getArchetypes(decklist);
-  if (!sprites.length) return null;
+  const archetype = getArchetypes(decklist);
+  if (!archetype) return null;
 
   return (
     <div className="flex" onClick={onClick}>
-      {sprites.map((sprite, index) => {
+      {archetype[1].sprites.map((sprite, index) => {
         return <PokemonSprite key={index} image={sprite} size={size} />;
       })}
     </div>
