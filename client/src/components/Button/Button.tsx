@@ -17,6 +17,7 @@ export const Button: FC<ButtonProps> = ({
   return (
     <button
       type="button"
+      disabled={disabled}
       {...props}
       className={clsx(
         buttonClasses.base,

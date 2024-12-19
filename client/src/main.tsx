@@ -20,9 +20,9 @@ import { Home } from 'pages/Home';
 import { About } from 'pages/About';
 import { Tournaments } from 'pages/Tournaments';
 import {
-  // Tournament,
   tournamentLoader,
   TournamentOutlet,
+  RawTournamentOutlet,
 } from 'pages/Tournament';
 import { Streams } from 'pages/Tournament/Streams';
 import { Stats } from 'pages/Tournament/Stats';
@@ -42,6 +42,10 @@ import {
   Worlds2024Outlet,
   Qualified,
 } from 'pages/Worlds/Worlds2024';
+import { Login } from 'pages/Login';
+import { Dashboard, DashboardOutlet } from 'pages/Admin/Dashboard';
+import { Tournament as AdminTournament } from 'pages/Admin/Dashboard/Tournament';
+import { AdminOutlet } from 'pages/Admin/AdminOutlet';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -64,6 +68,51 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: 'login',
+        element: <Login />,
+      },
+      {
+        path: 'admin',
+        element: <AdminOutlet />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to="dashboard" replace />,
+          },
+          {
+            path: 'dashboard',
+            element: <DashboardOutlet />,
+            children: [
+              {
+                index: true,
+                element: <Dashboard />,
+              },
+              {
+                path: 'tournaments',
+                // loader: tournamentLoader,
+                element: <Outlet />,
+                // element: (
+                //   <TournamentOutlet>
+                //     <Outlet />
+                //   </TournamentOutlet>
+                // ),
+                children: [
+                  {
+                    index: true,
+                    element: <Dashboard />,
+                  },
+                  {
+                    path: ':tournamentId',
+                    element: <AdminTournament />,
+                    loader: tournamentLoader,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
       {
         path: 'about',
@@ -122,13 +171,15 @@ const router = createBrowserRouter([
           },
           {
             path: ':tournamentId',
-            element: <TournamentOutlet />,
+            element: (
+              <TournamentOutlet>
+                <RawTournamentOutlet />
+              </TournamentOutlet>
+            ),
             loader: tournamentLoader,
-
             children: [
               {
                 index: true,
-                // element: <Tournament />,
                 element: <Navigate to="standings" replace />,
               },
               {
@@ -228,7 +279,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-const FallbackLoader = () => (
+export const FallbackLoader = () => (
   <div className="flex h-full w-full flex-1 flex-col items-center justify-center">
     <LoadingPokeball alt="Loading app" size="100" />
     <Heading level="2" className="mt-4">
@@ -280,6 +331,7 @@ deferRender().then(() => {
               router={router}
               fallbackElement={<FallbackLoader />}
             />
+
             {import.meta.env.MODE === 'development' && (
               <Suspense fallback={null}>
                 <ReactQueryDevtoolsProduction />

@@ -106,8 +106,6 @@ export const Rounds = () => {
     setSelectedRound(round);
   }, []);
 
-  // console.log(data);
-  //
   return (
     <div className="flex flex-col items-start gap-4">
       <div className="w-full overflow-x-auto">

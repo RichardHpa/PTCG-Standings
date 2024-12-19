@@ -9,7 +9,7 @@ export const useGetTournamentsKey = () => ['tournaments'];
 
 export function useGetTournaments<TData = TournamentsApiResponse>({
   select,
-}: useGetTournamentsProps<TData>) {
+}: useGetTournamentsProps<TData> = {}) {
   return useQuery({
     queryKey: useGetTournamentsKey(),
     queryFn: getTournaments,

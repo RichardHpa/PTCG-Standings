@@ -8,8 +8,11 @@ import { ThemeToggle } from 'components/ThemeToggle';
 import { NavLink } from 'components/NavLink';
 import { PinnedPlayerDrawer } from 'components/PinPlayer/PinnedPlayerDrawer';
 
+import { useAuth } from 'providers/AuthProvider';
+
 export const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { user } = useAuth();
 
   const toggleExpanded = useCallback(() => {
     setIsExpanded(prev => !prev);
@@ -36,7 +39,7 @@ export const Navbar = () => {
           <Link to="/" className="flex flex-1 items-center hover:underline">
             <img
               src="/logo192.png"
-              className="mr-3 h-9"
+              className="mr-3 h-8"
               alt="PTCG Standings.live"
             />
             <span
@@ -102,8 +105,15 @@ export const Navbar = () => {
                   Home
                 </NavLink>
               </li>
+              {user && (
+                <li className="order-1">
+                  <NavLink to="admin" onClick={onNavItemClick}>
+                    Admin
+                  </NavLink>
+                </li>
+              )}
               <li className="order-4 lg:order-1">
-                <Link to="worlds/2024">
+                <Link to="worlds/2024" onClick={onNavItemClick}>
                   <Button color="secondary">Worlds 2024</Button>
                 </Link>
               </li>

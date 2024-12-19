@@ -2,6 +2,8 @@ import { Outlet, ScrollRestoration } from 'react-router-dom';
 
 import { Navbar } from 'components/Navbar';
 
+import { AuthProvider } from 'providers/AuthProvider';
+
 import type { FC } from 'react';
 import type { BaseLayoutProps } from './types';
 
@@ -21,8 +23,10 @@ export const RawBaseLayout: FC<BaseLayoutProps> = ({ children }) => {
 
 export const BaseLayout = () => {
   return (
-    <RawBaseLayout>
-      <Outlet />
-    </RawBaseLayout>
+    <AuthProvider>
+      <RawBaseLayout>
+        <Outlet />
+      </RawBaseLayout>
+    </AuthProvider>
   );
 };

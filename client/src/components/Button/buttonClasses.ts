@@ -1,7 +1,7 @@
 import { tw } from 'utils/tailwindClassName';
 
 export const buttonClasses = {
-  base: tw`border-1 inline-flex border text-center font-medium`,
+  base: tw`border-1 inline-flex justify-center border text-center font-medium`,
   variant: {
     contained: {
       base: tw`border-transparent`,
