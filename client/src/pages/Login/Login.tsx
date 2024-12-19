@@ -1,9 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
+import { useAuth } from 'providers/AuthProvider';
+
 import { Button } from 'components/Button';
 import { Input } from 'components/Forms/Input';
+import { Notice } from 'components/Notice';
 
 const validationSchema = yup.object({
   email: yup
@@ -17,35 +22,41 @@ const validationSchema = yup.object({
 });
 
 export const Login = () => {
-  const navigate = useNavigate();
+  const { loginAction, user } = useAuth();
+  const [error] = useState('');
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: 'richard.m.hpa@gmail.com',
+      password: '2FB9G@a46eMshny',
       remember: false,
     },
     validationSchema: validationSchema,
     validateOnBlur: false,
     validateOnChange: false,
-    onSubmit: values => {
-      console.log(values);
-
-      navigate('/admin/dashboard', { replace: true });
+    onSubmit: async values => {
+      loginAction(values);
     },
   });
 
+  if (user) {
+    return <Navigate to="/admin/dashboard" />;
+  }
+
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
-      <div className="mx-auto flex flex-col items-center justify-center px-6 py-8 lg:py-0">
+      <div className="mx-auto flex flex-col items-center justify-center gap-8 px-6 sm:max-w-md">
         <a
           href="#"
-          className="mb-6 flex items-center text-2xl font-semibold text-gray-900 dark:text-white"
+          className="flex items-center text-2xl font-semibold text-gray-900 dark:text-white"
         >
           <img className="mr-2 h-8 w-8" src="/logo512.png" alt="logo" />
           PTCG Standings
         </a>
-        <div className="w-full rounded-lg bg-white shadow dark:border dark:border-gray-700 dark:bg-gray-800 sm:max-w-md md:mt-0 xl:p-0">
+
+        {error && <Notice status="error">{error}</Notice>}
+
+        <div className="w-full rounded-lg bg-white shadow dark:border dark:border-gray-700 dark:bg-gray-800 md:mt-0 xl:p-0">
           <div className="space-y-4 p-6 sm:p-8 md:space-y-6">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
               Sign in to your account

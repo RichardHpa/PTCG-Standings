@@ -26,7 +26,7 @@ import type { ColumnProps } from 'components/VirtualizedTable/types';
 
 const notRunningTournaments = [CHECK_IN, NOT_STARTED];
 
-const tournamentTypeOptions = [
+export const tournamentTypeOptions = [
   { value: 'all', label: 'All events' },
   { value: 'world', label: 'Worlds' },
   { value: 'international', label: 'Internationals' },
