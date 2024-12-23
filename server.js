@@ -127,27 +127,29 @@ const initialSetup = async () => {
   console.log('Initial Setup');
   await createFolder(tournamentsFolder);
   await createFolder(roundsFolder);
-  const tournamentsData = await getTournamentsData();
-  const runningTournamentsData = await checkRunningTournaments(tournamentsData);
-  tournamentsToTrack = [...runningTournamentsData];
+  if (!process.argv.includes('--local')) {
+    const tournamentsData = await getTournamentsData();
+    const runningTournamentsData = await checkRunningTournaments(tournamentsData);
+    tournamentsToTrack = [...runningTournamentsData];
 
-  // log the id of the running tournaments
-  const runningTournamentIds = runningTournamentsData.map(tournament => tournament.id);
-  console.log('-------------------');
-  console.log('current running tournaments:', runningTournamentIds);
-  console.log('-------------------');
+    // log the id of the running tournaments
+    const runningTournamentIds = runningTournamentsData.map(tournament => tournament.id);
+    console.log('-------------------');
+    console.log('current running tournaments:', runningTournamentIds);
+    console.log('-------------------');
 
-  for (const tournament of tournamentsToTrack) {
-    await getTournamentData(tournament.id);
-  }
+    for (const tournament of tournamentsToTrack) {
+      await getTournamentData(tournament.id);
+    }
 
-  if (process.argv.includes('--scheduler')) {
-    tournamentsSchedule.start();
+    if (process.argv.includes('--scheduler')) {
+      tournamentsSchedule.start();
 
-    if (tournamentsToTrack.length > 0) {
-      console.log('Running tournaments found, starting single tournament scheduler');
-      singleTournamentSchedulerRunning = true;
-      singleTournamentSchedule.start();
+      if (tournamentsToTrack.length > 0) {
+        console.log('Running tournaments found, starting single tournament scheduler');
+        singleTournamentSchedulerRunning = true;
+        singleTournamentSchedule.start();
+      }
     }
   }
 };

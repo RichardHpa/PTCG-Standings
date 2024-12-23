@@ -1,0 +1,1 @@
+export { getArchetype } from './getArchetype';

@@ -9,7 +9,7 @@ enum Theme {
 
 const themes: Array<Theme> = Object.values(Theme);
 
-type ColorModeContextType = [Theme | null, Dispatch<SetStateAction<Theme>>];
+type ColorModeContextType = [Theme, Dispatch<SetStateAction<Theme>>];
 
 export const ColorModeContext = createContext<ColorModeContextType | undefined>(
   undefined,

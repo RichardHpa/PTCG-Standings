@@ -1,29 +1,67 @@
 import { pokemonImageList } from 'constants/imageSprites';
 import { DeckList } from 'types/standing';
 
-export interface CoreCard {
-  card: string;
-  pokemon: string;
-}
-
-interface Sprites {
+export interface Sprites {
   sprite: string;
   pokemon: string;
 }
 
-interface Archetype {
+type CardType = 'pokemon' | 'trainer' | 'energy';
+
+const decklistIncludes = (
+  decklist: DeckList,
+  type: CardType,
+  cards: string[],
+) => {
+  return cards.every(cardName => {
+    return decklist[type].some(card => card.name === cardName);
+  });
+};
+
+const decklistDoesntInclude = (
+  decklist: DeckList,
+  type: CardType,
+  cards: string[],
+) => {
+  return cards.every(cardName => {
+    return !decklist[type].some(card => card.name === cardName);
+  });
+};
+
+const cardCount = (
+  decklist: DeckList,
+  type: CardType,
+  card: string,
+  count: number,
+) => {
+  return decklist[type].some(
+    cardObj => cardObj.name === card && cardObj.count === count,
+  );
+};
+
+export const exactCardFromSet = (
+  decklist: DeckList,
+  type: CardType,
+  card: string,
+  set: string,
+) => {
+  return decklist[type].some(
+    cardObj => cardObj.name === card && cardObj.set === set,
+  );
+};
+
+export interface ArchetypeList {
   name: string;
   sprites: Sprites[];
-  coreCards: CoreCard[];
-  // TODO: convert coreCards to use a function to check if the decklist matches the archetype rather than strings
-  fn?: (decklist: DeckList) => boolean;
+  color?: string;
+  fn: (decklist: DeckList) => boolean;
 }
 
-export interface Archetypes {
-  [key: string]: Archetype;
-}
+type archetypesListObjectProps = {
+  [key: string]: ArchetypeList;
+};
 
-export const archetypes: Archetypes = {
+const archetypesListObject: archetypesListObjectProps = {
   regidrago: {
     name: 'Regidrago',
     sprites: [
@@ -32,15 +70,39 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.regidrago.image,
       },
     ],
-    coreCards: [
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Regidrago V',
+          'Regidrago VSTAR',
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+  quadThorns: {
+    name: 'Quad Thorns',
+    sprites: [
       {
-        card: 'Regidrago VSTAR',
-        pokemon: 'Regidrago',
+        pokemon: 'Quad Thorns',
+        sprite: pokemonImageList['iron-thorns'].image,
       },
     ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Iron Thorns ex'])) {
+        const total = decklist.pokemon.reduce((acc, cur) => acc + cur.count, 0);
+        if (total === 4) {
+          return true;
+        }
+        return false;
+      }
+      return false;
+    },
   },
-  lostBox: {
-    name: 'Lost Zone Box',
+  lostZoneBox: {
+    name: 'Lost zone box',
     sprites: [
       {
         pokemon: 'Comfey',
@@ -51,16 +113,18 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.sableye.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Comfey',
-        pokemon: 'Comfey',
-      },
-      {
-        card: 'Sableye',
-        pokemon: 'Sableye',
-      },
-    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', ['Comfey', 'Sableye']) &&
+        decklistIncludes(decklist, 'trainer', [
+          'Mirage Gate',
+          "Colress's Experiment",
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
   charizardPidgeot: {
     name: 'Charizard Pidgeot',
@@ -74,19 +138,34 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.pidgeot.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Charizard ex',
-        pokemon: 'Charizard',
-      },
-      {
-        card: 'Pidgeot ex',
-        pokemon: 'Pidgeot',
-      },
-    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', ['Charizard ex', 'Pidgeot ex'])
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
-  lugiaArcheops: {
-    name: 'Lugia Archeops',
+  ragingBolt: {
+    name: 'Raging Bolt',
+    sprites: [
+      { pokemon: 'Raging Bolt', sprite: pokemonImageList['raging-bolt'].image },
+    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Raging Bolt ex',
+          'Teal Mask Ogerpon ex',
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+  lugiaVstar: {
+    name: 'Lugia Vstar',
     sprites: [
       {
         pokemon: 'Lugia',
@@ -97,16 +176,18 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.archeops.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Lugia V',
-        pokemon: 'Lugia',
-      },
-      {
-        card: 'Archeops',
-        pokemon: 'Archeops',
-      },
-    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Lugia V',
+          'Lugia VSTAR',
+          'Archeops',
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
   gardeviorEx: {
     name: 'Gardevior EX',
@@ -116,12 +197,12 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.gardevoir.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Gardevoir ex',
-        pokemon: 'Gardevoir',
-      },
-    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Gardevoir ex'])) {
+        return true;
+      }
+      return false;
+    },
   },
   mewVmax: {
     name: 'Mew VMAX',
@@ -135,16 +216,12 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.genesect.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Mew VMAX',
-        pokemon: 'Mew',
-      },
-      {
-        card: 'Genesect V',
-        pokemon: 'Genesect',
-      },
-    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Mew VMAX', 'Genesect V'])) {
+        return true;
+      }
+      return false;
+    },
   },
   arceus: {
     name: 'Arceus',
@@ -154,12 +231,12 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.arceus.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Arceus VSTAR',
-        pokemon: 'Arceus',
-      },
-    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Arceus VSTAR'])) {
+        return true;
+      }
+      return false;
+    },
   },
   charizardBibarel: {
     name: 'Charizard Bibarel',
@@ -173,16 +250,12 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.bibarel.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Charizard ex',
-        pokemon: 'Charizard',
-      },
-      {
-        card: 'Bibarel',
-        pokemon: 'Bibarel',
-      },
-    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Charizard ex', 'Bibarel'])) {
+        return true;
+      }
+      return false;
+    },
   },
   roaringMoon: {
     name: 'Roaring Moon',
@@ -192,12 +265,12 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList['roaring-moon'].image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Roaring Moon ex',
-        pokemon: 'Roaring moon',
-      },
-    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Roaring Moon ex'])) {
+        return true;
+      }
+      return false;
+    },
   },
   inteleonUrshifu: {
     name: 'Inteleon Urshifu',
@@ -211,16 +284,17 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.urshifu.forms!['rapid-gmax'].image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Inteleon VMAX',
-        pokemon: 'Inteleon',
-      },
-      {
-        card: 'Rapid Strike Urshifu VMAX',
-        pokemon: 'Urshifu',
-      },
-    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Inteleon VMAX',
+          'Rapid Strike Urshifu VMAX',
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
   gholdengo: {
     name: 'Gholdengo',
@@ -230,12 +304,12 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.gholdengo.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Gholdengo ex',
-        pokemon: 'Gholdengo',
-      },
-    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Gholdengo ex'])) {
+        return true;
+      }
+      return false;
+    },
   },
   snorlaxStall: {
     name: 'Snorlax Stall',
@@ -245,12 +319,12 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.snorlax.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Snorlax',
-        pokemon: 'Snorlax',
-      },
-    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Snorlax'])) {
+        return true;
+      }
+      return false;
+    },
   },
   klawf: {
     name: 'Klawf',
@@ -260,147 +334,134 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList.klawf.image,
       },
     ],
-    coreCards: [
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Klawf'])) {
+        return true;
+      }
+      return false;
+    },
+  },
+  pidgeotControl: {
+    name: 'Pidgeot Control',
+    sprites: [
       {
-        card: 'Klawf',
-        pokemon: 'Klawf',
+        pokemon: 'Pidgeot',
+        sprite: pokemonImageList.pidgeot.image,
       },
     ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Pidgeot ex',
+          'Rotom V',
+          'Wellspring Mask Ogerpon ex',
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
-  iceRiderPalkia: {
-    name: 'Ice Rider Palkia',
+  dragapultIronThorns: {
+    name: 'Dragapult Iron Thorns',
+    sprites: [
+      {
+        pokemon: 'Dragapult',
+        sprite: pokemonImageList.dragapult.image,
+      },
+      {
+        pokemon: 'Iron Thorns',
+        sprite: pokemonImageList['iron-thorns'].image,
+      },
+    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Dragapult ex',
+          'Iron Thorns ex',
+        ]) &&
+        cardCount(decklist, 'pokemon', 'Iron Thorns ex', 4)
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+  palkiaDusknoir: {
+    name: 'Palkia Dusknoir',
     sprites: [
       {
         pokemon: 'Palkia',
         sprite: pokemonImageList.palkia.forms!['origin'].image,
       },
       {
-        pokemon: 'Ice Rider Calyrex',
-        sprite: pokemonImageList.calyrex.forms!['ice'].image,
+        pokemon: 'Dusknoir',
+        sprite: pokemonImageList.dusknoir.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Origin Forme Palkia VSTAR',
-        pokemon: 'Palkia',
-      },
-      {
-        card: 'Ice Rider Calyrex VMAX',
-        pokemon: 'Ice Rider Calyrex',
-      },
-    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Origin Forme Palkia VSTAR',
+          'Dusknoir',
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
   miraidonFlaafy: {
-    name: 'miraidon Flaafy',
+    name: 'Miraidon Flaafy',
     sprites: [
       {
         pokemon: 'Miraidon',
         sprite: pokemonImageList.miraidon.image,
       },
       {
-        pokemon: 'flaaffy',
+        pokemon: 'Flaaffy',
         sprite: pokemonImageList.flaaffy.image,
       },
     ],
-    coreCards: [
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Miraidon ex', 'Flaaffy'])) {
+        return true;
+      }
+      return false;
+    },
+  },
+  miraidonEx: {
+    name: 'Miraidon Ex',
+    sprites: [
       {
-        card: 'Miraidon ex',
         pokemon: 'Miraidon',
-      },
-      {
-        card: 'Flaaffy',
-        pokemon: 'flaaffy',
+        sprite: pokemonImageList.miraidon.image,
       },
     ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', ['Miraidon ex']) &&
+        decklistDoesntInclude(decklist, 'pokemon', ['Flaaffy'])
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
-  dialgaMetang: {
-    name: 'Dialga Metang',
+  hydreigon: {
+    name: 'Hydreigon',
     sprites: [
       {
-        pokemon: 'Dialga',
-        sprite: pokemonImageList['dialga'].forms!.origin.image,
-      },
-      {
-        pokemon: 'Metang',
-        sprite: pokemonImageList['metang'].image,
+        pokemon: 'Hydreigon',
+        sprite: pokemonImageList.hydreigon.image,
       },
     ],
-    coreCards: [
-      {
-        card: 'Origin Forme Dialga VSTAR',
-        pokemon: 'Origin Forme Dialga',
-      },
-      {
-        card: 'Metang',
-        pokemon: 'Metang',
-      },
-    ],
-  },
-  cheinPao: {
-    name: 'Chien-Pao',
-    sprites: [
-      {
-        pokemon: 'Chien-Pao',
-        sprite: pokemonImageList['chien-pao'].image,
-      },
-      {
-        pokemon: 'Baxcalibur',
-        sprite: pokemonImageList['baxcalibur'].image,
-      },
-    ],
-    coreCards: [
-      {
-        card: 'Chien-Pao ex',
-        pokemon: 'Chien-Pao',
-      },
-      {
-        card: 'Baxcalibur',
-        pokemon: 'Baxcalibur',
-      },
-    ],
-  },
-  futureHands: {
-    name: 'Future Hands',
-    sprites: [
-      {
-        pokemon: 'Iron Hands ex',
-        sprite: pokemonImageList['iron-hands'].image,
-      },
-      {
-        pokemon: 'Icon Crown ex',
-        sprite: pokemonImageList['iron-crown'].image,
-      },
-    ],
-    coreCards: [
-      {
-        card: 'Iron Hands ex',
-        pokemon: 'Iron Hands',
-      },
-      {
-        card: 'Iron Crown ex',
-        pokemon: 'Iron Crown',
-      },
-    ],
-  },
-  banetteLock: {
-    name: 'Banette Lock',
-    sprites: [
-      {
-        pokemon: 'Banette',
-        sprite: pokemonImageList['banette'].image,
-      },
-    ],
-    coreCards: [{ card: 'Banette ex', pokemon: 'Banette' }],
-  },
-  ragingBolt: {
-    name: 'Raging Bolt',
-    sprites: [
-      { pokemon: 'Raging Bolt', sprite: pokemonImageList['raging-bolt'].image },
-    ],
-    coreCards: [
-      { card: 'Raging Bolt ex', pokemon: 'raging bolt' },
-      // { card: 'Sandy Shocks ex', pokemon: 'Sandy Shocks' },
-    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Hydreigon ex'])) {
+        return true;
+      }
+      return false;
+    },
   },
   ancientBox: {
     name: 'Ancient Box',
@@ -414,59 +475,198 @@ export const archetypes: Archetypes = {
         sprite: pokemonImageList['flutter-mane'].image,
       },
     ],
-    coreCards: [
-      { card: 'Roaring Moon', pokemon: 'roaring moon' },
-      { card: 'Flutter Mane', pokemon: 'flutter mane' },
-    ],
-  },
-  quadThrones: {
-    name: 'Quad Thorns',
-    sprites: [
-      {
-        pokemon: 'Quad Thorns',
-        sprite: pokemonImageList['iron-thorns'].image,
-      },
-    ],
-    coreCards: [{ card: 'Iron Thorns ex', pokemon: 'iron thorns ex' }],
-    fn: (decklist: DeckList) => {
+    fn: decklist => {
       if (
-        decklist.pokemon.length === 1 &&
-        decklist.pokemon[0].name === 'Iron Thorns ex' &&
-        decklist.pokemon[0].count === 4
+        decklistIncludes(decklist, 'pokemon', ['Roaring Moon', 'Flutter Mane'])
       ) {
         return true;
       }
       return false;
     },
   },
-  miraidonEx: {
-    name: 'miraidon EX',
+  archaludon: {
+    name: 'Archaludon',
     sprites: [
       {
-        pokemon: 'Miraidon',
-        sprite: pokemonImageList.miraidon.image,
+        pokemon: 'Archaludon',
+        sprite: pokemonImageList.archaludon.image,
       },
     ],
-    coreCards: [{ card: 'Miraidon ex', pokemon: 'Miraidon' }],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', ['Archaludon ex', 'Duraludon'])
+      ) {
+        return true;
+      }
+      return false;
+    },
   },
-  pidgeotEx: {
-    name: 'Pidgeot EX',
+  chienPao: {
+    name: 'Chien-Pao',
     sprites: [
       {
-        pokemon: 'Pidgeot',
-        sprite: pokemonImageList.pidgeot.image,
+        pokemon: 'Chien-Pao',
+        sprite: pokemonImageList['chien-pao'].image,
+      },
+      {
+        pokemon: 'Baxcalibur',
+        sprite: pokemonImageList['baxcalibur'].image,
       },
     ],
-    coreCards: [{ card: 'Pidgeot ex', pokemon: 'Pidgeot' }],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', ['Chien-Pao ex', 'Baxcalibur'])
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+  palkiaNoctowl: {
+    name: 'Palkia Noctowl',
+    sprites: [
+      {
+        pokemon: 'Palkia',
+        sprite: pokemonImageList.palkia.forms!['origin'].image,
+      },
+      {
+        pokemon: 'Noctowl',
+        sprite: pokemonImageList.noctowl.image,
+      },
+    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Origin Forme Palkia VSTAR',
+          'Noctowl',
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+  terapagosDusknoir: {
+    name: 'Terapagos Dusknoir',
+    sprites: [
+      {
+        pokemon: 'Terapagos',
+        sprite: pokemonImageList.terapagos.forms!.terastal.image,
+      },
+      {
+        pokemon: 'Dusknoir',
+        sprite: pokemonImageList.dusknoir.image,
+      },
+    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Terapagos ex', 'Dusknoir'])) {
+        return true;
+      }
+      return false;
+    },
+  },
+  ceruledge: {
+    name: 'Ceruledge',
+    sprites: [
+      {
+        pokemon: 'Ceruledge',
+        sprite: pokemonImageList.ceruledge.image,
+      },
+    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Ceruledge ex'])) {
+        return true;
+      }
+      return false;
+    },
   },
   dragapultEx: {
-    name: 'Dragapult EX',
+    name: 'Dragapult Ex',
     sprites: [
       {
         pokemon: 'Dragapult',
         sprite: pokemonImageList.dragapult.image,
       },
     ],
-    coreCards: [{ card: 'Dragapult ex', pokemon: 'Dragapult' }],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Dragapult ex'])) {
+        return true;
+      }
+      return false;
+    },
+  },
+  greatTuskMill: {
+    name: 'Great Tusk Mill',
+    sprites: [
+      {
+        pokemon: 'Great Tusk',
+        sprite: pokemonImageList['great-tusk'].image,
+      },
+    ],
+    fn: (decklist: DeckList) => {
+      if (decklistIncludes(decklist, 'pokemon', ['Great Tusk'])) {
+        cardCount(decklist, 'pokemon', 'Great Tusk', 4);
+        return true;
+      }
+      return false;
+    },
+  },
+  futureHands: {
+    name: 'Future Hands',
+    sprites: [
+      {
+        pokemon: 'Iron Hands ex',
+        sprite: pokemonImageList['iron-hands'].image,
+      },
+      {
+        pokemon: 'Icon Crown ex',
+        sprite: pokemonImageList['iron-crown'].image,
+      },
+    ],
+    fn: (decklist: DeckList) => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Iron Hands ex',
+          'Iron Crown ex',
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+  banetteLock: {
+    name: 'Banette Lock',
+    sprites: [
+      {
+        pokemon: 'Banette',
+        sprite: pokemonImageList['banette'].image,
+      },
+    ],
+    fn: (decklist: DeckList) => {
+      if (decklistIncludes(decklist, 'pokemon', ['Banette ex'])) {
+        return true;
+      }
+      return false;
+    },
+  },
+  greninjaex: {
+    name: 'Greninja ex',
+    sprites: [
+      {
+        pokemon: 'Greninja',
+        sprite: pokemonImageList.greninja.image,
+      },
+    ],
+    fn: (decklist: DeckList) => {
+      if (decklistIncludes(decklist, 'pokemon', ['Greninja ex'])) {
+        return true;
+      }
+      return false;
+    },
   },
 };
+
+// convert object to array
+export const archetypesList: ArchetypeList[] =
+  Object.values(archetypesListObject);

@@ -137,7 +137,18 @@ const router = createBrowserRouter([
               },
               {
                 path: 'stats',
-                element: <Stats />,
+                element: <DivisionOutlet />,
+                children: [
+                  {
+                    index: true,
+                    element: <Stats />,
+                  },
+                  {
+                    path: ':division',
+                    loader: divisionLoader,
+                    element: <Stats />,
+                  },
+                ],
               },
               {
                 path: 'rounds',

@@ -20,6 +20,10 @@ const getImageUrl = (card: PokemonCard) => {
   if (setCode === setMap['PR-SW']) {
     number = `SWSH${number}`;
   }
+  // NOTE: there is an issue with the Sword and Shield Promo cards where the set code is 'basep' instead of 'swshp', hopefully pokedata will fix this soonx
+  if (setCode === 'basep') {
+    setCode = 'swshp';
+  }
 
   return `https://images.pokemontcg.io/${setCode}/${number}.png`;
 };
@@ -92,7 +96,10 @@ export const DecklistGrid: FC<DecklistGridProps> = ({ decklist }) => {
   return (
     <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-8">
       {formattedCards.map(card => (
-        <div key={card.name} className="relative aspect-[2.5/3.5] w-full">
+        <div
+          key={`${card.name}-${card.set}-${card.number}`}
+          className="relative aspect-[2.5/3.5] w-full"
+        >
           <CardImage src={card.image} alt={card.name} />
 
           <div className="absolute bottom-0 right-0 m-2 inline-flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600">

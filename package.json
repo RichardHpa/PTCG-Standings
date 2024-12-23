@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node server.js -- --scheduler",
     "dev:start": "node server.js",
+    "dev:local": "node server.js -- --local",
     "dev:server": "nodemon server.js",
     "dev:frontend": "cd client && npm run dev",
     "dev:frontend:build": "cd client && npm run build:dev",
