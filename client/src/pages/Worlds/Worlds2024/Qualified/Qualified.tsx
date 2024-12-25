@@ -269,6 +269,7 @@ export const Qualified = () => {
             </div>
           </div>
           <VirtualizedTable<QualifedPlayer>
+            tableId="qualified-players"
             type="window"
             data={filteredPlayers}
             columns={columns}

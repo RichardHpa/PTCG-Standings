@@ -68,6 +68,7 @@ export const StandingsTableCard = ({
       <div className="h-full overflow-auto" ref={listRef}>
         <div style={{ overflow: 'visible', height: '0px' }} className="w-full">
           <VirtualizedTable<Standing>
+            tableId={`${playerIndex}-${tournament.id}-${division}-standings`}
             data={standings}
             columns={columns}
             containerRef={listRef}

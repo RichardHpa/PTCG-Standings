@@ -53,6 +53,6 @@ export const Decklist = () => {
   if (!hasDecklist(player)) {
     return <div>Decklist not found</div>;
   }
-  console.log(player.decklist);
+
   return <DecklistInner decklist={player.decklist as DecklistType} />;
 };

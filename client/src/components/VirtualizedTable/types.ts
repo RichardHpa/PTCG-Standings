@@ -10,6 +10,7 @@ export interface ColumnProps<T>
 }
 
 export interface VirtualizedTableProps<T> {
+  tableId: string;
   type?: 'window' | 'container';
   columns: ColumnProps<T>[];
   data: T[];

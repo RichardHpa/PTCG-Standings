@@ -209,6 +209,7 @@ export const Tournaments = () => {
           </div>
 
           <VirtualizedTable<Tournament>
+            tableId="tournaments"
             type="window"
             data={filteredTournaments}
             columns={columns}

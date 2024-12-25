@@ -223,6 +223,7 @@ export const Standings = () => {
           </div>
 
           <VirtualizedTable<Standing>
+            tableId={`${tournament.id}-${division}-standings`}
             type="window"
             data={filteredPlayers}
             columns={columns}

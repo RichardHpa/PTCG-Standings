@@ -79,6 +79,7 @@ export const TournamentsCard: FC<TournamentsCardProps> = ({
     <div ref={listRef}>
       <Card title={title} growHeight>
         <VirtualizedTable
+          tableId="tournaments"
           header="none"
           data={tournaments}
           columns={columns}

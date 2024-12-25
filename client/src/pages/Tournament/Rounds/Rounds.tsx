@@ -106,8 +106,6 @@ export const Rounds = () => {
     setSelectedRound(round);
   }, []);
 
-  // console.log(data);
-  //
   return (
     <div className="flex flex-col items-start gap-4">
       <div className="w-full overflow-x-auto">
@@ -142,6 +140,7 @@ export const Rounds = () => {
       {data && (
         <div className="w-full" ref={listRef}>
           <VirtualizedTable<RoundApi<SingleRoundData>>
+            tableId={`${tournament.id}-${division}-round-${selectedRound}`}
             type="window"
             data={data}
             columns={columns}

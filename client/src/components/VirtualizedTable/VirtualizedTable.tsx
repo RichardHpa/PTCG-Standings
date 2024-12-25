@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+import { useNavigationType } from 'react-router-dom';
+
 import clsx from 'clsx';
 import {
   useWindowVirtualizer,
@@ -11,6 +13,8 @@ import { tw } from 'utils/tailwindClassName';
 import { Column } from './Column';
 
 import type { VirtualizedTableProps } from './types';
+import type { VirtualItem } from '@tanstack/react-virtual';
+import type { NavigationType } from 'react-router-dom';
 
 interface Accessor {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this actually needs to be any
@@ -24,6 +28,7 @@ const access: Accessor = (path, object) => {
 
 type VirtualizerProps<T> = Pick<
   VirtualizedTableProps<T>,
+  | 'tableId'
   | 'data'
   | 'columns'
   | 'containerRef'
@@ -32,7 +37,40 @@ type VirtualizerProps<T> = Pick<
   | 'estimateSize'
 >;
 
+interface CacheItem {
+  _kSavedOffset: number | undefined | null;
+  _kMeasurementsCache: VirtualItem[];
+}
+
+type VirtualizerCache = Record<string, CacheItem>;
+
+const virtualizerCache: VirtualizerCache = {};
+
+const getInitialOffset = (tableId: string, navigationType: NavigationType) => {
+  if (navigationType !== 'POP') {
+    delete virtualizerCache[tableId];
+  }
+  if (virtualizerCache[tableId]) {
+    return virtualizerCache[tableId]._kSavedOffset ?? 0;
+  }
+  return 0;
+};
+
+const getInitialMeasurementsCache = (
+  tableId: string,
+  navigationType: NavigationType,
+) => {
+  if (navigationType !== 'POP') {
+    delete virtualizerCache[tableId];
+  }
+  if (virtualizerCache[tableId]) {
+    return virtualizerCache[tableId]._kMeasurementsCache ?? [];
+  }
+  return [];
+};
+
 const WindowVirtualizer = <T,>({
+  tableId,
   data,
   columns,
   containerRef,
@@ -40,7 +78,19 @@ const WindowVirtualizer = <T,>({
   scrollToIndex,
   estimateSize,
 }: VirtualizerProps<T>) => {
+  const navigation = useNavigationType();
+
   const virtualizer = useWindowVirtualizer({
+    initialOffset: getInitialOffset(tableId, navigation),
+    initialMeasurementsCache: getInitialMeasurementsCache(tableId, navigation),
+    onChange: virtualizer => {
+      if (!virtualizer.isScrolling) {
+        virtualizerCache[tableId] = {
+          _kSavedOffset: virtualizer.scrollOffset,
+          _kMeasurementsCache: virtualizer.measurementsCache,
+        };
+      }
+    },
     count: data.length,
     estimateSize: () => estimateSize,
     overscan: 5,
@@ -206,6 +256,7 @@ const ContainerVirtualizer = <T,>({
 };
 
 export const VirtualizedTable = <T,>({
+  tableId,
   type = 'container',
   data,
   columns,
@@ -245,6 +296,7 @@ export const VirtualizedTable = <T,>({
         <>
           {type === 'window' ? (
             <WindowVirtualizer<T>
+              tableId={tableId}
               data={data}
               columns={columns}
               onRowClick={onRowClick}
@@ -253,6 +305,7 @@ export const VirtualizedTable = <T,>({
             />
           ) : (
             <ContainerVirtualizer<T>
+              tableId={tableId}
               data={data}
               columns={columns}
               onRowClick={onRowClick}

@@ -122,7 +122,6 @@ const useGetFormattedData = (division: Division) => {
         return;
       }
 
-      console.log(data.archetypes);
       const sortedData = Object.entries(data.archetypes).sort(
         ([, a], [, b]) => b.count - a.count,
       );
@@ -132,7 +131,6 @@ const useGetFormattedData = (division: Division) => {
       const unknown = sortedData.splice(unknownIndex, 1);
       sortedData.push(unknown[0]);
 
-      // console.log(sortedData);
       const formattedData = sortedData.map(([key, value]) => ({
         name: key,
         y: value.count,
