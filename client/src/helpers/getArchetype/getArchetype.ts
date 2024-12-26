@@ -21,6 +21,7 @@ export const getArchetype = (decklist: DeckList | string): Archetype | null => {
           sprite: 'substitute.png',
         },
       ],
+      key: 'unknown',
     };
 
     return unknownArchetype;
@@ -30,5 +31,6 @@ export const getArchetype = (decklist: DeckList | string): Archetype | null => {
     name: match.name,
     color: match.color,
     sprites: match.sprites,
+    key: match.key,
   } as Archetype;
 };

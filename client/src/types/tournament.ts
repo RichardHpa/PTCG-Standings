@@ -45,7 +45,7 @@ export interface TournamentsApiResponse {
   };
 }
 
-interface TournamentData {
+export interface TournamentData {
   division: Division;
   data: Standing[];
 }

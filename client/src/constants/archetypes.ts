@@ -55,6 +55,7 @@ export interface ArchetypeList {
   sprites: Sprites[];
   color?: string;
   fn: (decklist: DeckList) => boolean;
+  key?: string;
 }
 
 type archetypesListObjectProps = {
@@ -667,6 +668,13 @@ const archetypesListObject: archetypesListObjectProps = {
   },
 };
 
-// convert object to array
-export const archetypesList: ArchetypeList[] =
-  Object.values(archetypesListObject);
+// convert object to array which also inclues a key for the object
+export const archetypesList: ArchetypeList[] = Object.entries(
+  archetypesListObject,
+).map(([key, value]) => ({
+  ...value,
+  key,
+}));
+
+// export const archetypesList: ArchetypeList[] =
+//   Object.values(archetypesListObject);

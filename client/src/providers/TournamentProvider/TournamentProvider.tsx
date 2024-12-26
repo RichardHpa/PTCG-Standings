@@ -5,8 +5,11 @@ import { useGetTournament } from 'queries/useGetTournament';
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Notice } from 'components/Notice';
 
+import { getArchetype } from 'helpers/getArchetype';
+
 import type { ReactNode } from 'react';
-import { TournamentContextProps } from './types';
+import type { TournamentContextProps } from './types';
+import type { TournamentData } from 'types/tournament';
 
 const TournamentContext = createContext<TournamentContextProps | null>(null);
 
@@ -39,9 +42,26 @@ export const TournamentContextProvider = ({
   const tournamentQuery = useGetTournament({
     tournamentId,
     select: data => {
+      const allDivisions = data.tournament_data;
+      const formattedDivision: TournamentData[] = [];
+      allDivisions.forEach(division => {
+        const divisionData = division.data;
+        divisionData.map(standing => {
+          const archetype = getArchetype(standing.decklist);
+          if (archetype) {
+            standing.archetype = archetype.key;
+          }
+        });
+        formattedDivision.push({
+          division: division.division,
+          data: divisionData,
+        });
+        return divisionData;
+      });
+
       return {
         tournament: data.tournament,
-        divisions: data.tournament_data,
+        divisions: formattedDivision,
       };
     },
   });

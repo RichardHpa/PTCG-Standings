@@ -41,4 +41,7 @@ export interface Standing<D = DeckList | string> {
   decklist: D;
   drop: number;
   rounds: Rounds;
+
+  // Custom fields
+  archetype?: string;
 }
