@@ -15,9 +15,12 @@ export const getCountryCode = (name: string) => {
   return countryCode ? countryCode[1] : '';
 };
 
-export const formatPlayerName = (name: string) => {
+export const formatPlayerName = (name: string, showFlag: boolean = true) => {
   const removedCountry = removeCountryFromName(name);
   const countryCode = getCountryCode(name);
+  if (!showFlag) {
+    return removedCountry;
+  }
   const countryFlag = getCountryFlag(countryCode);
   return `${countryFlag} ${removedCountry}`;
 };

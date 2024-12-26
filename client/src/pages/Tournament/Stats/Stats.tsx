@@ -10,6 +10,7 @@ import { Link } from 'components/Link';
 import { Card } from 'components/Card';
 import { Paragraph } from 'components/Paragraph';
 import { PieChart } from 'components/Charts/PieChart';
+import { SEO } from 'components/SEO';
 
 import { useTournamentContext } from 'providers/TournamentProvider';
 
@@ -184,6 +185,8 @@ export const Stats = () => {
 
   return (
     <div className="flex w-full flex-col gap-4">
+      <SEO title={`${tournament.name} ${division} statistics`} />
+
       <PieChart data={res.formattedData} chartName="Archetypes" />
 
       <Paragraph size="sm">

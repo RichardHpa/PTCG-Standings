@@ -7,6 +7,7 @@ import { useTournamentContext } from 'providers/TournamentProvider';
 import { Paragraph } from 'components/Paragraph';
 import { Card } from 'components/Card';
 import { Link } from 'components/Link';
+import { SEO } from 'components/SEO';
 
 import { breakCamelCase } from 'utils/breakCamelCase';
 
@@ -23,6 +24,7 @@ export const Streams = () => {
 
   return (
     <div className="flex flex-col gap-4">
+      <SEO title={`${tournament.name} streams`} />
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {streamKeys.map((day, index) => {
           const streamUrl = tournament?.streams?.[day];

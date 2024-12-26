@@ -14,6 +14,7 @@ import { Input } from 'components/Forms/Input';
 import { StyledSelect } from 'components/Forms/Select';
 import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 import { Archetypes } from 'components/Archetypes';
+import { SEO } from 'components/SEO';
 
 import { getCountryFlag } from 'helpers/getCountryFlag';
 import { getCountryFromCode } from 'helpers/getCountryFromCode';
@@ -238,6 +239,8 @@ export const Qualified = () => {
 
   return (
     <div className="flex flex-col gap-4">
+      <SEO title={`Worlds 2024 qualified ${division} players`} />
+
       <Paragraph>
         Congratulations also to those who managed to qualify for the 2024 World
         Championships.

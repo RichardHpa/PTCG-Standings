@@ -3,7 +3,6 @@ import { useMemo } from 'react';
 import { usePlayerContext } from 'providers/PlayerProvider';
 
 import { PlayerInfo } from 'components/PlayerInfo';
-
 import { Accordion } from 'components/Accordion';
 
 export const Player = () => {

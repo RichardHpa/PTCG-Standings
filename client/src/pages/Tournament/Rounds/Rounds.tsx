@@ -4,6 +4,7 @@ import clsx from 'clsx';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { VirtualizedTable } from 'components/VirtualizedTable';
+import { SEO } from 'components/SEO';
 
 import { WIN, LOSS, DRAW } from 'constants/results';
 
@@ -108,6 +109,8 @@ export const Rounds = () => {
 
   return (
     <div className="flex flex-col items-start gap-4">
+      <SEO title={`${tournament.name} rounds`} />
+
       <div className="w-full overflow-x-auto">
         <div className="inline-flex rounded-md shadow-sm" role="group">
           {Array.from({ length: roundsNum }, (_, i) => (

@@ -3,6 +3,7 @@ import { Outlet, useLoaderData } from 'react-router-dom';
 import { Heading } from 'components/Heading';
 import { PinPlayerButton } from 'components/PinPlayer';
 import { Notice } from 'components/Notice';
+import { SEO } from 'components/SEO';
 
 import { RUNNING } from 'constants/tournamentStatus';
 
@@ -24,6 +25,9 @@ const RawPlayerOutlet = () => {
 
   return (
     <div className="flex flex-col gap-8">
+      <SEO
+        title={`${formatPlayerName(player.name, false)} in ${tournament.name}`}
+      />
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Heading level="2">{formatPlayerName(player.name)}</Heading>

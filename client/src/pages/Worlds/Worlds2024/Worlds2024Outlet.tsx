@@ -1,5 +1,5 @@
 import { Outlet, Link } from 'react-router-dom';
-// import { SEO } from 'components/SEO';
+import { SEO } from 'components/SEO';
 import { TournamentContextProvider } from 'providers/TournamentProvider';
 
 import { Tabs, NavTab } from 'components/Tabs';
@@ -13,7 +13,8 @@ const worldsCode = '0000128';
 export const RawWorlds2025Outlet = () => {
   return (
     <div className="flex flex-col gap-4">
-      {/* <SEO title="Worlds 2024" /> */}
+      <SEO title="Worlds 2024" />
+
       <div className="flex flex-col gap-4 text-center">
         <img
           className="mx-auto h-auto max-w-xs rounded-lg"

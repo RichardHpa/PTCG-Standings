@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Markdown from 'markdown-to-jsx';
 
 import { BuyMeABoosterButton } from 'components/BuyMeABoosterButton';
+import { SEO } from 'components/SEO';
 
 import { Heading } from 'components/Heading';
 import { Link } from 'components/Link';
@@ -46,6 +47,8 @@ export const About = () => {
 
   return (
     <div>
+      <SEO title="About" />
+
       <Markdown
         options={{
           wrapper: Wrapper,

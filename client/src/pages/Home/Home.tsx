@@ -1,6 +1,7 @@
 import { Heading } from 'components/Heading';
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { TournamentsCard } from 'components/TournamentsCard';
+import { SEO } from 'components/SEO';
 
 import { useGetTournaments } from 'queries/useGetTournaments';
 
@@ -52,29 +53,33 @@ export const Home = () => {
   }
 
   return (
-    <div className="flex flex-grow flex-col gap-8">
-      <Heading level="3">
-        Keep up to date with the latest Pokemon TCG tournaments
-      </Heading>
+    <>
+      <SEO />
 
-      {data.runningTournaments.length > 0 && (
+      <div className="flex flex-grow flex-col gap-8">
+        <Heading level="3">
+          Keep up to date with the latest Pokemon TCG tournaments
+        </Heading>
+
+        {data.runningTournaments.length > 0 && (
+          <TournamentsCard
+            tournaments={data.runningTournaments}
+            title="Running Tournaments"
+          />
+        )}
+
+        {data.upcomingTournaments.length > 0 && (
+          <TournamentsCard
+            tournaments={data.upcomingTournaments}
+            title="Upcoming Tournaments"
+          />
+        )}
+
         <TournamentsCard
-          tournaments={data.runningTournaments}
-          title="Running Tournaments"
+          tournaments={data.latestTournaments}
+          title="Latest Tournaments"
         />
-      )}
-
-      {data.upcomingTournaments.length > 0 && (
-        <TournamentsCard
-          tournaments={data.upcomingTournaments}
-          title="Upcoming Tournaments"
-        />
-      )}
-
-      <TournamentsCard
-        tournaments={data.latestTournaments}
-        title="Latest Tournaments"
-      />
-    </div>
+      </div>
+    </>
   );
 };

@@ -1,11 +1,14 @@
 import { useMemo } from 'react';
 
 import { usePlayerContext } from 'providers/PlayerProvider';
+import { useTournamentContext } from 'providers/TournamentProvider';
 
 import { DecklistGrid } from 'components/DecklistGrid';
 import { Archetypes } from 'components/Archetypes';
-
+import { SEO } from 'components/SEO';
 import { Accordion } from 'components/Accordion';
+
+import { formatPlayerName } from 'helpers/formatPlayerName';
 
 import type { DeckList as DecklistType, Standing } from 'types/standing';
 import type { FC } from 'react';
@@ -20,7 +23,8 @@ const DecklistInner: FC<{ decklist: DecklistType }> = ({ decklist }) => {
 
 export const Decklist = () => {
   const { players } = usePlayerContext();
-  // Archetypes
+  const { tournament } = useTournamentContext();
+
   const items = useMemo(() => {
     return players.map(player => {
       const playerHasDecklist = hasDecklist(player);
@@ -44,6 +48,9 @@ export const Decklist = () => {
   if (players.length > 1) {
     return (
       <div className="flex flex-col gap-4">
+        <SEO
+          title={`${formatPlayerName(players[0].name, false)} decklist's from ${tournament.name}`}
+        />
         <Accordion items={items} />
       </div>
     );
@@ -54,5 +61,12 @@ export const Decklist = () => {
     return <div>Decklist not found</div>;
   }
 
-  return <DecklistInner decklist={player.decklist as DecklistType} />;
+  return (
+    <>
+      <SEO
+        title={`${formatPlayerName(player.name, false)} decklist from ${tournament.name}`}
+      />
+      <DecklistInner decklist={player.decklist as DecklistType} />
+    </>
+  );
 };

@@ -11,6 +11,7 @@ import { Select } from 'components/Forms/Select';
 import { Card } from 'components/Card';
 import { VirtualizedTable } from 'components/VirtualizedTable';
 import { TournamentLogo } from 'components/TournamentLogo';
+import { SEO } from 'components/SEO';
 
 import { AdditionalInfo } from 'components/TournamentsCard/components/AdditionalInfo';
 
@@ -174,6 +175,8 @@ export const Tournaments = () => {
 
   return (
     <div className="flex flex-col gap-8">
+      <SEO title="Tournaments" />
+
       {data.runningTournaments.length > 0 && (
         <TournamentsCard
           tournaments={data.runningTournaments}

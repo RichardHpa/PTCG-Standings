@@ -9,6 +9,7 @@ import { Card } from 'components/Card';
 import { PinPlayerButton } from 'components/PinPlayer/PinPlayerButton';
 import { VirtualizedTable } from 'components/VirtualizedTable';
 import { StyledSelect } from 'components/Forms/Select';
+import { SEO } from 'components/SEO';
 
 import { formatPlayerName, getCountryCode } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
@@ -196,6 +197,8 @@ export const Standings = () => {
 
   return (
     <div className="flex flex-col gap-4">
+      <SEO title={`Worlds 2024 ${division} standing`} />
+
       <section className="bg-gray-50 dark:bg-gray-900" ref={listRef}>
         <Card>
           <div className="flex flex-col items-center space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
