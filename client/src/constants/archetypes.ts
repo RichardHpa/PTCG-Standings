@@ -62,7 +62,21 @@ type archetypesListObjectProps = {
   [key: string]: ArchetypeList;
 };
 
-const archetypesListObject: archetypesListObjectProps = {
+export const unknownArchetype = {
+  name: 'Unknown',
+  color: 'lightgrey',
+  sprites: [
+    {
+      pokemon: 'unknown',
+      sprite: 'substitute.png',
+    },
+  ],
+  key: 'unknown',
+  fn: () => false,
+};
+
+export const archetypesListObject: archetypesListObjectProps = {
+  unknown: unknownArchetype,
   regidrago: {
     name: 'Regidrago',
     sprites: [

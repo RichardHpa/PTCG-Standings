@@ -15,7 +15,6 @@ import { formatPlayerName, getCountryCode } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
 import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 import { calculatePoints } from 'helpers/calculatePoints';
-import { hasDecklist } from 'helpers/hasDecklist';
 import { getCountryFromCode } from 'helpers/getCountryFromCode';
 import { getCountryFlag } from 'helpers/getCountryFlag';
 
@@ -88,8 +87,8 @@ export const Standings = () => {
         align: 'right',
         render: row => (
           <div className="flex items-center justify-end gap-4">
-            {hasDecklist(row.decklist) && (
-              <Archetypes decklist={row.decklist} size="small" />
+            {row.archetype && (
+              <Archetypes size="small" archetype={row.archetype} />
             )}
             {tournament.tournamentStatus === 'running' && (
               <PinPlayerButton

@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { getArchetype } from 'helpers/getArchetype';
+import { archetypesListObject } from 'constants/archetypes';
 
 import type { ArchetypesProps } from './types';
 
@@ -32,16 +32,16 @@ const PokemonSprite = ({
 };
 
 export const Archetypes: FC<ArchetypesProps> = ({
-  decklist,
+  archetype,
   onClick,
   size = 'large',
 }) => {
-  const archetype = getArchetype(decklist);
-  if (!archetype) return null;
+  const foundArchetype = archetypesListObject[archetype];
+  if (!foundArchetype) return null;
 
   return (
     <div className="flex" onClick={onClick}>
-      {archetype.sprites.map((sprite, index) => {
+      {foundArchetype.sprites.map((sprite, index) => {
         return <PokemonSprite key={index} image={sprite} size={size} />;
       })}
     </div>

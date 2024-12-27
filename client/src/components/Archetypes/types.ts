@@ -1,7 +1,5 @@
-import type { DeckList } from 'types/standing';
-
 export interface ArchetypesProps {
-  decklist: DeckList;
+  archetype: string;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
   size?: 'small' | 'large';
 }

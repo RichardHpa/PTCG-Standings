@@ -46,9 +46,10 @@ export const PlayerInfo: FC<PlayerInfoProps> = ({ player, division }) => {
 
         {player.decklist && (
           <div className="flex items-center justify-center gap-2">
-            {typeof player.decklist !== 'string' && (
-              <Archetypes decklist={player.decklist} />
+            {player.archetype && (
+              <Archetypes size="small" archetype={player.archetype} />
             )}
+
             <IconButton
               icon={<ListBulletIcon />}
               alt="deck list"

@@ -32,8 +32,8 @@ export const Decklist = () => {
         title: playerHasDecklist
           ? `${player.name} - currently at ${player.placing} place`
           : `${player.name} - Decklist not found`,
-        action: playerHasDecklist ? (
-          <Archetypes decklist={player.decklist as DecklistType} size="small" />
+        action: player.archetype ? (
+          <Archetypes archetype={player.archetype} size="small" />
         ) : undefined,
         content: playerHasDecklist ? (
           <DecklistInner decklist={player.decklist as DecklistType} />

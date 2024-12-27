@@ -20,7 +20,6 @@ import { getCountryFlag } from 'helpers/getCountryFlag';
 import { getCountryFromCode } from 'helpers/getCountryFromCode';
 import { formatRecord } from 'helpers/formatRecord';
 import { calculatePoints } from 'helpers/calculatePoints';
-import { hasDecklist } from 'helpers/hasDecklist';
 
 import type { ColumnProps } from 'components/VirtualizedTable/types';
 import type { Division } from 'types/divisions';
@@ -124,8 +123,8 @@ const columns: ColumnProps<QualifedPlayer>[] = [
     key: 'decklist',
     header: '',
     render: row =>
-      row.standing && hasDecklist(row.standing.decklist) ? (
-        <Archetypes decklist={row.standing.decklist} size="small" />
+      row.standing && row.standing.archetype ? (
+        <Archetypes archetype={row.standing.archetype} size="small" />
       ) : (
         <></>
       ),

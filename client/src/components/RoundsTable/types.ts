@@ -1,17 +1,16 @@
 import type { Division } from 'types/divisions';
 import type { Round, Standing } from 'types/standing';
-import type { DeckList } from 'types/standing';
 
-export interface RoundWithDecklist extends Round {
-  decklist?: DeckList;
+export interface RoundWithArchetype extends Round {
+  archetype?: string;
 }
 
-export interface RoundsWithDecklist {
-  [key: string]: RoundWithDecklist;
+export interface RoundsWithArchetype {
+  [key: string]: RoundWithArchetype;
 }
 
 export interface RoundRowProps {
-  round: RoundWithDecklist;
+  round: RoundWithArchetype;
   roundNum: number | string;
 }
 

@@ -11,7 +11,7 @@ import { useTournamentContext } from 'providers/TournamentProvider';
 import type {
   RoundsTableProps,
   RoundRowProps,
-  RoundsWithDecklist,
+  RoundsWithArchetype,
 } from './types';
 import type { FC } from 'react';
 
@@ -26,8 +26,12 @@ export const RoundRow = ({ round, roundNum }: RoundRowProps) => {
           <Paragraph>{formatPlayerName(round.name)}</Paragraph>
         </div>
         <div className="flex items-center gap-2">
-          {round.decklist && (
+          {/* {round.decklist && (
             <Archetypes size="small" decklist={round.decklist} />
+          )} */}
+
+          {round.archetype && (
+            <Archetypes size="small" archetype={round.archetype} />
           )}
           {round.result && (
             <p className={`${recordColorMap[round.result]} font-bold`}>
@@ -45,15 +49,15 @@ export const RoundsTable: FC<RoundsTableProps> = ({ player, division }) => {
 
   const formattedRounds = useMemo(() => {
     const divisionData = divisions.find(item => item.division === division)!;
-    const rounds = player.rounds as RoundsWithDecklist;
+    const rounds = player.rounds as RoundsWithArchetype;
     Object.keys(rounds).forEach(round => {
       const opponentsName = rounds[round].name;
       // NOTE: If there are 2 players with the same name, this will only get the first one, we probably need to do a better check
       const opponent = divisionData.data.find(x => x.name === opponentsName);
-      if (typeof opponent?.decklist === 'object') {
-        rounds[round].decklist = opponent?.decklist;
+      if (opponent?.archetype) {
+        rounds[round].archetype = opponent?.archetype;
       } else {
-        rounds[round].decklist = undefined;
+        rounds[round].archetype = undefined;
       }
     });
     return rounds;
