@@ -2,8 +2,8 @@ import { useMemo, useState, useEffect } from 'react';
 import { githubIssues } from 'constants/github';
 import { useParams } from 'react-router-dom';
 
-import { getArchetype } from 'helpers/getArchetype';
 import { breakCamelCase } from 'utils/breakCamelCase';
+import { archetypesListObject } from 'constants/archetypes';
 
 import { Notice } from 'components/Notice';
 import { Link } from 'components/Link';
@@ -72,8 +72,8 @@ const useGetArchetypeCounts = (division: Division) => {
 
     const standings = divisionData.data;
     standings.forEach(standing => {
-      const archetype = getArchetype(standing.decklist);
-      if (archetype) {
+      if (standing.archetype) {
+        const archetype = archetypesListObject[standing.archetype];
         if (!archetypeCounts.archetypes[archetype.name]) {
           archetypeCounts.archetypes[archetype.name] = {
             count: 1,
