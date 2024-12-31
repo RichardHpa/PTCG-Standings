@@ -8,15 +8,16 @@ import { Input } from 'components/Forms/Input';
 import { Card } from 'components/Card';
 import { PinPlayerButton } from 'components/PinPlayer/PinPlayerButton';
 import { VirtualizedTable } from 'components/VirtualizedTable';
-import { StyledSelect } from 'components/Forms/Select';
 import { SEO } from 'components/SEO';
+import {
+  CountrySelect,
+  firstCountryOption,
+} from 'components/Forms/CountrySelect';
 
 import { formatPlayerName, getCountryCode } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
 import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 import { calculatePoints } from 'helpers/calculatePoints';
-import { getCountryFromCode } from 'helpers/getCountryFromCode';
-import { getCountryFlag } from 'helpers/getCountryFlag';
 
 import { useTournamentContext } from 'providers/TournamentProvider';
 
@@ -30,19 +31,15 @@ const formatToPercentage = (value: number) => {
   return `${(value * 100).toFixed(2)}%`;
 };
 
-const firstOption: StyledOptionProps = {
-  value: 'all',
-  label: 'All countries',
-  render: <>All countries</>,
-};
-
 export const Standings = () => {
   const navigate = useNavigate();
   const { division = 'masters' } = useParams() as { division: Division };
   const { divisions, tournament } = useTournamentContext();
   const [searchQuery, setSearchQuery] = useState('');
   const listRef = useRef<HTMLDivElement | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState(firstOption.value);
+  const [selectedCountry, setSelectedCountry] = useState(
+    firstCountryOption.value,
+  );
 
   const columns: ColumnProps<Standing>[] = useMemo(() => {
     return [
@@ -105,7 +102,7 @@ export const Standings = () => {
 
   useEffect(() => {
     setSearchQuery('');
-    setSelectedCountry(firstOption.value);
+    setSelectedCountry(firstCountryOption.value);
   }, [division, divisions]);
 
   const standings = useMemo(() => {
@@ -115,32 +112,6 @@ export const Standings = () => {
     }
     return divisionData.data;
   }, [division, divisions]);
-
-  const styledOptions: StyledOptionProps[] = useMemo(() => {
-    const countries = new Set<string>();
-    standings.forEach(player => {
-      const countryCode = getCountryCode(player.name);
-      if (countryCode) {
-        countries.add(countryCode);
-      }
-    });
-    const options: StyledOptionProps[] = [firstOption];
-    countries.forEach(country => {
-      options.push({
-        label: getCountryFromCode(country.toUpperCase()),
-        value: country,
-        render: (
-          <>
-            <div className="flex items-center gap-2">
-              <span>{getCountryFlag(country.toUpperCase())}</span>
-              <span>{getCountryFromCode(country.toUpperCase())}</span>
-            </div>
-          </>
-        ),
-      });
-    });
-    return options;
-  }, [standings]);
 
   const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
@@ -157,10 +128,11 @@ export const Standings = () => {
   );
 
   const filteredPlayers = useMemo(() => {
-    if (!searchQuery && selectedCountry === firstOption.value) return standings;
+    if (!searchQuery && selectedCountry === firstCountryOption.value)
+      return standings;
 
     const filteredByType =
-      selectedCountry === firstOption.value
+      selectedCountry === firstCountryOption.value
         ? standings
         : standings.filter(player =>
             player.name.includes(`[${selectedCountry}]`),
@@ -194,6 +166,17 @@ export const Standings = () => {
     setSelectedCountry(value);
   }, []);
 
+  const countries = useMemo(() => {
+    const countriesSet = new Set<string>();
+    standings.forEach(player => {
+      const countryCode = getCountryCode(player.name);
+      if (countryCode) {
+        countriesSet.add(countryCode);
+      }
+    });
+    return Array.from(countriesSet);
+  }, [standings]);
+
   return (
     <div className="flex flex-col gap-4">
       <SEO title={`Worlds 2024 ${division} standing`} />
@@ -213,13 +196,10 @@ export const Standings = () => {
               />
             </div>
             <div className="w-full md:w-1/4">
-              <StyledSelect
-                name="country"
-                label="Country"
-                hideLabel
-                options={styledOptions}
+              <CountrySelect
                 onChange={handleOnStyledCountryChange}
                 value={selectedCountry}
+                countries={countries}
               />
             </div>
           </div>

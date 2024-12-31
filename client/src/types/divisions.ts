@@ -6,3 +6,7 @@ export interface DivisionObjects {
   division: Division;
   data: Standing[];
 }
+
+export type DivisionObject = {
+  [key in Division]?: Standing[];
+};

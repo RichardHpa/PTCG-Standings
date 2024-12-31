@@ -10,6 +10,8 @@ import { getArchetype } from 'helpers/getArchetype';
 import type { ReactNode } from 'react';
 import type { TournamentContextProps } from './types';
 import type { TournamentData } from 'types/tournament';
+import type { DivisionObject } from 'types/divisions';
+import type { Standing } from 'types/standing';
 
 const TournamentContext = createContext<TournamentContextProps | null>(null);
 
@@ -59,9 +61,18 @@ export const TournamentContextProvider = ({
         return divisionData;
       });
 
+      const divisionObject: DivisionObject = formattedDivision.reduce(
+        (acc: { [key: string]: Standing[] }, curr) => {
+          acc[curr.division] = curr.data;
+          return acc;
+        },
+        {},
+      );
+
       return {
         tournament: data.tournament,
         divisions: formattedDivision,
+        divisionObject,
       };
     },
   });

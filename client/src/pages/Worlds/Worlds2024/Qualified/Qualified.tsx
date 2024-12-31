@@ -11,13 +11,15 @@ import { VirtualizedTable } from 'components/VirtualizedTable';
 import { Card } from 'components/Card';
 import { Paragraph } from 'components/Paragraph';
 import { Input } from 'components/Forms/Input';
-import { StyledSelect } from 'components/Forms/Select';
 import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 import { Archetypes } from 'components/Archetypes';
 import { SEO } from 'components/SEO';
+import {
+  CountrySelect,
+  firstCountryOption,
+} from 'components/Forms/CountrySelect';
 
 import { getCountryFlag } from 'helpers/getCountryFlag';
-import { getCountryFromCode } from 'helpers/getCountryFromCode';
 import { formatRecord } from 'helpers/formatRecord';
 import { calculatePoints } from 'helpers/calculatePoints';
 
@@ -137,24 +139,20 @@ const columns: ColumnProps<QualifedPlayer>[] = [
   },
 ];
 
-const firstOption: StyledOptionProps = {
-  value: 'all',
-  label: 'All countries',
-  render: <>All countries</>,
-};
-
 export const Qualified = () => {
   const { tournament } = useTournamentContext();
   const { division = 'masters' } = useParams() as { division: Division };
   const listRef = useRef<HTMLDivElement | null>(null);
   const players = useGetPlayers();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState(firstOption.value);
+  const [selectedCountry, setSelectedCountry] = useState(
+    firstCountryOption.value,
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     setSearchQuery('');
-    setSelectedCountry(firstOption.value);
+    setSelectedCountry(firstCountryOption.value);
   }, [division]);
 
   const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
@@ -164,10 +162,11 @@ export const Qualified = () => {
 
   const filteredPlayers = useMemo(() => {
     const standings = players[division];
-    if (!searchQuery && selectedCountry === firstOption.value) return standings;
+    if (!searchQuery && selectedCountry === firstCountryOption.value)
+      return standings;
 
     const filteredByType =
-      selectedCountry === firstOption.value
+      selectedCountry === firstCountryOption.value
         ? standings
         : standings.filter(player => player.Country === selectedCountry);
 
@@ -194,32 +193,6 @@ export const Qualified = () => {
     return [];
   }, [division, players, searchQuery, selectedCountry]);
 
-  const styledOptions: StyledOptionProps[] = useMemo(() => {
-    const countries = new Set<string>();
-    players[division].forEach(player => {
-      const countryCode = player.Country;
-      if (countryCode) {
-        countries.add(countryCode);
-      }
-    });
-    const options: StyledOptionProps[] = [firstOption];
-    countries.forEach(country => {
-      options.push({
-        label: getCountryFromCode(country.toUpperCase()),
-        value: country,
-        render: (
-          <>
-            <div className="flex items-center gap-2">
-              <span>{getCountryFlag(country.toUpperCase())}</span>
-              <span>{getCountryFromCode(country.toUpperCase())}</span>
-            </div>
-          </>
-        ),
-      });
-    });
-    return options;
-  }, [division, players]);
-
   const handleOnStyledCountryChange = useCallback((e: StyledOptionProps) => {
     const value = e.value;
     setSelectedCountry(value);
@@ -235,6 +208,17 @@ export const Qualified = () => {
     },
     [division, navigate, tournament.id],
   );
+
+  const countries = useMemo(() => {
+    const countriesSet = new Set<string>();
+    players[division].forEach(player => {
+      const countryCode = player.Country;
+      if (countryCode) {
+        countriesSet.add(countryCode);
+      }
+    });
+    return Array.from(countriesSet);
+  }, [division, players]);
 
   return (
     <div className="flex flex-col gap-4">
@@ -259,17 +243,16 @@ export const Qualified = () => {
                 value={searchQuery}
               />
             </div>
+
             <div className="w-full md:w-1/4">
-              <StyledSelect
-                name="country"
-                label="Country"
-                hideLabel
-                options={styledOptions}
+              <CountrySelect
                 onChange={handleOnStyledCountryChange}
                 value={selectedCountry}
+                countries={countries}
               />
             </div>
           </div>
+
           <VirtualizedTable<QualifedPlayer>
             tableId="qualified-players"
             type="window"

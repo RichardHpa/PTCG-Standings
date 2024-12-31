@@ -1,12 +1,5 @@
 import type { ChangeEvent } from 'react';
-
-interface BaseSelectProps {
-  label: string;
-  name: string;
-  hideLabel?: boolean;
-  value: string;
-  required?: boolean;
-}
+import type { BaseInputProps } from '../types';
 
 export interface OptionProp {
   value: string;
@@ -17,12 +10,12 @@ export interface StyledOptionProps extends OptionProp {
   render: JSX.Element;
 }
 
-export interface SelectProps extends BaseSelectProps {
+export interface SelectProps
+  extends BaseInputProps<ChangeEvent<HTMLSelectElement>> {
   options: OptionProp[];
-  onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export interface StyledSelectProps extends BaseSelectProps {
+export interface StyledSelectProps extends BaseInputProps<StyledOptionProps> {
   options: StyledOptionProps[];
   onChange: (value: StyledOptionProps) => void;
 }
