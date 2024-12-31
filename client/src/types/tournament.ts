@@ -76,7 +76,8 @@ export interface LocalTournamentData {
   tournamentStatus?: TournamentStatus;
   streams?: StreamsMap;
   notes?: ReactNode;
-  deckAnalysis?: TournamentDeckAnalysis;
+
+  deckAnalysis?: DivisionMap<TournamentDeckAnalysis>;
 }
 
 export type Tournament = RawTournament & LocalTournamentData;

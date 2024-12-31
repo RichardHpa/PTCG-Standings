@@ -22,7 +22,7 @@ export const tournamentsMap: LocalTournamentsMap = {
       day1: 'https://www.youtube.com/live/Mju3aEWWFT4?si=dWu7XdZe8itR9S52',
     },
     deckAnalysis: {
-      day1: 'sacramento2025Day1.png',
+      masters: { day1: 'sacramento2025Day1.png' },
     },
   },
   '0000134': {
@@ -33,10 +33,12 @@ export const tournamentsMap: LocalTournamentsMap = {
       day2: 'https://www.youtube.com/live/K185AJ27dWU?si=7fU_p7imqoLzwUEQ',
     },
     deckAnalysis: {
-      day1: 'day1.jpeg',
-      day1BestOfTheRest: 'day1-2.jpeg',
-      day2: 'day2.jpeg',
-      day2BestOfTheRest: 'day2-2.jpeg',
+      masters: {
+        day1: 'day1.jpeg',
+        day1BestOfTheRest: 'day1-2.jpeg',
+        day2: 'day2.jpeg',
+        day2BestOfTheRest: 'day2-2.jpeg',
+      },
     },
   },
   '0000133': {

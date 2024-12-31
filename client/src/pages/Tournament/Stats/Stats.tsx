@@ -10,6 +10,7 @@ import { Card } from 'components/Card';
 import { Paragraph } from 'components/Paragraph';
 import { PieChart } from 'components/Charts/PieChart';
 import { SEO } from 'components/SEO';
+import { Heading } from 'components/Heading';
 
 import { getArchetypeCounts } from 'hooks/getArchetypeCounts';
 
@@ -18,23 +19,41 @@ import { useTournamentContext } from 'providers/TournamentProvider';
 import type { TournamentDeckAnalysis, Tournament } from 'types/tournament';
 import type { Division } from 'types/divisions';
 
-const OfficialDeckAnalysis = ({ tournament }: { tournament: Tournament }) => {
-  if (!tournament.deckAnalysis) return null;
-  const deckAnalysisKeys = Object.keys(tournament.deckAnalysis) as Array<
-    keyof TournamentDeckAnalysis
-  >;
+const OfficialDeckAnalysis = ({
+  tournament,
+  division,
+}: {
+  tournament: Tournament;
+  division: Division;
+}) => {
+  if (!tournament.deckAnalysis?.[division]) return null;
+  const deckAnalysisKeys = Object.keys(
+    tournament.deckAnalysis[division],
+  ) as Array<keyof TournamentDeckAnalysis>;
 
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-      {deckAnalysisKeys.map((day, index) => {
-        const imageUrl = tournament?.deckAnalysis?.[day];
-        if (!imageUrl) return null; // If the URL is not available, return null
-        return (
-          <Card key={index} title={breakCamelCase(day)}>
-            <img src={`/deckAnalysis/${tournament.id}/${imageUrl}`} />
-          </Card>
-        );
-      })}
+    <div className="flex flex-col gap-4">
+      <Heading level="3">Official deck Analysis</Heading>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {deckAnalysisKeys.map((key, index) => {
+          const imageUrl = tournament.deckAnalysis?.[division]?.[key];
+          if (!imageUrl) return null; // If the URL is not available, return null
+          return (
+            <Card key={index} title={breakCamelCase(key)}>
+              <img src={`/deckAnalysis/${tournament.id}/${imageUrl}`} />
+            </Card>
+          );
+        })}
+      </div>
+
+      <Paragraph size="sm">
+        <i>
+          * Percentages may be different than the graph above as the official
+          deck analysis may include players that we don't have decklists for, or
+          use a different method to calculate the deck archetypes.
+        </i>
+      </Paragraph>
     </div>
   );
 };
@@ -121,8 +140,11 @@ export const Stats = () => {
 
       {
         // If we have deck analysis, show the official deck analysis
-        tournament.deckAnalysis && (
-          <OfficialDeckAnalysis tournament={tournament} />
+        tournament?.deckAnalysis?.[division] && (
+          <>
+            <hr />
+            <OfficialDeckAnalysis tournament={tournament} division={division} />
+          </>
         )
       }
     </div>
