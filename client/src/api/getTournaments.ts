@@ -20,6 +20,12 @@ export const getTournaments = async (): Promise<TournamentsApiResponse> => {
       };
     });
 
+    mappedTournaments.sort((a, b) => {
+      return (
+        new Date(b.date.start).getTime() - new Date(a.date.start).getTime()
+      );
+    });
+
     return {
       ...response.data,
       tcg: {

@@ -88,6 +88,7 @@ export const Tournaments = () => {
               <AdditionalInfo
                 winners={row.winners}
                 roundNumbers={row.roundNumbers}
+                tournamentStatus={row.tournamentStatus}
               />
             )}
           </div>
@@ -95,7 +96,7 @@ export const Tournaments = () => {
       },
       {
         key: 'dates',
-        header: 'Dates (In your timezone)',
+        header: 'Dates',
         align: 'right',
         render: row => (
           <div className="text-sm text-gray-500 dark:text-gray-400">

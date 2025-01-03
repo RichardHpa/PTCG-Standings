@@ -79,7 +79,7 @@ const WindowVirtualizer = <T,>({
   estimateSize,
 }: VirtualizerProps<T>) => {
   const navigation = useNavigationType();
-  console.log(virtualizerCache);
+
   const virtualizer = useWindowVirtualizer({
     initialOffset: getInitialOffset(tableId, navigation),
     initialMeasurementsCache: getInitialMeasurementsCache(tableId, navigation),

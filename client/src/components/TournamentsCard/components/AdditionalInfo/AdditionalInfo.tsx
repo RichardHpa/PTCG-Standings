@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { formatDivisionName } from 'helpers/formatDivisionName';
 import { formatPlayerName } from 'helpers/formatPlayerName';
 
+import { FINISHED } from 'constants/tournamentStatus';
+
 import type { FC } from 'react';
 import type { AdditionalInfoProps, AdditionInfoRowProps } from './types';
 import type { Division } from 'types/divisions';
@@ -33,6 +35,7 @@ const AdditionInfoRow: FC<AdditionInfoRowProps> = ({
 export const AdditionalInfo: FC<AdditionalInfoProps> = ({
   winners,
   roundNumbers,
+  tournamentStatus,
 }) => {
   const divisionInfo = useMemo(() => {
     const entries = Object.keys(winners) as Division[];
@@ -77,6 +80,9 @@ export const AdditionalInfo: FC<AdditionalInfoProps> = ({
   return (
     <div className="flex flex-col">
       {divisionInfo.map(info => {
+        if (tournamentStatus === FINISHED && !info.winner) {
+          return null;
+        }
         return (
           <div key={info.division}>
             <AdditionInfoRow
