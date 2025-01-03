@@ -48,6 +48,10 @@ export const TournamentContextProvider = ({
       const formattedDivision: TournamentData[] = [];
       allDivisions.forEach(division => {
         const divisionData = division.data;
+
+        if (!divisionData) {
+          return;
+        }
         divisionData.map(standing => {
           const archetype = getArchetype(standing.decklist);
           if (archetype) {
@@ -86,6 +90,7 @@ export const TournamentContextProvider = ({
   }
 
   if (tournamentQuery.isError) {
+    console.error(tournamentQuery.error);
     return (
       <Notice status="error">
         {

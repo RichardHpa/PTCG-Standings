@@ -17,8 +17,8 @@ export const getTournament = async (
     return {
       ...response.data,
       tournament: {
-        ...localData,
         ...response.data.tournament,
+        ...localData,
       },
     };
   } catch (error) {

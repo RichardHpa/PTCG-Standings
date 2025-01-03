@@ -16,10 +16,11 @@ export const DivisionTabs: FC<DivisionTabsProps> = ({ divisions }) => {
   const { division = 'masters' } = useParams() as { division: Division };
 
   const validTabs = useMemo(() => {
-    const test = Object.keys(divisions) as Array<
+    const divisionsArray = Object.keys(divisions) as Array<
       keyof DivisionTabsProps['divisions']
     >;
-    const filtered = test.filter(key => {
+
+    const filtered = divisionsArray.filter(key => {
       const division = divisions[key];
       return division;
     });

@@ -61,6 +61,7 @@ export interface StreamsMap {
   day1?: string;
   day2?: string;
   day3?: string;
+  day4?: string;
 }
 
 export interface TournamentDeckAnalysis {

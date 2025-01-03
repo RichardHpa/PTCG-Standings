@@ -79,7 +79,7 @@ const WindowVirtualizer = <T,>({
   estimateSize,
 }: VirtualizerProps<T>) => {
   const navigation = useNavigationType();
-
+  console.log(virtualizerCache);
   const virtualizer = useWindowVirtualizer({
     initialOffset: getInitialOffset(tableId, navigation),
     initialMeasurementsCache: getInitialMeasurementsCache(tableId, navigation),
@@ -100,28 +100,6 @@ const WindowVirtualizer = <T,>({
       navigator.userAgent.indexOf('Firefox') === -1
         ? element => element?.getBoundingClientRect().height
         : undefined,
-    // initialOffset: (() => {
-    //   if (typeof sessionStorage !== 'undefined') {
-    //     return (
-    //       // @ts-expect-error -- this is actually fine here
-    //       parseInt(sessionStorage.getItem('virtualizer_scrollOffset'), 10) || 0
-    //     );
-    //   }
-    //   return 0;
-    // })(),
-    // observeElementOffset: (instance, cb) => {
-    //   return observeWindowOffset(instance, offset => {
-    //     if (typeof sessionStorage !== 'undefined') {
-    //       sessionStorage.setItem(
-    //         'virtualizer_scrollOffset',
-    //         // @ts-expect-error -- this is actually fine here
-    //         offset,
-    //       );
-    //     }
-    //     // @ts-expect-error -- this is actually fine here
-    //     cb(offset);
-    //   });
-    // },
   });
 
   useEffect(() => {

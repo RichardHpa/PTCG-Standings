@@ -7,6 +7,7 @@ import { errorMessages } from 'errors/errorMessages';
 
 export const StandingsError = () => {
   const error = useRouteError() as Error;
+  console.log(error);
   const errorMessage = useMemo(() => {
     if (error.message) {
       return error.message;
