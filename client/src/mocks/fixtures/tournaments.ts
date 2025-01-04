@@ -1,7 +1,7 @@
 // Indianapolis Pokémon TCG Regional Championship 2024 (0000121)
 import duplicatePlayerNamesTournament from './specialTournaments/duplicatePlayerNames.json';
 // 2023 Bogotá TCG Special Event (0000082)
-import juniorsSeniorsTournament from './specialTournaments/juniorsSeniors.json';
+import juniorsSeniorsTournament from './specialTournaments/combinedJuniorsSeniors.json';
 // Worlds 2024
 import worlds2024 from './specialTournaments/worlds2024.json';
 

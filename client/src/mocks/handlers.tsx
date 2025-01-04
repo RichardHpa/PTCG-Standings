@@ -7,7 +7,7 @@ import {
   juniorsStandings,
 } from './fixtures/standings';
 import duplicatePlayerNamesTournament from 'mocks/fixtures/specialTournaments/duplicatePlayerNames.json';
-import juniorsSeniorsTournament from 'mocks/fixtures/specialTournaments/juniorsseniors.json';
+import juniorsSeniorsTournament from 'mocks/fixtures/specialTournaments/combinedJuniorsSeniors.json';
 import worlds2024 from 'mocks/fixtures/specialTournaments/worlds2024.json';
 
 // NOTE: there must be a better way to to this but for some reason dynamic imports are not working
