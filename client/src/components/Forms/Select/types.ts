@@ -8,6 +8,7 @@ export interface OptionProp {
 
 export interface StyledOptionProps extends OptionProp {
   render: JSX.Element;
+  renderSelected?: JSX.Element;
 }
 
 export interface SelectProps

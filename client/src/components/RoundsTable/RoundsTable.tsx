@@ -26,10 +26,6 @@ export const RoundRow = ({ round, roundNum }: RoundRowProps) => {
           <Paragraph>{formatPlayerName(round.name)}</Paragraph>
         </div>
         <div className="flex items-center gap-2">
-          {/* {round.decklist && (
-            <Archetypes size="small" decklist={round.decklist} />
-          )} */}
-
           {round.archetype && (
             <Archetypes size="small" archetype={round.archetype} />
           )}

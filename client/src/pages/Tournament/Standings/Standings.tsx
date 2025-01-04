@@ -13,11 +13,17 @@ import {
   CountrySelect,
   firstCountryOption,
 } from 'components/Forms/CountrySelect';
+import {
+  ArchetypeSelect,
+  firstArchetypeOption,
+} from 'components/Forms/ArchetypeSelect';
 
 import { formatPlayerName, getCountryCode } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
 import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 import { calculatePoints } from 'helpers/calculatePoints';
+
+import { getArchetypeCounts } from 'hooks/getArchetypeCounts';
 
 import { useTournamentContext } from 'providers/TournamentProvider';
 
@@ -39,6 +45,9 @@ export const Standings = () => {
   const listRef = useRef<HTMLDivElement | null>(null);
   const [selectedCountry, setSelectedCountry] = useState(
     firstCountryOption.value,
+  );
+  const [selectedArchetype, setSelectedArchetype] = useState(
+    firstArchetypeOption.value,
   );
 
   const columns: ColumnProps<Standing>[] = useMemo(() => {
@@ -126,9 +135,13 @@ export const Standings = () => {
     },
     [division, navigate, tournament.id],
   );
-
+  console.log(standings);
   const filteredPlayers = useMemo(() => {
-    if (!searchQuery && selectedCountry === firstCountryOption.value)
+    if (
+      !searchQuery &&
+      selectedCountry === firstCountryOption.value &&
+      selectedArchetype === firstArchetypeOption.value
+    )
       return standings;
 
     const filteredByType =
@@ -138,7 +151,18 @@ export const Standings = () => {
             player.name.includes(`[${selectedCountry}]`),
           );
 
-    if (!searchQuery) return filteredByType;
+    const filteredByDecklist =
+      selectedArchetype === firstArchetypeOption.value
+        ? filteredByType
+        : filteredByType.filter(player => {
+            if (player.archetype === undefined && selectedArchetype === '') {
+              return true;
+            }
+
+            return player.archetype === selectedArchetype;
+          });
+
+    if (!searchQuery) return filteredByDecklist;
 
     const fuse = new Fuse(filteredByType, {
       shouldSort: true,
@@ -159,11 +183,16 @@ export const Standings = () => {
     }
 
     return [];
-  }, [searchQuery, selectedCountry, standings]);
-
+  }, [searchQuery, selectedArchetype, selectedCountry, standings]);
+  console.log(selectedArchetype);
   const handleOnStyledCountryChange = useCallback((e: StyledOptionProps) => {
     const value = e.value;
     setSelectedCountry(value);
+  }, []);
+
+  const handleOnStyledArchetypeChange = useCallback((e: StyledOptionProps) => {
+    const value = e.value;
+    setSelectedArchetype(value);
   }, []);
 
   const countries = useMemo(() => {
@@ -177,9 +206,23 @@ export const Standings = () => {
     return Array.from(countriesSet);
   }, [standings]);
 
+  const archetypes = useMemo(() => {
+    const res = getArchetypeCounts({ standings });
+    if (!res) return [];
+    const arr = Object.keys(res.archetypes);
+
+    arr.sort((a, b) => {
+      if (a === 'unknown') return 1;
+      if (b === 'unknown') return -1;
+      return 0;
+    });
+
+    return arr;
+  }, [standings]);
+
   return (
     <div className="flex flex-col gap-4">
-      <SEO title={`Worlds 2024 ${division} standing`} />
+      <SEO title={`${tournament.name} ${division} standing`} />
 
       <section className="bg-gray-50 dark:bg-gray-900" ref={listRef}>
         <Card>
@@ -202,6 +245,15 @@ export const Standings = () => {
                 countries={countries}
               />
             </div>
+            {archetypes.length > 0 && (
+              <div className="w-full md:w-1/4">
+                <ArchetypeSelect
+                  archetypes={archetypes}
+                  onChange={handleOnStyledArchetypeChange}
+                  value={selectedArchetype}
+                />
+              </div>
+            )}
           </div>
 
           <VirtualizedTable<Standing>

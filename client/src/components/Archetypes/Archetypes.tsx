@@ -16,12 +16,13 @@ const PokemonSprite = ({
   size = 'large',
 }: {
   image: ImageProp;
-  size?: 'small' | 'large';
+  size?: ArchetypesProps['size'];
 }) => {
   if (!image) return null;
   return (
     <img
       className={clsx({
+        'h-full w-5': size === 'xs',
         'h-full w-8': size === 'small',
         'h-full w-12': size === 'large',
       })}

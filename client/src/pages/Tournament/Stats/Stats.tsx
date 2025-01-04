@@ -79,7 +79,7 @@ export const Stats = () => {
       ([, a], [, b]) => b - a,
     );
 
-    const unknownIndex = sortedData.findIndex(([key]) => key === 'Unknown');
+    const unknownIndex = sortedData.findIndex(([key]) => key === 'unknown');
     const unknown = sortedData.splice(unknownIndex, 1);
     sortedData.push(unknown[0]);
 

@@ -1,10 +1,4 @@
 import type { getArchetypeCountsProps } from './types';
-// import type { Sprites } from 'constants/archetypes';
-
-// interface x {
-//   count: number;
-//   //   sprites: Sprites[];
-// }
 
 type ArchetypeCount = {
   [key in string]: number;

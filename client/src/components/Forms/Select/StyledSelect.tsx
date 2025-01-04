@@ -61,7 +61,9 @@ export const StyledSelect: FC<StyledSelectProps> = ({
           onClick={() => setIsOpen(!isOpen)}
         >
           <span>
-            {options.find(option => option.value === selected)?.render}
+            {options.find(option => option.value === selected)
+              ?.renderSelected ??
+              options.find(option => option.value === selected)?.render}
           </span>
           <svg
             className="ms-2.5 h-2.5 w-2.5"
