@@ -166,6 +166,7 @@ const ContainerVirtualizer = <T,>({
   scrollToIndex,
   estimateSize,
 }: VirtualizerProps<T>) => {
+  console.log('data', data);
   const virtualizer = useVirtualizer({
     count: data.length,
     getScrollElement: () => containerRef.current,
@@ -176,6 +177,8 @@ const ContainerVirtualizer = <T,>({
         ? element => element?.getBoundingClientRect().height
         : undefined,
   });
+  const virtualRows = virtualizer.getVirtualItems();
+  console.log('virtualRows', virtualRows);
 
   useEffect(() => {
     if (scrollToIndex !== undefined) {
