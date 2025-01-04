@@ -135,7 +135,7 @@ export const Standings = () => {
     },
     [division, navigate, tournament.id],
   );
-  console.log(standings);
+
   const filteredPlayers = useMemo(() => {
     if (
       !searchQuery &&
@@ -184,7 +184,7 @@ export const Standings = () => {
 
     return [];
   }, [searchQuery, selectedArchetype, selectedCountry, standings]);
-  console.log(selectedArchetype);
+
   const handleOnStyledCountryChange = useCallback((e: StyledOptionProps) => {
     const value = e.value;
     setSelectedCountry(value);

@@ -11,7 +11,7 @@ export const Home = () => {
   const { isPending, data, isError } = useGetTournaments({
     select: data => {
       const tournaments = data.tcg.data;
-
+      console.log('tournaments', tournaments);
       const runningTournaments = tournaments.filter(
         tournament => tournament.tournamentStatus === RUNNING,
       );
@@ -30,7 +30,7 @@ export const Home = () => {
             tournament.tournamentStatus !== CHECK_IN,
         )
         .slice(0, 5);
-
+      console.log('latestTournaments', latestTournaments);
       return {
         upcomingTournaments,
         runningTournaments,
