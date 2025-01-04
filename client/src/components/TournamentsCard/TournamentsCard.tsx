@@ -42,6 +42,7 @@ export const TournamentsCard: FC<TournamentsCardProps> = ({
 
               {!notRunningTournaments.includes(row.tournamentStatus) && (
                 <AdditionalInfo
+                  tournamentStatus={row.tournamentStatus}
                   winners={row.winners}
                   roundNumbers={row.roundNumbers}
                 />

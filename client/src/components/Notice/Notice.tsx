@@ -55,7 +55,6 @@ export const Notice: FC<NoticeProps> = ({
           variant="ghost"
           color="alternative"
           onClick={() => handleDismiss()}
-          noPadding
         />
       )}
     </div>

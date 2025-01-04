@@ -13,6 +13,7 @@ describe('TournamentsCard/AdditionalInfo', () => {
   test('renders round info', () => {
     render(
       <AdditionalInfo
+        tournamentStatus={runningTournament.tournamentStatus}
         winners={runningTournament.winners}
         roundNumbers={runningTournament.roundNumbers}
       />,
@@ -31,6 +32,7 @@ describe('TournamentsCard/AdditionalInfo', () => {
   test('renders nothing if no round or winner info', () => {
     render(
       <AdditionalInfo
+        tournamentStatus={notStartedTournament.tournamentStatus}
         winners={notStartedTournament.winners}
         roundNumbers={notStartedTournament.roundNumbers}
       />,
@@ -53,6 +55,7 @@ describe('TournamentsCard/AdditionalInfo', () => {
   test('renders winner info', () => {
     render(
       <AdditionalInfo
+        tournamentStatus={finishedTournament.tournamentStatus}
         winners={finishedTournament.winners}
         roundNumbers={finishedTournament.roundNumbers}
       />,
