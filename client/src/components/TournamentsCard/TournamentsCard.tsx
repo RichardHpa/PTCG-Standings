@@ -1,4 +1,4 @@
-import { useRef, useMemo, useCallback } from 'react';
+import { useMemo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { RUNNING, CHECK_IN, NOT_STARTED } from 'constants/tournamentStatus';
@@ -24,7 +24,8 @@ export const TournamentsCard: FC<TournamentsCardProps> = ({
   tournaments,
 }) => {
   const navigate = useNavigate();
-  const listRef = useRef<HTMLDivElement | null>(null);
+  // const listRef = useRef<HTMLDivElement | null>(null);
+  const [listState, setListState] = useState<HTMLDivElement | null>(null);
 
   const columns: ColumnProps<Tournament>[] = useMemo(() => {
     return [
@@ -77,14 +78,14 @@ export const TournamentsCard: FC<TournamentsCardProps> = ({
   );
 
   return (
-    <div ref={listRef}>
+    <div ref={setListState}>
       <Card title={title} growHeight>
         <VirtualizedTable
           tableId="tournaments"
           header="none"
           data={tournaments}
           columns={columns}
-          containerRef={listRef}
+          containerRef={listState}
           estimateSize={130}
           onRowClick={handleRowClick}
         />

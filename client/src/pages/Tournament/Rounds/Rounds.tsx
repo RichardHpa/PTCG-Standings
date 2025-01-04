@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback, useEffect, useRef } from 'react';
+import { useMemo, useState, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -53,7 +53,8 @@ export const Rounds = () => {
   const [selectedRound, setSelectedRound] = useState(1);
   const { tournament } = useTournamentContext();
   const { division = 'masters' } = useParams() as { division: Division };
-  const listRef = useRef<HTMLDivElement | null>(null);
+  // const listRef = useRef<HTMLDivElement | null>(null);
+  const [listRef, setListRef] = useState<HTMLElement | null>(null);
 
   const { data, isLoading } = useGetRound({
     tournamentId: tournament.id,
@@ -141,7 +142,7 @@ export const Rounds = () => {
       )}
 
       {data && (
-        <div className="w-full" ref={listRef}>
+        <div className="w-full" ref={setListRef}>
           <VirtualizedTable<RoundApi<SingleRoundData>>
             tableId={`${tournament.id}-${division}-round-${selectedRound}`}
             type="window"

@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
@@ -38,7 +38,7 @@ const tournamentTypeOptions = [
 ];
 
 export const Tournaments = () => {
-  const listRef = useRef<HTMLDivElement | null>(null);
+  const [listRef, setListRef] = useState<HTMLElement | null>(null);
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTournamentType, setSelectedTournamentType] = useState(
@@ -186,7 +186,7 @@ export const Tournaments = () => {
       )}
       <Heading level="3">View all the latest Pokemon TCG tournaments</Heading>
 
-      <section className="bg-gray-50 dark:bg-gray-900" ref={listRef}>
+      <section className="bg-gray-50 dark:bg-gray-900" ref={setListRef}>
         <Card>
           <div className="flex flex-col items-center space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
             <div className="w-full md:w-1/3">

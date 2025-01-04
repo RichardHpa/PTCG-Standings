@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useMemo, useEffect } from 'react';
+import { useCallback, useState, useMemo, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
@@ -142,7 +142,7 @@ const columns: ColumnProps<QualifedPlayer>[] = [
 export const Qualified = () => {
   const { tournament } = useTournamentContext();
   const { division = 'masters' } = useParams() as { division: Division };
-  const listRef = useRef<HTMLDivElement | null>(null);
+  const [listRef, setListRef] = useState<HTMLElement | null>(null);
   const players = useGetPlayers();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCountry, setSelectedCountry] = useState(
@@ -229,7 +229,7 @@ export const Qualified = () => {
         Championships.
       </Paragraph>
 
-      <section className="bg-gray-50 dark:bg-gray-900" ref={listRef}>
+      <section className="bg-gray-50 dark:bg-gray-900" ref={setListRef}>
         <Card>
           <div className="flex flex-col items-center space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
             <div className="w-full md:w-1/3">

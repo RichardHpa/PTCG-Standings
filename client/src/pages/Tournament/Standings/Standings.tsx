@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useState, useEffect, useRef } from 'react';
+import { useMemo, useCallback, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
@@ -42,7 +42,7 @@ export const Standings = () => {
   const { division = 'masters' } = useParams() as { division: Division };
   const { divisions, tournament } = useTournamentContext();
   const [searchQuery, setSearchQuery] = useState('');
-  const listRef = useRef<HTMLDivElement | null>(null);
+  const [listRef, setListRef] = useState<HTMLElement | null>(null);
   const [selectedCountry, setSelectedCountry] = useState(
     firstCountryOption.value,
   );
@@ -224,7 +224,7 @@ export const Standings = () => {
     <div className="flex flex-col gap-4">
       <SEO title={`${tournament.name} ${division} standing`} />
 
-      <section className="bg-gray-50 dark:bg-gray-900" ref={listRef}>
+      <section className="bg-gray-50 dark:bg-gray-900" ref={setListRef}>
         <Card>
           <div className="flex flex-col items-center space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
             <div className="w-full md:w-1/3">

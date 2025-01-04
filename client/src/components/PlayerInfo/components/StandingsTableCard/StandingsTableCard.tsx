@@ -1,4 +1,4 @@
-import { useMemo, useRef, useCallback } from 'react';
+import { useMemo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Card } from 'components/Card';
@@ -20,7 +20,8 @@ export const StandingsTableCard = ({
 }: StandingsTableCardProps) => {
   const navigate = useNavigate();
   const { divisions, tournament } = useTournamentContext();
-  const listRef = useRef<HTMLDivElement | null>(null);
+  // const listRef = useRef<HTMLDivElement | null>(null);
+  const [listRef, setListRef] = useState<HTMLElement | null>(null);
 
   const columns: ColumnProps<Standing>[] = useMemo(() => {
     return [
@@ -65,7 +66,7 @@ export const StandingsTableCard = ({
   );
   return (
     <Card title="Current Standings">
-      <div className="h-full overflow-auto" ref={listRef}>
+      <div className="h-full overflow-auto" ref={setListRef}>
         <div style={{ overflow: 'visible', height: '0px' }} className="w-full">
           <VirtualizedTable<Standing>
             tableId={`${playerIndex}-${tournament.id}-${division}-standings`}

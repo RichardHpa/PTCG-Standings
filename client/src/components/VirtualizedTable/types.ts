@@ -1,6 +1,6 @@
 import { ColumnProps as RawColumnProps } from './Column/types';
 
-import type { ReactNode, RefObject } from 'react';
+import type { ReactNode } from 'react';
 
 export interface ColumnProps<T>
   extends Omit<RawColumnProps, 'children' | 'classes'> {
@@ -16,7 +16,7 @@ export interface VirtualizedTableProps<T> {
   data: T[];
   header?: 'sticky' | 'static' | 'none';
   noDataMessage?: ReactNode;
-  containerRef: RefObject<HTMLElement>;
+  containerRef: HTMLElement | null;
   onRowClick?: (row: T) => void;
   scrollToIndex?: number;
   estimateSize: number;

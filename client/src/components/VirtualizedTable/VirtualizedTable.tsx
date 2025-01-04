@@ -94,7 +94,7 @@ const WindowVirtualizer = <T,>({
     count: data.length,
     estimateSize: () => estimateSize,
     overscan: 5,
-    scrollMargin: containerRef.current?.offsetTop ?? 0,
+    scrollMargin: containerRef?.offsetTop ?? 0,
     measureElement:
       typeof window !== 'undefined' &&
       navigator.userAgent.indexOf('Firefox') === -1
@@ -169,7 +169,7 @@ const ContainerVirtualizer = <T,>({
   console.log('data', data);
   const virtualizer = useVirtualizer({
     count: data.length,
-    getScrollElement: () => containerRef.current,
+    getScrollElement: () => containerRef,
     estimateSize: () => estimateSize,
     measureElement:
       typeof window !== 'undefined' &&
@@ -214,18 +214,11 @@ const ContainerVirtualizer = <T,>({
               top: 0,
               left: 0,
               width: '100%',
-              // height: `${virtualItem.size}px`,
               transform: `translateY(${virtualItem.start}px)`,
             }}
           >
             {columns.map(column => (
-              <Column
-                key={column.key}
-                size={column.size}
-                align={column.align}
-                // classes={column.columnsClasses && column.columnsClasses(row)}
-                classes="!text-red"
-              >
+              <Column key={column.key} size={column.size} align={column.align}>
                 {column.render ? column.render(row) : access(column.key, row)}
               </Column>
             ))}
