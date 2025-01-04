@@ -22,7 +22,7 @@ export const getTournamentData = async tournamentId => {
 
     const date = format(new Date(), 'Pp');
 
-    // hack as some of the tournaments (mainly the ones in south america that arent run by RK9) are not auto updating from not-started to finished
+    // hack as some of the tournaments (mainly the ones in south america that aren't run by RK9) are not auto updating from not-started to finished
     if (forceFinishTournaments.includes(tournamentId)) {
       data.tournament.tournamentStatus = 'finished';
     }

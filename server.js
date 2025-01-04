@@ -35,7 +35,7 @@ app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 });
 
-const singleTournamentsScheduleTimer = '*/15 * * * *';
+const singleTournamentsScheduleTimer = '*/10 * * * *';
 const singleTournamentSchedule = cron.schedule(
   singleTournamentsScheduleTimer,
   async () => {
