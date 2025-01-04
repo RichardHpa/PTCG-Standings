@@ -20,17 +20,13 @@ import { BaseLayout } from 'layouts/BaseLayout';
 import { Home } from 'pages/Home';
 import { About } from 'pages/About';
 import { Tournaments } from 'pages/Tournaments';
-import {
-  // Tournament,
-  tournamentLoader,
-  TournamentOutlet,
-} from 'pages/Tournament';
+import { tournamentLoader, TournamentOutlet } from 'pages/Tournament';
 import { Streams } from 'pages/Tournament/Streams';
 import { Stats } from 'pages/Tournament/Stats';
 import { Standings, StandingsError } from 'pages/Tournament/Standings';
-import { Rounds } from 'pages/Tournament/Rounds';
-import { Parings } from 'pages/Tournament/Parings';
-import { TopCut } from 'pages/Tournament/TopCut';
+// import { Rounds } from 'pages/Tournament/Rounds';
+// import { Parings } from 'pages/Tournament/Parings';
+// import { TopCut } from 'pages/Tournament/TopCut';
 import { DivisionOutlet, divisionLoader } from 'pages/Tournament/Division';
 import {
   Player,
@@ -38,11 +34,7 @@ import {
   PlayerOutlet,
   Decklist,
 } from 'pages/Tournament/Division/Player';
-import {
-  // Worlds2024,
-  Worlds2024Outlet,
-  Qualified,
-} from 'pages/Worlds/Worlds2024';
+import { Worlds2024Outlet, Qualified } from 'pages/Worlds/Worlds2024';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -151,21 +143,21 @@ const router = createBrowserRouter([
                   },
                 ],
               },
-              {
-                path: 'rounds',
-                element: <DivisionOutlet />,
-                children: [
-                  {
-                    index: true,
-                    element: <Rounds />,
-                  },
-                  {
-                    path: ':division',
-                    loader: divisionLoader,
-                    element: <Rounds />,
-                  },
-                ],
-              },
+              // {
+              //   path: 'rounds',
+              //   element: <DivisionOutlet />,
+              //   children: [
+              //     {
+              //       index: true,
+              //       element: <Rounds />,
+              //     },
+              //     {
+              //       path: ':division',
+              //       loader: divisionLoader,
+              //       element: <Rounds />,
+              //     },
+              //   ],
+              // },
               {
                 path: 'standings',
                 errorElement: <StandingsError />,
@@ -182,36 +174,36 @@ const router = createBrowserRouter([
                   },
                 ],
               },
-              {
-                path: 'top_cut',
-                element: <DivisionOutlet />,
-                children: [
-                  {
-                    index: true,
-                    element: <TopCut />,
-                  },
-                  {
-                    path: ':division',
-                    loader: divisionLoader,
-                    element: <TopCut />,
-                  },
-                ],
-              },
-              {
-                path: 'live',
-                element: <DivisionOutlet />,
-                children: [
-                  {
-                    index: true,
-                    element: <Parings />,
-                  },
-                  {
-                    path: ':division',
-                    loader: divisionLoader,
-                    element: <Parings />,
-                  },
-                ],
-              },
+              // {
+              //   path: 'top_cut',
+              //   element: <DivisionOutlet />,
+              //   children: [
+              //     {
+              //       index: true,
+              //       element: <TopCut />,
+              //     },
+              //     {
+              //       path: ':division',
+              //       loader: divisionLoader,
+              //       element: <TopCut />,
+              //     },
+              //   ],
+              // },
+              // {
+              //   path: 'live',
+              //   element: <DivisionOutlet />,
+              //   children: [
+              //     {
+              //       index: true,
+              //       element: <Parings />,
+              //     },
+              //     {
+              //       path: ':division',
+              //       loader: divisionLoader,
+              //       element: <Parings />,
+              //     },
+              //   ],
+              // },
               {
                 path: ':division/:playerName',
                 loader: playerLoader,

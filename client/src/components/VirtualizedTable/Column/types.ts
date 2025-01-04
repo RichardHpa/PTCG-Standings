@@ -6,4 +6,5 @@ export interface ColumnProps {
   align?: 'left' | 'center' | 'right';
   children: ReactNode;
   classes?: string;
+  hiddenXs?: boolean;
 }

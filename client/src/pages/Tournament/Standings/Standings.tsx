@@ -67,17 +67,20 @@ export const Standings = () => {
         header: 'Record',
         size: 'small',
         render: row => <span>{formatRecord(row.record)}</span>,
+        hiddenXs: true,
       },
       {
         key: 'points',
         header: 'Points',
         size: 'small',
         render: row => <span>{calculatePoints(row.record)}</span>,
+        hiddenXs: true,
       },
       {
         key: 'resistances.opp',
         header: 'Opponent Resistances',
         render: row => <span>{formatToPercentage(row.resistances.opp)}</span>,
+        hiddenXs: true,
       },
       {
         key: 'resistances.oppopp',
@@ -85,6 +88,7 @@ export const Standings = () => {
         render: row => (
           <span>{formatToPercentage(row.resistances.oppopp)}</span>
         ),
+        hiddenXs: true,
       },
       {
         key: 'action',

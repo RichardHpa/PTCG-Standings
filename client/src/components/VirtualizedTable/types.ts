@@ -7,6 +7,7 @@ export interface ColumnProps<T>
   header: string;
   render: (row: T) => JSX.Element;
   classes?: (row: T) => string;
+  hiddenXs?: boolean;
 }
 
 export interface VirtualizedTableProps<T> {

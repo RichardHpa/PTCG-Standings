@@ -141,16 +141,18 @@ const WindowVirtualizer = <T,>({
               }px)`,
             }}
           >
-            {columns.map(column => (
-              <Column
-                key={column.key}
-                size={column.size}
-                align={column.align}
-                classes={column.classes && column.classes(row)}
-              >
-                {column.render ? column.render(row) : access(column.key, row)}
-              </Column>
-            ))}
+            {columns.map(column => {
+              return (
+                <Column
+                  key={column.key}
+                  size={column.size}
+                  align={column.align}
+                  hiddenXs={column.hiddenXs}
+                >
+                  {column.render ? column.render(row) : access(column.key, row)}
+                </Column>
+              );
+            })}
           </div>
         );
       })}
@@ -166,7 +168,6 @@ const ContainerVirtualizer = <T,>({
   scrollToIndex,
   estimateSize,
 }: VirtualizerProps<T>) => {
-  console.log('data', data);
   const virtualizer = useVirtualizer({
     count: data.length,
     getScrollElement: () => containerRef,
@@ -177,8 +178,6 @@ const ContainerVirtualizer = <T,>({
         ? element => element?.getBoundingClientRect().height
         : undefined,
   });
-  const virtualRows = virtualizer.getVirtualItems();
-  console.log('virtualRows', virtualRows);
 
   useEffect(() => {
     if (scrollToIndex !== undefined) {
@@ -217,11 +216,18 @@ const ContainerVirtualizer = <T,>({
               transform: `translateY(${virtualItem.start}px)`,
             }}
           >
-            {columns.map(column => (
-              <Column key={column.key} size={column.size} align={column.align}>
-                {column.render ? column.render(row) : access(column.key, row)}
-              </Column>
-            ))}
+            {columns.map(column => {
+              return (
+                <Column
+                  key={column.key}
+                  size={column.size}
+                  align={column.align}
+                  hiddenXs={column.hiddenXs}
+                >
+                  {column.render ? column.render(row) : access(column.key, row)}
+                </Column>
+              );
+            })}
           </div>
         );
       })}
@@ -253,11 +259,18 @@ export const VirtualizedTable = <T,>({
           <div
             className={tw`flex bg-gray-50 text-xs font-bold uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400`}
           >
-            {columns.map(column => (
-              <Column key={column.key} size={column.size} align={column.align}>
-                {column.header}
-              </Column>
-            ))}
+            {columns.map(column => {
+              return (
+                <Column
+                  key={column.key}
+                  size={column.size}
+                  align={column.align}
+                  hiddenXs={column.hiddenXs}
+                >
+                  {column.header}
+                </Column>
+              );
+            })}
           </div>
         </div>
       )}

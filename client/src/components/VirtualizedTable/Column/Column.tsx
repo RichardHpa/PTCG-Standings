@@ -9,10 +9,12 @@ export const Column: FC<ColumnProps> = ({
   size,
   align = 'left',
   classes = '',
+  hiddenXs = false,
 }) => {
   return (
     <div
       className={clsx(
+        hiddenXs && columnClasses.hidden,
         columnClasses.base,
         size && columnClasses.size[size],
         columnClasses.align[align],

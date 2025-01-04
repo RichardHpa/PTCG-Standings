@@ -25,7 +25,9 @@ const RawTournamentOutlet = () => {
     <div className="flex flex-col gap-4">
       <div className="mb-4 flex justify-between">
         <div className="grid place-content-start gap-4 sm:grid-cols-[auto_auto]">
-          <TournamentLogo tournamentName={tournament.name} />
+          <span className="hidden sm:block">
+            <TournamentLogo tournamentName={tournament.name} />
+          </span>
 
           <div>
             <Link to={`/tournaments/${tournament.id}`}>

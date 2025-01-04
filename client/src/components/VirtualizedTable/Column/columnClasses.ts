@@ -1,7 +1,8 @@
 import { tw } from 'utils/tailwindClassName';
 
 export const columnClasses = {
-  base: tw`flex flex-1 px-4 py-3`,
+  hidden: tw`hidden md:flex`,
+  base: tw`flex-1 px-4 py-3`,
   size: {
     small: tw`max-w-24`,
     medium: tw`max-w-32`,
