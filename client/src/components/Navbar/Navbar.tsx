@@ -103,7 +103,7 @@ export const Navbar = () => {
                 </NavLink>
               </li>
               <li className="order-4 lg:order-1">
-                <Link to="worlds/2024">
+                <Link to="worlds/2024" onClick={onNavItemClick}>
                   <Button color="secondary">Worlds 2024</Button>
                 </Link>
               </li>

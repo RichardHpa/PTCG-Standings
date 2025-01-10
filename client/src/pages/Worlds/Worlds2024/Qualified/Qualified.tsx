@@ -107,6 +107,7 @@ const columns: ColumnProps<QualifedPlayer>[] = [
     key: 'standing.record',
     header: 'Record',
     size: 'small',
+    hiddenXs: true,
     render: row =>
       row.standing ? <span>{formatRecord(row.standing.record)}</span> : <></>,
   },
@@ -114,6 +115,7 @@ const columns: ColumnProps<QualifedPlayer>[] = [
     key: 'points',
     size: 'small',
     header: 'Points',
+    hiddenXs: true,
     render: row =>
       row.standing ? (
         <span>{calculatePoints(row.standing.record)}</span>
@@ -124,6 +126,8 @@ const columns: ColumnProps<QualifedPlayer>[] = [
   {
     key: 'decklist',
     header: '',
+    size: 'small',
+    hiddenXs: true,
     render: row =>
       row.standing && row.standing.archetype ? (
         <Archetypes archetype={row.standing.archetype} size="small" />
@@ -135,6 +139,7 @@ const columns: ColumnProps<QualifedPlayer>[] = [
     key: 'action',
     header: 'Competed',
     align: 'right',
+    size: 'small',
     render: row => <span>{row.competed ? 'Yes' : 'No'}</span>,
   },
 ];

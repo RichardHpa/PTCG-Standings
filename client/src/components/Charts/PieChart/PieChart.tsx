@@ -1,8 +1,10 @@
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import * as Highcharts from 'highcharts';
 import { HighchartsReact } from 'highcharts-react-official';
 
 import { breakCamelCase } from 'utils/breakCamelCase';
+
+import { useResponsive } from 'hooks/useResponsive';
 
 import { chartColors } from '../chartColors';
 
@@ -15,6 +17,7 @@ const getHighChartsOptions = (
   data: FormattedData[],
   theme: Theme,
   name: string,
+  isMobile: boolean,
 ) => {
   return {
     colors: chartColors,
@@ -42,9 +45,9 @@ const getHighChartsOptions = (
       },
     },
     legend: {
-      align: 'right',
-      verticalAlign: 'middle',
-      layout: 'vertical',
+      align: isMobile ? 'center' : 'right',
+      verticalAlign: isMobile ? 'bottom' : 'middle',
+      layout: isMobile ? 'horizontal' : 'vertical',
       floating: false,
       navigation: {
         activeColor: '#ea580c',
@@ -79,7 +82,7 @@ const getHighChartsOptions = (
         cursor: 'pointer',
         dataLabels: [
           {
-            enabled: true,
+            enabled: isMobile ? false : true,
             distance: 20,
             useHtml: true,
             // @ts-expect-error - TS doesn't like the this context
@@ -123,7 +126,10 @@ const getHighChartsOptions = (
 export const PieChart: FC<PieChartProps> = ({ data, chartName }) => {
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null);
   const [mode] = useColorMode();
-  const options = getHighChartsOptions(data, mode, chartName);
+  const responsive = useResponsive();
+  const isMobile = useMemo(() => responsive.md === false, [responsive]);
+
+  const options = getHighChartsOptions(data, mode, chartName, isMobile);
 
   return (
     <HighchartsReact

@@ -21,4 +21,6 @@ export interface VirtualizedTableProps<T> {
   onRowClick?: (row: T) => void;
   scrollToIndex?: number;
   estimateSize: number;
+
+  rowClasses?: string;
 }

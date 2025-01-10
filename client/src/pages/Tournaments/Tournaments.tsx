@@ -20,6 +20,8 @@ import { useGetTournaments } from 'queries/useGetTournaments';
 import { RUNNING, NOT_STARTED, CHECK_IN } from 'constants/tournamentStatus';
 
 import { formatDateFromTimezone } from 'helpers/formatDateFromTimezone';
+import { tw } from 'utils/tailwindClassName';
+import { useResponsive } from 'hooks/useResponsive';
 
 import type { ChangeEvent } from 'react';
 import type { Tournament } from 'types/tournament';
@@ -41,6 +43,9 @@ export const Tournaments = () => {
   const [listRef, setListRef] = useState<HTMLElement | null>(null);
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
+  const responsive = useResponsive();
+  const isMobile = useMemo(() => responsive.md === false, [responsive]);
+
   const [selectedTournamentType, setSelectedTournamentType] = useState(
     tournamentTypeOptions[0].value,
   );
@@ -70,27 +75,25 @@ export const Tournaments = () => {
   const columns: ColumnProps<Tournament>[] = useMemo(() => {
     return [
       {
-        key: 'logo',
-        header: '',
-        render: row => <TournamentLogo tournamentName={row.name} />,
-        size: 'small',
-      },
-      {
         key: 'name',
         header: 'Tournament',
         render: row => (
-          <div className="flex flex-col gap-2">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              {row.name}
-            </div>
+          <div className="flex gap-4">
+            <TournamentLogo tournamentName={row.name} />
 
-            {!notRunningTournaments.includes(row.tournamentStatus) && (
-              <AdditionalInfo
-                winners={row.winners}
-                roundNumbers={row.roundNumbers}
-                tournamentStatus={row.tournamentStatus}
-              />
-            )}
+            <div className="flex flex-col gap-2">
+              <div className="text-base font-semibold text-gray-900 dark:text-white">
+                {row.name}
+              </div>
+
+              {!notRunningTournaments.includes(row.tournamentStatus) && (
+                <AdditionalInfo
+                  tournamentStatus={row.tournamentStatus}
+                  winners={row.winners}
+                  roundNumbers={row.roundNumbers}
+                />
+              )}
+            </div>
           </div>
         ),
       },
@@ -221,6 +224,8 @@ export const Tournaments = () => {
             onRowClick={handleRowClick}
             estimateSize={48.5}
             noDataMessage={<>No tournaments found that match this criteria</>}
+            rowClasses={tw`flex-col-reverse items-start md:flex-row`}
+            header={isMobile ? 'none' : 'static'}
           />
         </Card>
       </section>

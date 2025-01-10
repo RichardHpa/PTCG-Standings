@@ -35,6 +35,7 @@ type VirtualizerProps<T> = Pick<
   | 'onRowClick'
   | 'scrollToIndex'
   | 'estimateSize'
+  | 'rowClasses'
 >;
 
 interface CacheItem {
@@ -77,6 +78,7 @@ const WindowVirtualizer = <T,>({
   onRowClick,
   scrollToIndex,
   estimateSize,
+  rowClasses,
 }: VirtualizerProps<T>) => {
   const navigation = useNavigationType();
 
@@ -130,6 +132,7 @@ const WindowVirtualizer = <T,>({
               'flex border-b dark:border-gray-700',
               onRowClick &&
                 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700',
+              rowClasses,
             )}
             style={{
               position: 'absolute',
@@ -167,6 +170,7 @@ const ContainerVirtualizer = <T,>({
   onRowClick,
   scrollToIndex,
   estimateSize,
+  rowClasses,
 }: VirtualizerProps<T>) => {
   const virtualizer = useVirtualizer({
     count: data.length,
@@ -207,6 +211,7 @@ const ContainerVirtualizer = <T,>({
               'flex border-b dark:border-gray-700',
               onRowClick &&
                 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700',
+              rowClasses,
             )}
             style={{
               position: 'absolute',
@@ -246,6 +251,7 @@ export const VirtualizedTable = <T,>({
   onRowClick,
   scrollToIndex,
   estimateSize,
+  rowClasses,
 }: VirtualizedTableProps<T>) => {
   return (
     <div>
@@ -257,7 +263,10 @@ export const VirtualizedTable = <T,>({
           )}
         >
           <div
-            className={tw`flex bg-gray-50 text-xs font-bold uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400`}
+            className={clsx(
+              tw`flex bg-gray-50 text-xs font-bold uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400`,
+              rowClasses,
+            )}
           >
             {columns.map(column => {
               return (
@@ -289,6 +298,7 @@ export const VirtualizedTable = <T,>({
               onRowClick={onRowClick}
               containerRef={containerRef}
               estimateSize={estimateSize}
+              rowClasses={rowClasses}
             />
           ) : (
             <ContainerVirtualizer<T>
@@ -299,6 +309,7 @@ export const VirtualizedTable = <T,>({
               containerRef={containerRef}
               scrollToIndex={scrollToIndex}
               estimateSize={estimateSize}
+              rowClasses={rowClasses}
             />
           )}
         </>

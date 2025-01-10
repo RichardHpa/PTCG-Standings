@@ -21,7 +21,7 @@ export const RawWorlds2025Outlet = () => {
           src={WorldsLogo}
           alt="worlds 2024"
         />
-        <Link to="/worlds-2024">
+        <Link to="/worlds/2024/standings">
           <Heading>Pokemon Worlds 2024</Heading>
         </Link>
 

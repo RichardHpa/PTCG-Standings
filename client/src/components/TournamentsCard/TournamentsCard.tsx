@@ -11,6 +11,7 @@ import { Indicator } from 'components/Indicator';
 import { AdditionalInfo } from './components/AdditionalInfo';
 
 import { formatDateFromTimezone } from 'helpers/formatDateFromTimezone';
+import { tw } from 'utils/tailwindClassName';
 
 import type { FC } from 'react';
 import type { TournamentsCardProps } from './types';
@@ -88,6 +89,7 @@ export const TournamentsCard: FC<TournamentsCardProps> = ({
           containerRef={listState}
           estimateSize={130}
           onRowClick={handleRowClick}
+          rowClasses={tw`flex-col-reverse items-start md:flex-row`}
         />
       </Card>
     </div>
