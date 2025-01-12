@@ -28,6 +28,10 @@ app.use(cors());
 let tournamentsToTrack = [];
 let singleTournamentSchedulerRunning = false;
 
+app.get('/api', (_req, res) => {
+  res.send('API is running');
+});
+
 app.use('/api/tournaments', tournamentsRoutes);
 
 app.use(express.static(path.join(__dirname, './client/dist')));
