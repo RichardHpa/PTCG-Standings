@@ -18,7 +18,7 @@ RUN npm install
 RUN npm run heroku-postbuild
 
 # Starting our application
-CMD [ "npm", "run", "dev:local" ]
+CMD [ "npm", "run", "start" ]
 
 # Exposing server port
 EXPOSE 5001
