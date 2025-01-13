@@ -80,7 +80,7 @@ const singleTournamentSchedule = cron.schedule(
   }
 );
 
-const tournamentsScheduleTimer = '0 * * * *';
+const tournamentsScheduleTimer = '*/30 * * * *';
 const tournamentsSchedule = cron.schedule(
   tournamentsScheduleTimer,
   async () => {
