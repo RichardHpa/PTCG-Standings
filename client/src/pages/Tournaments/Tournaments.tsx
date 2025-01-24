@@ -58,10 +58,20 @@ export const Tournaments = () => {
         tournament => tournament.tournamentStatus === RUNNING,
       );
 
+      const upcomingTournaments = tournaments.filter(
+        tournament =>
+          tournament.tournamentStatus === NOT_STARTED ||
+          tournament.tournamentStatus === CHECK_IN,
+      );
+
       const otherTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus !== RUNNING,
+        tournament =>
+          tournament.tournamentStatus !== RUNNING &&
+          tournament.tournamentStatus !== NOT_STARTED &&
+          tournament.tournamentStatus !== CHECK_IN,
       );
       return {
+        upcomingTournaments,
         runningTournaments,
         otherTournaments,
       };
@@ -187,6 +197,14 @@ export const Tournaments = () => {
           title="Tournaments currently in progress"
         />
       )}
+
+      {data.upcomingTournaments.length > 0 && (
+        <TournamentsCard
+          tournaments={data.upcomingTournaments}
+          title="Tournaments Checking in"
+        />
+      )}
+
       <Heading level="3">View all the latest Pokemon TCG tournaments</Heading>
 
       <section className="bg-gray-50 dark:bg-gray-900" ref={setListRef}>

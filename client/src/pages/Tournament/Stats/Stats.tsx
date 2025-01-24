@@ -11,6 +11,7 @@ import { Paragraph } from 'components/Paragraph';
 import { PieChart } from 'components/Charts/PieChart';
 import { SEO } from 'components/SEO';
 import { Heading } from 'components/Heading';
+import { LoadingPokeball } from 'components/LoadingPokeball';
 
 import { getArchetypeCounts } from 'hooks/getArchetypeCounts';
 
@@ -72,7 +73,11 @@ export const Stats = () => {
     const res = getArchetypeCounts({ standings: divisionObject[division] });
     if (!res) return undefined;
     if (Object.keys(res.archetypes).length === 0) {
-      return undefined;
+      return {
+        formattedData: undefined,
+        totalCount: 0,
+        noDecklist: 0,
+      };
     }
 
     const sortedData = Object.entries(res.archetypes).sort(
@@ -99,12 +104,18 @@ export const Stats = () => {
   }, [division, divisionObject]);
 
   if (!formattedData) {
-    return <>Loading</>;
+    return (
+      <div className="flex w-full justify-center text-center">
+        <LoadingPokeball
+          alt={`Loading graph for ${tournament.name} ${division}`}
+        />
+      </div>
+    );
   }
 
   const hasGraph = formattedData.totalCount - formattedData.noDecklist > 0;
 
-  if (!hasGraph && !tournament.deckAnalysis) {
+  if ((!hasGraph && !tournament.deckAnalysis) || !formattedData.formattedData) {
     return (
       <>
         <SEO title={`${tournament.name} ${division} statistics`} />{' '}

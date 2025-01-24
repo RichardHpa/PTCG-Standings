@@ -15,6 +15,34 @@ interface LocalTournamentsMap {
 }
 
 export const tournamentsMap: LocalTournamentsMap = {
+  '0000147': {
+    name: 'San Antonio Pokémon TCG Regional Championship 2025',
+    logo: RegionalLogo2024,
+    streams: {
+      day1: 'https://www.youtube.com/live/AALuUy1JNS8?si=IThD7x69US4pzwJi',
+      day2: 'https://www.youtube.com/live/-5p61hCBeGI?si=IAc6u-AoDgHdfBqo',
+    },
+  },
+  '0000146': {
+    name: 'Rio de Janeiro Pokémon TCG Regional Championship 2025',
+    logo: RegionalLogo2024,
+  },
+  '0000145': {
+    name: 'Birmingham Pokémon TCG Regional Championship 2025',
+    logo: RegionalLogo2024,
+    streams: {
+      day1: 'https://www.youtube.com/live/5R0GR_yZ-20?si=v0wZNljqu5MxYtCE',
+      day2: 'https://www.youtube.com/live/GoTOuT70t6o?si=BZumTKySaN0P4K01',
+    },
+    deckAnalysis: {
+      masters: {
+        day1: 'day1.webp',
+        day1BestOfTheRest: 'day1-2.webp',
+        day2: 'day2.webp',
+        day2BestOfTheRest: 'day2-2.webp',
+      },
+    },
+  },
   '0000144': {
     name: 'Toronto Pokémon TCG Regional Championship 2025',
     logo: RegionalLogo2024,
