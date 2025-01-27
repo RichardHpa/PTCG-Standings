@@ -22,16 +22,16 @@ export const RawBaseLayout: FC<BaseLayoutProps> = ({ children }) => {
             to be some bugs. If you find any please let me know on via our new X
             account at{' '}
             <a
-              href="https://x.com/PTCG_Standing"
+              href="https://x.com/PTCG_Standings"
               target="_blank"
               className="underline"
             >
-              @PTCG_Standing
+              @PTCG_Standings
             </a>
             .
             <br /> <br />
             I hope you enjoy the new site and I look forward to hearing any
-            feedback you have. <br /> <br />- Richard from Ptcg Standings
+            feedback you have. <br /> <br />- Richard from PTCG Standings
           </Notice>
         </div>
 
