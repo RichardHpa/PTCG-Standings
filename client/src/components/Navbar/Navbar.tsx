@@ -40,7 +40,7 @@ export const Navbar = () => {
               alt="PTCG Standings.live"
             />
             <span
-              className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"
+              className="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
               role="heading"
             >
               PTCG Standings

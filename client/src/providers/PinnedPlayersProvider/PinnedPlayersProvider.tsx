@@ -9,7 +9,7 @@ import { useQueries } from '@tanstack/react-query';
 
 import { RUNNING } from 'constants/tournamentStatus';
 
-import { useLocalStorageState } from 'hooks/useLocalStorageState';
+import { useLocalStorage } from 'hooks/useLocalStorageState';
 import { getTournamentQueryOptions } from 'queries/useGetTournament';
 
 import { PINNED_PLAYERS_KEY } from 'constants/localStorageKeys';
@@ -40,8 +40,10 @@ export const PinnedPlayersProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [tournamentData, setTournamentData] =
-    useLocalStorageState<TournamentData>(PINNED_PLAYERS_KEY, {});
+  const [tournamentData, setTournamentData] = useLocalStorage<TournamentData>(
+    PINNED_PLAYERS_KEY,
+    {},
+  );
 
   const tournamentIds = Object.keys(tournamentData);
 

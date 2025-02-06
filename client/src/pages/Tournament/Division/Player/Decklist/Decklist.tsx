@@ -7,8 +7,11 @@ import { DecklistGrid } from 'components/DecklistGrid';
 import { Archetypes } from 'components/Archetypes';
 import { SEO } from 'components/SEO';
 import { Accordion } from 'components/Accordion';
+import { Paragraph } from 'components/Paragraph';
 
 import { formatPlayerName } from 'helpers/formatPlayerName';
+
+import { githubIssues } from 'constants/github';
 
 import type { DeckList as DecklistType, Standing } from 'types/standing';
 import type { FC } from 'react';
@@ -66,7 +69,25 @@ export const Decklist = () => {
       <SEO
         title={`${formatPlayerName(player.name, false)} decklist from ${tournament.name}`}
       />
-      <DecklistInner decklist={player.decklist as DecklistType} />
+
+      <div className="flex flex-col gap-4">
+        <DecklistInner decklist={player.decklist as DecklistType} />
+        <Paragraph size="sm">
+          <i>
+            If you believe there is an error in the decklist, please raise an
+            issue with us on{' '}
+            <a
+              href={githubIssues}
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-500 underline dark:text-blue-400"
+            >
+              github
+            </a>{' '}
+            and we will fix it.
+          </i>
+        </Paragraph>
+      </div>
     </>
   );
 };

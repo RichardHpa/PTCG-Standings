@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    volumes:
+      - .:/express-docker
+    container_name: ptcg-standings
+    # restart: always
+    ports:
+      - 5001:5001

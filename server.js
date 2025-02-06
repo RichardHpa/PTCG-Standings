@@ -28,6 +28,10 @@ app.use(cors());
 let tournamentsToTrack = [];
 let singleTournamentSchedulerRunning = false;
 
+app.get('/api', (_req, res) => {
+  res.send('API is running');
+});
+
 app.use('/api/tournaments', tournamentsRoutes);
 
 app.use(express.static(path.join(__dirname, './client/dist')));
@@ -76,7 +80,7 @@ const singleTournamentSchedule = cron.schedule(
   }
 );
 
-const tournamentsScheduleTimer = '0 * * * *';
+const tournamentsScheduleTimer = '*/30 * * * *';
 const tournamentsSchedule = cron.schedule(
   tournamentsScheduleTimer,
   async () => {
