@@ -56,9 +56,12 @@ export const Standings = () => {
         key: 'name',
         header: 'Player',
         render: row => (
-          <div className="flex items-center gap-4">
-            <span className="font-extrabold">{row.placing}</span>
-            <span className="font-medium">{formatPlayerName(row.name)}</span>
+          <div className="flex flex-col items-start gap-1">
+            <div className="flex items-center gap-4">
+              <span className="font-extrabold">{row.placing}</span>
+              <span className="font-medium">{formatPlayerName(row.name)}</span>
+            </div>
+            <span className="md:hidden">{formatRecord(row.record)}</span>
           </div>
         ),
       },

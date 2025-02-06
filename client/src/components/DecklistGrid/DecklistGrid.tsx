@@ -1,8 +1,10 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useCallback } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { setMap } from 'constants/sets';
 
 import { CardImage } from 'components/CardImage';
+import { Button } from 'components/Button';
 
 import type { FC } from 'react';
 import type { DecklistGridProps } from './types';
@@ -92,25 +94,39 @@ const useGetDecklist = (deckList: DeckList) => {
 };
 
 export const DecklistGrid: FC<DecklistGridProps> = ({ decklist }) => {
-  const { formattedCards } = useGetDecklist(decklist);
-  return (
-    <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-8">
-      {formattedCards.map(card => (
-        <div
-          key={`${card.name}-${card.set}-${card.number}`}
-          className="relative aspect-[2.5/3.5] w-full"
-        >
-          <CardImage src={card.image} alt={card.name} />
+  const [copied, setCopied] = useState(false);
 
-          <div className="absolute bottom-0 right-0 m-2 inline-flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600">
-            <span className="font-medium text-gray-600 dark:text-gray-300">
-              {card.count}
-            </span>
+  const { formattedCards, listAsString } = useGetDecklist(decklist);
+
+  const handleOnCopy = useCallback(() => {
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  }, []);
+  return (
+    <div className="flex flex-col gap-4">
+      <div>
+        <CopyToClipboard text={listAsString} onCopy={handleOnCopy}>
+          <Button>{copied ? 'Copied!' : 'Copy Decklist'}</Button>
+        </CopyToClipboard>
+      </div>
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-8">
+        {formattedCards.map(card => (
+          <div
+            key={`${card.name}-${card.set}-${card.number}`}
+            className="relative aspect-[2.5/3.5] w-full"
+          >
+            <CardImage src={card.image} alt={card.name} />
+
+            <div className="absolute bottom-0 right-0 m-2 inline-flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600">
+              <span className="font-medium text-gray-600 dark:text-gray-300">
+                {card.count}
+              </span>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
-
-export default DecklistGrid;

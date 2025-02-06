@@ -4,7 +4,7 @@ import { BASE_KEY } from 'constants/localStorageKeys';
 
 import type { SetStateAction } from 'react';
 
-export function useLocalStorageState<T>(
+export function useLocalStorage<T>(
   key: string,
   initialValue: T,
 ): [T, React.Dispatch<SetStateAction<T>>] {

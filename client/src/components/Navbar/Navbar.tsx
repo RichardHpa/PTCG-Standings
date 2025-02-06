@@ -43,7 +43,7 @@ export const Navbar = () => {
               className="self-center whitespace-nowrap text-xl font-semibold dark:text-white"
               role="heading"
             >
-              PTCG Standings V2 Beta
+              PTCG Standings
             </span>
           </Link>
 
