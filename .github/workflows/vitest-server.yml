@@ -28,4 +28,4 @@ jobs:
           useLockFile: false
 
       - name: ⚡ Run vitest for server
-        run: npm run test
+        run: npm run test:server

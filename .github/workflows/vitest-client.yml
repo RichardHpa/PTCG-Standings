@@ -23,7 +23,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: 📥 Download deps for Server
         uses: bahmutov/npm-install@v1
