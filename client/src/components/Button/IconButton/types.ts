@@ -1,7 +1,7 @@
 import type { ButtonProps } from '../types';
-import type { ReactElement } from 'react';
+import type { Icon } from 'types/icons';
 
 export interface IconButtonProps extends Omit<ButtonProps, 'children'> {
   alt: string;
-  icon: ReactElement;
+  icon: Icon;
 }

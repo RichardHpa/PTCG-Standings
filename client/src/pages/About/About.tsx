@@ -8,9 +8,9 @@ import { Heading } from 'components/Heading';
 import { Link } from 'components/Link';
 import { Paragraph } from 'components/Paragraph';
 
-import type { ReactNode } from 'react';
+import type { ReactNode, FC } from 'react';
 
-const UlList = ({ children }: { children: ReactNode }) => (
+const UlList: FC<{ children: ReactNode }> = ({ children }) => (
   <ul className="mb-3 list-inside list-disc space-y-1 text-gray-500 dark:text-gray-400">
     {children}
   </ul>

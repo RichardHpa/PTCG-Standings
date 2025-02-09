@@ -1,10 +1,11 @@
 import { cloneElement } from 'react';
 import clsx from 'clsx';
 
-import type { FC, ReactElement } from 'react';
+import type { FC } from 'react';
 import type { InputProps } from './types';
+import type { Icon } from 'types/icons';
 
-const RenderIcon = ({ icon }: { icon: ReactElement }) => {
+const RenderIcon = ({ icon }: { icon: Icon }) => {
   return cloneElement(icon, {
     className: 'h-5 w-5',
     'aria-hidden': true,
