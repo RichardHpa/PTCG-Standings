@@ -48,20 +48,24 @@ const queryClient = new QueryClient({
   },
 });
 
+const FallbackLoader = () => (
+  <div className="flex h-full w-full flex-1 flex-col items-center justify-center">
+    <LoadingPokeball alt="Loading app" size="100" />
+    <Heading level="2" className="mt-4">
+      Loading PTCG Standings...
+    </Heading>
+  </div>
+);
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <BaseLayout />,
     errorElement: <FallbackError />,
+    hydrateFallbackElement: <FallbackLoader />,
     children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: 'about',
-        element: <About />,
-      },
+      { index: true, element: <Home /> },
+      { path: 'about', element: <About /> },
       {
         path: 'worlds',
         element: <Outlet />,
@@ -70,36 +74,21 @@ const router = createBrowserRouter([
             path: '2024',
             element: <Worlds2024Outlet />,
             children: [
-              {
-                index: true,
-                element: <Navigate to="standings" replace />,
-              },
+              { index: true, element: <Navigate to="standings" replace /> },
               {
                 path: 'standings',
                 element: <DivisionOutlet />,
                 children: [
-                  {
-                    index: true,
-                    element: <Standings />,
-                  },
-                  {
-                    path: ':division',
-                    element: <Standings />,
-                  },
+                  { index: true, element: <Standings /> },
+                  { path: ':division', element: <Standings /> },
                 ],
               },
               {
                 path: 'qualified',
                 element: <DivisionOutlet />,
                 children: [
-                  {
-                    index: true,
-                    element: <Qualified />,
-                  },
-                  {
-                    path: ':division',
-                    element: <Qualified />,
-                  },
+                  { index: true, element: <Qualified /> },
+                  { path: ':division', element: <Qualified /> },
                 ],
               },
             ],
@@ -109,10 +98,7 @@ const router = createBrowserRouter([
       {
         path: 'tournaments',
         children: [
-          {
-            index: true,
-            element: <Tournaments />,
-          },
+          { index: true, element: <Tournaments /> },
           {
             path: ':tournamentId',
             element: <TournamentOutlet />,
@@ -124,18 +110,12 @@ const router = createBrowserRouter([
                 // element: <Tournament />,
                 element: <Navigate to="standings" replace />,
               },
-              {
-                path: 'streams',
-                element: <Streams />,
-              },
+              { path: 'streams', element: <Streams /> },
               {
                 path: 'stats',
                 element: <DivisionOutlet />,
                 children: [
-                  {
-                    index: true,
-                    element: <Stats />,
-                  },
+                  { index: true, element: <Stats /> },
                   {
                     path: ':division',
                     loader: divisionLoader,
@@ -163,10 +143,7 @@ const router = createBrowserRouter([
                 errorElement: <StandingsError />,
                 element: <DivisionOutlet />,
                 children: [
-                  {
-                    index: true,
-                    element: <Standings />,
-                  },
+                  { index: true, element: <Standings /> },
                   {
                     path: ':division',
                     loader: divisionLoader,
@@ -209,15 +186,8 @@ const router = createBrowserRouter([
                 loader: playerLoader,
                 element: <PlayerOutlet />,
                 children: [
-                  {
-                    index: true,
-                    loader: playerLoader,
-                    element: <Player />,
-                  },
-                  {
-                    path: 'decklist',
-                    element: <Decklist />,
-                  },
+                  { index: true, loader: playerLoader, element: <Player /> },
+                  { path: 'decklist', element: <Decklist /> },
                 ],
               },
             ],
@@ -226,26 +196,12 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: '*',
-    element: <FallbackError />,
-  },
+  { path: '*', element: <FallbackError /> },
 ]);
-
-const FallbackLoader = () => (
-  <div className="flex h-full w-full flex-1 flex-col items-center justify-center">
-    <LoadingPokeball alt="Loading app" size="100" />
-    <Heading level="2" className="mt-4">
-      Loading PTCG Standings...
-    </Heading>
-  </div>
-);
 
 const ReactQueryDevtoolsProduction = lazy(() =>
   import('@tanstack/react-query-devtools/build/modern/production.js').then(
-    d => ({
-      default: d.ReactQueryDevtools,
-    }),
+    d => ({ default: d.ReactQueryDevtools }),
   ),
 );
 
@@ -281,10 +237,7 @@ deferRender().then(() => {
         <ColorModeProvider>
           <QueryClientProvider client={queryClient}>
             <PinnedPlayersProvider>
-              <RouterProvider
-                router={router}
-                fallbackElement={<FallbackLoader />}
-              />
+              <RouterProvider router={router} />
               {import.meta.env.MODE === 'development' && (
                 <Suspense fallback={null}>
                   <ReactQueryDevtoolsProduction />
