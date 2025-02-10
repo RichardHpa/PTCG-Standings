@@ -1,0 +1,34 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > renders Button with variant contained 1`] = `
+<div>
+  <button
+    class="border-1 inline-flex border text-center font-medium rounded-md px-4 py-2 text-sm border-transparent bg-primary text-white hover:bg-primary-hover text-white dark:bg-primary-dark dark:hover:bg-primary-hoverDark"
+    type="button"
+  >
+    contained
+  </button>
+</div>
+`;
+
+exports[`Button > renders Button with variant ghost 1`] = `
+<div>
+  <button
+    class="border-1 inline-flex border text-center font-medium rounded-md px-4 py-2 text-sm border-transparent text-primary hover:bg-primary-hoverLight hover:text-primary dark:text-primary-dark dark:hover:bg-primary-hover dark:hover:bg-primary-hoverDark dark:hover:text-white"
+    type="button"
+  >
+    ghost
+  </button>
+</div>
+`;
+
+exports[`Button > renders Button with variant outlined 1`] = `
+<div>
+  <button
+    class="border-1 inline-flex border text-center font-medium rounded-md px-4 py-2 text-sm hover:text-white border-primary text-primary hover:border-primary hover:bg-primary dark:border-primary-dark dark:text-primary-dark hover:dark:bg-primary-dark"
+    type="button"
+  >
+    outlined
+  </button>
+</div>
+`;
