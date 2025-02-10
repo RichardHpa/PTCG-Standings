@@ -3,7 +3,7 @@
 exports[`Button > renders Button with variant contained 1`] = `
 <div>
   <button
-    class="inline-flex rounded-lg text-center font-medium px-5 py-2.5 text-sm bg-primary text-white hover:bg-primary-hover text-white dark:bg-primary-dark dark:hover:bg-primary-hoverDark"
+    class="border-1 inline-flex border text-center font-medium rounded-md px-4 py-2 text-sm border-transparent bg-primary text-white hover:bg-primary-hover text-white dark:bg-primary-dark dark:hover:bg-primary-hoverDark"
     type="button"
   >
     contained
@@ -14,7 +14,7 @@ exports[`Button > renders Button with variant contained 1`] = `
 exports[`Button > renders Button with variant ghost 1`] = `
 <div>
   <button
-    class="inline-flex rounded-lg text-center font-medium px-5 py-2.5 text-sm text-primary hover:bg-primary-hoverLight hover:text-primary dark:text-primary-dark dark:hover:bg-primary-hover dark:hover:bg-primary-hoverDark dark:hover:text-white"
+    class="border-1 inline-flex border text-center font-medium rounded-md px-4 py-2 text-sm border-transparent text-primary hover:bg-primary-hoverLight hover:text-primary dark:text-primary-dark dark:hover:bg-primary-hover dark:hover:bg-primary-hoverDark dark:hover:text-white"
     type="button"
   >
     ghost
@@ -25,7 +25,7 @@ exports[`Button > renders Button with variant ghost 1`] = `
 exports[`Button > renders Button with variant outlined 1`] = `
 <div>
   <button
-    class="inline-flex rounded-lg text-center font-medium px-5 py-2.5 text-sm outline outline-1 hover:text-white text-primary outline-primary hover:bg-primary hover:outline-primary dark:text-primary-dark dark:outline-primary-dark hover:dark:bg-primary-dark"
+    class="border-1 inline-flex border text-center font-medium rounded-md px-4 py-2 text-sm hover:text-white border-primary text-primary hover:border-primary hover:bg-primary dark:border-primary-dark dark:text-primary-dark hover:dark:bg-primary-dark"
     type="button"
   >
     outlined
