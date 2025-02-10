@@ -1,6 +1,6 @@
 import { ColumnProps as RawColumnProps } from './Column/types';
 
-import type { ReactNode } from 'react';
+import type { ReactNode, JSX } from 'react';
 
 export interface ColumnProps<T>
   extends Omit<RawColumnProps, 'children' | 'classes'> {

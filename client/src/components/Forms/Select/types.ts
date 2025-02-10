@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react';
 import type { BaseInputProps } from '../types';
+import type { JSX } from 'react';
 
 export interface OptionProp {
   value: string;

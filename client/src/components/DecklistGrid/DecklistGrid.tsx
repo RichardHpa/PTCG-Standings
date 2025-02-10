@@ -33,24 +33,15 @@ const getImageUrl = (card: PokemonCard) => {
 const useGetDecklist = (deckList: DeckList) => {
   const pokemon = deckList.pokemon;
   const formattedPokemon = pokemon.map(card => {
-    return {
-      ...card,
-      image: getImageUrl(card),
-    };
+    return { ...card, image: getImageUrl(card) };
   });
 
   const formattedTrainers = deckList.trainer.map(card => {
-    return {
-      ...card,
-      image: getImageUrl(card),
-    };
+    return { ...card, image: getImageUrl(card) };
   });
 
   const formattedEnergy = deckList.energy.map(card => {
-    return {
-      ...card,
-      image: getImageUrl(card),
-    };
+    return { ...card, image: getImageUrl(card) };
   });
 
   const formattedCards = [
@@ -104,6 +95,7 @@ export const DecklistGrid: FC<DecklistGridProps> = ({ decklist }) => {
       setCopied(false);
     }, 2000);
   }, []);
+
   return (
     <div className="flex flex-col gap-4">
       <div>
