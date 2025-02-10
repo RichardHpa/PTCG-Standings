@@ -13,6 +13,7 @@ jobs:
     defaults:
       run:
         working-directory: client
+
     steps:
       - name: 🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
@@ -25,16 +26,8 @@ jobs:
         with:
           node-version: 20.x
 
-      - name: 📥 Download deps for Server
+      - name: 📥 Download deps for project
         uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
-
-      - name: 📥 Download deps for Client
-        uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
-          working-directory: client
 
       - name: ⚡ Run vitest for client
         run: npm run test

@@ -24,8 +24,6 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
 
       - name: ⚡ Run vitest for server
         run: npm run test:server
