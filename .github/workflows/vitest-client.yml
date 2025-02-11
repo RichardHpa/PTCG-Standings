@@ -38,6 +38,3 @@ jobs:
         uses: ./.github/actions/run-jest
         with:
           working-directory: client
-
-      # - name: ⚡ Run vitest for client
-      #   run: npm run test
