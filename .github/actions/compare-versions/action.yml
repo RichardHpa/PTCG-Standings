@@ -14,5 +14,5 @@ outputs:
   versionType:
     description: 'The type of version change (major, minor, patch)'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'index.js'
