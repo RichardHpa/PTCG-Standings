@@ -31,4 +31,6 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: ⚡ Run vitest for server
-        run: npm run test:server
+        uses: ./.github/actions/run-jest
+        with:
+          working-directory: ./
