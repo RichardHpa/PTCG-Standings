@@ -19,7 +19,7 @@
     "install-client": "cd client && npm install",
     "lint:server": "eslint . --ignore-pattern client/",
     "prepare": "husky",
-    "test:server": "vitest --config ./vitest.config.js",
+    "test": "vitest --config ./vitest.config.js",
     "tournament:pull": "node dev.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install-client && npm run build"
   },
