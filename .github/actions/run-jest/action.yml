@@ -1,0 +1,17 @@
+name: 'Run Jest Tests'
+description: 'Runs Jest test suite with coverage in a specific directory'
+inputs:
+  working-directory:
+    description: 'Directory where Jest should be executed'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Dependencies
+      run: cd ${{ inputs.working-directory }} && npm install --frozen-lockfile
+      shell: bash
+
+    - name: Run Jest Tests
+      run: cd ${{ inputs.working-directory }} && npm run test
+      shell: bash
