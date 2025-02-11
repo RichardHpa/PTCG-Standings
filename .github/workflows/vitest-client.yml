@@ -34,5 +34,10 @@ jobs:
       - name: 📥 Download deps for project
         uses: bahmutov/npm-install@v1
 
-      - name: ⚡ Run vitest for client
-        run: npm run test
+      - name: Run Jest Tests in `client` directory
+        uses: ./.github/actions/run-jest
+        with:
+          working-directory: client
+
+      # - name: ⚡ Run vitest for client
+      #   run: npm run test
