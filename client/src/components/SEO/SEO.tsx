@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 
 import type { ReactNode } from 'react';
 
@@ -26,11 +25,11 @@ export const SEO = ({
   }, [location.pathname, title]);
 
   return (
-    <Helmet>
+    <>
       <title>{pageTitle}</title>
       <meta name="description" content={description} />
 
       {children}
-    </Helmet>
+    </>
   );
 };

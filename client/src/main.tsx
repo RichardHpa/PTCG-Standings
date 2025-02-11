@@ -8,7 +8,6 @@ import {
 } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { worker } from 'mocks/browser';
-import { HelmetProvider } from 'react-helmet-async';
 
 import './index.css';
 
@@ -233,20 +232,18 @@ const deferRender = async () => {
 deferRender().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
-      <HelmetProvider>
-        <ColorModeProvider>
-          <QueryClientProvider client={queryClient}>
-            <PinnedPlayersProvider>
-              <RouterProvider router={router} />
-              {import.meta.env.MODE === 'development' && (
-                <Suspense fallback={null}>
-                  <ReactQueryDevtoolsProduction />
-                </Suspense>
-              )}
-            </PinnedPlayersProvider>
-          </QueryClientProvider>
-        </ColorModeProvider>
-      </HelmetProvider>
+      <ColorModeProvider>
+        <QueryClientProvider client={queryClient}>
+          <PinnedPlayersProvider>
+            <RouterProvider router={router} />
+            {import.meta.env.MODE === 'development' && (
+              <Suspense fallback={null}>
+                <ReactQueryDevtoolsProduction />
+              </Suspense>
+            )}
+          </PinnedPlayersProvider>
+        </QueryClientProvider>
+      </ColorModeProvider>
     </StrictMode>,
   );
 });
