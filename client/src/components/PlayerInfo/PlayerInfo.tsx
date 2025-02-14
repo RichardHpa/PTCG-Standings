@@ -61,7 +61,7 @@ export const PlayerInfo: FC<PlayerInfoProps> = ({ player, division }) => {
         )}
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         <div>
           <Paragraph weight="medium" color="white">
             Self Resistance

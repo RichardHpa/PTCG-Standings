@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData } from 'react-router-dom';
+import { Outlet, useLoaderData, Link } from 'react-router-dom';
 
 import { Heading } from 'components/Heading';
 import { PinPlayerButton } from 'components/PinPlayer';
@@ -9,6 +9,7 @@ import { RUNNING } from 'constants/tournamentStatus';
 
 import { formatPlayerName } from 'helpers/formatPlayerName';
 import { firstLetterToUppercase } from 'helpers/firstLetterToUppercase';
+import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 
 import {
   PlayerContextProvider,
@@ -30,7 +31,14 @@ const RawPlayerOutlet = () => {
       />
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Heading level="2">{formatPlayerName(player.name)}</Heading>
+          <Link
+            to={`/tournaments/${tournament.id}/${division}/${formatPlayerNameToUrl(player.name)}`}
+          >
+            <Heading level="2" className="hover:underline">
+              {formatPlayerName(player.name)}
+            </Heading>
+          </Link>
+
           <span className="me-2 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
             {firstLetterToUppercase(division)}
           </span>

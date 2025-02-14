@@ -12,6 +12,7 @@ import { PieChart } from 'components/Charts/PieChart';
 import { SEO } from 'components/SEO';
 import { Heading } from 'components/Heading';
 import { LoadingPokeball } from 'components/LoadingPokeball';
+import { DeckPercentageTable } from 'components/DeckPercentageTable';
 
 import { getArchetypeCounts } from 'hooks/getArchetypeCounts';
 
@@ -19,6 +20,7 @@ import { useTournamentContext } from 'providers/TournamentProvider';
 
 import type { TournamentDeckAnalysis, Tournament } from 'types/tournament';
 import type { Division } from 'types/divisions';
+import type { FormattedData } from 'components/Charts/PieChart/types';
 
 const OfficialDeckAnalysis = ({
   tournament,
@@ -58,12 +60,6 @@ const OfficialDeckAnalysis = ({
     </div>
   );
 };
-
-interface FormattedData {
-  name: string;
-  y: number;
-  color: string | null;
-}
 
 export const Stats = () => {
   const { tournament, divisionObject } = useTournamentContext();
@@ -135,6 +131,8 @@ export const Stats = () => {
       <SEO title={`${tournament.name} ${division} statistics`} />
 
       <PieChart data={formattedData.formattedData} chartName="Archetypes" />
+
+      <DeckPercentageTable data={formattedData} />
 
       <Paragraph size="sm">
         <i>
