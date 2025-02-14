@@ -4,7 +4,7 @@
   "workspaces": [
     "client"
   ],
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Web app for following pokemon tcg tournament standings'",
   "main": "server.js",
   "scripts": {
