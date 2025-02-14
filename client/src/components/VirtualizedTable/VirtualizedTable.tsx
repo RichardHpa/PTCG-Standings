@@ -2,11 +2,7 @@ import { useEffect } from 'react';
 import { useNavigationType } from 'react-router-dom';
 
 import clsx from 'clsx';
-import {
-  useWindowVirtualizer,
-  useVirtualizer,
-  // observeWindowOffset,
-} from '@tanstack/react-virtual';
+import { useWindowVirtualizer, useVirtualizer } from '@tanstack/react-virtual';
 
 import { tw } from 'utils/tailwindClassName';
 

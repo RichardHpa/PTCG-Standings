@@ -1,0 +1,1 @@
+export { DeckPercentageTable } from './DeckPercentageTable';

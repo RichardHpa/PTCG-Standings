@@ -680,6 +680,21 @@ export const archetypesListObject: archetypesListObjectProps = {
       return false;
     },
   },
+  gougingFire: {
+    name: 'Gouging Fire',
+    sprites: [
+      {
+        pokemon: 'Gouging Fire',
+        sprite: pokemonImageList['gouging-fire'].image,
+      },
+    ],
+    fn: (decklist: DeckList) => {
+      if (decklistIncludes(decklist, 'pokemon', ['Gouging Fire ex'])) {
+        return true;
+      }
+      return false;
+    },
+  },
 };
 
 // convert object to array which also inclues a key for the object
