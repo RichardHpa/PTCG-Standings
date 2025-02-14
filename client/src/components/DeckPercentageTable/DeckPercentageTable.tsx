@@ -70,6 +70,7 @@ export const DeckPercentageTable: FC<DeckPercentageTableProps> = ({ data }) => {
         columns={columns}
         estimateSize={40}
         containerRef={listRef}
+        type="window"
       />
     </div>
   );
