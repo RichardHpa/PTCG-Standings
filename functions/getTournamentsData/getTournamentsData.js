@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 
 import { basePokeDataApiTournamentsUrl, baseFolder } from '../../constants/folders.js';
 import { forceFinishTournaments } from '../../constants/forceFinishTournaments.js';
+import { forceRunningTournaments } from '../../constants/forceRunningTournaments.js';
 
 export const getTournamentsData = async () => {
   console.log('Request for tournaments data');
@@ -26,6 +27,14 @@ export const getTournamentsData = async () => {
       const tournament = data.tcg.data.find(tournament => tournament.id === tournamentId);
       if (tournament) {
         tournament.tournamentStatus = 'finished';
+      }
+    });
+
+    // hack as some of the tournaments (mainly the ones in south america that arent run by RK9) are not auto updating from not-started to running
+    forceRunningTournaments.forEach(tournamentId => {
+      const tournament = data.tcg.data.find(tournament => tournament.id === tournamentId);
+      if (tournament) {
+        tournament.tournamentStatus = 'running';
       }
     });
 
