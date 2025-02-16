@@ -60,7 +60,7 @@
     "@actions/github": "^6.0.0",
     "@eslint/js": "^9.19.0",
     "concurrently": "^9.0.1",
-    "eslint": "^9.19.0",
+    "eslint": "^9.20.1",
     "eslint-plugin-n": "^17.10.3",
     "globals": "^15.14.0",
     "husky": "^9.1.6",
