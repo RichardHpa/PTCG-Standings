@@ -2,7 +2,6 @@
 FROM node:20-alpine
 
 # Declaring env
-ENV NODE_ENV=development
 ENV TZ=Pacific/Auckland
 
 # Setting up the work directory

@@ -7,6 +7,7 @@ import {
   Outlet,
 } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ReactGA from 'react-ga4';
 import { worker } from 'mocks/browser';
 
 import './index.css';
@@ -38,6 +39,8 @@ import { Worlds2024Outlet, Qualified } from 'pages/Worlds/Worlds2024';
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
 import { FallbackError } from 'errors/FallbackError';
+
+const TRACKING_ID = 'G-GT0XDK8BEH';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -226,6 +229,10 @@ const deferRender = async () => {
         print.warning();
       },
     });
+  }
+  if (import.meta.env.MODE === 'production') {
+    ReactGA.initialize(TRACKING_ID);
+    console.log('GA initialized');
   }
 };
 

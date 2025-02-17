@@ -1,1 +1,1 @@
-export const forceRunningTournaments = ['0000149'];
+export const forceRunningTournaments = [];
