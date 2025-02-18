@@ -1,5 +1,5 @@
 import { useMemo, useCallback, useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
 
@@ -40,12 +40,15 @@ const formatToPercentage = (value: number) => {
 export const Standings = () => {
   const navigate = useNavigate();
   const { division = 'masters' } = useParams() as { division: Division };
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const { divisions, tournament } = useTournamentContext();
   const [searchQuery, setSearchQuery] = useState('');
   const [listRef, setListRef] = useState<HTMLElement | null>(null);
   const [selectedCountry, setSelectedCountry] = useState(
     firstCountryOption.value,
   );
+
   const [selectedArchetype, setSelectedArchetype] = useState(
     firstArchetypeOption.value,
   );
@@ -118,8 +121,9 @@ export const Standings = () => {
 
   useEffect(() => {
     setSearchQuery('');
-    setSelectedCountry(firstCountryOption.value);
-  }, [division, divisions]);
+    const country = searchParams.get('country');
+    setSelectedCountry(country || firstCountryOption.value);
+  }, [division, searchParams]);
 
   const standings = useMemo(() => {
     const divisionData = divisions.find(d => d.division === division);
@@ -192,10 +196,14 @@ export const Standings = () => {
     return [];
   }, [searchQuery, selectedArchetype, selectedCountry, standings]);
 
-  const handleOnStyledCountryChange = useCallback((e: StyledOptionProps) => {
-    const value = e.value;
-    setSelectedCountry(value);
-  }, []);
+  const handleOnStyledCountryChange = useCallback(
+    (e: StyledOptionProps) => {
+      const value = e.value;
+      setSearchParams({ country: value });
+      setSelectedCountry(value);
+    },
+    [setSearchParams],
+  );
 
   const handleOnStyledArchetypeChange = useCallback((e: StyledOptionProps) => {
     const value = e.value;
