@@ -57,12 +57,7 @@ export interface TournamentApiResponse {
   tournament_data: TournamentData[];
 }
 
-export interface StreamsMap {
-  day1?: string;
-  day2?: string;
-  day3?: string;
-  day4?: string;
-}
+export type StreamsMap = Record<string, string>;
 
 export interface TournamentDeckAnalysis {
   day1?: string;
