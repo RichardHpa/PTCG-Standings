@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Card } from 'components/Card';
 import { VirtualizedTable } from 'components/VirtualizedTable';
-import { PinPlayerButton } from 'components/PinPlayer';
+// import { PinPlayerButton } from 'components/PinPlayer';
 
 import { formatPlayerName } from 'helpers/formatPlayerName';
 import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
@@ -35,21 +35,21 @@ export const StandingsTableCard = ({
           </div>
         ),
       },
-      {
-        key: 'action',
-        header: '',
-        align: 'right',
-        size: 'small',
-        render: row => (
-          <PinPlayerButton
-            player={row}
-            division={division}
-            tournamentId={tournament.id}
-          />
-        ),
-      },
+      // {
+      //   key: 'action',
+      //   header: '',
+      //   align: 'right',
+      //   size: 'small',
+      //   render: row => (
+      //     <PinPlayerButton
+      //       player={row}
+      //       division={division}
+      //       tournamentId={tournament.id}
+      //     />
+      //   ),
+      // },
     ];
-  }, [division, tournament.id]);
+  }, []);
 
   const standings = useMemo(() => {
     const divisionData = divisions.find(d => d.division === division)!;
