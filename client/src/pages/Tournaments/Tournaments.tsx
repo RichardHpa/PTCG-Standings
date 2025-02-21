@@ -59,9 +59,11 @@ export const Tournaments = () => {
       );
 
       const upcomingTournaments = tournaments.filter(
-        tournament =>
-          tournament.tournamentStatus === NOT_STARTED ||
-          tournament.tournamentStatus === CHECK_IN,
+        tournament => tournament.tournamentStatus === NOT_STARTED,
+      );
+
+      const checkingInTournaments = tournaments.filter(
+        tournament => tournament.tournamentStatus === CHECK_IN,
       );
 
       const otherTournaments = tournaments.filter(
@@ -71,6 +73,7 @@ export const Tournaments = () => {
           tournament.tournamentStatus !== CHECK_IN,
       );
       return {
+        checkingInTournaments,
         upcomingTournaments,
         runningTournaments,
         otherTournaments,
@@ -190,7 +193,6 @@ export const Tournaments = () => {
   return (
     <div className="flex flex-col gap-8">
       <SEO title="Tournaments" />
-
       {data.runningTournaments.length > 0 && (
         <TournamentsCard
           tournaments={data.runningTournaments}
@@ -198,15 +200,21 @@ export const Tournaments = () => {
         />
       )}
 
+      {data.checkingInTournaments.length > 0 && (
+        <TournamentsCard
+          tournaments={data.checkingInTournaments}
+          title="Tournaments checking in"
+        />
+      )}
+
       {data.upcomingTournaments.length > 0 && (
         <TournamentsCard
           tournaments={data.upcomingTournaments}
-          title="Tournaments Checking in"
+          title="Upcoming tournaments"
         />
       )}
 
       <Heading level="3">View all the latest Pokemon TCG tournaments</Heading>
-
       <section className="bg-gray-50 dark:bg-gray-900" ref={setListRef}>
         <Card>
           <div className="flex flex-col items-center space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">

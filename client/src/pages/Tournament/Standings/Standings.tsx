@@ -22,6 +22,7 @@ import { formatPlayerName, getCountryCode } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
 import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 import { calculatePoints } from 'helpers/calculatePoints';
+import { RUNNING, CHECK_IN } from 'constants/tournamentStatus';
 
 import { getArchetypeCounts } from 'hooks/getArchetypeCounts';
 
@@ -106,13 +107,14 @@ export const Standings = () => {
             {row.archetype && (
               <Archetypes size="small" archetype={row.archetype} />
             )}
-            {tournament.tournamentStatus === 'running' && (
-              <PinPlayerButton
-                player={row}
-                division={division}
-                tournamentId={tournament.id}
-              />
-            )}
+            {tournament.tournamentStatus === RUNNING ||
+              (tournament.tournamentStatus === CHECK_IN && (
+                <PinPlayerButton
+                  player={row}
+                  division={division}
+                  tournamentId={tournament.id}
+                />
+              ))}
           </div>
         ),
       },
@@ -277,7 +279,11 @@ export const Standings = () => {
             data={filteredPlayers}
             columns={columns}
             containerRef={listRef}
-            onRowClick={handleRowClick}
+            onRowClick={
+              tournament.tournamentStatus !== CHECK_IN
+                ? handleRowClick
+                : undefined
+            }
             estimateSize={48.5}
             noDataMessage={<>No players found that match this criteria</>}
           />
