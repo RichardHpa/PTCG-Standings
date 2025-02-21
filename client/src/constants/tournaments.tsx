@@ -15,6 +15,35 @@ interface LocalTournamentsMap {
 }
 
 export const tournamentsMap: LocalTournamentsMap = {
+  '0000150': {
+    name: 'Europe Pokémon TCG International Championship 2025',
+    logo: InternationalsLogo,
+    streams: {
+      day1: 'https://www.youtube.com/live/_avkfhxXzig?si=iET2pKTcIh8xhLUZ',
+      day2: 'https://www.youtube.com/live/JCD6nxbf63A?si=c7GBXaHREFbZjs-R',
+      championshipSunday:
+        'https://www.youtube.com/live/eJ-7PDXNmbc?si=tolH00ILaCCLROdF',
+    },
+  },
+  '0000149': {
+    name: '2025 Puerto Rico TCG Special Event',
+    logo: PlayPokemonLogo,
+    streams: {
+      day1: 'https://www.twitch.tv/videos/2381818306',
+      day2: 'https://www.twitch.tv/videos/2382740134',
+    },
+  },
+  '0000148': {
+    name: 'Merida Pokémon TCG Regional Championship 2025',
+    logo: RegionalLogo2024,
+    streams: {
+      finals: 'https://www.youtube.com/live/mwiLByI3qKo?si=dOO0SPknESjaZzr8',
+      topCut: 'https://www.youtube.com/live/TXdnaCDGkcY?si=RPHTRxyTC_XdiZAS',
+      round12: 'https://www.youtube.com/live/Xyc9pVKhz3I?si=9l7wLNT9cKiDdG3f',
+      round11: 'https://www.youtube.com/live/zTaT81AuAH0?si=p6_p3D03qvpMpZy2',
+      round10: 'https://www.youtube.com/live/aLmE3aPhjX0?si=nggUYP9PAmTLxldM',
+    },
+  },
   '0000147': {
     name: 'San Antonio Pokémon TCG Regional Championship 2025',
     logo: RegionalLogo2024,

@@ -11,6 +11,7 @@ import { Notice } from 'components/Notice';
 import { RUNNING, CHECK_IN, NOT_STARTED } from 'constants/tournamentStatus';
 
 import { formatDateFromTimezone } from 'helpers/formatDateFromTimezone';
+import { breakCamelCase } from 'utils/breakCamelCase';
 
 import {
   TournamentContextProvider,
@@ -47,6 +48,7 @@ const RawTournamentOutlet = () => {
                 <Paragraph>Streams: </Paragraph>
                 {Object.entries(tournament.streams).map(([day, url], index) => {
                   const streamKeys = Object.keys(tournament.streams || {});
+
                   return (
                     <Fragment key={index}>
                       <a
@@ -56,7 +58,7 @@ const RawTournamentOutlet = () => {
                         rel="noopener noreferrer"
                         className="text-blue-500 hover:underline dark:text-blue-400"
                       >
-                        Day {index + 1}
+                        {breakCamelCase(day)}
                       </a>
                       {index < streamKeys.length - 1 && (
                         <span className="text-gray-500 dark:text-gray-400">
