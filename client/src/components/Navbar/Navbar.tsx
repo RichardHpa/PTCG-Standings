@@ -6,7 +6,7 @@ import { Button } from 'components/Button';
 import { BuyMeABoosterButton } from 'components/BuyMeABoosterButton';
 import { ThemeToggle } from 'components/ThemeToggle';
 import { NavLink } from 'components/NavLink';
-import { PinnedPlayerDrawer } from 'components/PinPlayer/PinnedPlayerDrawer';
+// import { PinnedPlayerDrawer } from 'components/PinPlayer/PinnedPlayerDrawer';
 
 export const Navbar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -48,7 +48,7 @@ export const Navbar = () => {
           </Link>
 
           <div className="flex items-center lg:order-2">
-            <PinnedPlayerDrawer />
+            {/* <PinnedPlayerDrawer /> */}
 
             <button
               data-collapse-toggle="mobile-menu-2"

@@ -1,4 +1,5 @@
 import { StrictMode, lazy, Suspense } from 'react';
+// import { ErrorBoundary } from 'react-error-boundary';
 import { createRoot } from 'react-dom/client';
 import {
   createBrowserRouter,
@@ -13,7 +14,7 @@ import { worker } from 'mocks/browser';
 import './index.css';
 
 import { ColorModeProvider } from 'providers/ColorModeProvider';
-import { PinnedPlayersProvider } from 'providers/PinnedPlayersProvider';
+// import { PinnedPlayersProvider } from 'providers/PinnedPlayersProvider';
 
 import { BaseLayout } from 'layouts/BaseLayout';
 
@@ -236,21 +237,34 @@ const deferRender = async () => {
   }
 };
 
+// function Fallback({ error, resetErrorBoundary }) {
+//   // Call resetErrorBoundary() to reset the error boundary and retry the render.
+
+//   return (
+//     <div role="alert">
+//       <p>Something went wrong:</p>
+//       <pre style={{ color: 'red' }}>{error.message}</pre>
+//     </div>
+//   );
+// }
+
 deferRender().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
+      {/* <ErrorBoundary FallbackComponent={Fallback}> */}
       <ColorModeProvider>
         <QueryClientProvider client={queryClient}>
-          <PinnedPlayersProvider>
-            <RouterProvider router={router} />
-            {import.meta.env.MODE === 'development' && (
-              <Suspense fallback={null}>
-                <ReactQueryDevtoolsProduction />
-              </Suspense>
-            )}
-          </PinnedPlayersProvider>
+          {/* <PinnedPlayersProvider> */}
+          <RouterProvider router={router} />
+          {import.meta.env.MODE === 'development' && (
+            <Suspense fallback={null}>
+              <ReactQueryDevtoolsProduction />
+            </Suspense>
+          )}
+          {/* </PinnedPlayersProvider> */}
         </QueryClientProvider>
       </ColorModeProvider>
+      {/* </ErrorBoundary> */}
     </StrictMode>,
   );
 });

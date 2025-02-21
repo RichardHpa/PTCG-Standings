@@ -1,11 +1,11 @@
 import { Outlet, useLoaderData, Link } from 'react-router-dom';
 
 import { Heading } from 'components/Heading';
-import { PinPlayerButton } from 'components/PinPlayer';
+// import { PinPlayerButton } from 'components/PinPlayer';
 import { Notice } from 'components/Notice';
 import { SEO } from 'components/SEO';
 
-import { RUNNING } from 'constants/tournamentStatus';
+// import { RUNNING } from 'constants/tournamentStatus';
 
 import { formatPlayerName } from 'helpers/formatPlayerName';
 import { firstLetterToUppercase } from 'helpers/firstLetterToUppercase';
@@ -44,7 +44,7 @@ const RawPlayerOutlet = () => {
           </span>
         </div>
 
-        {tournament.tournamentStatus === RUNNING && (
+        {/* {tournament.tournamentStatus === RUNNING && (
           <div>
             <PinPlayerButton
               player={player}
@@ -52,7 +52,7 @@ const RawPlayerOutlet = () => {
               tournamentId={tournament.id}
             />
           </div>
-        )}
+        )} */}
       </div>
 
       {players.length > 1 && (

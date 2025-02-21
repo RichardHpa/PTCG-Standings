@@ -6,7 +6,7 @@ import Fuse from 'fuse.js';
 import { Archetypes } from 'components/Archetypes';
 import { Input } from 'components/Forms/Input';
 import { Card } from 'components/Card';
-import { PinPlayerButton } from 'components/PinPlayer/PinPlayerButton';
+// import { PinPlayerButton } from 'components/PinPlayer/PinPlayerButton';
 import { VirtualizedTable } from 'components/VirtualizedTable';
 import { SEO } from 'components/SEO';
 import {
@@ -22,7 +22,10 @@ import { formatPlayerName, getCountryCode } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
 import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 import { calculatePoints } from 'helpers/calculatePoints';
-import { RUNNING, CHECK_IN } from 'constants/tournamentStatus';
+import {
+  // RUNNING,
+  CHECK_IN,
+} from 'constants/tournamentStatus';
 
 import { getArchetypeCounts } from 'hooks/getArchetypeCounts';
 
@@ -107,19 +110,19 @@ export const Standings = () => {
             {row.archetype && (
               <Archetypes size="small" archetype={row.archetype} />
             )}
-            {tournament.tournamentStatus === RUNNING ||
+            {/* {tournament.tournamentStatus === RUNNING ||
               (tournament.tournamentStatus === CHECK_IN && (
                 <PinPlayerButton
                   player={row}
                   division={division}
                   tournamentId={tournament.id}
                 />
-              ))}
+              ))} */}
           </div>
         ),
       },
     ];
-  }, [division, tournament.id, tournament.tournamentStatus]);
+  }, []);
 
   useEffect(() => {
     setSearchQuery('');

@@ -46,6 +46,7 @@ export const PinnedPlayersProvider = ({
   );
 
   const tournamentIds = Object.keys(tournamentData);
+  console.log(tournamentIds);
 
   // Fetch tournament data using useQueries
   const tournamentQueries = useQueries({
