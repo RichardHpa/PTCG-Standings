@@ -7,7 +7,7 @@ import {
 } from 'react';
 import { useQueries } from '@tanstack/react-query';
 
-import { RUNNING } from 'constants/tournamentStatus';
+import { CHECK_IN, RUNNING } from 'constants/tournamentStatus';
 
 import { useLocalStorage } from 'hooks/useLocalStorageState';
 import { getTournamentQueryOptions } from 'queries/useGetTournament';
@@ -56,6 +56,7 @@ export const PinnedPlayersProvider = ({
 
   const updateTournamentData = useCallback(
     (update: Partial<TournamentData>) => {
+      console.log(update);
       setTournamentData((prevData: TournamentData) => {
         // Ensure that we are creating a full TournamentData object
         const mergedData: TournamentData = { ...prevData };
@@ -152,7 +153,11 @@ export const PinnedPlayersProvider = ({
   useEffect(() => {
     tournamentQueries.forEach((query, index) => {
       const tournamentId = tournamentIds[index];
-      if (query.data && query.data.tournament.tournamentStatus !== RUNNING) {
+      if (
+        query.data &&
+        query.data.tournament.tournamentStatus !== RUNNING &&
+        query.data.tournament.tournamentStatus !== CHECK_IN
+      ) {
         // Remove the tournament from local storage
         setTournamentData((prevData: TournamentData) => {
           const { [tournamentId]: _, ...rest } = prevData; // Remove the tournament from the object

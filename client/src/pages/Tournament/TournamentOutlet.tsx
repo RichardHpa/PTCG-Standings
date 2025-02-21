@@ -6,6 +6,7 @@ import { Indicator } from 'components/Indicator';
 import { Paragraph } from 'components/Paragraph';
 import { Tabs, NavTab } from 'components/Tabs';
 import { TournamentLogo } from 'components/TournamentLogo';
+import { Notice } from 'components/Notice';
 
 import { RUNNING, CHECK_IN, NOT_STARTED } from 'constants/tournamentStatus';
 
@@ -72,14 +73,15 @@ const RawTournamentOutlet = () => {
 
         {tournament.tournamentStatus === RUNNING && <Indicator />}
       </div>
-
       {tournament.tournamentStatus === CHECK_IN && (
-        <Paragraph>
-          Tournament check-in is open. Players have started to check in for the
-          tournament. Once the check-in period is over, the tournament will
-          start and we will be able to show the standings, pairings, and other
-          information.
-        </Paragraph>
+        <Notice status="info">
+          Tournament check-in is open.
+          <br />
+          Players have started to check in for the tournament. While players are
+          checking in, you can start to pin some of the players you want to
+          follow during the tournament. Once the tournament starts, you will be
+          able to see the pairings and standings.
+        </Notice>
       )}
       {tournament.tournamentStatus === NOT_STARTED && (
         <Paragraph>
@@ -101,11 +103,12 @@ const RawTournamentOutlet = () => {
               {tournament.streams && <NavTab to="streams">Streams</NavTab>}
             </Tabs>
           </div>
-
-          <div>
-            <Outlet />
-          </div>
         </>
+      )}
+      {tournament.tournamentStatus !== NOT_STARTED && (
+        <div>
+          <Outlet />
+        </div>
       )}
     </div>
   );

@@ -16,9 +16,11 @@ export const Home = () => {
       );
 
       const upcomingTournaments = tournaments.filter(
-        tournament =>
-          tournament.tournamentStatus === NOT_STARTED ||
-          tournament.tournamentStatus === CHECK_IN,
+        tournament => tournament.tournamentStatus === NOT_STARTED,
+      );
+
+      const checkingInTournaments = tournaments.filter(
+        tournament => tournament.tournamentStatus === CHECK_IN,
       );
 
       const latestTournaments = tournaments
@@ -34,6 +36,7 @@ export const Home = () => {
         upcomingTournaments,
         runningTournaments,
         latestTournaments,
+        checkingInTournaments,
       };
     },
   });
@@ -67,10 +70,17 @@ export const Home = () => {
           />
         )}
 
+        {data.checkingInTournaments.length > 0 && (
+          <TournamentsCard
+            tournaments={data.checkingInTournaments}
+            title="Tournaments checking in"
+          />
+        )}
+
         {data.upcomingTournaments.length > 0 && (
           <TournamentsCard
             tournaments={data.upcomingTournaments}
-            title="Upcoming Tournaments"
+            title="Upcoming tournaments"
           />
         )}
 
