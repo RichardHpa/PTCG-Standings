@@ -29,12 +29,13 @@ const RawPlayerOutlet = () => {
       <SEO
         title={`${formatPlayerName(player.name, false)} in ${tournament.name}`}
       />
+
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col-reverse items-start gap-4 md:flex-row md:items-center">
           <Link
             to={`/tournaments/${tournament.id}/${division}/${formatPlayerNameToUrl(player.name)}`}
           >
-            <Heading level="2" className="hover:underline">
+            <Heading level="2" className="break-all hover:underline">
               {formatPlayerName(player.name)}
             </Heading>
           </Link>
