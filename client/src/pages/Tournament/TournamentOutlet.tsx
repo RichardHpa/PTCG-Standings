@@ -2,13 +2,12 @@ import { Fragment } from 'react';
 import { Outlet, useLoaderData, Link } from 'react-router-dom';
 
 import { Heading } from 'components/Heading';
-import { Indicator } from 'components/Indicator';
 import { Paragraph } from 'components/Paragraph';
 import { Tabs, NavTab } from 'components/Tabs';
 import { TournamentLogo } from 'components/TournamentLogo';
 import { Notice } from 'components/Notice';
 
-import { RUNNING, CHECK_IN, NOT_STARTED } from 'constants/tournamentStatus';
+import { CHECK_IN, NOT_STARTED } from 'constants/tournamentStatus';
 
 import { formatDateFromTimezone } from 'helpers/formatDateFromTimezone';
 import { breakCamelCase } from 'utils/breakCamelCase';
@@ -44,7 +43,7 @@ const RawTournamentOutlet = () => {
             </Paragraph>
 
             {tournament.streams && (
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <Paragraph>Streams: </Paragraph>
                 {Object.entries(tournament.streams).map(([day, url], index) => {
                   const streamKeys = Object.keys(tournament.streams || {});
@@ -72,8 +71,6 @@ const RawTournamentOutlet = () => {
             )}
           </div>
         </div>
-
-        {tournament.tournamentStatus === RUNNING && <Indicator />}
       </div>
       {tournament.tournamentStatus === CHECK_IN && (
         <Notice status="info">
