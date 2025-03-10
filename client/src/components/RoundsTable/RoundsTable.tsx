@@ -1,5 +1,8 @@
-import { useMemo } from 'react';
+import { useMemo, useCallback } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { formatPlayerName } from 'helpers/formatPlayerName';
+
+import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
 
 import { Paragraph } from 'components/Paragraph';
 import { Archetypes } from 'components/Archetypes';
@@ -16,8 +19,20 @@ import type {
 import type { FC } from 'react';
 
 export const RoundRow = ({ round, roundNum }: RoundRowProps) => {
+  const navigate = useNavigate();
+  const { division } = useParams();
+
+  const handleRowClick = useCallback(() => {
+    const opponent = round.name;
+    navigate(`../${division}/${formatPlayerNameToUrl(opponent)}`);
+    console.log(formatPlayerNameToUrl(opponent));
+  }, [division, navigate, round.name]);
+
   return (
-    <li className="py-4 pl-3 pr-6">
+    <li
+      className="cursor-pointer py-4 pl-3 pr-6 hover:bg-gray-100 dark:hover:bg-gray-700"
+      onClick={handleRowClick}
+    >
       <div className="flex justify-between align-top">
         <div className="text-left">
           <Paragraph size="sm">

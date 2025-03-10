@@ -49,10 +49,10 @@ export const Standings = () => {
   const { divisions, tournament } = useTournamentContext();
   const [searchQuery, setSearchQuery] = useState('');
   const [listRef, setListRef] = useState<HTMLElement | null>(null);
+
   const [selectedCountry, setSelectedCountry] = useState(
     firstCountryOption.value,
   );
-
   const [selectedArchetype, setSelectedArchetype] = useState(
     firstArchetypeOption.value,
   );
@@ -127,7 +127,9 @@ export const Standings = () => {
   useEffect(() => {
     setSearchQuery('');
     const country = searchParams.get('country');
+    const deck = searchParams.get('deck');
     setSelectedCountry(country || firstCountryOption.value);
+    setSelectedArchetype(deck || firstArchetypeOption.value);
   }, [division, searchParams]);
 
   const standings = useMemo(() => {
@@ -204,16 +206,26 @@ export const Standings = () => {
   const handleOnStyledCountryChange = useCallback(
     (e: StyledOptionProps) => {
       const value = e.value;
-      setSearchParams({ country: value });
+      setSearchParams(searchParams => {
+        searchParams.set('country', value);
+        return searchParams;
+      });
       setSelectedCountry(value);
     },
     [setSearchParams],
   );
 
-  const handleOnStyledArchetypeChange = useCallback((e: StyledOptionProps) => {
-    const value = e.value;
-    setSelectedArchetype(value);
-  }, []);
+  const handleOnStyledArchetypeChange = useCallback(
+    (e: StyledOptionProps) => {
+      const value = e.value;
+      setSearchParams(searchParams => {
+        searchParams.set('deck', value);
+        return searchParams;
+      });
+      setSelectedArchetype(value);
+    },
+    [setSearchParams],
+  );
 
   const countries = useMemo(() => {
     const countriesSet = new Set<string>();

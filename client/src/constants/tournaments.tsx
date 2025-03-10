@@ -15,6 +15,18 @@ interface LocalTournamentsMap {
 }
 
 export const tournamentsMap: LocalTournamentsMap = {
+  '0000152': {
+    name: 'Vancouver Pokémon TCG Regional Championship 2025',
+    logo: RegionalLogo2024,
+    streams: {
+      dat1: 'https://www.youtube.com/live/amzoNh91x6I?si=qjflGT6CosQWr3fD',
+      day2: 'https://www.youtube.com/live/jpVndPexCIw?si=53z2CsHyS_Fze0mM',
+    },
+  },
+  '0000151': {
+    name: 'Fortaleza Pokémon TCG Regional Championship 2025',
+    logo: RegionalLogo2024,
+  },
   '0000150': {
     name: 'Europe Pokémon TCG International Championship 2025',
     logo: InternationalsLogo,
