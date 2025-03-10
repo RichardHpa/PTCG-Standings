@@ -123,14 +123,10 @@ export const archetypesListObject: archetypesListObjectProps = {
         pokemon: 'Comfey',
         sprite: pokemonImageList.comfey.image,
       },
-      {
-        pokemon: 'Sableye',
-        sprite: pokemonImageList.sableye.image,
-      },
     ],
     fn: decklist => {
       if (
-        decklistIncludes(decklist, 'pokemon', ['Comfey', 'Sableye']) &&
+        decklistIncludes(decklist, 'pokemon', ['Comfey']) &&
         decklistIncludes(decklist, 'trainer', [
           'Mirage Gate',
           "Colress's Experiment",
@@ -590,6 +586,27 @@ export const archetypesListObject: archetypesListObjectProps = {
     ],
     fn: decklist => {
       if (decklistIncludes(decklist, 'pokemon', ['Ceruledge ex'])) {
+        return true;
+      }
+      return false;
+    },
+  },
+  dragapultCharizard: {
+    name: 'Dragapult Charizard',
+    sprites: [
+      {
+        pokemon: 'Dragapult',
+        sprite: pokemonImageList.dragapult.image,
+      },
+      {
+        pokemon: 'Charizard',
+        sprite: pokemonImageList.charizard.image,
+      },
+    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', ['Dragapult ex', 'Charizard ex'])
+      ) {
         return true;
       }
       return false;
