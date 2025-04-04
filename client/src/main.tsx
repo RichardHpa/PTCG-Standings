@@ -15,6 +15,7 @@ import './index.css';
 
 import { ColorModeProvider } from 'providers/ColorModeProvider';
 // import { PinnedPlayersProvider } from 'providers/PinnedPlayersProvider';
+import { SettingsProvider } from 'providers/SettingsProvider';
 
 import { BaseLayout } from 'layouts/BaseLayout';
 
@@ -110,7 +111,6 @@ const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                // element: <Tournament />,
                 element: <Navigate to="standings" replace />,
               },
               { path: 'streams', element: <Streams /> },
@@ -252,18 +252,20 @@ deferRender().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       {/* <ErrorBoundary FallbackComponent={Fallback}> */}
-      <ColorModeProvider>
-        <QueryClientProvider client={queryClient}>
-          {/* <PinnedPlayersProvider> */}
-          <RouterProvider router={router} />
-          {import.meta.env.MODE === 'development' && (
-            <Suspense fallback={null}>
-              <ReactQueryDevtoolsProduction />
-            </Suspense>
-          )}
-          {/* </PinnedPlayersProvider> */}
-        </QueryClientProvider>
-      </ColorModeProvider>
+      <SettingsProvider>
+        <ColorModeProvider>
+          <QueryClientProvider client={queryClient}>
+            {/* <PinnedPlayersProvider> */}
+            <RouterProvider router={router} />
+            {import.meta.env.MODE === 'development' && (
+              <Suspense fallback={null}>
+                <ReactQueryDevtoolsProduction />
+              </Suspense>
+            )}
+            {/* </PinnedPlayersProvider> */}
+          </QueryClientProvider>
+        </ColorModeProvider>
+      </SettingsProvider>
       {/* </ErrorBoundary> */}
     </StrictMode>,
   );
