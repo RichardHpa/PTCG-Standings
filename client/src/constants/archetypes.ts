@@ -77,6 +77,159 @@ export const unknownArchetype = {
 
 export const archetypesListObject: archetypesListObjectProps = {
   unknown: unknownArchetype,
+  slowking: {
+    name: 'Slowking',
+    sprites: [
+      {
+        pokemon: 'Slowking',
+        sprite: pokemonImageList.slowking.image,
+      },
+    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Slowking',
+          'Slowpoke',
+          'Natu',
+          'Xatu',
+        ]) &&
+        decklistIncludes(decklist, 'trainer', ['Academy at Night'])
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+  flareonNoctowl: {
+    name: 'Flareon Noctowl',
+    sprites: [
+      {
+        pokemon: 'Flareon',
+        sprite: pokemonImageList.flareon.image,
+      },
+      {
+        pokemon: 'Noctowl',
+        sprite: pokemonImageList.noctowl.image,
+      },
+    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Flareon ex', 'Noctowl'])) {
+        return true;
+      }
+      return false;
+    },
+  },
+  terapagosNocktowl: {
+    name: 'Terapagos Noctowl',
+    sprites: [
+      {
+        pokemon: 'Terapagos',
+        sprite: pokemonImageList.terapagos.forms!.terastal.image,
+      },
+      {
+        pokemon: 'Noctowl',
+        sprite: pokemonImageList.noctowl.image,
+      },
+    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', ['Terapagos ex', 'Noctowl']) &&
+        decklistDoesntInclude(decklist, 'pokemon', ['Tera Ogerpon ex'])
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+  // N's Zoroark
+  zoroarkN: {
+    name: "N's Zoroark",
+    sprites: [
+      {
+        pokemon: 'Zoroark',
+        sprite: pokemonImageList.zoroark.image,
+      },
+      {
+        pokemon: 'Darmanitan ',
+        sprite: pokemonImageList.darmanitan.image,
+      },
+    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          "N's Zoroark ex",
+          "N's Darmanitan",
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+  espathra: {
+    name: 'Espathra',
+    sprites: [
+      {
+        pokemon: 'Espathra',
+        sprite: pokemonImageList.espathra.image,
+      },
+    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Espathra ex'])) {
+        return true;
+      }
+      return false;
+    },
+  },
+  hopsZacian: {
+    name: "Hop's Zacian",
+    sprites: [
+      {
+        pokemon: 'Zacian',
+        sprite: pokemonImageList.zacian.forms!['crowned'].image,
+      },
+      {
+        pokemon: 'Snorlax',
+        sprite: pokemonImageList.snorlax.image,
+      },
+    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          "Hop's Zacian ex",
+          "Hop's Snorlax",
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
+  teraBox: {
+    name: 'Tera Box',
+    sprites: [
+      {
+        pokemon: 'Ogerpon',
+        sprite: pokemonImageList.ogerpon.image,
+      },
+      {
+        pokemon: 'Noctowl',
+        sprite: pokemonImageList.noctowl.image,
+      },
+    ],
+    fn: decklist => {
+      if (
+        decklistIncludes(decklist, 'pokemon', [
+          'Teal Mask Ogerpon ex',
+          'Noctowl',
+          'Terapagos ex',
+        ])
+      ) {
+        return true;
+      }
+      return false;
+    },
+  },
   regidrago: {
     name: 'Regidrago',
     sprites: [
@@ -277,7 +430,10 @@ export const archetypesListObject: archetypesListObjectProps = {
       },
     ],
     fn: decklist => {
-      if (decklistIncludes(decklist, 'pokemon', ['Roaring Moon ex'])) {
+      if (
+        decklistIncludes(decklist, 'pokemon', ['Roaring Moon ex']) &&
+        decklistDoesntInclude(decklist, 'pokemon', ['Gouging Fire ex'])
+      ) {
         return true;
       }
       return false;
@@ -682,7 +838,7 @@ export const archetypesListObject: archetypesListObjectProps = {
       return false;
     },
   },
-  greninjaex: {
+  greninjaEx: {
     name: 'Greninja ex',
     sprites: [
       {

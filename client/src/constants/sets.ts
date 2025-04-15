@@ -1,5 +1,6 @@
 export type SetCodes =
   // Scarlet & Violet
+  | 'DRI' // Destined Rivals
   | 'JTG' // Journey Together
   | 'PRE' // Prismatic Evolutions
   | 'SSP' // Surging Sparks
@@ -158,6 +159,16 @@ interface Set {
 export const sets: Set[] = [
   // Scarlet and Violet
   {
+    name: 'Destined Rivals',
+    ptcgoCode: 'DRI',
+    setCode: 'sv10',
+    images: {
+      symbol: 'https://images.pokemontcg.io/sv10/symbol.png',
+      logo: 'https://images.pokemontcg.io/sv10/logo.png',
+    },
+    releaseDate: '2025/05/30',
+  },
+  {
     name: 'Journey Together',
     ptcgoCode: 'JTG',
     setCode: 'sv9',
@@ -165,7 +176,7 @@ export const sets: Set[] = [
       symbol: 'https://images.pokemontcg.io/sv9/symbol.png',
       logo: 'https://images.pokemontcg.io/sv9/logo.png',
     },
-    releaseDate: '2026/03/28',
+    releaseDate: '2025/03/28',
   },
   {
     name: 'Prismatic Evolutions',
@@ -175,7 +186,7 @@ export const sets: Set[] = [
       symbol: 'https://images.pokemontcg.io/sv8pt5/symbol.png',
       logo: 'https://images.pokemontcg.io/sv8pt5/logo.png',
     },
-    releaseDate: '2026/01/17',
+    releaseDate: '2025/01/17',
   },
   {
     name: 'Surging Sparks',
