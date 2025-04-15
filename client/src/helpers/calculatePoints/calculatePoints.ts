@@ -13,6 +13,10 @@ export const calculatePoints = (record: RecordProps) => {
 
   let totalPoints = 0;
   recordKeys.forEach(key => {
+    if (record[key] < 0) {
+      throw new Error(`Points for ${key} cannot be negative`);
+    }
+
     const totalPointsPerRecord = record[key] * points[key];
     return (totalPoints += totalPointsPerRecord);
   });
