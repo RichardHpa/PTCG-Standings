@@ -46,7 +46,6 @@ export const PinnedPlayersProvider = ({
   );
 
   const tournamentIds = Object.keys(tournamentData);
-  console.log(tournamentIds);
 
   // Fetch tournament data using useQueries
   const tournamentQueries = useQueries({
@@ -57,7 +56,6 @@ export const PinnedPlayersProvider = ({
 
   const updateTournamentData = useCallback(
     (update: Partial<TournamentData>) => {
-      console.log(update);
       setTournamentData((prevData: TournamentData) => {
         // Ensure that we are creating a full TournamentData object
         const mergedData: TournamentData = { ...prevData };

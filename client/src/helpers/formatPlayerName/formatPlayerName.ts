@@ -1,6 +1,6 @@
 import { getCountryFlag } from 'helpers/getCountryFlag';
 
-const removeCountryFromName = (name: string) => {
+export const removeCountryFromName = (name: string) => {
   const newName = name.replace(/\s\[(\w+)\]$/, '');
 
   if (newName.endsWith('.')) {
@@ -16,11 +16,18 @@ export const getCountryCode = (name: string) => {
 };
 
 export const formatPlayerName = (name: string, showFlag: boolean = true) => {
+  if (!name) {
+    return '';
+  }
   const removedCountry = removeCountryFromName(name);
   const countryCode = getCountryCode(name);
   if (!showFlag) {
     return removedCountry;
   }
   const countryFlag = getCountryFlag(countryCode);
+  if (!countryFlag) {
+    return removedCountry;
+  }
+
   return `${countryFlag} ${removedCountry}`;
 };

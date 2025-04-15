@@ -25,7 +25,6 @@ export const RoundRow = ({ round, roundNum }: RoundRowProps) => {
   const handleRowClick = useCallback(() => {
     const opponent = round.name;
     navigate(`../${division}/${formatPlayerNameToUrl(opponent)}`);
-    console.log(formatPlayerNameToUrl(opponent));
   }, [division, navigate, round.name]);
 
   return (
