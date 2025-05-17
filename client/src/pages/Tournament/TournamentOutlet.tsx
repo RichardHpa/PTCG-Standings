@@ -19,7 +19,7 @@ import {
 
 const notStartedTournamentStatus = [CHECK_IN, NOT_STARTED];
 
-const RawTournamentOutlet = () => {
+export const RawTournamentOutlet = () => {
   const { tournament } = useTournamentContext();
 
   return (
