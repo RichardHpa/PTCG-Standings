@@ -37,6 +37,7 @@ import {
   Decklist,
 } from 'pages/Tournament/Division/Player';
 import { Worlds2024Outlet, Qualified } from 'pages/Worlds/Worlds2024';
+import { O3Drop, RawO3DropInner } from 'pages/SpecialPages';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { Heading } from 'components/Heading';
@@ -69,6 +70,11 @@ const router = createBrowserRouter([
     hydrateFallbackElement: <FallbackLoader />,
     children: [
       { index: true, element: <Home /> },
+      {
+        path: '0-3-drop',
+        element: <O3Drop />,
+        children: [{ index: true, element: <RawO3DropInner /> }],
+      },
       { path: 'about', element: <About /> },
       {
         path: 'worlds',
