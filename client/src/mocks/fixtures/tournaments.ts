@@ -19,6 +19,34 @@ const typedJuniorsSeniorsTournament =
 
 const typedWorlds2024 = worlds2024 as TournamentApiResponse;
 
+export const melbourneTournament: Tournament = {
+  id: '0000109',
+  name: 'Melbourne Pokémon TCG Regional Championship 2024',
+  date: {
+    start: '2024-02-03',
+    end: '2024-02-04',
+  },
+  decklists: 0,
+  players: {
+    juniors: 54,
+    seniors: 40,
+    masters: 531,
+  },
+  winners: {
+    juniors: 'Drake Z. [NZ]',
+    seniors: 'Polaris A. [US]',
+    masters: 'Brent Tonisson [AU]',
+  },
+  tournamentStatus: 'running',
+  roundNumbers: {
+    juniors: 9,
+    seniors: 9,
+    masters: 17,
+  },
+  lastUpdated: '2024-02-05 19:47:53.197712',
+  rk9link: 'MEL1wZZevcQrmn7DW01Y',
+};
+
 export const runningTournament: Tournament = {
   id: '0000005',
   name: '2022 Pokémon TCG European International Championships',
@@ -148,6 +176,7 @@ export const tournaments: TournamentsApiResponse = {
   tcg: {
     type: 'tcg',
     data: [
+      { ...melbourneTournament },
       {
         id: '0000001',
         name: 'Pokémon Oceania TCG Regional Championship – Brisbane',

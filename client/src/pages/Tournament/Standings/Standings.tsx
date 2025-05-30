@@ -17,6 +17,7 @@ import {
   ArchetypeSelect,
   firstArchetypeOption,
 } from 'components/Forms/ArchetypeSelect';
+import { StandingsTable } from './components/StandingsTable';
 
 import { formatPlayerName, getCountryCode } from 'helpers/formatPlayerName';
 import { formatRecord } from 'helpers/formatRecord';
@@ -288,7 +289,7 @@ export const Standings = () => {
             )}
           </div>
 
-          <VirtualizedTable<Standing>
+          {/* <VirtualizedTable<Standing>
             tableId={`${tournament.id}-${division}-standings`}
             type="window"
             data={filteredPlayers}
@@ -301,6 +302,11 @@ export const Standings = () => {
             }
             estimateSize={48.5}
             noDataMessage={<>No players found that match this criteria</>}
+          /> */}
+
+          <StandingsTable
+            tableId={`${tournament.id}-${division}-standings`}
+            data={filteredPlayers}
           />
         </Card>
       </section>

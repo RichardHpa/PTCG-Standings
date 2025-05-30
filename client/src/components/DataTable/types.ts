@@ -1,0 +1,7 @@
+import type { TableOptions } from '@tanstack/react-table';
+
+export interface TableProps<TData>
+  extends Pick<TableOptions<TData>, 'columns' | 'data'>,
+    Partial<Omit<TableOptions<TData>, 'columns' | 'data'>> {
+  tableId: string;
+}
