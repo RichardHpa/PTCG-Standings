@@ -22,7 +22,6 @@ const columns: ColumnDef<Standing>[] = [
     accessorKey: 'placing',
     header: 'Placing',
     cell: ({ row }) => {
-      // return row.original.placing;
       return <NumberCell value={row.original.placing} />;
     },
     meta: {
@@ -33,7 +32,6 @@ const columns: ColumnDef<Standing>[] = [
     accessorKey: 'name',
     header: 'Player',
     cell: ({ row }) => {
-      // return `${row.original.name} `;
       return <TextCell value={row.original.name} />;
     },
   },
@@ -41,7 +39,6 @@ const columns: ColumnDef<Standing>[] = [
     accessorKey: 'record',
     header: 'Record',
     cell: ({ row }) => {
-      // return formatRecordToString(row.original.record);
       return <TextCell value={formatRecordToString(row.original.record)} />;
     },
     meta: {
@@ -52,7 +49,6 @@ const columns: ColumnDef<Standing>[] = [
     accessorKey: 'points',
     header: 'Points',
     cell: ({ row }) => {
-      // return calculatePoints(row.original.record);
       return <NumberCell value={calculatePoints(row.original.record)} />;
     },
     meta: {
@@ -63,7 +59,6 @@ const columns: ColumnDef<Standing>[] = [
     accessorKey: 'resistances.opp',
     header: 'Opp Resistances',
     cell: ({ row }) => {
-      // return formatToPercentage(row.original.resistances.opp);
       return (
         <TextCell value={formatToPercentage(row.original.resistances.opp)} />
       );
@@ -73,7 +68,6 @@ const columns: ColumnDef<Standing>[] = [
     accessorKey: 'resistances.oppopp',
     header: 'Opp Opp Resistances',
     cell: ({ row }) => {
-      // return formatToPercentage(row.original.resistances.oppopp);
       return (
         <TextCell value={formatToPercentage(row.original.resistances.oppopp)} />
       );

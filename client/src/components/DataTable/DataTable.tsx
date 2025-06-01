@@ -1,11 +1,12 @@
 import { useRef } from 'react';
-
 import {
   getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+
+import { useSyncedScroll } from 'hooks/useSyncedScroll';
 
 import {
   TableElement,
@@ -23,11 +24,17 @@ export function DataTable<T>({
   tableId,
   estimatedRowSize = 40,
   overscan = 10,
+  globalScrollSync = false,
   ...rest
 }: TableProps<T>) {
   const tableRef = useRef<HTMLTableElement>(null);
   const fixedHeaderScrollerRef = useRef<HTMLDivElement>(null);
   const tableBodyScrollerRef = useRef<HTMLDivElement>(null);
+
+  useSyncedScroll(
+    [fixedHeaderScrollerRef, tableBodyScrollerRef],
+    globalScrollSync,
+  );
 
   const table = useReactTable({
     data,
