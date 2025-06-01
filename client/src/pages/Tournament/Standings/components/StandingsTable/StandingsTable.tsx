@@ -1,9 +1,11 @@
 import { DataTable } from 'components/DataTable';
+import { Archetypes } from 'components/Archetypes';
 
 import { formatRecordToString } from 'helpers/formatRecord';
 import { calculatePoints } from 'helpers/calculatePoints';
+import { formatPlayerName } from 'helpers/formatPlayerName';
 
-import { TextCell, NumberCell } from 'components/DataTable/Cells';
+import { TextCell, NumberCell, CellWrapper } from 'components/DataTable/Cells';
 
 import type { StandingsTableProps } from './types';
 import type { Standing } from 'types/standing';
@@ -18,21 +20,36 @@ const formatToPercentage = (value: number) => {
 };
 
 const columns: ColumnDef<Standing>[] = [
-  {
-    accessorKey: 'placing',
-    header: 'Placing',
-    cell: ({ row }) => {
-      return <NumberCell value={row.original.placing} />;
-    },
-    meta: {
-      columnWidth: '80px',
-    },
-  },
+  // {
+  //   accessorKey: 'placing',
+  //   header: 'Placing',
+  //   cell: ({ row }) => {
+  //     return (
+  //       <CellWrapper>
+  //         <span className="font-extrabold">{row.original.placing}</span>
+  //       </CellWrapper>
+  //     );
+  //   },
+  //   meta: {
+  //     columnWidth: '80px',
+  //   },
+  // },
   {
     accessorKey: 'name',
     header: 'Player',
     cell: ({ row }) => {
-      return <TextCell value={row.original.name} />;
+      return (
+        <CellWrapper>
+          <div className="flex flex-col items-start gap-1">
+            <div className="flex items-center gap-4">
+              <span className="font-extrabold">{row.original.placing}</span>
+              <span className="font-medium">
+                {formatPlayerName(row.original.name)}
+              </span>
+            </div>
+          </div>
+        </CellWrapper>
+      );
     },
   },
   {
@@ -71,6 +88,23 @@ const columns: ColumnDef<Standing>[] = [
       return (
         <TextCell value={formatToPercentage(row.original.resistances.oppopp)} />
       );
+    },
+  },
+  {
+    accessorKey: 'archetype',
+    header: 'Archetype',
+    cell: ({ row }) => {
+      if (!row.original.archetype) {
+        return null;
+      }
+      return (
+        <div className="flex items-center px-4">
+          <Archetypes size="small" archetype={row.original.archetype} />
+        </div>
+      );
+    },
+    meta: {
+      columnWidth: '150px',
     },
   },
 ];

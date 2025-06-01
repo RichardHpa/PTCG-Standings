@@ -25,6 +25,7 @@ export function DataTable<T>({
   estimatedRowSize = 40,
   overscan = 10,
   globalScrollSync = false,
+  noDataMessage = 'No data available',
   ...rest
 }: TableProps<T>) {
   const tableRef = useRef<HTMLTableElement>(null);
@@ -68,6 +69,7 @@ export function DataTable<T>({
             tableRef={tableRef}
             estimatedRowSize={estimatedRowSize}
             overscan={overscan}
+            noDataMessage={noDataMessage}
           />
           <TableFooter table={table} />
         </TableElement>

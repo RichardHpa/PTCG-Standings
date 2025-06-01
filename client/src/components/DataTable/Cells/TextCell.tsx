@@ -9,7 +9,7 @@ interface TextCellProps {
 
 export const TextCell: FC<TextCellProps> = ({ value }) => {
   return (
-    <div className="w-full truncate px-6 py-3" title={value}>
+    <div className="w-full truncate px-4 py-3" title={value}>
       {value}
     </div>
   );

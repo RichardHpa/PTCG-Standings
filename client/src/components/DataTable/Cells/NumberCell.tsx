@@ -38,7 +38,7 @@ export const NumberCell: FC<NumberCellProps> = ({
 
   return (
     <div
-      className="w-full truncate px-6 py-3 text-right tabular-nums"
+      className="w-full truncate px-4 py-3 text-right tabular-nums"
       title={formattedValue}
     >
       {formattedValue}

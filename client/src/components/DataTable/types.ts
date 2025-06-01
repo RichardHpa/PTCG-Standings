@@ -7,4 +7,5 @@ export interface TableProps<TData>
   estimatedRowSize?: number;
   overscan?: number;
   globalScrollSync?: boolean;
+  noDataMessage?: string;
 }

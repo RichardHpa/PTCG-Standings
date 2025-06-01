@@ -69,6 +69,7 @@ interface TableBodyProps<T> {
   table: Table<T>;
   estimatedRowSize?: number;
   overscan?: number;
+  noDataMessage?: string;
 }
 
 export function TableBody<T>({
@@ -76,6 +77,7 @@ export function TableBody<T>({
   tableRef,
   estimatedRowSize = 40,
   overscan = 10,
+  noDataMessage = 'No data available',
 }: TableBodyProps<T>) {
   const { rows } = table.getRowModel();
 
@@ -97,6 +99,24 @@ export function TableBody<T>({
 
     return headers[0];
   }, [table]);
+
+  if (rows.length === 0) {
+    return (
+      <tbody>
+        <tr className="flex">
+          <td
+            colSpan={table.getAllLeafColumns().length}
+            className={clsx(
+              'flex w-full grid-cols-[--table-grid-columns]',
+              'items-center justify-center py-8',
+            )}
+          >
+            {noDataMessage}
+          </td>
+        </tr>
+      </tbody>
+    );
+  }
 
   return (
     <tbody
