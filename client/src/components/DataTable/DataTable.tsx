@@ -7,8 +7,13 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { TableElement, TableScroller } from './components';
-import { TableHead } from './components/TableHead';
+import {
+  TableElement,
+  TableHead,
+  TableScroller,
+  TableBody,
+  TableFooter,
+} from './components';
 
 import type { TableProps } from './types';
 
@@ -16,10 +21,13 @@ export function DataTable<T>({
   columns,
   data,
   tableId,
+  estimatedRowSize = 40,
+  overscan = 10,
   ...rest
 }: TableProps<T>) {
+  const tableRef = useRef<HTMLTableElement>(null);
   const fixedHeaderScrollerRef = useRef<HTMLDivElement>(null);
-  // const tableBodyScrollerRef = useRef<HTMLDivElement>(null);
+  const tableBodyScrollerRef = useRef<HTMLDivElement>(null);
 
   const table = useReactTable({
     data,
@@ -35,7 +43,7 @@ export function DataTable<T>({
   return (
     <div className="flex flex-col items-end">
       <div
-        className="sticky top-0 z-10 w-full overflow-x-auto"
+        className="sticky top-14 z-10 w-full overflow-x-auto"
         aria-hidden="true"
       >
         <TableScroller scrollerRef={fixedHeaderScrollerRef}>
@@ -45,9 +53,16 @@ export function DataTable<T>({
         </TableScroller>
       </div>
 
-      <TableScroller>
-        <TableElement>
+      <TableScroller scrollerRef={tableBodyScrollerRef}>
+        <TableElement ref={tableRef}>
           <TableHead table={table} hiddenHeader />
+          <TableBody
+            table={table}
+            tableRef={tableRef}
+            estimatedRowSize={estimatedRowSize}
+            overscan={overscan}
+          />
+          <TableFooter table={table} />
         </TableElement>
       </TableScroller>
     </div>

@@ -46,3 +46,15 @@ export const formatRecord = (record: RecordProps, color: boolean = false) => {
     </span>
   );
 };
+
+export const formatRecordToString = (record: RecordProps) => {
+  if (!record) return '';
+  if (
+    !checkValue(record.wins) ||
+    !checkValue(record.losses) ||
+    !checkValue(record.ties)
+  )
+    return '';
+
+  return `${record.wins}-${record.losses}-${record.ties}`;
+};

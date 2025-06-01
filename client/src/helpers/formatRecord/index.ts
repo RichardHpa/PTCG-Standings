@@ -1,1 +1,1 @@
-export { formatRecord } from './formatRecord';
+export { formatRecord, formatRecordToString } from './formatRecord';

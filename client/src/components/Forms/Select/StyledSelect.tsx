@@ -85,7 +85,7 @@ export const StyledSelect: FC<StyledSelectProps> = ({
         <div
           id="dropdown-states"
           className={clsx(
-            'absolute z-10 w-full divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700',
+            'absolute z-20 w-full divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700',
             {
               hidden: !isOpen,
             },
