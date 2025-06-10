@@ -20,20 +20,6 @@ const formatToPercentage = (value: number) => {
 };
 
 const columns: ColumnDef<Standing>[] = [
-  // {
-  //   accessorKey: 'placing',
-  //   header: 'Placing',
-  //   cell: ({ row }) => {
-  //     return (
-  //       <CellWrapper>
-  //         <span className="font-extrabold">{row.original.placing}</span>
-  //       </CellWrapper>
-  //     );
-  //   },
-  //   meta: {
-  //     columnWidth: '80px',
-  //   },
-  // },
   {
     accessorKey: 'name',
     header: 'Player',
@@ -70,6 +56,7 @@ const columns: ColumnDef<Standing>[] = [
     },
     meta: {
       columnWidth: '100px',
+      align: 'right',
     },
   },
   {
