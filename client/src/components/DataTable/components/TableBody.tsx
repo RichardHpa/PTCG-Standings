@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import { flexRender } from '@tanstack/react-table';
 import { useWindowVirtualizer } from '@tanstack/react-virtual';
 
+import { getGridColumns } from '../helpers/getGridColumns';
+
 import type { VirtualItem } from '@tanstack/react-virtual';
 import type { Table, Cell } from '@tanstack/react-table';
 
@@ -88,17 +90,11 @@ export function TableBody<T>({
     overscan,
   });
 
-  const gridColumns = useMemo(() => {
-    const headers = table.getHeaderGroups().map(headerGroup => {
-      return headerGroup.headers
-        .map(header => {
-          return header.column.columnDef.meta?.columnWidth || 'minmax(0, 1fr)';
-        })
-        .join(' ');
-    });
-
-    return headers[0];
-  }, [table]);
+  const visibleColumns = table.getVisibleFlatColumns();
+  const gridColumns = useMemo(
+    () => getGridColumns(table),
+    [table, visibleColumns],
+  );
 
   if (rows.length === 0) {
     return (

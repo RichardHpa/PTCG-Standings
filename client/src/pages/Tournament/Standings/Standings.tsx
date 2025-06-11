@@ -1,16 +1,11 @@
 import { useMemo, useCallback, useState, useEffect } from 'react';
-import {
-  // useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
 
 import { Input } from 'components/Forms/Input';
+import { Checkbox } from 'components/Forms/Checkbox';
 import { Card } from 'components/Card';
-// import { PinPlayerButton } from 'components/PinPlayer/PinPlayerButton';
-// import { VirtualizedTable } from 'components/VirtualizedTable';
 import { SEO } from 'components/SEO';
 import {
   CountrySelect,
@@ -24,11 +19,11 @@ import { StandingsTable } from './components/StandingsTable';
 
 import { getCountryCode } from 'helpers/formatPlayerName';
 
-// import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
-
 import { getArchetypeCounts } from 'hooks/getArchetypeCounts';
+import { useResponsive } from 'hooks/useResponsive';
 
 import { useTournamentContext } from 'providers/TournamentProvider';
+import { useSettings, showTableCompactKey } from 'providers/SettingsProvider';
 
 import type { ChangeEvent } from 'react';
 import type { Division } from 'types/divisions';
@@ -37,9 +32,10 @@ import type { Standing } from 'types/standing';
 import type { StyledOptionProps } from 'components/Forms/Select/types';
 
 export const Standings = () => {
-  // const navigate = useNavigate();
   const { division = 'masters' } = useParams() as { division: Division };
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const { settings, saveSetting } = useSettings();
 
   const { divisions, tournament } = useTournamentContext();
   const [searchQuery, setSearchQuery] = useState('');
@@ -50,6 +46,9 @@ export const Standings = () => {
   const [selectedArchetype, setSelectedArchetype] = useState(
     firstArchetypeOption.value,
   );
+
+  const responsive = useResponsive();
+  const isMobile = useMemo(() => responsive.md === false, [responsive]);
 
   useEffect(() => {
     setSearchQuery('');
@@ -179,13 +178,17 @@ export const Standings = () => {
     return arr;
   }, [standings]);
 
+  const handleShowAllChange = useCallback(() => {
+    saveSetting(showTableCompactKey, !settings.standingsTableCompact);
+  }, [saveSetting, settings.standingsTableCompact]);
+
   return (
     <div className="flex flex-col gap-4">
       <SEO title={`${tournament.name} ${division} standing`} />
 
       <section className="bg-gray-50 dark:bg-gray-900">
         <Card>
-          <div className="flex flex-col items-center space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
+          <div className="flex flex-col flex-wrap justify-start gap-4 p-4 md:flex-row">
             <div className="w-full md:w-1/3">
               <Input
                 name="search"
@@ -213,26 +216,25 @@ export const Standings = () => {
                 />
               </div>
             )}
-          </div>
 
-          {/* <VirtualizedTable<Standing>
-            tableId={`${tournament.id}-${division}-standings`}
-            type="window"
-            data={filteredPlayers}
-            columns={columns}
-            containerRef={listRef}
-            onRowClick={
-              tournament.tournamentStatus !== CHECK_IN
-                ? handleRowClick
-                : undefined
-            }
-            estimateSize={48.5}
-            noDataMessage={<>No players found that match this criteria</>}
-          /> */}
+            {isMobile && (
+              <div>
+                <Checkbox
+                  name="showAll"
+                  checked={settings.standingsTableCompact ? false : true}
+                  label="Show all information"
+                  onChange={handleShowAllChange}
+                  value={settings.standingsTableCompact ? 'false' : 'true'}
+                />
+              </div>
+            )}
+          </div>
 
           <StandingsTable
             tableId={`${tournament.id}-${division}-standings`}
             data={filteredPlayers}
+            division={division}
+            tournamentId={tournament.id}
           />
         </Card>
       </section>

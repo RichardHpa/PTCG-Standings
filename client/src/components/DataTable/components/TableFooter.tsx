@@ -57,7 +57,12 @@ interface TableFooterProps<TData> {
 }
 
 export function TableFooter<T>({ table }: TableFooterProps<T>) {
-  const gridColumns = useMemo(() => getGridColumns(table), [table]);
+  const visibleColumns = table.getVisibleFlatColumns();
+  const gridColumns = useMemo(
+    () => getGridColumns(table),
+    [table, visibleColumns],
+  );
+
   const footers = table
     .getFooterGroups()
     .map(group => group.headers.map(header => header.column.columnDef.footer))

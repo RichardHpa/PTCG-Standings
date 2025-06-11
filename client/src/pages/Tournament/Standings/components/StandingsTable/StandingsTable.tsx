@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { DataTable } from 'components/DataTable';
 import { Archetypes } from 'components/Archetypes';
 
@@ -6,6 +8,9 @@ import { calculatePoints } from 'helpers/calculatePoints';
 import { formatPlayerName } from 'helpers/formatPlayerName';
 
 import { TextCell, NumberCell, CellWrapper } from 'components/DataTable/Cells';
+
+import { useSettings, showTableCompactKey } from 'providers/SettingsProvider';
+import { useResponsive } from 'hooks/useResponsive';
 
 import type { StandingsTableProps } from './types';
 import type { Standing } from 'types/standing';
@@ -61,6 +66,7 @@ const columns: ColumnDef<Standing>[] = [
   },
   {
     accessorKey: 'resistances.opp',
+    id: 'resistances.opp',
     header: 'Opp Resistances',
     cell: ({ row }) => {
       return (
@@ -70,6 +76,7 @@ const columns: ColumnDef<Standing>[] = [
   },
   {
     accessorKey: 'resistances.oppopp',
+    id: 'resistances.oppopp',
     header: 'Opp Opp Resistances',
     cell: ({ row }) => {
       return (
@@ -79,7 +86,7 @@ const columns: ColumnDef<Standing>[] = [
   },
   {
     accessorKey: 'archetype',
-    header: 'Archetype',
+    header: '',
     cell: ({ row }) => {
       if (!row.original.archetype) {
         return null;
@@ -91,13 +98,38 @@ const columns: ColumnDef<Standing>[] = [
       );
     },
     meta: {
-      columnWidth: '150px',
+      columnWidth: '100px',
     },
   },
 ];
 
+const compactViewColumns = {
+  record: false,
+  'resistances.opp': false,
+  'resistances.oppopp': false,
+};
+
 export const StandingsTable: FC<StandingsTableProps> = ({ tableId, data }) => {
+  const { settings } = useSettings();
+  const responsive = useResponsive();
+  const isMobile = useMemo(() => responsive.md === false, [responsive]);
+
+  const showCompactView = useMemo(() => {
+    if (!isMobile) {
+      return false;
+    }
+    return settings[showTableCompactKey];
+  }, [isMobile, settings]);
+
   return (
-    <DataTable<Standing> tableId={tableId} columns={columns} data={data} />
+    <DataTable<Standing>
+      tableId={tableId}
+      columns={columns}
+      data={data}
+      noDataMessage="No players found that match this criteria"
+      state={{
+        columnVisibility: showCompactView ? compactViewColumns : {},
+      }}
+    />
   );
 };

@@ -70,7 +70,11 @@ export function TableHead<T>({
   table,
   hiddenHeader = false,
 }: TableHeadProps<T>) {
-  const gridColumns = useMemo(() => getGridColumns(table), [table]);
+  const visibleColumns = table.getVisibleFlatColumns();
+  const gridColumns = useMemo(
+    () => getGridColumns(table),
+    [table, visibleColumns],
+  );
 
   return (
     <thead
