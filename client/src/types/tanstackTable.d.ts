@@ -5,5 +5,7 @@ declare module '@tanstack/react-table' {
   interface ColumnMeta<TData extends RowData, TValue> {
     columnWidth?: string;
     align?: 'left' | 'right' | 'center';
+    // we use link as a meta prop so we can render a link in the cell to allow users to use the browsers link functionality
+    link?: (row: Row<TData>) => string;
   }
 }

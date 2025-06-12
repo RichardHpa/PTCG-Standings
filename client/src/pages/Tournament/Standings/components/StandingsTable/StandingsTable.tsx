@@ -6,6 +6,8 @@ import { Archetypes } from 'components/Archetypes';
 import { formatRecordToString } from 'helpers/formatRecord';
 import { calculatePoints } from 'helpers/calculatePoints';
 import { formatPlayerName } from 'helpers/formatPlayerName';
+import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
+import { hasDecklist } from 'helpers/hasDecklist';
 
 import { TextCell, NumberCell, CellWrapper } from 'components/DataTable/Cells';
 
@@ -24,84 +26,7 @@ const formatToPercentage = (value: number) => {
   return `${(value * 100).toFixed(2)}%`;
 };
 
-const columns: ColumnDef<Standing>[] = [
-  {
-    accessorKey: 'name',
-    header: 'Player',
-    cell: ({ row }) => {
-      return (
-        <CellWrapper>
-          <div className="flex flex-col items-start gap-1">
-            <div className="flex items-center gap-4">
-              <span className="font-extrabold">{row.original.placing}</span>
-              <span className="font-medium">
-                {formatPlayerName(row.original.name)}
-              </span>
-            </div>
-          </div>
-        </CellWrapper>
-      );
-    },
-  },
-  {
-    accessorKey: 'record',
-    header: 'Record',
-    cell: ({ row }) => {
-      return <TextCell value={formatRecordToString(row.original.record)} />;
-    },
-    meta: {
-      columnWidth: '100px',
-    },
-  },
-  {
-    accessorKey: 'points',
-    header: 'Points',
-    cell: ({ row }) => {
-      return <NumberCell value={calculatePoints(row.original.record)} />;
-    },
-    meta: {
-      columnWidth: '100px',
-      align: 'right',
-    },
-  },
-  {
-    accessorKey: 'resistances.opp',
-    id: 'resistances.opp',
-    header: 'Opp Resistances',
-    cell: ({ row }) => {
-      return (
-        <TextCell value={formatToPercentage(row.original.resistances.opp)} />
-      );
-    },
-  },
-  {
-    accessorKey: 'resistances.oppopp',
-    id: 'resistances.oppopp',
-    header: 'Opp Opp Resistances',
-    cell: ({ row }) => {
-      return (
-        <TextCell value={formatToPercentage(row.original.resistances.oppopp)} />
-      );
-    },
-  },
-  {
-    accessorKey: 'archetype',
-    header: '',
-    cell: ({ row }) => {
-      if (!row.original.archetype) {
-        return null;
-      }
-      return (
-        <div className="flex items-center px-4">
-          <Archetypes size="small" archetype={row.original.archetype} />
-        </div>
-      );
-    },
-    meta: {
-      columnWidth: '100px',
-    },
-  },
-];
+// const columns = ;
 
 const compactViewColumns = {
   record: false,
@@ -109,7 +34,12 @@ const compactViewColumns = {
   'resistances.oppopp': false,
 };
 
-export const StandingsTable: FC<StandingsTableProps> = ({ tableId, data }) => {
+export const StandingsTable: FC<StandingsTableProps> = ({
+  tableId,
+  data,
+  tournamentId,
+  division,
+}) => {
   const { settings } = useSettings();
   const responsive = useResponsive();
   const isMobile = useMemo(() => responsive.md === false, [responsive]);
@@ -120,6 +50,133 @@ export const StandingsTable: FC<StandingsTableProps> = ({ tableId, data }) => {
     }
     return settings[showTableCompactKey];
   }, [isMobile, settings]);
+
+  const columns: ColumnDef<Standing>[] = useMemo(() => {
+    return [
+      {
+        accessorKey: 'name',
+        header: 'Player',
+        cell: ({ row }) => {
+          return (
+            <CellWrapper>
+              <div className="flex flex-col items-start gap-1">
+                <div className="flex items-center gap-4">
+                  <span className="font-extrabold">{row.original.placing}</span>
+                  <span className="font-medium">
+                    {formatPlayerName(row.original.name)}
+                  </span>
+                </div>
+              </div>
+            </CellWrapper>
+          );
+        },
+        meta: {
+          link: row => {
+            return `/tournaments/${tournamentId}/${division}/${formatPlayerNameToUrl(
+              row.original.name,
+            )}`;
+          },
+        },
+      },
+      {
+        accessorKey: 'record',
+        header: 'Record',
+        cell: ({ row }) => {
+          return <TextCell value={formatRecordToString(row.original.record)} />;
+        },
+        meta: {
+          columnWidth: '100px',
+          link: row => {
+            return `/tournaments/${tournamentId}/${division}/${formatPlayerNameToUrl(
+              row.original.name,
+            )}`;
+          },
+        },
+      },
+      {
+        accessorKey: 'points',
+        header: 'Points',
+        cell: ({ row }) => {
+          return <NumberCell value={calculatePoints(row.original.record)} />;
+        },
+        meta: {
+          columnWidth: '100px',
+          align: 'right',
+          link: row => {
+            return `/tournaments/${tournamentId}/${division}/${formatPlayerNameToUrl(
+              row.original.name,
+            )}`;
+          },
+        },
+      },
+      {
+        accessorKey: 'resistances.opp',
+        id: 'resistances.opp',
+        header: 'Opp Resistances',
+        cell: ({ row }) => {
+          return (
+            <TextCell
+              value={formatToPercentage(row.original.resistances.opp)}
+            />
+          );
+        },
+        meta: {
+          link: row => {
+            return `/tournaments/${tournamentId}/${division}/${formatPlayerNameToUrl(
+              row.original.name,
+            )}`;
+          },
+        },
+      },
+      {
+        accessorKey: 'resistances.oppopp',
+        id: 'resistances.oppopp',
+        header: 'Opp Opp Resistances',
+        cell: ({ row }) => {
+          return (
+            <TextCell
+              value={formatToPercentage(row.original.resistances.oppopp)}
+            />
+          );
+        },
+        meta: {
+          link: row => {
+            return `/tournaments/${tournamentId}/${division}/${formatPlayerNameToUrl(
+              row.original.name,
+            )}`;
+          },
+        },
+      },
+      {
+        accessorKey: 'archetype',
+        header: '',
+        cell: ({ row }) => {
+          if (!row.original.archetype) {
+            return null;
+          }
+          return (
+            <div className="flex items-center px-4">
+              <Archetypes size="small" archetype={row.original.archetype} />
+            </div>
+          );
+        },
+        meta: {
+          columnWidth: '100px',
+          link: row => {
+            const playerHasDecklist = hasDecklist(row.original.decklist);
+            if (!playerHasDecklist) {
+              return `/tournaments/${tournamentId}/${division}/${formatPlayerNameToUrl(
+                row.original.name,
+              )}`;
+            }
+            return `/tournaments/${tournamentId}/${division}/${formatPlayerNameToUrl(
+              row.original.name,
+            )}/decklist`;
+          },
+        },
+      },
+    ];
+  }, [division, tournamentId]);
 
   return (
     <DataTable<Standing>

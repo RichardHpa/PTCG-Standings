@@ -71,15 +71,6 @@ export const Standings = () => {
     setSearchQuery(query);
   }, []);
 
-  // const handleRowClick = useCallback(
-  //   (player: Standing) => {
-  //     navigate(
-  //       `/tournaments/${tournament.id}/${division}/${formatPlayerNameToUrl(player.name)}`,
-  //     );
-  //   },
-  //   [division, navigate, tournament.id],
-  // );
-
   const filteredPlayers = useMemo(() => {
     if (
       !searchQuery &&

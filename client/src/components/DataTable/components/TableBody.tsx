@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import clsx from 'clsx';
 import { flexRender } from '@tanstack/react-table';
 import { useWindowVirtualizer } from '@tanstack/react-virtual';
+import { Link } from 'react-router-dom';
 
 import { getGridColumns } from '../helpers/getGridColumns';
 
@@ -19,14 +20,23 @@ function TableBodyCell<T>({
     <td
       className={clsx(
         'flex',
-        // `flex px-6 py-3`,
+        'group-hover:bg-gray-100 dark:group-hover:bg-gray-700',
         // cell.column.columnDef.meta?.align === 'right' ? 'justify-end' : '',
         // cell.column.columnDef.meta?.align === 'center' ? 'justify-center' : '',
         // cell.column.columnDef.meta?.align === 'left' ? 'justify-start' : '',
         // 'overflow-hidden text-ellipsis whitespace-nowrap',
       )}
     >
-      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+      {cell.column.columnDef.meta?.link ? (
+        <Link
+          to={cell.column.columnDef.meta.link(cell.row)}
+          className="flex h-full w-full"
+        >
+          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+        </Link>
+      ) : (
+        flexRender(cell.column.columnDef.cell, cell.getContext())
+      )}
     </td>
   );
 }
@@ -46,6 +56,7 @@ const TableBodyRow = ({
   scrollMargin,
   isLastRow = false,
 }: React.PropsWithChildren<TableBodyRowProps>) => {
+  console.log(item);
   return (
     <tr
       data-index={item.index}
@@ -55,6 +66,7 @@ const TableBodyRow = ({
         transform: `translateY(${item.start - scrollMargin}px)`,
       }}
       className={clsx(
+        'group',
         'absolute grid w-full grid-cols-[--table-grid-columns]',
         !isLastRow && 'border-b dark:border-gray-700',
       )}
