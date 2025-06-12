@@ -50,12 +50,10 @@ const TableBodyRow = ({
     <tr
       data-index={item.index}
       ref={rowRef}
-      style={
-        {
-          '--table-grid-columns': gridColumns,
-          transform: `translateY(${item.start - scrollMargin}px)`,
-        } as React.CSSProperties
-      }
+      style={{
+        '--table-grid-columns': gridColumns,
+        transform: `translateY(${item.start - scrollMargin}px)`,
+      }}
       className={clsx(
         'absolute grid w-full grid-cols-[--table-grid-columns]',
         !isLastRow && 'border-b dark:border-gray-700',
@@ -92,8 +90,8 @@ export function TableBody<T>({
 
   const visibleColumns = table.getVisibleFlatColumns();
   const gridColumns = useMemo(
-    () => getGridColumns(table),
-    [table, visibleColumns],
+    () => getGridColumns(visibleColumns),
+    [visibleColumns],
   );
 
   if (rows.length === 0) {

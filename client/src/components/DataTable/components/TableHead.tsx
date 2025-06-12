@@ -53,7 +53,7 @@ const TableHeadRow = ({
 }: React.PropsWithChildren<TableHeadRowProps>) => {
   return (
     <tr
-      style={{ '--table-grid-columns': gridColumns } as React.CSSProperties}
+      style={{ '--table-grid-columns': gridColumns }}
       className={`grid w-full grid-cols-[--table-grid-columns]`}
     >
       {children}
@@ -72,8 +72,8 @@ export function TableHead<T>({
 }: TableHeadProps<T>) {
   const visibleColumns = table.getVisibleFlatColumns();
   const gridColumns = useMemo(
-    () => getGridColumns(table),
-    [table, visibleColumns],
+    () => getGridColumns(visibleColumns),
+    [visibleColumns],
   );
 
   return (

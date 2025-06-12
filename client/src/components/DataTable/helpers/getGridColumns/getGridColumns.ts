@@ -1,8 +1,9 @@
-import type { Table } from '@tanstack/react-table';
+import type { Column } from '@tanstack/react-table';
 
-export function getGridColumns<T>(table: Table<T>): string {
-  return table
-    .getVisibleFlatColumns()
+export function getGridColumns<T>(
+  visibleColumns: Column<T, unknown>[],
+): string {
+  return visibleColumns
     .map(column => {
       return column.columnDef.meta?.columnWidth ?? 'minmax(200px, 1fr)';
     })

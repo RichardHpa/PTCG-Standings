@@ -44,7 +44,7 @@ const TableFooterRow = ({
 }: React.PropsWithChildren<TableFooterRowProps>) => {
   return (
     <tr
-      style={{ '--table-grid-columns': gridColumns } as React.CSSProperties}
+      style={{ '--table-grid-columns': gridColumns }}
       className={`grid w-full grid-cols-[--table-grid-columns]`}
     >
       {children}
@@ -59,8 +59,8 @@ interface TableFooterProps<TData> {
 export function TableFooter<T>({ table }: TableFooterProps<T>) {
   const visibleColumns = table.getVisibleFlatColumns();
   const gridColumns = useMemo(
-    () => getGridColumns(table),
-    [table, visibleColumns],
+    () => getGridColumns(visibleColumns),
+    [visibleColumns],
   );
 
   const footers = table
