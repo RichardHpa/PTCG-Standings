@@ -5,4 +5,5 @@ export interface StandingsTableProps {
   data: Standing[];
   tournamentId: string;
   division: string;
+  tournamentStatus: string;
 }

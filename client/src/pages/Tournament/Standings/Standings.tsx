@@ -226,6 +226,7 @@ export const Standings = () => {
             data={filteredPlayers}
             division={division}
             tournamentId={tournament.id}
+            tournamentStatus={tournament.tournamentStatus}
           />
         </Card>
       </section>
