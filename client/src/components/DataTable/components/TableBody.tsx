@@ -16,22 +16,19 @@ interface TableBodyCellProps<T> {
 function TableBodyCell<T>({
   cell,
 }: React.PropsWithChildren<TableBodyCellProps<T>>) {
+  const link =
+    cell.column.columnDef.meta?.link &&
+    cell.column.columnDef.meta?.link(cell.row);
+
   return (
     <td
       className={clsx(
         'flex',
         'group-hover:bg-gray-100 dark:group-hover:bg-gray-700',
-        // cell.column.columnDef.meta?.align === 'right' ? 'justify-end' : '',
-        // cell.column.columnDef.meta?.align === 'center' ? 'justify-center' : '',
-        // cell.column.columnDef.meta?.align === 'left' ? 'justify-start' : '',
-        // 'overflow-hidden text-ellipsis whitespace-nowrap',
       )}
     >
-      {cell.column.columnDef.meta?.link ? (
-        <Link
-          to={cell.column.columnDef.meta.link(cell.row)}
-          className="flex h-full w-full"
-        >
+      {link && link !== 'undefined' ? (
+        <Link to={link} className="flex h-full w-full">
           {flexRender(cell.column.columnDef.cell, cell.getContext())}
         </Link>
       ) : (
@@ -46,6 +43,7 @@ interface TableBodyRowProps {
   scrollMargin: number;
   gridColumns: string;
   isLastRow?: boolean;
+  rowHasLink: boolean;
 }
 
 const TableBodyRow = ({
@@ -55,8 +53,8 @@ const TableBodyRow = ({
   gridColumns,
   scrollMargin,
   isLastRow = false,
+  rowHasLink = false,
 }: React.PropsWithChildren<TableBodyRowProps>) => {
-  console.log(item);
   return (
     <tr
       data-index={item.index}
@@ -66,7 +64,7 @@ const TableBodyRow = ({
         transform: `translateY(${item.start - scrollMargin}px)`,
       }}
       className={clsx(
-        'group',
+        rowHasLink && 'group cursor-pointer',
         'absolute grid w-full grid-cols-[--table-grid-columns]',
         !isLastRow && 'border-b dark:border-gray-700',
       )}
@@ -133,6 +131,13 @@ export function TableBody<T>({
     >
       {virtualizer.getVirtualItems().map(item => {
         const row = rows[item.index];
+        const rowHasLink = row
+          .getVisibleCells()
+          .some(
+            cell =>
+              cell.column.columnDef.meta?.link &&
+              cell.column.columnDef.meta?.link(row) !== undefined,
+          );
 
         return (
           <TableBodyRow
@@ -142,6 +147,7 @@ export function TableBody<T>({
             item={item}
             gridColumns={gridColumns}
             isLastRow={item.index === rows.length - 1}
+            rowHasLink={!!rowHasLink}
           >
             {row.getVisibleCells().map(cell => {
               return <TableBodyCell key={cell.id} cell={cell} />;

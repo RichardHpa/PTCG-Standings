@@ -8,4 +8,5 @@ export interface TableProps<TData>
   overscan?: number;
   globalScrollSync?: boolean;
   noDataMessage?: string;
+  onRowClick?: (row: TData) => void;
 }

@@ -1,0 +1,1 @@
+export { QualifedPlayersTable } from './QualifedPlayersTable';

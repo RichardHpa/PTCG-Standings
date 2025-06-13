@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import type { FC } from 'react';
 
 export interface NumberCellProps {
@@ -10,6 +12,7 @@ export interface NumberCellProps {
    * The displayed number will be rounded or zeroes will be attached if needed.
    */
   fractionDigits?: number;
+  align?: 'left' | 'right' | 'center';
 }
 
 /**
@@ -22,6 +25,7 @@ const LOCALE = 'en-US';
 export const NumberCell: FC<NumberCellProps> = ({
   value,
   fractionDigits = 0,
+  align = 'right',
 }) => {
   /**
    * Intl.NumberFormat is a standard browser built-in object
@@ -38,7 +42,12 @@ export const NumberCell: FC<NumberCellProps> = ({
 
   return (
     <div
-      className="w-full truncate px-4 py-3 text-right tabular-nums"
+      className={clsx(
+        'w-full truncate px-4 py-3 tabular-nums',
+        align === 'left' && 'text-left',
+        align === 'center' && 'text-center',
+        align === 'right' && 'text-right',
+      )}
       title={formattedValue}
     >
       {formattedValue}

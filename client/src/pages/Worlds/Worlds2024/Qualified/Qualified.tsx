@@ -1,5 +1,5 @@
 import { useCallback, useState, useMemo, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
 
@@ -7,40 +7,23 @@ import { useTournamentContext } from 'providers/TournamentProvider';
 
 import qualifiedPlayers from '../data/qualifiedPlayers.json';
 
-import { VirtualizedTable } from 'components/VirtualizedTable';
 import { Card } from 'components/Card';
 import { Paragraph } from 'components/Paragraph';
 import { Input } from 'components/Forms/Input';
-import { formatPlayerNameToUrl } from 'utils/parsePlayerUrl';
-import { Archetypes } from 'components/Archetypes';
+
 import { SEO } from 'components/SEO';
 import {
   CountrySelect,
   firstCountryOption,
 } from 'components/Forms/CountrySelect';
 
-import { getCountryFlag } from 'helpers/getCountryFlag';
-import { formatRecord } from 'helpers/formatRecord';
-import { calculatePoints } from 'helpers/calculatePoints';
+import { QualifedPlayersTable } from './components/QualifedPlayersTable';
 
-import type { ColumnProps } from 'components/VirtualizedTable/types';
 import type { Division } from 'types/divisions';
 import type { Standing } from 'types/standing';
 import type { ChangeEvent } from 'react';
 import type { StyledOptionProps } from 'components/Forms/Select/types';
-
-interface QualifedPlayer {
-  FirstName: string;
-  LastName: string;
-  AgeDivision: string;
-  Game: string;
-  Country: string;
-  UNITETeam: string;
-
-  FullName?: string;
-  competed?: boolean;
-  standing?: Standing;
-}
+import type { QualifedPlayer } from './components/QualifedPlayersTable/types';
 
 const buildPokeDataName = (player: QualifedPlayer) => {
   const { FirstName, LastName, Country, AgeDivision } = player;
@@ -91,69 +74,14 @@ const useGetPlayers = () => {
   return players;
 };
 
-const columns: ColumnProps<QualifedPlayer>[] = [
-  {
-    key: 'name',
-    header: 'Player',
-    render: row => (
-      <div className="flex items-center gap-4">
-        <span className="font-medium">
-          {getCountryFlag(row.Country)} {row.FirstName} {row.LastName}
-        </span>
-      </div>
-    ),
-  },
-  {
-    key: 'standing.record',
-    header: 'Record',
-    size: 'small',
-    hiddenXs: true,
-    render: row =>
-      row.standing ? <span>{formatRecord(row.standing.record)}</span> : <></>,
-  },
-  {
-    key: 'points',
-    size: 'small',
-    header: 'Points',
-    hiddenXs: true,
-    render: row =>
-      row.standing ? (
-        <span>{calculatePoints(row.standing.record)}</span>
-      ) : (
-        <></>
-      ),
-  },
-  {
-    key: 'decklist',
-    header: '',
-    size: 'small',
-    hiddenXs: true,
-    render: row =>
-      row.standing && row.standing.archetype ? (
-        <Archetypes archetype={row.standing.archetype} size="small" />
-      ) : (
-        <></>
-      ),
-  },
-  {
-    key: 'action',
-    header: 'Competed',
-    align: 'right',
-    size: 'small',
-    render: row => <span>{row.competed ? 'Yes' : 'No'}</span>,
-  },
-];
-
 export const Qualified = () => {
   const { tournament } = useTournamentContext();
   const { division = 'masters' } = useParams() as { division: Division };
-  const [listRef, setListRef] = useState<HTMLElement | null>(null);
   const players = useGetPlayers();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCountry, setSelectedCountry] = useState(
     firstCountryOption.value,
   );
-  const navigate = useNavigate();
 
   useEffect(() => {
     setSearchQuery('');
@@ -203,17 +131,6 @@ export const Qualified = () => {
     setSelectedCountry(value);
   }, []);
 
-  const handleRowClick = useCallback(
-    (player: QualifedPlayer) => {
-      if (!player.competed) return;
-      const name = buildPokeDataName(player);
-      navigate(
-        `/tournaments/${tournament.id}/${division}/${formatPlayerNameToUrl(name)}`,
-      );
-    },
-    [division, navigate, tournament.id],
-  );
-
   const countries = useMemo(() => {
     const countriesSet = new Set<string>();
     players[division].forEach(player => {
@@ -234,7 +151,7 @@ export const Qualified = () => {
         Championships.
       </Paragraph>
 
-      <section className="bg-gray-50 dark:bg-gray-900" ref={setListRef}>
+      <section className="bg-gray-50 dark:bg-gray-900">
         <Card>
           <div className="flex flex-col items-center space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0">
             <div className="w-full md:w-1/3">
@@ -258,15 +175,10 @@ export const Qualified = () => {
             </div>
           </div>
 
-          <VirtualizedTable<QualifedPlayer>
-            tableId="qualified-players"
-            type="window"
+          <QualifedPlayersTable
             data={filteredPlayers}
-            columns={columns}
-            containerRef={listRef}
-            onRowClick={handleRowClick}
-            estimateSize={48.5}
-            noDataMessage={<>No players found that match this criteria</>}
+            tournamentId={tournament.id}
+            division={division}
           />
         </Card>
       </section>
