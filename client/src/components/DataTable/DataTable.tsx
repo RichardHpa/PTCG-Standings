@@ -71,7 +71,6 @@ export function DataTable<T>({
             estimatedRowSize={estimatedRowSize}
             overscan={overscan}
             noDataMessage={noDataMessage}
-            onRowClick={onRowClick}
           />
           <TableFooter table={table} />
         </TableElement>
