@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { DataTable } from 'components/DataTable';
 import { Archetypes } from 'components/Archetypes';
 
+import { FINISHED } from 'constants/tournamentStatus';
+
 import { formatRecordToString } from 'helpers/formatRecord';
 import { calculatePoints } from 'helpers/calculatePoints';
 import { formatPlayerName } from 'helpers/formatPlayerName';
@@ -28,17 +30,12 @@ const formatToPercentage = (value: number) => {
 
 // const columns = ;
 
-const compactViewColumns = {
-  record: false,
-  'resistances.opp': false,
-  'resistances.oppopp': false,
-};
-
 export const StandingsTable: FC<StandingsTableProps> = ({
   tableId,
   data,
   tournamentId,
   division,
+  tournamentStatus,
 }) => {
   const { settings } = useSettings();
   const responsive = useResponsive();
@@ -178,6 +175,15 @@ export const StandingsTable: FC<StandingsTableProps> = ({
     ];
   }, [division, tournamentId]);
 
+  const compactViewColumns = useMemo(() => {
+    return {
+      record: false,
+      'resistances.opp': false,
+      'resistances.oppopp': false,
+      archetype: tournamentStatus === FINISHED ? true : false,
+    };
+  }, [tournamentStatus]);
+
   return (
     <DataTable<Standing>
       tableId={tableId}
@@ -185,7 +191,11 @@ export const StandingsTable: FC<StandingsTableProps> = ({
       data={data}
       noDataMessage="No players found that match this criteria"
       state={{
-        columnVisibility: showCompactView ? compactViewColumns : {},
+        columnVisibility: showCompactView
+          ? compactViewColumns
+          : {
+              archetype: tournamentStatus === FINISHED ? true : false,
+            },
       }}
     />
   );
