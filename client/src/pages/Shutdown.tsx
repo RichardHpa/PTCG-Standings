@@ -1,7 +1,7 @@
 export const Shutdown = () => {
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="mx-auto max-w-screen-xl px-4 py-8 lg:px-6 lg:py-16">
+      <div className="mx-auto max-w-screen-xl px-4 py-8">
         <div className="mx-auto max-w-screen-md text-center">
           <p className="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl">
             PTCG Standings is shutting down

@@ -17,7 +17,7 @@ import { ColorModeProvider } from 'providers/ColorModeProvider';
 // import { PinnedPlayersProvider } from 'providers/PinnedPlayersProvider';
 import { SettingsProvider } from 'providers/SettingsProvider';
 
-// import { BaseLayout } from 'layouts/BaseLayout';
+import { BaseLayout } from 'layouts/BaseLayout';
 
 // import { Home } from 'pages/Home';
 // import { About } from 'pages/About';
@@ -65,7 +65,13 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter([
   {
     path: '*',
-    element: <Shutdown />,
+    element: <BaseLayout />,
+    children: [
+      {
+        path: '*',
+        element: <Shutdown />,
+      },
+    ],
   },
 ]);
 // const router = createBrowserRouter([
