@@ -4,27 +4,23 @@ export const Shutdown = () => {
       <div className="mx-auto max-w-screen-xl px-4 py-8">
         <div className="mx-auto max-w-screen-md text-center">
           <p className="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl">
-            PTCG Standings is shutting down
-          </p>
-          <p className="mb-4 text-xs tracking-tight text-gray-900 dark:text-white">
-            (probably)
+            PTCG Standings is Temporarily shutting down
           </p>
           <p className="text-md mb-4 font-light text-gray-500 dark:text-gray-400">
-            PTCG standings is most likely shutting down sometime in the next few
-            months. What started as a little side project to track my friends
-            grew into a fully fledged standings tracker for the pokemon trading
-            card game. I am the only maintainer and I have loved every minute of
-            working on this project, but it has become too much to maintain
-            alongside my full time job and other commitments.
+            PTCG standings is going to be shut down during the NAIC tournament.
+            What started as a little side project to track my friends grew into
+            a fully fledged standings tracker for the pokemon trading card game.
+            I am the only maintainer and I have loved every minute of working on
+            this project, but it is becoming too much to maintain alongside my
+            full time job and other commitments.
           </p>
           <p className="text-md mb-4 font-light text-gray-500 dark:text-gray-400">
-            During the bigger tournaments, the site seems to crash more often
+            During these bigger tournaments, the site seems to crash more often
             than not. The issue isn't actually to do with this site but the data
             source I use to get the standings. The data source is a third party
             API that is not designed to handle the amount of traffic that this
             site gets during these events. During NAIC I am going to take the
-            whole site down and once its finished I will bring it back up but
-            will probably remove the live standings feature.
+            whole site down and once its finished I will bring it back up,
           </p>
           <p className="text-md mb-4 font-light text-gray-500 dark:text-gray-400">
             During the next few weeks I will be looking at other options to
