@@ -1567,6 +1567,7 @@ type SetCodeMap = {
 };
 
 export const setMap: SetCodeMap = {
+  DRI: 'sv10',
   JTG: 'sv9',
   PRE: 'sv8pt5',
   SSP: 'sv8',

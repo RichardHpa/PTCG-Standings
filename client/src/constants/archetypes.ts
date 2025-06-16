@@ -77,6 +77,36 @@ export const unknownArchetype = {
 
 export const archetypesListObject: archetypesListObjectProps = {
   unknown: unknownArchetype,
+  marniesGrimmsnarl: {
+    name: "Marnie's Grimmsnarl",
+    sprites: [
+      {
+        pokemon: 'Grimmsnarl',
+        sprite: pokemonImageList.grimmsnarl.image,
+      },
+    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ["Marnie's Grimmsnarl ex"])) {
+        return true;
+      }
+      return false;
+    },
+  },
+  toadscruel: {
+    name: 'Toedscruel',
+    sprites: [
+      {
+        pokemon: 'Toedscruel',
+        sprite: pokemonImageList.toedscruel.image,
+      },
+    ],
+    fn: decklist => {
+      if (decklistIncludes(decklist, 'pokemon', ['Toedscruel ex'])) {
+        return true;
+      }
+      return false;
+    },
+  },
   slowking: {
     name: 'Slowking',
     sprites: [

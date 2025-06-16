@@ -1,11 +1,10 @@
 import { StrictMode, lazy, Suspense } from 'react';
-// import { ErrorBoundary } from 'react-error-boundary';
 import { createRoot } from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
-  // Navigate,
-  // Outlet,
+  Navigate,
+  Outlet,
 } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ReactGA from 'react-ga4';
@@ -19,29 +18,26 @@ import { SettingsProvider } from 'providers/SettingsProvider';
 
 import { BaseLayout } from 'layouts/BaseLayout';
 
-// import { Home } from 'pages/Home';
-// import { About } from 'pages/About';
-// import { Tournaments } from 'pages/Tournaments';
-// import { tournamentLoader, TournamentOutlet } from 'pages/Tournament';
-// import { Streams } from 'pages/Tournament/Streams';
-// import { Stats } from 'pages/Tournament/Stats';
-// import { Standings, StandingsError } from 'pages/Tournament/Standings';
-// import { Rounds } from 'pages/Tournament/Rounds';
-// import { Parings } from 'pages/Tournament/Parings';
-// import { TopCut } from 'pages/Tournament/TopCut';
-// import { DivisionOutlet, divisionLoader } from 'pages/Tournament/Division';
-// import {
-//   Player,
-//   playerLoader,
-//   PlayerOutlet,
-//   Decklist,
-// } from 'pages/Tournament/Division/Player';
-// import { Worlds2024Outlet, Qualified } from 'pages/Worlds/Worlds2024';
-import { Shutdown } from 'pages/Shutdown';
+import { Home } from 'pages/Home';
+import { About } from 'pages/About';
+import { Tournaments } from 'pages/Tournaments';
+import { tournamentLoader, TournamentOutlet } from 'pages/Tournament';
+import { Streams } from 'pages/Tournament/Streams';
+import { Stats } from 'pages/Tournament/Stats';
+import { Standings, StandingsError } from 'pages/Tournament/Standings';
+import { DivisionOutlet, divisionLoader } from 'pages/Tournament/Division';
+import {
+  Player,
+  playerLoader,
+  PlayerOutlet,
+  Decklist,
+} from 'pages/Tournament/Division/Player';
+import { Worlds2024Outlet, Qualified } from 'pages/Worlds/Worlds2024';
+// import { Shutdown } from 'pages/Shutdown';
 
-// import { LoadingPokeball } from 'components/LoadingPokeball';
-// import { Heading } from 'components/Heading';
-// import { FallbackError } from 'errors/FallbackError';
+import { LoadingPokeball } from 'components/LoadingPokeball';
+import { Heading } from 'components/Heading';
+import { FallbackError } from 'errors/FallbackError';
 
 const TRACKING_ID = 'G-GT0XDK8BEH';
 
@@ -53,167 +49,167 @@ const queryClient = new QueryClient({
   },
 });
 
-// const FallbackLoader = () => (
-//   <div className="flex h-full w-full flex-1 flex-col items-center justify-center">
-//     <LoadingPokeball alt="Loading app" size="100" />
-//     <Heading level="2" className="mt-4">
-//       Loading PTCG Standings...
-//     </Heading>
-//   </div>
-// );
+const FallbackLoader = () => (
+  <div className="flex h-full w-full flex-1 flex-col items-center justify-center">
+    <LoadingPokeball alt="Loading app" size="100" />
+    <Heading level="2" className="mt-4">
+      Loading PTCG Standings...
+    </Heading>
+  </div>
+);
 
-const router = createBrowserRouter([
-  {
-    path: '*',
-    element: <BaseLayout />,
-    children: [
-      {
-        path: '*',
-        element: <Shutdown />,
-      },
-    ],
-  },
-]);
 // const router = createBrowserRouter([
 //   {
-//     path: '/',
+//     path: '*',
 //     element: <BaseLayout />,
-//     errorElement: <FallbackError />,
-//     hydrateFallbackElement: <FallbackLoader />,
 //     children: [
-//       { index: true, element: <Home /> },
-//       { path: 'about', element: <About /> },
 //       {
-//         path: 'worlds',
-//         element: <Outlet />,
-//         children: [
-//           {
-//             path: '2024',
-//             element: <Worlds2024Outlet />,
-//             children: [
-//               { index: true, element: <Navigate to="standings" replace /> },
-//               {
-//                 path: 'standings',
-//                 element: <DivisionOutlet />,
-//                 children: [
-//                   { index: true, element: <Standings /> },
-//                   { path: ':division', element: <Standings /> },
-//                 ],
-//               },
-//               {
-//                 path: 'qualified',
-//                 element: <DivisionOutlet />,
-//                 children: [
-//                   { index: true, element: <Qualified /> },
-//                   { path: ':division', element: <Qualified /> },
-//                 ],
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//       {
-//         path: 'tournaments',
-//         children: [
-//           { index: true, element: <Tournaments /> },
-//           {
-//             path: ':tournamentId',
-//             element: <TournamentOutlet />,
-//             loader: tournamentLoader,
-
-//             children: [
-//               {
-//                 index: true,
-//                 element: <Navigate to="standings" replace />,
-//               },
-//               { path: 'streams', element: <Streams /> },
-//               {
-//                 path: 'stats',
-//                 element: <DivisionOutlet />,
-//                 children: [
-//                   { index: true, element: <Stats /> },
-//                   {
-//                     path: ':division',
-//                     loader: divisionLoader,
-//                     element: <Stats />,
-//                   },
-//                 ],
-//               },
-//               // {
-//               //   path: 'rounds',
-//               //   element: <DivisionOutlet />,
-//               //   children: [
-//               //     {
-//               //       index: true,
-//               //       element: <Rounds />,
-//               //     },
-//               //     {
-//               //       path: ':division',
-//               //       loader: divisionLoader,
-//               //       element: <Rounds />,
-//               //     },
-//               //   ],
-//               // },
-//               {
-//                 path: 'standings',
-//                 errorElement: <StandingsError />,
-//                 element: <DivisionOutlet />,
-//                 children: [
-//                   { index: true, element: <Standings /> },
-//                   {
-//                     path: ':division',
-//                     loader: divisionLoader,
-//                     element: <Standings />,
-//                   },
-//                 ],
-//               },
-//               // {
-//               //   path: 'top_cut',
-//               //   element: <DivisionOutlet />,
-//               //   children: [
-//               //     {
-//               //       index: true,
-//               //       element: <TopCut />,
-//               //     },
-//               //     {
-//               //       path: ':division',
-//               //       loader: divisionLoader,
-//               //       element: <TopCut />,
-//               //     },
-//               //   ],
-//               // },
-//               // {
-//               //   path: 'live',
-//               //   element: <DivisionOutlet />,
-//               //   children: [
-//               //     {
-//               //       index: true,
-//               //       element: <Parings />,
-//               //     },
-//               //     {
-//               //       path: ':division',
-//               //       loader: divisionLoader,
-//               //       element: <Parings />,
-//               //     },
-//               //   ],
-//               // },
-//               {
-//                 path: ':division/:playerName',
-//                 loader: playerLoader,
-//                 element: <PlayerOutlet />,
-//                 children: [
-//                   { index: true, loader: playerLoader, element: <Player /> },
-//                   { path: 'decklist', element: <Decklist /> },
-//                 ],
-//               },
-//             ],
-//           },
-//         ],
+//         path: '*',
+//         element: <Shutdown />,
 //       },
 //     ],
 //   },
-//   { path: '*', element: <FallbackError /> },
 // ]);
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <BaseLayout />,
+    errorElement: <FallbackError />,
+    hydrateFallbackElement: <FallbackLoader />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'about', element: <About /> },
+      {
+        path: 'worlds',
+        element: <Outlet />,
+        children: [
+          {
+            path: '2024',
+            element: <Worlds2024Outlet />,
+            children: [
+              { index: true, element: <Navigate to="standings" replace /> },
+              {
+                path: 'standings',
+                element: <DivisionOutlet />,
+                children: [
+                  { index: true, element: <Standings /> },
+                  { path: ':division', element: <Standings /> },
+                ],
+              },
+              {
+                path: 'qualified',
+                element: <DivisionOutlet />,
+                children: [
+                  { index: true, element: <Qualified /> },
+                  { path: ':division', element: <Qualified /> },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: 'tournaments',
+        children: [
+          { index: true, element: <Tournaments /> },
+          {
+            path: ':tournamentId',
+            element: <TournamentOutlet />,
+            loader: tournamentLoader,
+
+            children: [
+              {
+                index: true,
+                element: <Navigate to="standings" replace />,
+              },
+              { path: 'streams', element: <Streams /> },
+              {
+                path: 'stats',
+                element: <DivisionOutlet />,
+                children: [
+                  { index: true, element: <Stats /> },
+                  {
+                    path: ':division',
+                    loader: divisionLoader,
+                    element: <Stats />,
+                  },
+                ],
+              },
+              // {
+              //   path: 'rounds',
+              //   element: <DivisionOutlet />,
+              //   children: [
+              //     {
+              //       index: true,
+              //       element: <Rounds />,
+              //     },
+              //     {
+              //       path: ':division',
+              //       loader: divisionLoader,
+              //       element: <Rounds />,
+              //     },
+              //   ],
+              // },
+              {
+                path: 'standings',
+                errorElement: <StandingsError />,
+                element: <DivisionOutlet />,
+                children: [
+                  { index: true, element: <Standings /> },
+                  {
+                    path: ':division',
+                    loader: divisionLoader,
+                    element: <Standings />,
+                  },
+                ],
+              },
+              // {
+              //   path: 'top_cut',
+              //   element: <DivisionOutlet />,
+              //   children: [
+              //     {
+              //       index: true,
+              //       element: <TopCut />,
+              //     },
+              //     {
+              //       path: ':division',
+              //       loader: divisionLoader,
+              //       element: <TopCut />,
+              //     },
+              //   ],
+              // },
+              // {
+              //   path: 'live',
+              //   element: <DivisionOutlet />,
+              //   children: [
+              //     {
+              //       index: true,
+              //       element: <Parings />,
+              //     },
+              //     {
+              //       path: ':division',
+              //       loader: divisionLoader,
+              //       element: <Parings />,
+              //     },
+              //   ],
+              // },
+              {
+                path: ':division/:playerName',
+                loader: playerLoader,
+                element: <PlayerOutlet />,
+                children: [
+                  { index: true, loader: playerLoader, element: <Player /> },
+                  { path: 'decklist', element: <Decklist /> },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  { path: '*', element: <FallbackError /> },
+]);
 
 const ReactQueryDevtoolsProduction = lazy(() =>
   import('@tanstack/react-query-devtools/build/modern/production.js').then(
