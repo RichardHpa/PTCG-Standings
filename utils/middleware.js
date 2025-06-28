@@ -5,6 +5,25 @@
 import { logApiRequest, logError } from './logger.js';
 
 /**
+ * Check if a request should be logged (exclude static assets)
+ */
+const shouldLogRequest = url => {
+  // Don't log static asset requests
+  const staticAssetPatterns = [
+    /\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|eot)$/i,
+    /^\/favicon\.ico$/,
+    /^\/logo/,
+    /^\/sprites\//,
+    /^\/images\//,
+    /^\/public\//,
+    /^\/static\//,
+    /^\/assets\//,
+  ];
+
+  return !staticAssetPatterns.some(pattern => pattern.test(url));
+};
+
+/**
  * Request timing middleware
  */
 export const requestTimer = (req, res, next) => {
@@ -16,7 +35,10 @@ export const requestTimer = (req, res, next) => {
     const responseTime = Date.now() - start;
     const userAgent = req.get('User-Agent');
 
-    logApiRequest(req.method, req.originalUrl, res.statusCode, responseTime, userAgent);
+    // Only log if it's not a static asset request
+    if (shouldLogRequest(req.originalUrl)) {
+      logApiRequest(req.method, req.originalUrl, res.statusCode, responseTime, userAgent);
+    }
 
     originalEnd.apply(this, args);
   };
