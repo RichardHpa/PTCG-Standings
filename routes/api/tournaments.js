@@ -8,15 +8,32 @@ import { getTournamentData } from '../../functions/getTournamentData/index.js';
 import { getRoundData } from '../../functions/getRoundData/index.js';
 import { createFile } from '../../functions/createFile/index.js';
 import { createFolder } from '../../functions/createFolder/index.js';
+import { logErrorWithContext } from '../../utils/apiHelpers.js';
+import { logInfo, logDataOperation, logFileOperation } from '../../utils/logger.js';
+import { cacheControl } from '../../utils/middleware.js';
 
-router.get('/', (req, res) => {
-  console.log('Request for tournaments data');
+router.get('/', cacheControl(300), (req, res) => {
+  logInfo('🏆 Request for tournaments data');
   fs.readFile(`${baseFolder}/tournaments.json`, 'utf8', (err, data) => {
     if (err) {
-      console.error(err);
+      logDataOperation('read', 'tournaments', null, false, { error: err.message });
+      res.status(500).json({
+        error: 'Failed to load tournaments data',
+        message: 'The tournaments data is currently unavailable. Please try again later.',
+      });
       return;
     }
-    res.send(JSON.parse(data));
+    try {
+      const parsedData = JSON.parse(data);
+      logDataOperation('read', 'tournaments', null, true);
+      res.send(parsedData);
+    } catch (parseError) {
+      logDataOperation('parse', 'tournaments', null, false, { error: parseError.message });
+      res.status(500).json({
+        error: 'Failed to parse tournaments data',
+        message: 'The tournaments data is corrupted. Please try again later.',
+      });
+    }
   });
 });
 
@@ -27,19 +44,51 @@ router.get('/:tournamentId', async (req, res) => {
   if (fs.existsSync(file)) {
     fs.readFile(file, 'utf8', (err, data) => {
       if (err) {
-        console.error(err);
-        res.status(404).send(`Tournament ${tournamentId} not found`);
+        logFileOperation('read', file, false, { error: err.message });
+        res.status(500).json({
+          error: 'Failed to load tournament data',
+          message: 'The tournament data is currently unavailable. Please try again later.',
+        });
       } else {
-        res.send(JSON.parse(data));
+        try {
+          const parsedData = JSON.parse(data);
+          logFileOperation('read', file, true);
+          res.send(parsedData);
+        } catch (parseError) {
+          logFileOperation('parse', file, false, { error: parseError.message });
+          res.status(500).json({
+            error: 'Failed to parse tournament data',
+            message: 'The tournament data is corrupted. Please try again later.',
+          });
+        }
       }
     });
   } else {
-    console.log('file does not exist, fetching data');
-    const tournament = await getTournamentData(tournamentId);
-    if (tournament) {
-      res.send(tournament);
-    } else {
-      res.status(404).send(`Tournament ${tournamentId} not found`);
+    logInfo('📁 Tournament file does not exist, fetching data', { tournamentId });
+    try {
+      const tournament = await getTournamentData(tournamentId);
+      if (tournament) {
+        res.send(tournament);
+      } else {
+        res.status(404).json({
+          error: 'Tournament not found',
+          message: `Tournament ${tournamentId} could not be found or is currently unavailable.`,
+        });
+      }
+    } catch (error) {
+      const isCritical = logErrorWithContext(error, `API:getTournament(${tournamentId})`);
+      if (isCritical) {
+        res.status(500).json({
+          error: 'Critical error fetching tournament',
+          message:
+            'The tournament data is currently unavailable due to a server error. Please try again later.',
+        });
+      } else {
+        res.status(503).json({
+          error: 'Temporary error fetching tournament',
+          message: 'The tournament data is temporarily unavailable. Please try again later.',
+        });
+      }
     }
   }
 });
@@ -54,23 +103,59 @@ router.get('/:tournamentId/:division/rounds/:round', async (req, res) => {
   if (fs.existsSync(file)) {
     fs.readFile(file, 'utf8', (err, data) => {
       if (err) {
-        console.error(err);
-        res.status(404).send(`Round ${round} not found`);
+        logFileOperation('read', file, false, { error: err.message });
+        res.status(500).json({
+          error: 'Failed to load round data',
+          message: 'The round data is currently unavailable. Please try again later.',
+        });
       } else {
-        res.send(JSON.parse(data));
+        try {
+          const parsedData = JSON.parse(data);
+          logFileOperation('read', file, true);
+          res.send(parsedData);
+        } catch (parseError) {
+          logFileOperation('parse', file, false, { error: parseError.message });
+          res.status(500).json({
+            error: 'Failed to parse round data',
+            message: 'The round data is corrupted. Please try again later.',
+          });
+        }
       }
     });
   } else {
-    const roundData = await getRoundData({
-      tournamentId,
-      division,
-      round,
-    });
-    if (roundData) {
-      await createFile(roundData, file);
-      res.send(roundData);
-    } else {
-      res.status(404).send(`Round ${round} not found`);
+    logInfo('📁 Round file does not exist, fetching data', { tournamentId, division, round });
+    try {
+      const roundData = await getRoundData({
+        tournamentId,
+        division,
+        round,
+      });
+      if (roundData) {
+        await createFile(roundData, file);
+        res.send(roundData);
+      } else {
+        res.status(404).json({
+          error: 'Round not found',
+          message: `Round ${round} for tournament ${tournamentId} could not be found or is currently unavailable.`,
+        });
+      }
+    } catch (error) {
+      const isCritical = logErrorWithContext(
+        error,
+        `API:getRound(${tournamentId}/${division}/${round})`
+      );
+      if (isCritical) {
+        res.status(500).json({
+          error: 'Critical error fetching round data',
+          message:
+            'The round data is currently unavailable due to a server error. Please try again later.',
+        });
+      } else {
+        res.status(503).json({
+          error: 'Temporary error fetching round data',
+          message: 'The round data is temporarily unavailable. Please try again later.',
+        });
+      }
     }
   }
 });

@@ -5,21 +5,26 @@ import { format } from 'date-fns';
 import { basePokeDataApiTournamentsUrl, baseFolder } from '../../constants/folders.js';
 import { forceFinishTournaments } from '../../constants/forceFinishTournaments.js';
 import { forceRunningTournaments } from '../../constants/forceRunningTournaments.js';
+import { fetchWithRetry, logErrorWithContext } from '../../utils/apiHelpers.js';
+import {
+  logInfo,
+  logTournamentEvent,
+  logFileOperation,
+  logError,
+  logSuccess,
+} from '../../utils/logger.js';
 
 export const getTournamentsData = async () => {
-  console.log('Request for tournaments data');
-
-  let options = {};
-  options.redirect = 'follow';
-  options.follow = 20;
+  logInfo('🏆 Request for tournaments data');
 
   try {
-    const response = await fetch(basePokeDataApiTournamentsUrl, options);
-    const data = await response.json();
-    if (Object.keys(data).length === 0) {
-      console.log('Empty data returned for tournaments');
-      return;
+    const data = await fetchWithRetry(basePokeDataApiTournamentsUrl);
+
+    if (!data) {
+      logInfo('📭 Empty data returned for tournaments');
+      return null;
     }
+
     const date = format(new Date(), 'Pp');
 
     // hack as some of the tournaments (mainly the ones in south america that arent run by RK9) are not auto updating from not-started to finished
@@ -27,6 +32,7 @@ export const getTournamentsData = async () => {
       const tournament = data.tcg.data.find(tournament => tournament.id === tournamentId);
       if (tournament) {
         tournament.tournamentStatus = 'finished';
+        logTournamentEvent('Force finished', tournamentId);
       }
     });
 
@@ -35,6 +41,7 @@ export const getTournamentsData = async () => {
       const tournament = data.tcg.data.find(tournament => tournament.id === tournamentId);
       if (tournament) {
         tournament.tournamentStatus = 'running';
+        logTournamentEvent('Force running', tournamentId);
       }
     });
 
@@ -45,13 +52,22 @@ export const getTournamentsData = async () => {
 
     try {
       fs.writeFileSync(`${baseFolder}/tournaments.json`, JSON.stringify(newData, null, 4));
-      console.log(`Tournaments Data updated at ${date} and file saved`);
+      logFileOperation('write', `${baseFolder}/tournaments.json`, true, { date });
+      logSuccess('Tournaments Data updated and file saved', { date });
     } catch (err) {
-      console.error(err);
+      logFileOperation('write', `${baseFolder}/tournaments.json`, false, { error: err.message });
     }
 
     return newData;
   } catch (error) {
-    console.error(error);
+    const isCritical = logErrorWithContext(error, 'getTournamentsData');
+
+    if (isCritical) {
+      logError('Critical error in getTournamentsData, application may need to be restarted');
+      throw error; // Re-throw critical errors
+    } else {
+      logInfo('Non-critical error in getTournamentsData, continuing with cached data if available');
+      return null;
+    }
   }
 };
