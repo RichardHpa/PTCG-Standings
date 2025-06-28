@@ -1,22 +1,19 @@
 // This function is responsible for fetching the round data
 import { basePokeDataApiUrl } from '../../constants/folders.js';
+import { fetchWithRetry, logErrorWithContext } from '../../utils/apiHelpers.js';
+import { logInfo, logError, logSuccess } from '../../utils/logger.js';
 
 export const getRoundData = async ({ tournamentId, division, round }) => {
-  console.log(
-    `Request for round ${round} data for tournament ${tournamentId} and division ${division}`
-  );
+  logInfo('🎯 Request for round data', { tournamentId, division, round });
 
   const url = `${basePokeDataApiUrl}/id/${tournamentId}/division/${division}/round/${round}`;
-  let options = {};
-  options.redirect = 'follow';
-  options.follow = 20;
 
   try {
-    const response = await fetch(url, options);
-    const data = await response.json();
-    if (Object.keys(data).length === 0) {
-      console.log(`Empty data returned for tournament ${tournamentId}`);
-      return;
+    const data = await fetchWithRetry(url);
+
+    if (!data) {
+      logInfo('📭 Empty data returned for tournament', { tournamentId, division, round });
+      return null;
     }
 
     const checkRound = parseInt(data.tournament_data[0].data.round);
@@ -27,8 +24,35 @@ export const getRoundData = async ({ tournamentId, division, round }) => {
       );
     }
 
+    logSuccess('Round data fetched successfully', { tournamentId, division, round });
     return data;
   } catch (error) {
-    console.error(error);
+    const isCritical = logErrorWithContext(
+      error,
+      `getRoundData(${tournamentId}/${division}/${round})`
+    );
+
+    if (isCritical) {
+      logError(
+        '💥 Critical error fetching round data, application may need to be restarted',
+        null,
+        {
+          tournamentId,
+          division,
+          round,
+        }
+      );
+      throw error; // Re-throw critical errors
+    } else {
+      logInfo(
+        '⚠️ Non-critical error fetching round data, continuing with cached data if available',
+        {
+          tournamentId,
+          division,
+          round,
+        }
+      );
+      return null;
+    }
   }
 };
