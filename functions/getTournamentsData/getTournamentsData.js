@@ -51,7 +51,7 @@ export const getTournamentsData = async () => {
     };
 
     try {
-      fs.writeFileSync(`${baseFolder}/tournaments.json`, JSON.stringify(newData, null, 4));
+      fs.writeFileSync(`${baseFolder}/tournaments.json`, JSON.stringify(newData));
       logFileOperation('write', `${baseFolder}/tournaments.json`, true, { date });
       logSuccess('Tournaments Data updated and file saved', { date });
     } catch (err) {

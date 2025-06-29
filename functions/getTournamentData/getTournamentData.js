@@ -47,7 +47,7 @@ export const getTournamentData = async tournamentId => {
 
     try {
       const filePath = `${tournamentsFolder}/${tournamentId}.json`;
-      fs.writeFileSync(filePath, JSON.stringify(newData, null, 4));
+      fs.writeFileSync(filePath, JSON.stringify(newData));
       logFileOperation('write', filePath, true, { tournamentId, date });
       logSuccess('Tournament data updated and file saved', { tournamentId, date });
     } catch (err) {

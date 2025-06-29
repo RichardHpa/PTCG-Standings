@@ -4,7 +4,7 @@ import { logFileOperation, logSuccess } from '../../utils/logger.js';
 
 export const createFile = async (data, location) => {
   try {
-    fs.writeFileSync(location, JSON.stringify(data, null, 4));
+    fs.writeFileSync(location, JSON.stringify(data));
     logFileOperation('write', location, true);
     logSuccess('Data saved successfully', { location });
   } catch (err) {
