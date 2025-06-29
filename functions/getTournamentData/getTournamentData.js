@@ -1,5 +1,4 @@
 // This function fetches the data for a single tournament and saves it to a file
-import fs from 'fs';
 import { format } from 'date-fns';
 
 import { basePokeDataApiFullTournamentUrl, tournamentsFolder } from '../../constants/folders.js';
@@ -13,6 +12,7 @@ import {
   logError,
   logSuccess,
 } from '../../utils/logger.js';
+import { createFile } from '../createFile/index.js';
 
 export const getTournamentData = async tournamentId => {
   logTournamentEvent('Request for data', tournamentId);
@@ -47,8 +47,7 @@ export const getTournamentData = async tournamentId => {
 
     try {
       const filePath = `${tournamentsFolder}/${tournamentId}.json`;
-      fs.writeFileSync(filePath, JSON.stringify(newData));
-      logFileOperation('write', filePath, true, { tournamentId, date });
+      await createFile(newData, filePath);
       logSuccess('Tournament data updated and file saved', { tournamentId, date });
     } catch (err) {
       logFileOperation('write', `${tournamentsFolder}/${tournamentId}.json`, false, {
