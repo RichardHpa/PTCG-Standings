@@ -2,12 +2,12 @@
  * Express middleware utilities
  */
 
-import { logApiRequest, logError } from './logger.js';
+import { logApiRequest, logPageView, logError } from './logger.js';
 
 /**
- * Check if a request should be logged (exclude static assets)
+ * Check if a request should be logged as an API request (exclude static assets and SPA routes)
  */
-const shouldLogRequest = url => {
+const shouldLogApiRequest = url => {
   // Don't log static asset requests
   const staticAssetPatterns = [
     /\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|eot)$/i,
@@ -20,7 +20,35 @@ const shouldLogRequest = url => {
     /^\/assets\//,
   ];
 
-  return !staticAssetPatterns.some(pattern => pattern.test(url));
+  // Don't log SPA page view requests (these are handled by the catch-all route)
+  const spaRoutePatterns = [
+    /^\/$/, // Home page
+    /^\/tournaments$/, // Tournaments page
+    /^\/tournament\/\d+$/, // Individual tournament page
+    /^\/about$/, // About page
+    /^\/worlds$/, // Worlds page
+  ];
+
+  // Only log if it's not a static asset AND not a SPA route
+  return (
+    !staticAssetPatterns.some(pattern => pattern.test(url)) &&
+    !spaRoutePatterns.some(pattern => pattern.test(url))
+  );
+};
+
+/**
+ * Check if a request is a page view (SPA route)
+ */
+const isPageView = url => {
+  const pageViewPatterns = [
+    /^\/$/, // Home page
+    /^\/tournaments$/, // Tournaments page
+    /^\/tournament\/\d+$/, // Individual tournament page
+    /^\/about$/, // About page
+    /^\/worlds$/, // Worlds page
+  ];
+
+  return pageViewPatterns.some(pattern => pattern.test(url));
 };
 
 /**
@@ -34,10 +62,16 @@ export const requestTimer = (req, res, next) => {
   res.end = function (...args) {
     const responseTime = Date.now() - start;
     const userAgent = req.get('User-Agent');
+    const ip = req.ip;
 
-    // Only log if it's not a static asset request
-    if (shouldLogRequest(req.originalUrl)) {
+    // Log API requests
+    if (shouldLogApiRequest(req.originalUrl)) {
       logApiRequest(req.method, req.originalUrl, res.statusCode, responseTime, userAgent);
+    }
+
+    // Log page views separately
+    if (isPageView(req.originalUrl)) {
+      logPageView(req.originalUrl, userAgent, ip);
     }
 
     originalEnd.apply(this, args);
