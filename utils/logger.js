@@ -105,6 +105,17 @@ export const logApiRequest = (method, url, statusCode, responseTime, userAgent =
 };
 
 /**
+ * Log page views
+ */
+export const logPageView = (url, userAgent = null, ip = null) => {
+  logInfo('Page View', {
+    url,
+    ...(userAgent && { userAgent }),
+    ...(ip && { ip }),
+  });
+};
+
+/**
  * Log scheduler events
  */
 export const logSchedulerEvent = (schedulerName, event, data = null) => {
