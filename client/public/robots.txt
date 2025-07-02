@@ -1,34 +1,12 @@
-User-agent: *
-Disallow: /
-
-# Block all search engines and bots
+# Example 1: Block only Googlebot
 User-agent: Googlebot
 Disallow: /
 
-User-agent: Bingbot
+# Example 2: Block Googlebot and Adsbot
+User-agent: Googlebot
+User-agent: AdsBot-Google
 Disallow: /
 
-User-agent: Slurp
-Disallow: /
-
-User-agent: DuckDuckBot
-Disallow: /
-
-User-agent: Baiduspider
-Disallow: /
-
-User-agent: YandexBot
-Disallow: /
-
-User-agent: FacebookExternalHit
-Disallow: /
-
-User-agent: Twitterbot
-Disallow: /
-
-User-agent: LinkedInBot
-Disallow: /
-
-# Block all bots
+# Example 3: Block all crawlers except AdsBot (AdsBot crawlers must be named explicitly)
 User-agent: *
-Disallow: / 
+Disallow: /
