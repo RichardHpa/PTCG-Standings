@@ -11,6 +11,7 @@ import { createFolder } from '../../functions/createFolder/index.js';
 import { logErrorWithContext } from '../../utils/apiHelpers.js';
 import { logInfo, logDataOperation, logFileOperation } from '../../utils/logger.js';
 import { cacheControl } from '../../utils/middleware.js';
+import { deduplicateRequest } from '../../utils/requestDeduplication.js';
 
 router.get('/', cacheControl(300), (req, res) => {
   logInfo('🏆 Request for tournaments data');
@@ -66,7 +67,9 @@ router.get('/:tournamentId', async (req, res) => {
   } else {
     logInfo('📁 Tournament file does not exist, fetching data', { tournamentId });
     try {
-      const tournament = await getTournamentData(tournamentId);
+      const tournament = await deduplicateRequest(tournamentId, () =>
+        getTournamentData(tournamentId)
+      );
       if (tournament) {
         res.send(tournament);
       } else {
@@ -125,11 +128,13 @@ router.get('/:tournamentId/:division/rounds/:round', async (req, res) => {
   } else {
     logInfo('📁 Round file does not exist, fetching data', { tournamentId, division, round });
     try {
-      const roundData = await getRoundData({
-        tournamentId,
-        division,
-        round,
-      });
+      const roundData = await deduplicateRequest(`${tournamentId}-${division}-${round}`, () =>
+        getRoundData({
+          tournamentId,
+          division,
+          round,
+        })
+      );
       if (roundData) {
         await createFile(roundData, file);
         res.send(roundData);
