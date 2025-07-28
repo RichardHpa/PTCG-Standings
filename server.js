@@ -30,6 +30,7 @@ import {
   notFoundHandler,
   securityHeaders,
 } from './utils/middleware.js';
+import { getOngoingRequestsCount, getOngoingRequests } from './utils/requestDeduplication.js';
 
 import tournamentsRoutes from './routes/api/tournaments.js';
 
@@ -118,6 +119,10 @@ app.get('/api/health', standardRateLimit, async (req, res) => {
           tournamentsScheduler: tournamentsSchedule.running,
           singleTournamentScheduler: singleTournamentSchedule.running,
           trackedTournaments: tournamentsToTrack.length,
+        },
+        requestDeduplication: {
+          ongoingRequestsCount: getOngoingRequestsCount(),
+          ongoingRequests: getOngoingRequests(),
         },
       },
     };

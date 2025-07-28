@@ -9,5 +9,9 @@ export default [
     plugins: { nodePlugin },
     rules: { 'no-process-env': 'off' },
   },
+  {
+    files: ['**/*.test.js', '**/*.spec.js'],
+    languageOptions: { globals: { ...globals.node, ...globals.jest } },
+  },
   pluginJs.configs.recommended,
 ];
