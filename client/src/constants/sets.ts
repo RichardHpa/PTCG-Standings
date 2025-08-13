@@ -1567,6 +1567,8 @@ type SetCodeMap = {
 };
 
 export const setMap: SetCodeMap = {
+  BLK: 'zsv10pt5',
+  WHT: 'rsv10pt5',
   DRI: 'sv10',
   JTG: 'sv9',
   PRE: 'sv8pt5',

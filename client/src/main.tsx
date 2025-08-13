@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
   Navigate,
-  Outlet,
+  // Outlet,
 } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ReactGA from 'react-ga4';
@@ -32,7 +32,9 @@ import {
   PlayerOutlet,
   Decklist,
 } from 'pages/Tournament/Division/Player';
-import { Worlds2024Outlet, Qualified } from 'pages/Worlds/Worlds2024';
+import { Expansions } from 'pages/Expansions';
+import { ExpansionDetail, CardDetail } from 'pages/Expansions';
+// import { Worlds2024Outlet, Qualified } from 'pages/Worlds/Worlds2024';
 // import { Shutdown } from 'pages/Shutdown';
 
 import { LoadingPokeball } from 'components/LoadingPokeball';
@@ -79,35 +81,35 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'about', element: <About /> },
-      {
-        path: 'worlds',
-        element: <Outlet />,
-        children: [
-          {
-            path: '2024',
-            element: <Worlds2024Outlet />,
-            children: [
-              { index: true, element: <Navigate to="standings" replace /> },
-              {
-                path: 'standings',
-                element: <DivisionOutlet />,
-                children: [
-                  { index: true, element: <Standings /> },
-                  { path: ':division', element: <Standings /> },
-                ],
-              },
-              {
-                path: 'qualified',
-                element: <DivisionOutlet />,
-                children: [
-                  { index: true, element: <Qualified /> },
-                  { path: ':division', element: <Qualified /> },
-                ],
-              },
-            ],
-          },
-        ],
-      },
+      // {
+      //   path: 'worlds',
+      //   element: <Outlet />,
+      //   children: [
+      //     {
+      //       path: '2024',
+      //       element: <Worlds2024Outlet />,
+      //       children: [
+      //         { index: true, element: <Navigate to="standings" replace /> },
+      //         {
+      //           path: 'standings',
+      //           element: <DivisionOutlet />,
+      //           children: [
+      //             { index: true, element: <Standings /> },
+      //             { path: ':division', element: <Standings /> },
+      //           ],
+      //         },
+      //         {
+      //           path: 'qualified',
+      //           element: <DivisionOutlet />,
+      //           children: [
+      //             { index: true, element: <Qualified /> },
+      //             { path: ':division', element: <Qualified /> },
+      //           ],
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // },
       {
         path: 'tournaments',
         children: [
@@ -204,6 +206,14 @@ const router = createBrowserRouter([
               },
             ],
           },
+        ],
+      },
+      {
+        path: 'expansions',
+        children: [
+          { index: true, element: <Expansions /> },
+          { path: ':expansionId', element: <ExpansionDetail /> },
+          { path: ':expansionId/cards/:cardId', element: <CardDetail /> },
         ],
       },
     ],

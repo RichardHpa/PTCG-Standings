@@ -26,8 +26,6 @@ describe('Navbar', () => {
 
   test('renders Navigation links', () => {
     render(<Navbar />);
-    const worlds2024 = screen.getByRole('button', { name: 'Worlds 2024' });
-    expect(worlds2024).toBeInTheDocument();
     const about = screen.getByRole('link', { name: 'About' });
     expect(about).toBeInTheDocument();
     const tournaments = screen.getByRole('link', { name: 'Tournaments' });
