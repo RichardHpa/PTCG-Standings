@@ -6,6 +6,7 @@ import { Select } from 'components/Forms/Select';
 import { Card } from 'components/Card';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import { useEffect, useRef, useMemo, useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import type { ChangeEvent } from 'react';
 
@@ -355,8 +356,9 @@ export const ExpansionCards = ({
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {filteredCards.map(card => (
-          <div
+          <Link
             key={card.id}
+            to={`/expansions/${setId}/cards/${card.id}`}
             className="group cursor-pointer rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
           >
             <div className="aspect-[2.5/3.5] overflow-hidden rounded-t-lg">
@@ -371,15 +373,19 @@ export const ExpansionCards = ({
               />
             </div>
             <div className="p-3">
-              <h3 className="mb-1 line-clamp-2 text-sm font-semibold text-gray-900 dark:text-white">
+              <h3 className="mb-1 text-sm font-medium text-gray-900 dark:text-white">
                 {card.name}
               </h3>
-              <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
-                <span>#{card.number}</span>
-                <span className="capitalize">{card.rarity}</span>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  #{card.number}
+                </span>
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  {card.rarity}
+                </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 

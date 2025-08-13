@@ -7,6 +7,7 @@ export interface Card {
   hp?: string;
   types: string[];
   evolvesFrom?: string;
+  abilities?: Ability[];
   attacks: Attack[];
   weaknesses?: Weakness[];
   resistances?: Resistance[];
@@ -22,6 +23,12 @@ export interface Card {
   images: CardImages;
   tcgplayer?: TCGPlayer;
   cardmarket?: CardMarket;
+}
+
+export interface Ability {
+  name: string;
+  text: string;
+  type?: string;
 }
 
 export interface Attack {

@@ -113,11 +113,6 @@ export const Navbar = () => {
                     <Button color="secondary">Worlds 2024</Button>
                   </Link>
                 </li> */}
-                <li className="order-4 lg:order-1">
-                  <NavLink to="expansions" onClick={onNavItemClick}>
-                    Sets
-                  </NavLink>
-                </li>
                 <li className="order-2 lg:order-2">
                   <NavLink to="about" onClick={onNavItemClick}>
                     About
@@ -126,6 +121,11 @@ export const Navbar = () => {
                 <li className="order-3 lg:order-3">
                   <NavLink to="tournaments" onClick={onNavItemClick}>
                     Tournaments
+                  </NavLink>
+                </li>
+                <li className="order-4 lg:order-4">
+                  <NavLink to="expansions" onClick={onNavItemClick}>
+                    Sets
                   </NavLink>
                 </li>
                 <li className="order-5 lg:order-4">

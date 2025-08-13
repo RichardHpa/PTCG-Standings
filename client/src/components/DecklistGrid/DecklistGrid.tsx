@@ -1,5 +1,6 @@
 import { useMemo, useState, useCallback } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Link } from 'react-router-dom';
 
 import { setMap } from 'constants/sets';
 
@@ -88,7 +89,7 @@ export const DecklistGrid: FC<DecklistGridProps> = ({ decklist }) => {
   const [copied, setCopied] = useState(false);
 
   const { formattedCards, listAsString } = useGetDecklist(decklist);
-
+  console.log(formattedCards);
   const handleOnCopy = useCallback(() => {
     setCopied(true);
     setTimeout(() => {
@@ -97,26 +98,51 @@ export const DecklistGrid: FC<DecklistGridProps> = ({ decklist }) => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-4">
-      <div>
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Decklist ({formattedCards.length} cards)
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Click on any card to view details
+          </p>
+        </div>
         <CopyToClipboard text={listAsString} onCopy={handleOnCopy}>
           <Button>{copied ? 'Copied!' : 'Copy Decklist'}</Button>
         </CopyToClipboard>
       </div>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-8">
+
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
         {formattedCards.map(card => (
-          <div
+          <Link
             key={`${card.name}-${card.set}-${card.number}`}
-            className="relative aspect-[2.5/3.5] w-full"
+            to={`/expansions/${setMap[card.set] || card.set.toLowerCase()}/cards/${setMap[card.set]}-${card.number}`}
+            className="group relative aspect-[2.5/3.5] w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
           >
             <CardImage src={card.image} alt={card.name} />
 
-            <div className="absolute bottom-0 right-0 m-2 inline-flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600">
-              <span className="font-medium text-gray-600 dark:text-gray-300">
+            {/* Card count badge */}
+            <div className="absolute bottom-1 right-1 inline-flex h-6 w-6 items-center justify-center overflow-hidden rounded-full bg-white/90 shadow-sm dark:bg-gray-800/90">
+              <span className="text-xs font-semibold text-gray-900 dark:text-white">
                 {card.count}
               </span>
             </div>
-          </div>
+
+            {/* Hover overlay with card name */}
+            <div className="absolute inset-0 bg-black/0 transition-all duration-200 group-hover:bg-black/60">
+              <div className="flex h-full items-end p-2 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                <div className="text-center">
+                  <p className="text-xs font-medium text-white drop-shadow-lg">
+                    {card.name}
+                  </p>
+                  <p className="text-xs text-gray-200 drop-shadow-lg">
+                    {card.set} #{card.number}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
