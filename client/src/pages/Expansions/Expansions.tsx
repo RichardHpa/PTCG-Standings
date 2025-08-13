@@ -1,6 +1,15 @@
 import { useGetExpansions } from 'queries/useGetExpansions';
 import { Heading } from 'components/Heading';
 import { Paragraph } from 'components/Paragraph';
+import { Input } from 'components/Forms/Input';
+import { Select } from 'components/Forms/Select';
+import { Card } from 'components/Card';
+import { LoadingPokeball } from 'components/LoadingPokeball';
+import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
+import { useMemo, useCallback, useState } from 'react';
+import Fuse from 'fuse.js';
+
+import type { ChangeEvent } from 'react';
 import type { Expansion } from 'types/expansions';
 
 interface GroupedExpansions {
@@ -8,6 +17,10 @@ interface GroupedExpansions {
 }
 
 export const Expansions = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
+  const [selectedSeries, setSelectedSeries] = useState<string>('all');
+
   const { data, isLoading, error, refetch } =
     useGetExpansions<GroupedExpansions>({
       select: data => {
@@ -31,10 +44,118 @@ export const Expansions = () => {
       },
     });
 
+  const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+  }, []);
+
+  const handleSortChange = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+    setSortOrder(e.target.value as 'newest' | 'oldest');
+  }, []);
+
+  const handleSeriesChange = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      setSelectedSeries(e.target.value);
+    },
+    [],
+  );
+
+  // Get unique series for the filter dropdown, sorted by release date
+  const availableSeries = useMemo(() => {
+    if (!data) return [];
+
+    // Sort series by release date of their first expansion
+    const sortedSeries = Object.entries(data).sort(
+      ([, expansionsA], [, expansionsB]) => {
+        if (expansionsA.length === 0 || expansionsB.length === 0) return 0;
+
+        const firstExpansionA = expansionsA[0];
+        const firstExpansionB = expansionsB[0];
+
+        const dateA = new Date(firstExpansionA.releaseDate).getTime();
+        const dateB = new Date(firstExpansionB.releaseDate).getTime();
+
+        // Default to newest first (oldest series first) for the dropdown
+        return dateA - dateB;
+      },
+    );
+
+    return sortedSeries.map(([series]) => series);
+  }, [data]);
+
+  const filteredAndSortedData = useMemo(() => {
+    if (!data) return {};
+
+    let filteredData = { ...data };
+
+    // Apply series filter
+    if (selectedSeries !== 'all') {
+      filteredData = { [selectedSeries]: data[selectedSeries] };
+    }
+
+    // Apply search filter
+    if (searchQuery) {
+      const fuse = new Fuse(Object.values(filteredData).flat(), {
+        shouldSort: true,
+        threshold: 0.3,
+        location: 0,
+        distance: 100,
+        keys: ['name', 'series'],
+        isCaseSensitive: false,
+      });
+
+      const searchResults = fuse.search(searchQuery);
+      const matchedExpansions = searchResults.map(result => result.item);
+
+      // Re-group search results by series
+      filteredData = matchedExpansions.reduce(
+        (groups: GroupedExpansions, expansion: Expansion) => {
+          const series = expansion.series;
+          if (!groups[series]) {
+            groups[series] = [];
+          }
+          groups[series].push(expansion);
+          return groups;
+        },
+        {},
+      );
+    }
+
+    // Sort series by release date of their first expansion
+    const sortedData: GroupedExpansions = {};
+    const sortedSeries = Object.entries(filteredData).sort(
+      ([, expansionsA], [, expansionsB]) => {
+        if (expansionsA.length === 0 || expansionsB.length === 0) return 0;
+
+        const firstExpansionA = expansionsA[0];
+        const firstExpansionB = expansionsB[0];
+
+        const dateA = new Date(firstExpansionA.releaseDate).getTime();
+        const dateB = new Date(firstExpansionB.releaseDate).getTime();
+
+        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+      },
+    );
+
+    // Rebuild the object with sorted series order
+    sortedSeries.forEach(([series, expansions]) => {
+      // Sort expansions within each series by the same release date logic
+      const sortedExpansions = [...expansions].sort((a, b) => {
+        const dateA = new Date(a.releaseDate).getTime();
+        const dateB = new Date(b.releaseDate).getTime();
+        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+      });
+
+      sortedData[series] = sortedExpansions;
+    });
+
+    return sortedData;
+  }, [data, searchQuery, sortOrder, selectedSeries]);
+
   if (isLoading)
     return (
       <div className="flex min-h-64 items-center justify-center">
-        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
+        <LoadingPokeball />
       </div>
     );
 
@@ -105,9 +226,57 @@ export const Expansions = () => {
         </p>
       </div>
 
+      {/* Filters Section */}
+      <section className="mb-8 bg-gray-50 dark:bg-gray-900">
+        <Card>
+          <div className="flex flex-col flex-wrap justify-start gap-4 p-4 md:flex-row">
+            <div className="w-full md:w-1/3">
+              <Input
+                name="search"
+                label="Search expansions"
+                placeholder="Search expansions by name or series"
+                hideLabel
+                onChange={handleSearch}
+                icon={<MagnifyingGlassIcon />}
+                value={searchQuery}
+              />
+            </div>
+            <div className="w-full md:w-1/4">
+              <Select
+                name="sort"
+                label="Sort by release date"
+                hideLabel
+                options={[
+                  { value: 'newest', label: 'Newest First' },
+                  { value: 'oldest', label: 'Oldest First' },
+                ]}
+                value={sortOrder}
+                onChange={handleSortChange}
+              />
+            </div>
+            <div className="w-full md:w-1/4">
+              <Select
+                name="series"
+                label="Filter by series"
+                hideLabel
+                options={[
+                  { value: 'all', label: 'All Series' },
+                  ...availableSeries.map(series => ({
+                    value: series,
+                    label: series,
+                  })),
+                ]}
+                value={selectedSeries}
+                onChange={handleSeriesChange}
+              />
+            </div>
+          </div>
+        </Card>
+      </section>
+
       <div className="space-y-8">
-        {data &&
-          Object.entries(data).map(([series, expansions]) => {
+        {filteredAndSortedData &&
+          Object.entries(filteredAndSortedData).map(([series, expansions]) => {
             console.log(
               'Processing series:',
               series,
@@ -202,10 +371,13 @@ export const Expansions = () => {
           })}
       </div>
 
-      {(!data || Object.keys(data).length === 0) && (
+      {(!filteredAndSortedData ||
+        Object.keys(filteredAndSortedData).length === 0) && (
         <div className="py-12 text-center">
           <p className="text-lg text-gray-500 dark:text-gray-400">
-            No expansions found
+            {searchQuery
+              ? 'No expansions found matching your search'
+              : 'No expansions found'}
           </p>
         </div>
       )}
