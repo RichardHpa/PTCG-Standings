@@ -29,6 +29,9 @@ import round15 from 'mocks/fixtures/rounds/0000109/masters/15.json';
 import round16 from 'mocks/fixtures/rounds/0000109/masters/16.json';
 import round17 from 'mocks/fixtures/rounds/0000109/masters/17.json';
 
+import { expansionsUrl } from 'api/getExpansions';
+import { expansions } from 'mocks/fixtures/expansions';
+
 export const handlers = [
   http.get('/api/tournaments', () => {
     // need to sort the tournaments by tournament.date.start
@@ -157,4 +160,8 @@ export const handlers = [
       });
     },
   ),
+
+  http.get(expansionsUrl, () => {
+    return HttpResponse.json(expansions);
+  }),
 ];
