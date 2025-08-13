@@ -1,4 +1,6 @@
-export const expansions = {
+import type { ExpansionsApiResponse } from 'types/expansions';
+
+export const expansions: ExpansionsApiResponse = {
   data: [
     {
       id: 'base1',

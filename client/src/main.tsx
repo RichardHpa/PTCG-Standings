@@ -33,6 +33,7 @@ import {
   Decklist,
 } from 'pages/Tournament/Division/Player';
 import { Expansions } from 'pages/Expansions';
+import { ExpansionDetail } from 'pages/Expansions';
 // import { Worlds2024Outlet, Qualified } from 'pages/Worlds/Worlds2024';
 // import { Shutdown } from 'pages/Shutdown';
 
@@ -209,7 +210,10 @@ const router = createBrowserRouter([
       },
       {
         path: 'expansions',
-        element: <Expansions />,
+        children: [
+          { index: true, element: <Expansions /> },
+          { path: ':expansionId', element: <ExpansionDetail /> },
+        ],
       },
     ],
   },
