@@ -285,17 +285,47 @@ const tournamentsSchedule = cron.schedule(
 const initialSetup = async () => {
   logInfo('Initial Setup');
   await createFolder(tournamentsFolder);
-  // await createFolder(roundsFolder); // TODO: this isnt being used yet so lets just comment it out for now
 
   if (!process.argv.includes('--local')) {
+    let dataToProcess = null;
     try {
-      const tournamentsData = await getTournamentsData();
-      if (!tournamentsData) {
-        logInfo('Failed to fetch initial tournaments data, skipping tournament tracking setup');
+      // test and error
+      throw new Error('test error');
+      // const tournamentsData = await getTournamentsData();
+      // if (!tournamentsData) {
+      //   logInfo('Failed to fetch initial tournaments data, checking for existing tournaments file');
+      // }
+    } catch (error) {
+      logInfo('Error fetching tournaments data, checking for existing tournaments file');
+
+      // check to see if there is a tournament.json file in the tournaments folder
+      const tournamentsFile = `${baseFolder}/tournaments.json`;
+      if (fs.existsSync(tournamentsFile)) {
+        logInfo('Tournaments file exists, using existing data for setup');
+        try {
+          dataToProcess = JSON.parse(fs.readFileSync(tournamentsFile, 'utf8'));
+          logInfo('Local tournaments file read successfully');
+        } catch (fileError) {
+          logError('Error reading tournaments file', fileError);
+          const isCritical = logErrorWithContext(error, 'initialSetup');
+          if (isCritical) {
+            logError('Critical error during initial setup, application may not function properly');
+          }
+          return;
+        }
+      } else {
+        logInfo('No tournaments file found, skipping tournament tracking setup');
+        const isCritical = logErrorWithContext(error, 'initialSetup');
+        if (isCritical) {
+          logError('Critical error during initial setup, application may not function properly');
+        }
         return;
       }
+    }
 
-      const runningTournamentsData = await checkRunningTournaments(tournamentsData);
+    // Continue with setup if we have data (either from API or existing file)
+    if (dataToProcess) {
+      const runningTournamentsData = await checkRunningTournaments(dataToProcess);
       tournamentsToTrack = [...runningTournamentsData];
 
       const runningTournamentIds = runningTournamentsData.map(tournament => tournament.id);
@@ -321,11 +351,6 @@ const initialSetup = async () => {
           singleTournamentSchedulerRunning = true;
           singleTournamentSchedule.start();
         }
-      }
-    } catch (error) {
-      const isCritical = logErrorWithContext(error, 'initialSetup');
-      if (isCritical) {
-        logError('Critical error during initial setup, application may not function properly');
       }
     }
   }

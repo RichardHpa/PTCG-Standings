@@ -19,7 +19,6 @@ export const getTournamentsData = async () => {
 
   try {
     const data = await fetchWithRetry(basePokeDataApiTournamentsUrl);
-
     if (!data) {
       logInfo('📭 Empty data returned for tournaments');
       return null;
