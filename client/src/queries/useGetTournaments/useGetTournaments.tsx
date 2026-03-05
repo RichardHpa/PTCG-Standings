@@ -43,5 +43,6 @@ export function useGetTournaments<TData = TournamentsApiResponse>({
     queryKey: useGetTournamentsKey(),
     queryFn: getTournaments,
     select: select,
+    staleTime: 5 * 60 * 1000,
   });
 }

@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
@@ -47,20 +47,20 @@ export const Tournaments = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const responsive = useResponsive();
-  const isMobile = useMemo(() => responsive.md === false, [responsive]);
+  const isMobile = responsive.md === false;
 
   const [selectedTournamentType, setSelectedTournamentType] = useState(
     tournamentTypeOptions[0].value,
   );
-  const [allTournaments, setAllTournaments] = useState<Tournament[]>([]);
 
   const { isPending, data, isError } = useGetTournaments({
     select: selectTournamentsByStatus,
   });
 
-  useEffect(() => {
-    setAllTournaments(data?.otherTournaments ?? []);
-  }, [data?.otherTournaments]);
+  const allTournaments = useMemo(
+    () => data?.otherTournaments ?? [],
+    [data?.otherTournaments],
+  );
 
   const columns: ColumnProps<Tournament>[] = useMemo(() => {
     return [
@@ -121,38 +121,31 @@ export const Tournaments = () => {
     [],
   );
 
+  const filteredByType = useMemo(() => {
+    if (selectedTournamentType === 'all') return allTournaments;
+    return allTournaments.filter(tournament =>
+      tournament.name.toLowerCase().includes(selectedTournamentType),
+    );
+  }, [allTournaments, selectedTournamentType]);
+
+  const tournamentsFuse = useMemo(
+    () =>
+      new Fuse(filteredByType, {
+        shouldSort: true,
+        threshold: 0.1,
+        location: 0,
+        distance: 100,
+        keys: ['name'],
+        isCaseSensitive: false,
+      }),
+    [filteredByType],
+  );
+
   const filteredTournaments = useMemo(() => {
-    if (!searchQuery && selectedTournamentType === 'all') return allTournaments;
-
-    const filteredByType =
-      selectedTournamentType === 'all'
-        ? allTournaments
-        : allTournaments.filter(tournament =>
-            tournament.name.toLowerCase().includes(selectedTournamentType),
-          );
-
     if (!searchQuery) return filteredByType;
-
-    const fuse = new Fuse(filteredByType, {
-      shouldSort: true,
-      threshold: 0.1,
-      location: 0,
-      distance: 100,
-      keys: ['name'],
-      isCaseSensitive: false,
-    });
-
-    const result = fuse.search(searchQuery);
-    const finalResult: Tournament[] = [];
-    if (result.length) {
-      result.forEach(item => {
-        finalResult.push(item.item);
-      });
-      return finalResult;
-    }
-
-    return [];
-  }, [searchQuery, allTournaments, selectedTournamentType]);
+    const result = tournamentsFuse.search(searchQuery);
+    return result.map(item => item.item);
+  }, [searchQuery, filteredByType, tournamentsFuse]);
 
   if (isError) {
     // TODO: make error message more user friendly

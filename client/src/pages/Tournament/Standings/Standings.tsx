@@ -27,7 +27,6 @@ import { useSettings, showTableCompactKey } from 'providers/SettingsProvider';
 
 import type { ChangeEvent } from 'react';
 import type { Division } from 'types/divisions';
-import type { Standing } from 'types/standing';
 
 import type { StyledOptionProps } from 'components/Forms/Select/types';
 
@@ -48,7 +47,7 @@ export const Standings = () => {
   );
 
   const responsive = useResponsive();
-  const isMobile = useMemo(() => responsive.md === false, [responsive]);
+  const isMobile = responsive.md === false;
 
   useEffect(() => {
     setSearchQuery('');
@@ -71,14 +70,7 @@ export const Standings = () => {
     setSearchQuery(query);
   }, []);
 
-  const filteredPlayers = useMemo(() => {
-    if (
-      !searchQuery &&
-      selectedCountry === firstCountryOption.value &&
-      selectedArchetype === firstArchetypeOption.value
-    )
-      return standings;
-
+  const filteredByDecklist = useMemo(() => {
     const filteredByType =
       selectedCountry === firstCountryOption.value
         ? standings
@@ -86,39 +78,34 @@ export const Standings = () => {
             player.name.includes(`[${selectedCountry}]`),
           );
 
-    const filteredByDecklist =
-      selectedArchetype === firstArchetypeOption.value
-        ? filteredByType
-        : filteredByType.filter(player => {
-            if (player.archetype === undefined && selectedArchetype === '') {
-              return true;
-            }
+    if (selectedArchetype === firstArchetypeOption.value) return filteredByType;
 
-            return player.archetype === selectedArchetype;
-          });
-
-    if (!searchQuery) return filteredByDecklist;
-
-    const fuse = new Fuse(filteredByDecklist, {
-      shouldSort: true,
-      threshold: 0.1,
-      location: 0,
-      distance: 100,
-      keys: ['name'],
-      isCaseSensitive: false,
+    return filteredByType.filter(player => {
+      if (player.archetype === undefined && selectedArchetype === '') {
+        return true;
+      }
+      return player.archetype === selectedArchetype;
     });
+  }, [standings, selectedCountry, selectedArchetype]);
 
-    const result = fuse.search(searchQuery);
-    const finalResult: Standing[] = [];
-    if (result.length) {
-      result.forEach(item => {
-        finalResult.push(item.item);
-      });
-      return finalResult;
-    }
+  const standingsFuse = useMemo(
+    () =>
+      new Fuse(filteredByDecklist, {
+        shouldSort: true,
+        threshold: 0.1,
+        location: 0,
+        distance: 100,
+        keys: ['name'],
+        isCaseSensitive: false,
+      }),
+    [filteredByDecklist],
+  );
 
-    return [];
-  }, [searchQuery, selectedArchetype, selectedCountry, standings]);
+  const filteredPlayers = useMemo(() => {
+    if (!searchQuery) return filteredByDecklist;
+    const result = standingsFuse.search(searchQuery);
+    return result.map(item => item.item);
+  }, [searchQuery, filteredByDecklist, standingsFuse]);
 
   const handleOnStyledCountryChange = useCallback(
     (e: StyledOptionProps) => {
