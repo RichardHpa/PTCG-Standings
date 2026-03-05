@@ -15,9 +15,12 @@ import { SEO } from 'components/SEO';
 
 import { AdditionalInfo } from 'components/TournamentsCard/components/AdditionalInfo';
 
-import { useGetTournaments } from 'queries/useGetTournaments';
+import {
+  useGetTournaments,
+  selectTournamentsByStatus,
+} from 'queries/useGetTournaments';
 
-import { RUNNING, NOT_STARTED, CHECK_IN } from 'constants/tournamentStatus';
+import { NOT_STARTED, CHECK_IN } from 'constants/tournamentStatus';
 
 import { formatDateFromTimezone } from 'helpers/formatDateFromTimezone';
 import { tw } from 'utils/tailwindClassName';
@@ -52,33 +55,7 @@ export const Tournaments = () => {
   const [allTournaments, setAllTournaments] = useState<Tournament[]>([]);
 
   const { isPending, data, isError } = useGetTournaments({
-    select: data => {
-      const tournaments = data.tcg.data;
-      const runningTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === RUNNING,
-      );
-
-      const upcomingTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === NOT_STARTED,
-      );
-
-      const checkingInTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === CHECK_IN,
-      );
-
-      const otherTournaments = tournaments.filter(
-        tournament =>
-          tournament.tournamentStatus !== RUNNING &&
-          tournament.tournamentStatus !== NOT_STARTED &&
-          tournament.tournamentStatus !== CHECK_IN,
-      );
-      return {
-        checkingInTournaments,
-        upcomingTournaments,
-        runningTournaments,
-        otherTournaments,
-      };
-    },
+    select: selectTournamentsByStatus,
   });
 
   useEffect(() => {

@@ -3,42 +3,14 @@ import { LoadingPokeball } from 'components/LoadingPokeball';
 import { TournamentsCard } from 'components/TournamentsCard';
 import { SEO } from 'components/SEO';
 
-import { useGetTournaments } from 'queries/useGetTournaments';
-
-import { RUNNING, NOT_STARTED, CHECK_IN } from 'constants/tournamentStatus';
+import {
+  useGetTournaments,
+  selectTournamentsByStatus,
+} from 'queries/useGetTournaments';
 
 export const Home = () => {
   const { isPending, data, isError } = useGetTournaments({
-    select: data => {
-      const tournaments = data.tcg.data;
-      const runningTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === RUNNING,
-      );
-
-      const upcomingTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === NOT_STARTED,
-      );
-
-      const checkingInTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === CHECK_IN,
-      );
-
-      const latestTournaments = tournaments
-        .filter(
-          tournament =>
-            tournament.tournamentStatus !== RUNNING &&
-            tournament.tournamentStatus !== NOT_STARTED &&
-            tournament.tournamentStatus !== CHECK_IN,
-        )
-        .slice(0, 5);
-
-      return {
-        upcomingTournaments,
-        runningTournaments,
-        latestTournaments,
-        checkingInTournaments,
-      };
-    },
+    select: selectTournamentsByStatus,
   });
 
   if (isError) {
@@ -85,7 +57,7 @@ export const Home = () => {
         )}
 
         <TournamentsCard
-          tournaments={data.latestTournaments}
+          tournaments={data.otherTournaments.slice(0, 5)}
           title="Latest Tournaments"
         />
       </div>
