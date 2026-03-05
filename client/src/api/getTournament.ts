@@ -2,14 +2,20 @@ import { axios } from 'helpers/axios';
 
 import { tournamentsMap } from 'constants/tournaments';
 
+const pokeDataApiTournamentsUrl =
+  'https://www.pokedata.ovh/apiv2/tcg/division/masters+juniors+seniors/id';
+
 import type { TournamentApiResponse } from 'types/tournament';
 
 export const getTournament = async (
   tournamentId: string,
 ): Promise<TournamentApiResponse> => {
   try {
+    // const response = await axios.get<TournamentApiResponse>(
+    //   `/api/tournaments/${tournamentId}`,
+    // );
     const response = await axios.get<TournamentApiResponse>(
-      `/api/tournaments/${tournamentId}`,
+      `${pokeDataApiTournamentsUrl}/${tournamentId}`,
     );
 
     const localData = tournamentsMap[tournamentId] || {};
