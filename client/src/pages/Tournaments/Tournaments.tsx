@@ -162,7 +162,7 @@ export const Tournaments = () => {
   if (isPending) {
     return (
       <div className="flex flex-col items-center justify-center">
-        <LoadingPokeball size="100" alt="Loading tournament info...</p>" />
+        <LoadingPokeball size="100" alt="Loading tournament info..." />
       </div>
     );
   }

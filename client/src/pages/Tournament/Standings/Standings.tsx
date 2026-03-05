@@ -99,7 +99,7 @@ export const Standings = () => {
 
     if (!searchQuery) return filteredByDecklist;
 
-    const fuse = new Fuse(filteredByType, {
+    const fuse = new Fuse(filteredByDecklist, {
       shouldSort: true,
       threshold: 0.1,
       location: 0,
