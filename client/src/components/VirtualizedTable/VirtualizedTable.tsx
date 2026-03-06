@@ -114,6 +114,7 @@ const WindowVirtualizer = <T,>({
 
   return (
     <div
+      role="rowgroup"
       style={{
         height: `${virtualizer.getTotalSize()}px`,
         width: '100%',
@@ -124,6 +125,7 @@ const WindowVirtualizer = <T,>({
         const row = data[item.index];
         return (
           <div
+            role="row"
             data-index={item.index}
             ref={node => virtualizer.measureElement(node)}
             onClick={() => onRowClick && onRowClick(row)}
@@ -195,6 +197,7 @@ const ContainerVirtualizer = <T,>({
 
   return (
     <div
+      role="rowgroup"
       style={{
         height: `${virtualizer.getTotalSize()}px`,
         width: '100%',
@@ -205,6 +208,7 @@ const ContainerVirtualizer = <T,>({
         const row = data[virtualItem.index];
         return (
           <div
+            role="row"
             data-index={virtualItem.index}
             key={virtualItem.key}
             ref={node => virtualizer.measureElement(node)}
@@ -258,15 +262,17 @@ export const VirtualizedTable = <T,>({
   rowClasses,
 }: VirtualizedTableProps<T>) => {
   return (
-    <div>
+    <div role="table">
       {header !== 'none' && (
         <div
+          role="rowgroup"
           className={clsx(
             tw`w-full text-left text-sm text-gray-500 dark:text-gray-400 rtl:text-right`,
             header === 'sticky' && tw`sticky top-14 z-10`,
           )}
         >
           <div
+            role="row"
             className={clsx(
               tw`flex bg-gray-50 text-xs font-bold uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400`,
               rowClasses,
@@ -279,6 +285,7 @@ export const VirtualizedTable = <T,>({
                   size={column.size}
                   align={column.align}
                   hiddenXs={column.hiddenXs}
+                  role="columnheader"
                 >
                   {column.header}
                 </Column>

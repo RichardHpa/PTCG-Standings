@@ -7,4 +7,5 @@ export interface ColumnProps {
   children: ReactNode;
   classes?: string;
   hiddenXs?: boolean;
+  role?: 'cell' | 'columnheader';
 }
