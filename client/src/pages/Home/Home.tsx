@@ -2,6 +2,7 @@ import { Heading } from 'components/Heading';
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { TournamentsCard } from 'components/TournamentsCard';
 import { SEO } from 'components/SEO';
+import { Notice } from 'components/Notice';
 
 import {
   useGetTournaments,
@@ -14,8 +15,11 @@ export const Home = () => {
   });
 
   if (isError) {
-    // TODO: make error message more user friendly
-    return <p>There was an error fetching the tournaments</p>;
+    return (
+      <Notice status="error">
+        There was an error fetching the tournaments
+      </Notice>
+    );
   }
 
   if (isPending) {

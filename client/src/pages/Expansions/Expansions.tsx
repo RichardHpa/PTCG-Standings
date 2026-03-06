@@ -18,6 +18,9 @@ export interface GroupedExpansions {
   [series: string]: Expansion[];
 }
 
+const getSeriesReleaseDate = (expansions: Expansion[]) =>
+  expansions.length > 0 ? new Date(expansions[0].releaseDate).getTime() : 0;
+
 export const Expansions = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
@@ -42,7 +45,6 @@ export const Expansions = () => {
           {},
         );
 
-        console.log('Grouped expansions:', groupedExpansions);
         return groupedExpansions;
       },
     });
@@ -82,18 +84,8 @@ export const Expansions = () => {
 
     // Sort series by release date of their first expansion
     const sortedSeries = Object.entries(data).sort(
-      ([, expansionsA], [, expansionsB]) => {
-        if (expansionsA.length === 0 || expansionsB.length === 0) return 0;
-
-        const firstExpansionA = expansionsA[0];
-        const firstExpansionB = expansionsB[0];
-
-        const dateA = new Date(firstExpansionA.releaseDate).getTime();
-        const dateB = new Date(firstExpansionB.releaseDate).getTime();
-
-        // Default to newest first (oldest series first) for the dropdown
-        return dateA - dateB;
-      },
+      ([, expansionsA], [, expansionsB]) =>
+        getSeriesReleaseDate(expansionsA) - getSeriesReleaseDate(expansionsB),
     );
 
     return sortedSeries.map(([series]) => series);
@@ -144,10 +136,9 @@ export const Expansions = () => {
     const sortedData: GroupedExpansions = {};
     const sortedSeries = Object.entries(filteredData).sort(
       ([, expansionsA], [, expansionsB]) => {
-        if (expansionsA.length === 0 || expansionsB.length === 0) return 0;
-        const dateA = new Date(expansionsA[0].releaseDate).getTime();
-        const dateB = new Date(expansionsB[0].releaseDate).getTime();
-        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+        const diff =
+          getSeriesReleaseDate(expansionsA) - getSeriesReleaseDate(expansionsB);
+        return sortOrder === 'newest' ? -diff : diff;
       },
     );
 
@@ -321,23 +312,6 @@ export const Expansions = () => {
       <div className="space-y-8">
         {filteredAndSortedData &&
           Object.entries(filteredAndSortedData).map(([series, expansions]) => {
-            console.log(
-              'Processing series:',
-              series,
-              'expansions:',
-              expansions,
-            );
-
-            // Additional safety check
-            if (!expansions || !Array.isArray(expansions)) {
-              console.warn(
-                'Invalid expansions data for series:',
-                series,
-                expansions,
-              );
-              return null; // Skip this series if data is invalid
-            }
-
             return (
               <div key={series} className="space-y-4">
                 {/* Series Header */}

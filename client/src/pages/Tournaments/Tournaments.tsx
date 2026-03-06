@@ -20,6 +20,8 @@ import {
   selectTournamentsByStatus,
 } from 'queries/useGetTournaments';
 
+import { Notice } from 'components/Notice';
+
 import { NOT_STARTED, CHECK_IN } from 'constants/tournamentStatus';
 
 import { formatDateFromTimezone } from 'helpers/formatDateFromTimezone';
@@ -148,8 +150,11 @@ export const Tournaments = () => {
   }, [searchQuery, filteredByType, tournamentsFuse]);
 
   if (isError) {
-    // TODO: make error message more user friendly
-    return <p>There was an error fetching the tournaments</p>;
+    return (
+      <Notice status="error">
+        There was an error fetching the tournaments
+      </Notice>
+    );
   }
 
   if (isPending) {
