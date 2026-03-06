@@ -14,7 +14,7 @@ import type { ChangeEvent } from 'react';
 import type { Expansion } from 'types/expansions';
 import React from 'react';
 
-interface GroupedExpansions {
+export interface GroupedExpansions {
   [series: string]: Expansion[];
 }
 

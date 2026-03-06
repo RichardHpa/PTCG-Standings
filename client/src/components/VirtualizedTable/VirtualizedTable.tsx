@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { useNavigationType } from 'react-router-dom';
 
 import clsx from 'clsx';
@@ -13,13 +14,16 @@ import type { VirtualItem } from '@tanstack/react-virtual';
 import type { NavigationType } from 'react-router-dom';
 
 interface Accessor {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- this actually needs to be any
-  (path: string, object: unknown): any;
+  (path: string, object: unknown): unknown;
 }
 
 const access: Accessor = (path, object) => {
-  // @ts-expect-error -- this is actually fine here as object is unknown
-  return path.split('.').reduce((o, i) => o[i], object);
+  return path
+    .split('.')
+    .reduce(
+      (o: Record<string, unknown>, i) => o[i] as Record<string, unknown>,
+      object as Record<string, unknown>,
+    );
 };
 
 type VirtualizerProps<T> = Pick<
@@ -148,7 +152,9 @@ const WindowVirtualizer = <T,>({
                   align={column.align}
                   hiddenXs={column.hiddenXs}
                 >
-                  {column.render ? column.render(row) : access(column.key, row)}
+                  {column.render
+                    ? column.render(row)
+                    : (access(column.key, row) as ReactNode)}
                 </Column>
               );
             })}
@@ -225,7 +231,9 @@ const ContainerVirtualizer = <T,>({
                   align={column.align}
                   hiddenXs={column.hiddenXs}
                 >
-                  {column.render ? column.render(row) : access(column.key, row)}
+                  {column.render
+                    ? column.render(row)
+                    : (access(column.key, row) as ReactNode)}
                 </Column>
               );
             })}
