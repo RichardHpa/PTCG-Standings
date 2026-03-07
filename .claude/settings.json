@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:limitlesstcg.com)",
+      "WebFetch(domain:play.limitlesstcg.com)"
     ]
   }
 }

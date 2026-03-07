@@ -30,6 +30,17 @@ export const archetypeDefinitions: Record<string, ArchetypeMatchDefinition> = {
     required: [{ type: 'pokemon', name: "Marnie's Grimmsnarl ex" }],
     identifiers: [],
   },
+  grimsnarFroslass: {
+    name: 'Grimmsnarl Froslass',
+    // Two required cards means this beats the generic marniesGrimmsnarl via
+    // tie-break (b) when Froslass is also present.
+    required: [
+      { type: 'pokemon', name: "Marnie's Grimmsnarl ex" },
+      { type: 'pokemon', name: 'Froslass' },
+    ],
+    // Snorunt signals the full Froslass line is present.
+    identifiers: [{ type: 'pokemon', name: 'Snorunt' }],
+  },
   toadscruel: {
     name: 'Toedscruel',
     required: [{ type: 'pokemon', name: 'Toedscruel ex' }],
@@ -54,7 +65,8 @@ export const archetypeDefinitions: Record<string, ArchetypeMatchDefinition> = {
       { type: 'pokemon', name: 'Flareon ex' },
       { type: 'pokemon', name: 'Noctowl' },
     ],
-    identifiers: [],
+    // Hoothoot signals the full Noctowl engine line is present.
+    identifiers: [{ type: 'pokemon', name: 'Hoothoot' }],
   },
   terapagosNocktowl: {
     name: 'Terapagos Noctowl',
@@ -64,7 +76,8 @@ export const archetypeDefinitions: Record<string, ArchetypeMatchDefinition> = {
       { type: 'pokemon', name: 'Terapagos ex' },
       { type: 'pokemon', name: 'Noctowl' },
     ],
-    identifiers: [],
+    // Hoothoot signals the full Noctowl engine line is present.
+    identifiers: [{ type: 'pokemon', name: 'Hoothoot' }],
   },
   zoroarkN: {
     name: "N's Zoroark",
@@ -132,7 +145,32 @@ export const archetypeDefinitions: Record<string, ArchetypeMatchDefinition> = {
       { type: 'pokemon', name: 'Charizard ex' },
       { type: 'pokemon', name: 'Pidgeot ex' },
     ],
-    identifiers: [],
+    // Charmander signals the full Charizard evolution line is present,
+    // meaning Charizard is the primary attacker rather than a splash.
+    identifiers: [{ type: 'pokemon', name: 'Charmander' }],
+  },
+  charizardDusknoir: {
+    name: 'Charizard Dusknoir',
+    required: [
+      { type: 'pokemon', name: 'Charizard ex' },
+      { type: 'pokemon', name: 'Dusknoir' },
+    ],
+    // Charmander signals the full Charizard evolution line is present.
+    identifiers: [{ type: 'pokemon', name: 'Charmander' }],
+  },
+  charizardNoctowl: {
+    name: 'Charizard Noctowl',
+    required: [
+      { type: 'pokemon', name: 'Charizard ex' },
+      { type: 'pokemon', name: 'Noctowl' },
+    ],
+    // Charmander + Hoothoot confirm both the full Charizard evolution line and
+    // the full Noctowl engine line — distinguishing this from terapagosNocktowl
+    // (which splashes Charizard without a full Charmander line).
+    identifiers: [
+      { type: 'pokemon', name: 'Charmander' },
+      { type: 'pokemon', name: 'Hoothoot' },
+    ],
   },
   ragingBolt: {
     name: 'Raging Bolt',
@@ -148,6 +186,16 @@ export const archetypeDefinitions: Record<string, ArchetypeMatchDefinition> = {
       { type: 'pokemon', name: 'Lugia V' },
       { type: 'pokemon', name: 'Lugia VSTAR' },
       { type: 'pokemon', name: 'Archeops' },
+    ],
+    identifiers: [],
+  },
+  gardevorJellicent: {
+    name: 'Gardevoir Jellicent',
+    // Two required cards means this beats the generic gardeviorEx via
+    // tie-break (b) when Jellicent is present.
+    required: [
+      { type: 'pokemon', name: 'Gardevoir ex' },
+      { type: 'pokemon', name: 'Jellicent' },
     ],
     identifiers: [],
   },
@@ -175,7 +223,8 @@ export const archetypeDefinitions: Record<string, ArchetypeMatchDefinition> = {
       { type: 'pokemon', name: 'Charizard ex' },
       { type: 'pokemon', name: 'Bibarel' },
     ],
-    identifiers: [],
+    // Charmander signals the full Charizard evolution line is present.
+    identifiers: [{ type: 'pokemon', name: 'Charmander' }],
   },
   roaringMoon: {
     name: 'Roaring Moon',
@@ -190,6 +239,16 @@ export const archetypeDefinitions: Record<string, ArchetypeMatchDefinition> = {
     required: [
       { type: 'pokemon', name: 'Inteleon VMAX' },
       { type: 'pokemon', name: 'Rapid Strike Urshifu VMAX' },
+    ],
+    identifiers: [],
+  },
+  gholdengoLunatone: {
+    name: 'Gholdengo Lunatone',
+    // Two required cards means this beats the generic gholdengo via
+    // tie-break (b) when Lunatone is present.
+    required: [
+      { type: 'pokemon', name: 'Gholdengo ex' },
+      { type: 'pokemon', name: 'Lunatone' },
     ],
     identifiers: [],
   },
@@ -289,7 +348,8 @@ export const archetypeDefinitions: Record<string, ArchetypeMatchDefinition> = {
       { type: 'pokemon', name: 'Origin Forme Palkia VSTAR' },
       { type: 'pokemon', name: 'Noctowl' },
     ],
-    identifiers: [],
+    // Hoothoot signals the full Noctowl engine line is present.
+    identifiers: [{ type: 'pokemon', name: 'Hoothoot' }],
   },
   terapagosDusknoir: {
     name: 'Terapagos Dusknoir',
@@ -314,10 +374,28 @@ export const archetypeDefinitions: Record<string, ArchetypeMatchDefinition> = {
     ],
     identifiers: [],
   },
+  dragapultDusknoir: {
+    name: 'Dragapult Dusknoir',
+    required: [
+      { type: 'pokemon', name: 'Dragapult ex' },
+      { type: 'pokemon', name: 'Dusknoir' },
+    ],
+    // Dreepy signals the full Dragapult evolution line is present.
+    identifiers: [{ type: 'pokemon', name: 'Dreepy' }],
+  },
+  dragapultPidgeot: {
+    name: 'Dragapult Pidgeot',
+    required: [
+      { type: 'pokemon', name: 'Dragapult ex' },
+      { type: 'pokemon', name: 'Pidgeot ex' },
+    ],
+    // Dreepy signals the full Dragapult evolution line is present.
+    identifiers: [{ type: 'pokemon', name: 'Dreepy' }],
+  },
   dragapultEx: {
     name: 'Dragapult Ex',
     // Generic Dragapult fallback — wins only when no more specific Dragapult
-    // variant (Iron Thorns, Charizard) can be identified.
+    // variant (Iron Thorns, Charizard, Dusknoir, Pidgeot) can be identified.
     required: [{ type: 'pokemon', name: 'Dragapult ex' }],
     identifiers: [],
   },
@@ -349,6 +427,14 @@ export const archetypeDefinitions: Record<string, ArchetypeMatchDefinition> = {
   gougingFire: {
     name: 'Gouging Fire',
     required: [{ type: 'pokemon', name: 'Gouging Fire ex' }],
+    identifiers: [],
+  },
+  alakazamDudunsparce: {
+    name: 'Alakazam Dudunsparce',
+    required: [
+      { type: 'pokemon', name: 'Alakazam ex' },
+      { type: 'pokemon', name: 'Dudunsparce' },
+    ],
     identifiers: [],
   },
 };

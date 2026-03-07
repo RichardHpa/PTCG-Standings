@@ -17,6 +17,12 @@ export const archetypeDisplay: Record<string, ArchetypeDisplayDefinition> = {
       { pokemon: 'Grimmsnarl', sprite: pokemonImageList.grimmsnarl.image },
     ],
   },
+  grimsnarFroslass: {
+    sprites: [
+      { pokemon: 'Grimmsnarl', sprite: pokemonImageList.grimmsnarl.image },
+      { pokemon: 'Froslass', sprite: pokemonImageList.froslass.image },
+    ],
+  },
   toadscruel: {
     sprites: [
       { pokemon: 'Toedscruel', sprite: pokemonImageList.toedscruel.image },
@@ -83,6 +89,18 @@ export const archetypeDisplay: Record<string, ArchetypeDisplayDefinition> = {
       { pokemon: 'Pidgeot', sprite: pokemonImageList.pidgeot.image },
     ],
   },
+  charizardDusknoir: {
+    sprites: [
+      { pokemon: 'Charizard', sprite: pokemonImageList.charizard.image },
+      { pokemon: 'Dusknoir', sprite: pokemonImageList.dusknoir.image },
+    ],
+  },
+  charizardNoctowl: {
+    sprites: [
+      { pokemon: 'Charizard', sprite: pokemonImageList.charizard.image },
+      { pokemon: 'Noctowl', sprite: pokemonImageList.noctowl.image },
+    ],
+  },
   ragingBolt: {
     sprites: [
       { pokemon: 'Raging Bolt', sprite: pokemonImageList['raging-bolt'].image },
@@ -92,6 +110,12 @@ export const archetypeDisplay: Record<string, ArchetypeDisplayDefinition> = {
     sprites: [
       { pokemon: 'Lugia', sprite: pokemonImageList.lugia.image },
       { pokemon: 'Archeops', sprite: pokemonImageList.archeops.image },
+    ],
+  },
+  gardevorJellicent: {
+    sprites: [
+      { pokemon: 'Gardevoir', sprite: pokemonImageList.gardevoir.image },
+      { pokemon: 'Jellicent', sprite: pokemonImageList.jellicent.image },
     ],
   },
   gardeviorEx: {
@@ -132,6 +156,12 @@ export const archetypeDisplay: Record<string, ArchetypeDisplayDefinition> = {
         pokemon: 'Urshifu',
         sprite: pokemonImageList.urshifu.forms!['rapid-gmax'].image,
       },
+    ],
+  },
+  gholdengoLunatone: {
+    sprites: [
+      { pokemon: 'Gholdengo', sprite: pokemonImageList.gholdengo.image },
+      { pokemon: 'Lunatone', sprite: pokemonImageList.lunatone.image },
     ],
   },
   gholdengo: {
@@ -229,6 +259,18 @@ export const archetypeDisplay: Record<string, ArchetypeDisplayDefinition> = {
       { pokemon: 'Charizard', sprite: pokemonImageList.charizard.image },
     ],
   },
+  dragapultDusknoir: {
+    sprites: [
+      { pokemon: 'Dragapult', sprite: pokemonImageList.dragapult.image },
+      { pokemon: 'Dusknoir', sprite: pokemonImageList.dusknoir.image },
+    ],
+  },
+  dragapultPidgeot: {
+    sprites: [
+      { pokemon: 'Dragapult', sprite: pokemonImageList.dragapult.image },
+      { pokemon: 'Pidgeot', sprite: pokemonImageList.pidgeot.image },
+    ],
+  },
   dragapultEx: {
     sprites: [
       { pokemon: 'Dragapult', sprite: pokemonImageList.dragapult.image },
@@ -265,6 +307,12 @@ export const archetypeDisplay: Record<string, ArchetypeDisplayDefinition> = {
         pokemon: 'Gouging Fire',
         sprite: pokemonImageList['gouging-fire'].image,
       },
+    ],
+  },
+  alakazamDudunsparce: {
+    sprites: [
+      { pokemon: 'Alakazam', sprite: pokemonImageList.alakazam.image },
+      { pokemon: 'Dudunsparce', sprite: pokemonImageList.dudunsparce.image },
     ],
   },
 };

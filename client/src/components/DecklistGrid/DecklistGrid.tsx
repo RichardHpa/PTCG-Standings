@@ -12,6 +12,7 @@ import type { DecklistGridProps } from './types';
 import type { DeckList, PokemonCard } from 'types/standing';
 
 const getImageUrl = (card: PokemonCard) => {
+  console.log(card);
   let setCode = setMap[card.set] || card.set.toLowerCase();
   let number = card.number;
 
