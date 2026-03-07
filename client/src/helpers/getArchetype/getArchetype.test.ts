@@ -30,14 +30,14 @@ describe('getArchetype', () => {
 
     expect(archetype1).toStrictEqual({
       name: 'Lost zone box',
-      color: undefined,
+      chartColor: undefined,
       sprites: [{ pokemon: 'Comfey', sprite: '764.png' }],
       key: 'lostZoneBox',
     });
 
     expect(archetype2).toStrictEqual({
       name: 'Charizard Pidgeot',
-      color: undefined,
+      chartColor: undefined,
       sprites: [
         { pokemon: 'Charizard', sprite: '6.png' },
         { pokemon: 'Pidgeot', sprite: '18.png' },
@@ -61,7 +61,7 @@ describe('getArchetype', () => {
     const archetype = getArchetype(unkonwnDecklist);
     expect(archetype).toStrictEqual({
       name: 'Unknown',
-      color: 'lightgrey',
+      chartColor: 'lightgrey',
       sprites: [
         {
           pokemon: 'unknown',
