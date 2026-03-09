@@ -44,7 +44,10 @@ const OfficialDeckAnalysis = ({
           if (!imageUrl) return null; // If the URL is not available, return null
           return (
             <Card key={index} title={breakCamelCase(key)}>
-              <img src={`/deckAnalysis/${tournament.id}/${imageUrl}`} />
+              <img
+                src={`/deckAnalysis/${tournament.id}/${imageUrl}`}
+                alt={breakCamelCase(key)}
+              />
             </Card>
           );
         })}

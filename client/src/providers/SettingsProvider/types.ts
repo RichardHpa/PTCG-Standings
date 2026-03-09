@@ -2,4 +2,4 @@ export interface Settings {
   standingsTableCompact: boolean;
 }
 
-export type SettingsKeys = 'standingsTableCompact';
+export type SettingsKeys = keyof Settings;

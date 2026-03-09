@@ -14,9 +14,12 @@ import type { ChangeEvent } from 'react';
 import type { Expansion } from 'types/expansions';
 import React from 'react';
 
-interface GroupedExpansions {
+export interface GroupedExpansions {
   [series: string]: Expansion[];
 }
+
+const getSeriesReleaseDate = (expansions: Expansion[]) =>
+  expansions.length > 0 ? new Date(expansions[0].releaseDate).getTime() : 0;
 
 export const Expansions = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,7 +45,6 @@ export const Expansions = () => {
           {},
         );
 
-        console.log('Grouped expansions:', groupedExpansions);
         return groupedExpansions;
       },
     });
@@ -82,48 +84,42 @@ export const Expansions = () => {
 
     // Sort series by release date of their first expansion
     const sortedSeries = Object.entries(data).sort(
-      ([, expansionsA], [, expansionsB]) => {
-        if (expansionsA.length === 0 || expansionsB.length === 0) return 0;
-
-        const firstExpansionA = expansionsA[0];
-        const firstExpansionB = expansionsB[0];
-
-        const dateA = new Date(firstExpansionA.releaseDate).getTime();
-        const dateB = new Date(firstExpansionB.releaseDate).getTime();
-
-        // Default to newest first (oldest series first) for the dropdown
-        return dateA - dateB;
-      },
+      ([, expansionsA], [, expansionsB]) =>
+        getSeriesReleaseDate(expansionsA) - getSeriesReleaseDate(expansionsB),
     );
 
     return sortedSeries.map(([series]) => series);
   }, [data]);
 
-  const filteredAndSortedData = useMemo(() => {
+  const filteredBySeries = useMemo(() => {
     if (!data) return {};
-
-    let filteredData = { ...data };
-
-    // Apply series filter
     if (selectedSeries !== 'all') {
-      filteredData = { [selectedSeries]: data[selectedSeries] };
+      return { [selectedSeries]: data[selectedSeries] };
     }
+    return { ...data };
+  }, [data, selectedSeries]);
 
-    // Apply search filter
-    if (searchQuery) {
-      const fuse = new Fuse(Object.values(filteredData).flat(), {
+  const expansionsFuse = useMemo(
+    () =>
+      new Fuse(Object.values(filteredBySeries).flat(), {
         shouldSort: true,
         threshold: 0.3,
         location: 0,
         distance: 100,
         keys: ['name', 'series'],
         isCaseSensitive: false,
-      });
+      }),
+    [filteredBySeries],
+  );
 
-      const searchResults = fuse.search(searchQuery);
-      const matchedExpansions = searchResults.map(result => result.item);
+  const filteredAndSortedData = useMemo(() => {
+    let filteredData = filteredBySeries;
 
-      // Re-group search results by series
+    if (searchQuery) {
+      const matchedExpansions = expansionsFuse
+        .search(searchQuery)
+        .map(result => result.item);
+
       filteredData = matchedExpansions.reduce(
         (groups: GroupedExpansions, expansion: Expansion) => {
           const series = expansion.series;
@@ -137,36 +133,25 @@ export const Expansions = () => {
       );
     }
 
-    // Sort series by release date of their first expansion
     const sortedData: GroupedExpansions = {};
     const sortedSeries = Object.entries(filteredData).sort(
       ([, expansionsA], [, expansionsB]) => {
-        if (expansionsA.length === 0 || expansionsB.length === 0) return 0;
-
-        const firstExpansionA = expansionsA[0];
-        const firstExpansionB = expansionsB[0];
-
-        const dateA = new Date(firstExpansionA.releaseDate).getTime();
-        const dateB = new Date(firstExpansionB.releaseDate).getTime();
-
-        return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+        const diff =
+          getSeriesReleaseDate(expansionsA) - getSeriesReleaseDate(expansionsB);
+        return sortOrder === 'newest' ? -diff : diff;
       },
     );
 
-    // Rebuild the object with sorted series order
     sortedSeries.forEach(([series, expansions]) => {
-      // Sort expansions within each series by the same release date logic
-      const sortedExpansions = [...expansions].sort((a, b) => {
+      sortedData[series] = [...expansions].sort((a, b) => {
         const dateA = new Date(a.releaseDate).getTime();
         const dateB = new Date(b.releaseDate).getTime();
         return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
       });
-
-      sortedData[series] = sortedExpansions;
     });
 
     return sortedData;
-  }, [data, searchQuery, sortOrder, selectedSeries]);
+  }, [filteredBySeries, expansionsFuse, searchQuery, sortOrder]);
 
   if (isLoading)
     return (
@@ -327,23 +312,6 @@ export const Expansions = () => {
       <div className="space-y-8">
         {filteredAndSortedData &&
           Object.entries(filteredAndSortedData).map(([series, expansions]) => {
-            console.log(
-              'Processing series:',
-              series,
-              'expansions:',
-              expansions,
-            );
-
-            // Additional safety check
-            if (!expansions || !Array.isArray(expansions)) {
-              console.warn(
-                'Invalid expansions data for series:',
-                series,
-                expansions,
-              );
-              return null; // Skip this series if data is invalid
-            }
-
             return (
               <div key={series} className="space-y-4">
                 {/* Series Header */}

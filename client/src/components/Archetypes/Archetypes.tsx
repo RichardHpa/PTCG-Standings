@@ -1,6 +1,9 @@
 import clsx from 'clsx';
 
-import { archetypesListObject } from 'constants/archetypes';
+import {
+  archetypeDefinitionsObject,
+  unknownArchetype,
+} from 'constants/archetypes';
 
 import type { ArchetypesProps } from './types';
 
@@ -37,8 +40,8 @@ export const Archetypes: FC<ArchetypesProps> = ({
   onClick,
   size = 'large',
 }) => {
-  const foundArchetype = archetypesListObject[archetype];
-  if (!foundArchetype) return null;
+  const foundArchetype =
+    archetypeDefinitionsObject[archetype] ?? unknownArchetype;
 
   return (
     <div className="flex" onClick={onClick}>

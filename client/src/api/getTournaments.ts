@@ -4,10 +4,17 @@ import { tournamentsMap } from 'constants/tournaments';
 
 import type { TournamentsApiResponse } from 'types/tournament';
 
+const pokeDataApiTournamentsUrl =
+  'https://www.pokedata.ovh/apiv2/tcg/tournaments';
+
 export const getTournaments = async (): Promise<TournamentsApiResponse> => {
   try {
-    const response =
-      await axios.get<TournamentsApiResponse>('/api/tournaments');
+    // const response =
+    //   await axios.get<TournamentsApiResponse>('/api/tournaments');
+
+    const response = await axios.get<TournamentsApiResponse>(
+      pokeDataApiTournamentsUrl,
+    );
 
     const tournaments = response.data.tcg.data;
     const reversedTournaments = tournaments.reverse();

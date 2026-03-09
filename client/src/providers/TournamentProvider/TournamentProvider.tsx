@@ -7,6 +7,8 @@ import { Notice } from 'components/Notice';
 
 import { getArchetype } from 'helpers/getArchetype';
 
+import { quirkyTournamentErrorMessages } from 'constants/errorMessages';
+
 import type { ReactNode } from 'react';
 import type { TournamentContextProps } from './types';
 import type { TournamentData } from 'types/tournament';
@@ -23,16 +25,6 @@ export const useTournamentContext = () => {
 
   return currentTournament;
 };
-
-const quirkyErrorMessage = [
-  "Looks like Jigglypuff's lullaby put the servers to sleep! We couldn't retrieve the tournament details. Give it another try—hopefully no one's snoozing next time!",
-  "Uh-oh, Snorlax is blocking the path! We couldn't fetch the tournament info. Try again later—maybe with a Poké Flute!",
-  "It seems Team Rocket is up to no good again! The tournament details are out of reach. But don't worry, we'll blast them off next time!",
-  "It's a wild Pokémon! The tournament details are missing. But don't worry, we'll catch 'em all next time!",
-  "Charmander's tail flame might have burned the cables! The tournament info is missing. Give it another shot before things get too toasty!",
-  "Looks like Ditto transformed into an error! We can't find the tournament data right now. Retry soon—it might change back!",
-  "Magikarp is splashing around in the system, and nothing happened! We couldn't load the tournament info. Maybe try a stronger move?",
-];
 
 export const TournamentContextProvider = ({
   children,
@@ -94,8 +86,8 @@ export const TournamentContextProvider = ({
     return (
       <Notice status="error">
         {
-          quirkyErrorMessage[
-            Math.floor(Math.random() * quirkyErrorMessage.length)
+          quirkyTournamentErrorMessages[
+            Math.floor(Math.random() * quirkyTournamentErrorMessages.length)
           ]
         }
       </Notice>

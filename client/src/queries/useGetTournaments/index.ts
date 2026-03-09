@@ -1,1 +1,5 @@
-export { useGetTournaments, useGetTournamentsKey } from './useGetTournaments';
+export {
+  useGetTournaments,
+  useGetTournamentsKey,
+  selectTournamentsByStatus,
+} from './useGetTournaments';

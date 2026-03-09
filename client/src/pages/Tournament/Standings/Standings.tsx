@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useState, useEffect } from 'react';
+import { useMemo, useCallback, useEffect } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
@@ -27,7 +27,6 @@ import { useSettings, showTableCompactKey } from 'providers/SettingsProvider';
 
 import type { ChangeEvent } from 'react';
 import type { Division } from 'types/divisions';
-import type { Standing } from 'types/standing';
 
 import type { StyledOptionProps } from 'components/Forms/Select/types';
 
@@ -38,25 +37,24 @@ export const Standings = () => {
   const { settings, saveSetting } = useSettings();
 
   const { divisions, tournament } = useTournamentContext();
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const [selectedCountry, setSelectedCountry] = useState(
-    firstCountryOption.value,
-  );
-  const [selectedArchetype, setSelectedArchetype] = useState(
-    firstArchetypeOption.value,
-  );
+  const searchQuery = searchParams.get('search') ?? '';
+  const selectedCountry =
+    searchParams.get('country') ?? firstCountryOption.value;
+  const selectedArchetype =
+    searchParams.get('deck') ?? firstArchetypeOption.value;
 
   const responsive = useResponsive();
-  const isMobile = useMemo(() => responsive.md === false, [responsive]);
+  const isMobile = responsive.md === false;
 
   useEffect(() => {
-    setSearchQuery('');
-    const country = searchParams.get('country');
-    const deck = searchParams.get('deck');
-    setSelectedCountry(country || firstCountryOption.value);
-    setSelectedArchetype(deck || firstArchetypeOption.value);
-  }, [division, searchParams]);
+    setSearchParams(
+      p => {
+        p.delete('search');
+        return p;
+      },
+      { replace: true },
+    );
+  }, [division, setSearchParams]);
 
   const standings = useMemo(() => {
     const divisionData = divisions.find(d => d.division === division);
@@ -66,19 +64,18 @@ export const Standings = () => {
     return divisionData.data;
   }, [division, divisions]);
 
-  const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-  }, []);
+  const handleSearch = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const query = e.target.value;
+      setSearchParams(p => {
+        p.set('search', query);
+        return p;
+      });
+    },
+    [setSearchParams],
+  );
 
-  const filteredPlayers = useMemo(() => {
-    if (
-      !searchQuery &&
-      selectedCountry === firstCountryOption.value &&
-      selectedArchetype === firstArchetypeOption.value
-    )
-      return standings;
-
+  const filteredByDecklist = useMemo(() => {
     const filteredByType =
       selectedCountry === firstCountryOption.value
         ? standings
@@ -86,48 +83,42 @@ export const Standings = () => {
             player.name.includes(`[${selectedCountry}]`),
           );
 
-    const filteredByDecklist =
-      selectedArchetype === firstArchetypeOption.value
-        ? filteredByType
-        : filteredByType.filter(player => {
-            if (player.archetype === undefined && selectedArchetype === '') {
-              return true;
-            }
+    if (selectedArchetype === firstArchetypeOption.value) return filteredByType;
 
-            return player.archetype === selectedArchetype;
-          });
-
-    if (!searchQuery) return filteredByDecklist;
-
-    const fuse = new Fuse(filteredByType, {
-      shouldSort: true,
-      threshold: 0.1,
-      location: 0,
-      distance: 100,
-      keys: ['name'],
-      isCaseSensitive: false,
+    return filteredByType.filter(player => {
+      if (player.archetype === undefined && selectedArchetype === '') {
+        return true;
+      }
+      return player.archetype === selectedArchetype;
     });
+  }, [standings, selectedCountry, selectedArchetype]);
 
-    const result = fuse.search(searchQuery);
-    const finalResult: Standing[] = [];
-    if (result.length) {
-      result.forEach(item => {
-        finalResult.push(item.item);
-      });
-      return finalResult;
-    }
+  const standingsFuse = useMemo(
+    () =>
+      new Fuse(filteredByDecklist, {
+        shouldSort: true,
+        threshold: 0.1,
+        location: 0,
+        distance: 100,
+        keys: ['name'],
+        isCaseSensitive: false,
+      }),
+    [filteredByDecklist],
+  );
 
-    return [];
-  }, [searchQuery, selectedArchetype, selectedCountry, standings]);
+  const filteredPlayers = useMemo(() => {
+    if (!searchQuery) return filteredByDecklist;
+    const result = standingsFuse.search(searchQuery);
+    return result.map(item => item.item);
+  }, [searchQuery, filteredByDecklist, standingsFuse]);
 
   const handleOnStyledCountryChange = useCallback(
     (e: StyledOptionProps) => {
       const value = e.value;
-      setSearchParams(searchParams => {
-        searchParams.set('country', value);
-        return searchParams;
+      setSearchParams(p => {
+        p.set('country', value);
+        return p;
       });
-      setSelectedCountry(value);
     },
     [setSearchParams],
   );
@@ -135,11 +126,10 @@ export const Standings = () => {
   const handleOnStyledArchetypeChange = useCallback(
     (e: StyledOptionProps) => {
       const value = e.value;
-      setSearchParams(searchParams => {
-        searchParams.set('deck', value);
-        return searchParams;
+      setSearchParams(p => {
+        p.set('deck', value);
+        return p;
       });
-      setSelectedArchetype(value);
     },
     [setSearchParams],
   );

@@ -1,36 +1,28 @@
-import { archetypesList } from 'constants/archetypes';
+import {
+  archetypeDefinitionsList,
+  unknownArchetype,
+} from 'constants/archetypes';
+import { matchArchetype } from 'helpers/matchArchetype';
 
 import type { DeckList } from 'types/standing';
-import type { ArchetypeList } from 'constants/archetypes';
+import type { ArchetypeDefinition } from 'constants/archetypes';
 
-type Archetype = Omit<ArchetypeList, 'fn'>;
+type Archetype = Omit<
+  ArchetypeDefinition,
+  'required' | 'identifiers' | 'excludes'
+>;
 
 export const getArchetype = (decklist: DeckList | string): Archetype | null => {
   if (!decklist || typeof decklist === 'string') return null;
-  const match = archetypesList.find(archetype => {
-    return archetype.fn(decklist);
-  });
 
-  if (!match) {
-    const unknownArchetype: Archetype = {
-      name: 'Unknown',
-      color: 'lightgrey',
-      sprites: [
-        {
-          pokemon: 'unknown',
-          sprite: 'substitute.png',
-        },
-      ],
-      key: 'unknown',
-    };
+  const match = matchArchetype(decklist, archetypeDefinitionsList);
 
-    return unknownArchetype;
-  }
+  if (!match) return unknownArchetype;
 
   return {
     name: match.name,
-    color: match.color,
+    chartColor: match.chartColor,
     sprites: match.sprites,
     key: match.key,
-  } as Archetype;
+  };
 };

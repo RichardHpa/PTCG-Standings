@@ -2,54 +2,30 @@ import { Heading } from 'components/Heading';
 import { LoadingPokeball } from 'components/LoadingPokeball';
 import { TournamentsCard } from 'components/TournamentsCard';
 import { SEO } from 'components/SEO';
+import { Notice } from 'components/Notice';
 
-import { useGetTournaments } from 'queries/useGetTournaments';
-
-import { RUNNING, NOT_STARTED, CHECK_IN } from 'constants/tournamentStatus';
+import {
+  useGetTournaments,
+  selectTournamentsByStatus,
+} from 'queries/useGetTournaments';
 
 export const Home = () => {
   const { isPending, data, isError } = useGetTournaments({
-    select: data => {
-      const tournaments = data.tcg.data;
-      const runningTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === RUNNING,
-      );
-
-      const upcomingTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === NOT_STARTED,
-      );
-
-      const checkingInTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === CHECK_IN,
-      );
-
-      const latestTournaments = tournaments
-        .filter(
-          tournament =>
-            tournament.tournamentStatus !== RUNNING &&
-            tournament.tournamentStatus !== NOT_STARTED &&
-            tournament.tournamentStatus !== CHECK_IN,
-        )
-        .slice(0, 5);
-
-      return {
-        upcomingTournaments,
-        runningTournaments,
-        latestTournaments,
-        checkingInTournaments,
-      };
-    },
+    select: selectTournamentsByStatus,
   });
 
   if (isError) {
-    // TODO: make error message more user friendly
-    return <p>There was an error fetching the tournaments</p>;
+    return (
+      <Notice status="error">
+        There was an error fetching the tournaments
+      </Notice>
+    );
   }
 
   if (isPending) {
     return (
-      <div className="flex flex-col items-center justify-center">
-        <LoadingPokeball size="100" alt="Loading tournament info...</p>" />
+      <div role="status" className="flex flex-col items-center justify-center">
+        <LoadingPokeball size="100" alt="Loading tournament info..." />
       </div>
     );
   }
@@ -85,7 +61,7 @@ export const Home = () => {
         )}
 
         <TournamentsCard
-          tournaments={data.latestTournaments}
+          tournaments={data.otherTournaments.slice(0, 5)}
           title="Latest Tournaments"
         />
       </div>

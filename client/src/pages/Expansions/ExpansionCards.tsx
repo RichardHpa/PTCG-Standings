@@ -15,6 +15,39 @@ interface ExpansionCardsProps {
   expansionName: string;
 }
 
+const TimeoutNotice = () => (
+  <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-900/20">
+    <div className="flex items-start">
+      <div className="flex-shrink-0">
+        <svg
+          className="h-5 w-5 text-amber-400"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </div>
+      <div className="ml-3">
+        <h3 className="text-sm font-medium text-amber-800 dark:text-amber-200">
+          External API Response Taking Longer Than Expected
+        </h3>
+        <div className="mt-2 text-sm text-amber-700 dark:text-amber-300">
+          <p>
+            We're experiencing slower response times from our external API
+            provider. This is a known issue with their service that affects all
+            users. Please be patient while the data loads, or try refreshing the
+            page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 export const ExpansionCards = ({
   setId,
   expansionName,
@@ -132,38 +165,7 @@ export const ExpansionCards = ({
         </div>
 
         <div className="space-y-6">
-          {showTimeoutNotice && (
-            <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-900/20">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-5 w-5 text-amber-400"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-sm font-medium text-amber-800 dark:text-amber-200">
-                    External API Response Taking Longer Than Expected
-                  </h3>
-                  <div className="mt-2 text-sm text-amber-700 dark:text-amber-300">
-                    <p>
-                      We're experiencing slower response times from our external
-                      API provider. This is a known issue with their service
-                      that affects all users. Please be patient while the data
-                      loads, or try refreshing the page.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          {showTimeoutNotice && <TimeoutNotice />}
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {Array.from({ length: 30 }).map((_, index) => (
@@ -174,38 +176,7 @@ export const ExpansionCards = ({
             ))}
           </div>
 
-          {showTimeoutNotice && (
-            <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-900/20">
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-5 w-5 text-amber-400"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-sm font-medium text-amber-800 dark:text-amber-200">
-                    External API Response Taking Longer Than Expected
-                  </h3>
-                  <div className="mt-2 text-sm text-amber-700 dark:text-amber-300">
-                    <p>
-                      We're experiencing slower response times from our external
-                      API provider. This is a known issue with their service
-                      that affects all users. Please be patient while the data
-                      loads, or try refreshing the page.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          {showTimeoutNotice && <TimeoutNotice />}
         </div>
       </section>
     );

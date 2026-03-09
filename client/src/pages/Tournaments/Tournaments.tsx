@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import Fuse from 'fuse.js';
@@ -15,9 +15,14 @@ import { SEO } from 'components/SEO';
 
 import { AdditionalInfo } from 'components/TournamentsCard/components/AdditionalInfo';
 
-import { useGetTournaments } from 'queries/useGetTournaments';
+import {
+  useGetTournaments,
+  selectTournamentsByStatus,
+} from 'queries/useGetTournaments';
 
-import { RUNNING, NOT_STARTED, CHECK_IN } from 'constants/tournamentStatus';
+import { Notice } from 'components/Notice';
+
+import { NOT_STARTED, CHECK_IN } from 'constants/tournamentStatus';
 
 import { formatDateFromTimezone } from 'helpers/formatDateFromTimezone';
 import { tw } from 'utils/tailwindClassName';
@@ -44,46 +49,20 @@ export const Tournaments = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const responsive = useResponsive();
-  const isMobile = useMemo(() => responsive.md === false, [responsive]);
+  const isMobile = responsive.md === false;
 
   const [selectedTournamentType, setSelectedTournamentType] = useState(
     tournamentTypeOptions[0].value,
   );
-  const [allTournaments, setAllTournaments] = useState<Tournament[]>([]);
 
   const { isPending, data, isError } = useGetTournaments({
-    select: data => {
-      const tournaments = data.tcg.data;
-      const runningTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === RUNNING,
-      );
-
-      const upcomingTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === NOT_STARTED,
-      );
-
-      const checkingInTournaments = tournaments.filter(
-        tournament => tournament.tournamentStatus === CHECK_IN,
-      );
-
-      const otherTournaments = tournaments.filter(
-        tournament =>
-          tournament.tournamentStatus !== RUNNING &&
-          tournament.tournamentStatus !== NOT_STARTED &&
-          tournament.tournamentStatus !== CHECK_IN,
-      );
-      return {
-        checkingInTournaments,
-        upcomingTournaments,
-        runningTournaments,
-        otherTournaments,
-      };
-    },
+    select: selectTournamentsByStatus,
   });
 
-  useEffect(() => {
-    setAllTournaments(data?.otherTournaments ?? []);
-  }, [data?.otherTournaments]);
+  const allTournaments = useMemo(
+    () => data?.otherTournaments ?? [],
+    [data?.otherTournaments],
+  );
 
   const columns: ColumnProps<Tournament>[] = useMemo(() => {
     return [
@@ -144,48 +123,44 @@ export const Tournaments = () => {
     [],
   );
 
+  const filteredByType = useMemo(() => {
+    if (selectedTournamentType === 'all') return allTournaments;
+    return allTournaments.filter(tournament =>
+      tournament.name.toLowerCase().includes(selectedTournamentType),
+    );
+  }, [allTournaments, selectedTournamentType]);
+
+  const tournamentsFuse = useMemo(
+    () =>
+      new Fuse(filteredByType, {
+        shouldSort: true,
+        threshold: 0.1,
+        location: 0,
+        distance: 100,
+        keys: ['name'],
+        isCaseSensitive: false,
+      }),
+    [filteredByType],
+  );
+
   const filteredTournaments = useMemo(() => {
-    if (!searchQuery && selectedTournamentType === 'all') return allTournaments;
-
-    const filteredByType =
-      selectedTournamentType === 'all'
-        ? allTournaments
-        : allTournaments.filter(tournament =>
-            tournament.name.toLowerCase().includes(selectedTournamentType),
-          );
-
     if (!searchQuery) return filteredByType;
-
-    const fuse = new Fuse(filteredByType, {
-      shouldSort: true,
-      threshold: 0.1,
-      location: 0,
-      distance: 100,
-      keys: ['name'],
-      isCaseSensitive: false,
-    });
-
-    const result = fuse.search(searchQuery);
-    const finalResult: Tournament[] = [];
-    if (result.length) {
-      result.forEach(item => {
-        finalResult.push(item.item);
-      });
-      return finalResult;
-    }
-
-    return [];
-  }, [searchQuery, allTournaments, selectedTournamentType]);
+    const result = tournamentsFuse.search(searchQuery);
+    return result.map(item => item.item);
+  }, [searchQuery, filteredByType, tournamentsFuse]);
 
   if (isError) {
-    // TODO: make error message more user friendly
-    return <p>There was an error fetching the tournaments</p>;
+    return (
+      <Notice status="error">
+        There was an error fetching the tournaments
+      </Notice>
+    );
   }
 
   if (isPending) {
     return (
-      <div className="flex flex-col items-center justify-center">
-        <LoadingPokeball size="100" alt="Loading tournament info...</p>" />
+      <div role="status" className="flex flex-col items-center justify-center">
+        <LoadingPokeball size="100" alt="Loading tournament info..." />
       </div>
     );
   }
