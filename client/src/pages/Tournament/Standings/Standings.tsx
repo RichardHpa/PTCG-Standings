@@ -54,6 +54,7 @@ export const Standings = () => {
       },
       { replace: true },
     );
+    // setSearchParams is not referentially stable in React Router v6 (it changes when location changes); excluding it prevents this effect from re-running on each search-param update.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [division]);
 
