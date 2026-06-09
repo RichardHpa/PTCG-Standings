@@ -54,7 +54,8 @@ export const Standings = () => {
       },
       { replace: true },
     );
-  }, [division, setSearchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [division]);
 
   const standings = useMemo(() => {
     const divisionData = divisions.find(d => d.division === division);
